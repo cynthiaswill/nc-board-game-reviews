@@ -1,70 +1,148 @@
-# Getting Started with Create React App
+# Northcoders Games
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Northcoders Games is a social games content rating, and discussion website.
 
-## Available Scripts
+Northcoders Games has game reviews which are divided into categories. Each review has user curated ratings and can be up or down voted using the API. Users can also add comments about an review. Users can also add comments about a review.
 
-In the project directory, you can run:
+This sprint should consolidate your understanding of making a [C.R.U.D](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) application from a front end perspective.
 
-### `npm start`
+## Getting started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+When you fork a repo from northcoders it will be private and as this project will need to be public the first thing to do is create a public repo for it.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Create a public repo
 
-### `npm test`
+1. **Do not** clone this repo. You will create a new repo to use later on. Instead navigate to the directory you normally keep your sprints in and use `create-react-app` to start a new React project locally on your machine. This will create a new react app with git already initialized.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+$ npx create-react-app nc-games --use-npm
+```
 
-### `npm run build`
+2. Create a public repo. From the GitHub homepage, click the "New repository" button.
+3. Name your new repo with the same name as the React app you created earlier.
+4. Make sure you **don't** create a new `README.md` or `.gitignore` as this will conflict with your own.
+5. Add this repo as a `remote` to your local react project. The link is the same one you would use when cloning a repo.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+$ cd nc-games
+$ git remote add origin https://github.com/your-username/nc-games.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+_nb_ If you make a mistake here you can change the url of an existing remote with:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+$ git remote set-url origin https://github.com/your-username/nc-games.git
+```
 
-### `npm run eject`
+6. Push the initial React app. **Note** create-react-app will initialise the git repo on a branch called `master`. As we use `main` for the default branch you should first change to that branch before pushing
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+$ git checkout -b main
+$ git push origin main
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Enable CORS on the Back End
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+When making requests to your api from a React app you will run into a Cross Origin Resource Sharing or [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) error. The next thing to do is enable these requests in our back end.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+7. In your **back end** install the [CORS package](https://expressjs.com/en/resources/middleware/cors.html) from `npm`
 
-## Learn More
+```bash
+$ npm install cors
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+8. In your `app.js` file, require in the package:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+const cors = require("cors");
+```
 
-### Code Splitting
+9. In your `app.js` file, have your app use the `cors` middleware before any of your other middleware or routers.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```js
+app.use(cors());
+```
 
-### Analyzing the Bundle Size
+10. Once you have made these changes you will need to commit them and re-deploy your api. With heroku this can be done by pushing to your heroku remote.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```sh
+$ git add package.json package-lock.json app.js
+$ git commit -m 'allow cross origin resource sharing'
+$ git push heroku main
+```
 
-### Making a Progressive Web App
+## Objectives
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Pull together all the front-end skills, technologies and best practices you have learnt.
+2. Make asynchronous API calls to your own server.
+3. Use HTTP request types to interact with your backend, and HTTP response codes to update your UI accordingly.
 
-### Advanced Configuration
+## What to do
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Follow the [planning process](https://notes.northcoders.com/courses/js-front-end/planning-react-apps) for building a React app. You should create wire-frames for each route as well planning the component tree with associated state. Here are some project-specific things to bear in mind:
 
-### Deployment
+1. Have a look at your API endpoints. Think about what data you have available, and how you will structure your application. What routes will your application have? What reviews will you choose to display on the main page?
+2. Think how you will isolate the concerns of your project - the structure of your components, the sourcing of your data, the styling.
+3. What sort of routing will your app use? What sort of specificity do you think you will need? Remember, your urls don't have to directly correspond to your api endpoints, but they will provide some guidance.
+4. Think about what data each component will need. Where will it come from? When should components find their own data and when should they load it themselves? Focus on the simplest functionality first.
+5. Consider more complex functionality: how do you want to allow changes to your database? Think about how you will attribute users to posted comments etc. How will you know what comments/reviews a user should be allowed to delete? How about sorting data, or paginating responses? A good starting point would be to pick a single user and assuming that all new reviews and comments are being posted by that user.
+6. How are you going to make this a fluid and engaging experience for users, so they want to come back for more?
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## User Stories
 
-### `npm run build` fails to minify
+You should implement the following functionality in your website. Check the lecture calendar to see when any new topics will be covered, but feel free to have a go at them beforehand as well!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Before moving onto the 'if time' and 'extra credit' sections of this readme, follow go to the Deployment section bellow, and then submit your code for review! Please send a link to both your GitHub project repository and your hosted website to your reviewer** 😀
+
+**As a user, I should be able to...**
+
+1. view a list of all reviews
+2. view a page for each category with a list of related reviews.
+3. view an individual review.
+4. view an individual review's comments.
+5. vote on an review and immediately see the change.
+6. post a new comment to an existing review (as a default logged in user. e.g. 'jessjelly').
+7. sort reviews by:
+    - created_at
+    - comment_count
+    - votes
+8. delete my own comments (as a default logged in user. e.g. 'jessjelly').
+
+**Error-handling: As a user, I should...**
+
+9. see an appropriate error if I go on a non-existent path / a path for a non-existent review / topic.
+10. not be allowed to post a comment if I have not filled in all of the form boxes.
+
+**As a hiring partner, I should be able to...**
+
+11. use the site on my mobile without sacrificing style or functionality (as I may not have my laptop nearby).
+12. follow the readme instructions to easily run the project locally.
+13. find a link to the hosted version of the project in the readme. (use a placeholder if not yet hosted!)
+14. find a link to the back-end repository of the project in the readme.
+15. find a link to the hosted version of the back-end project in the readme.
+
+## _If time, and if you have implemented it in your back-end API..._
+
+**As a user, I should be able to...**
+
+16. vote on a comment and immediately see the change.
+17. navigate over pages of reviews (e.g. using pagination or infinite scroll).
+18. navigate over pages of comments (e.g. using pagination or infinite scroll).
+19. view a list of all reviews written by any specific user.
+20. post a new review to an existing topic.
+21. delete my own reviews.
+
+## Deployment
+
+There are many ways to deploy a React application. The `create-react-app` docs go into detail on some of the options: https://facebook.github.io/create-react-app/docs/deployment
+
+We recommend Netlify. Check out the deployment notes for a step-by-step guide!
+
+## Extra credit - what else do you think would be good for a user to be able to do, here are a couple of suggestions:
+
+1. As a user, I should be able to see which users have been most active adding reviews and comments
+2. As a user, I should be able to sort the users by how popular they are based on an aggregation of their review and comment vote counts
+
+## Important
+
+This sprint is among the ones we'll ask you to complete in order to put you forward for jobs. Put a little bit of love into it! :) <3
