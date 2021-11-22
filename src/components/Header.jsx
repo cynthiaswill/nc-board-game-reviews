@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <header>
+    <header className="header">
       <h1>Board Game Reviews</h1>
     </header>
   );
