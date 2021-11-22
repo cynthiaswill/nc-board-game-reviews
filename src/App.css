@@ -19,7 +19,7 @@
 .nav {
   grid-area: nav;
   border: solid green 2px;
-  padding: 5px;
+  padding: 6px;
 }
 
 .main {
