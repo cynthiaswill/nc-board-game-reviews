@@ -8,7 +8,13 @@ import Reviews from "./components/Reviews";
 import Review from "./components/Reviews";
 
 function App() {
-  const [catQueries, setCatQueries] = useState(["created_at", "desc", 10, 1]);
+  const [catQueries, setCatQueries] = useState({
+    sort: "created_at",
+    order: "desc",
+    limit: 10,
+    p: 1,
+    category: "",
+  });
 
   return (
     <div className="App">

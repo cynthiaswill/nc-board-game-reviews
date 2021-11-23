@@ -25,10 +25,10 @@ export default function Nav({ setCatQueries }) {
           <Link
             className="category-links"
             to="/reviews"
-            onClick={(e) => {
+            onClick={() => {
               setCatQueries((current) => {
-                const newCurrent = [];
-                newCurrent.push(current[0], current[1], current[2], current[3]);
+                const newCurrent = { ...current };
+                newCurrent.category = "";
                 navigate("/reviews");
                 return newCurrent;
               });
@@ -44,8 +44,8 @@ export default function Nav({ setCatQueries }) {
                 to="/reviews"
                 onClick={(e) => {
                   setCatQueries((current) => {
-                    let newCurrent = [...current];
-                    newCurrent.push(category.slug);
+                    let newCurrent = { ...current };
+                    newCurrent.category = category.slug;
                     navigate("/reviews");
                     return newCurrent;
                   });
@@ -81,8 +81,8 @@ export default function Nav({ setCatQueries }) {
             className="nav-options"
             onChange={(e) => {
               setCatQueries((current) => {
-                let newCurrent = [...current];
-                newCurrent[1] = e.target.value;
+                let newCurrent = { ...current };
+                newCurrent.order = e.target.value;
                 navigate("/reviews");
                 return newCurrent;
               });
@@ -99,8 +99,8 @@ export default function Nav({ setCatQueries }) {
             className="nav-options"
             onChange={(e) => {
               setCatQueries((current) => {
-                let newCurrent = [...current];
-                newCurrent[2] = e.target.value;
+                let newCurrent = { ...current };
+                newCurrent.limit = e.target.value;
                 navigate("/reviews");
                 return newCurrent;
               });

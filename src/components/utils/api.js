@@ -8,13 +8,7 @@ export const getCategories = () => {
   return gamesApi.get("/categories");
 };
 
-export const getReviews = (
-  sort = "created_at",
-  order = "desc",
-  limit = 10,
-  p = 1,
-  category
-) => {
+export const getReviews = ({ sort, order, limit, p, category }) => {
   let path = `/reviews?sort_by=${sort}&&order=${order}&&limit=${limit}&&p=${p}`;
   if (category) {
     path += `&&category=${category}`;
