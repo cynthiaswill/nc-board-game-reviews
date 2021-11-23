@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getCategories } from "./utils/api";
 
-export default function Nav() {
+export default function Nav({ setCatQueries }) {
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const numArr = [];
   for (let i = 1; i <= 20; i++) {
@@ -35,8 +36,19 @@ export default function Nav() {
           })}
         </div>
         <div>
-          <select id="sort-option" className="nav-options">
-            <option value="created_at" default hidden>
+          <select
+            id="sort-option"
+            className="nav-options"
+            onChange={(e) => {
+              setCatQueries((current) => {
+                let newCurrent = [...current];
+                newCurrent[0] = e.target.value;
+                navigate("/reviews");
+                return newCurrent;
+              });
+            }}
+          >
+            <option value="created_at" default>
               sort by
             </option>
             <option value="title">title</option>
@@ -45,15 +57,37 @@ export default function Nav() {
             <option value="created_at">date created</option>
             <option value="votes">votes</option>
           </select>
-          <select id="order-option" className="nav-options">
-            <option value="desc" default hidden>
+          <select
+            id="order-option"
+            className="nav-options"
+            onChange={(e) => {
+              setCatQueries((current) => {
+                let newCurrent = [...current];
+                newCurrent[1] = e.target.value;
+                navigate("/reviews");
+                return newCurrent;
+              });
+            }}
+          >
+            <option value="desc" default>
               order by
             </option>
             <option value="desc">descending</option>
             <option value="asc">ascending</option>
           </select>
-          <select id="per-page-option" className="nav-options">
-            <option value="10" default hidden>
+          <select
+            id="per-page-option"
+            className="nav-options"
+            onChange={(e) => {
+              setCatQueries((current) => {
+                let newCurrent = [...current];
+                newCurrent[2] = e.target.value;
+                navigate("/reviews");
+                return newCurrent;
+              });
+            }}
+          >
+            <option value="10" default>
               reviews per page
             </option>
             {numArr.map((num) => {
