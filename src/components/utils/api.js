@@ -19,5 +19,6 @@ export const getReviews = (
   if (category) {
     path += `&&category=${category}`;
   }
+  console.log(path);
   return gamesApi.get(`${path}`);
 };
