@@ -27,3 +27,7 @@
   border: solid blue 2px;
   background: lightgrey;
 }
+
+.category-links {
+  padding: 5px;
+}
