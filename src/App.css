@@ -26,6 +26,8 @@
   grid-area: main;
   border: solid blue 2px;
   background: lightgrey;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .category-links {
@@ -34,4 +36,9 @@
 
 .nav-options {
   margin: 3px 5px;
+}
+
+.review-item {
+  border: 2px solid black;
+  margin: 10px;
 }

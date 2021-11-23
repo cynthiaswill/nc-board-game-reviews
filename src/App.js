@@ -15,14 +15,18 @@ function App() {
     p: 1,
     category: "",
   });
+  const [category, setCategory] = useState({ slug: "All categories", description: "" });
 
   return (
     <div className="App">
       <Header />
-      <Nav setCatQueries={setCatQueries} />
+      <Nav setCatQueries={setCatQueries} setCategory={setCategory} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/reviews" element={<Reviews catQueries={catQueries} />} />
+        <Route
+          path="/reviews"
+          element={<Reviews catQueries={catQueries} category={category} />}
+        />
         <Route path="/reviews/:review_id" element={<Review />} />
         <Route path="/reviews/:title" element={<Review />} />
       </Routes>

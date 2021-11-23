@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getCategories } from "./utils/api";
+import { getDescription } from "./utils/getDescription";
 
-export default function Nav({ setCatQueries }) {
+export default function Nav({ setCatQueries, setCategory }) {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const numArr = [];
@@ -32,6 +33,7 @@ export default function Nav({ setCatQueries }) {
                 navigate("/reviews");
                 return newCurrent;
               });
+              setCategory({ slug: "All categories", description: "" });
             }}
           >
             All
@@ -48,6 +50,10 @@ export default function Nav({ setCatQueries }) {
                     newCurrent.category = category.slug;
                     navigate("/reviews");
                     return newCurrent;
+                  });
+                  setCategory({
+                    slug: `${category.slug}`,
+                    description: `${getDescription(category.slug, categories)}`,
                   });
                 }}
               >{`${category.slug}`}</Link>
