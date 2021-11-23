@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 100%;
@@ -11,12 +10,14 @@
 }
 
 .header {
+  text-align: center;
   grid-area: header;
   border: solid red 2px;
   background: lightsteelblue;
 }
 
 .nav {
+  text-align: center;
   grid-area: nav;
   border: solid green 2px;
   padding: 2px;
@@ -41,6 +42,7 @@
 .review-item {
   border: 2px solid black;
   margin: 10px;
+  overflow: auto;
 }
 
 .category-title {
@@ -51,4 +53,20 @@
 .category-description {
   font-style: italic;
   margin: 5px;
+}
+
+.slug-name {
+  float: left;
+}
+
+.designer-name {
+  float: right;
+}
+
+.author {
+  float: left;
+}
+
+.date-posted {
+  float: right;
 }
