@@ -19,7 +19,7 @@
 .nav {
   grid-area: nav;
   border: solid green 2px;
-  padding: 6px;
+  padding: 2px;
 }
 
 .main {
@@ -29,5 +29,9 @@
 }
 
 .category-links {
-  padding: 5px;
+  margin: 5px;
+}
+
+.nav-options {
+  margin: 3px 5px;
 }
