@@ -15,9 +15,8 @@ export default function Reviews({ catQueries, category }) {
 
   return (
     <main className="main">
-      <p>
-        <h3>{category.slug}:</h3> <span>{category.description}</span>
-      </p>
+      <h3 className="category-title">{category.slug}:</h3>
+      <p className="category-description">{category.description}</p>
       {reviews.map((review) => {
         return (
           <div key={review.review_id} className="review-item">
@@ -25,10 +24,9 @@ export default function Reviews({ catQueries, category }) {
             <p>
               Category: {review.category} Designer: {review.designer}
             </p>
-            <p></p>
             <p>{review.review_body}</p>
-            <p>Author: {review.owner}</p>
-            <p>Date posted: {review.created_at}</p>
+            <span>Author: {review.owner}</span>
+            <span>Date posted: {review.created_at}</span>
           </div>
         );
       })}

@@ -42,3 +42,13 @@
   border: 2px solid black;
   margin: 10px;
 }
+
+.category-title {
+  font-style: italic;
+  margin: 5px;
+}
+
+.category-description {
+  font-style: italic;
+  margin: 5px;
+}
