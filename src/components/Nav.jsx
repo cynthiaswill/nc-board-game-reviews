@@ -60,8 +60,8 @@ export default function Nav({ setCatQueries }) {
             className="nav-options"
             onChange={(e) => {
               setCatQueries((current) => {
-                let newCurrent = [...current];
-                newCurrent[0] = e.target.value;
+                let newCurrent = { ...current };
+                newCurrent.sort = e.target.value;
                 navigate("/reviews");
                 return newCurrent;
               });
