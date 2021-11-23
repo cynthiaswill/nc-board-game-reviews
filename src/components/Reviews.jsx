@@ -21,12 +21,16 @@ export default function Reviews({ catQueries, category }) {
         return (
           <div key={review.review_id} className="review-item">
             <h3>{review.title}</h3>
-            <p>
-              <span className="slug-name">Category: {review.category}</span>{" "}
-              <span className="designer-name">Designer: {review.designer}</span>
-              <br />
-            </p>
-            <p>{review.review_body}</p>
+            <span className="slug-name">Category: {review.category}</span>{" "}
+            <span className="designer-name">Designer: {review.designer}</span>
+            <br />
+            <img
+              className="review-img"
+              src={review.review_img_url}
+              alt={review.title}
+            ></img>
+            <p></p>
+            <p className="review-body">{review.review_body}</p>
             <span className="author">Author: {review.owner}</span>
             <span className="date-posted">Date posted: {review.created_at}</span>
           </div>

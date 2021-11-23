@@ -27,7 +27,7 @@
   grid-area: main;
   border: solid blue 2px;
   background: lightgrey;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -69,4 +69,11 @@
 
 .date-posted {
   float: right;
+}
+
+.review-img {
+  float: right;
+  max-width: 60vw;
+  max-height: 30vh;
+  margin: 10px;
 }
