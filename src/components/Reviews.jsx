@@ -1,4 +1,4 @@
-import { getReviews } from "../utils/api";
+import { getReviews, incKudos } from "../utils/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -51,7 +51,14 @@ export default function Reviews({ catQueries, category }) {
               <button className="comments-button">
                 Comments: {review.comment_count}
               </button>
-              <button className="kudos-button">Kudos: {review.votes}</button>
+              <button
+                className="kudos-button"
+                onClick={() => {
+                  incKudos(review.review_id, { inc_votes: 1 });
+                }}
+              >
+                Kudos: {review.votes}
+              </button>
             </section>
           </div>
         );

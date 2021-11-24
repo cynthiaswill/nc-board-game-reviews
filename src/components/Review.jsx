@@ -1,4 +1,4 @@
-import { getReviewById, getComments } from "../utils/api";
+import { getReviewById, getComments, incKudos } from "../utils/api";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -6,6 +6,7 @@ export default function Review() {
   const [review, setReview] = useState({});
   const [limitPerPage, setLimitPerPage] = useState(10);
   const [comments, setComments] = useState([]);
+
   const { review_id } = useParams();
   const numArr = [];
   for (let i = 1; i <= 20; i++) {
@@ -53,7 +54,18 @@ export default function Review() {
         </section>
         <section className="button-container">
           <button className="comments-button">Comments: {review.comment_count}</button>
-          <button className="kudos-button">Kudos: {review.votes}</button>
+          <button className="edit-review-button">Edit</button>
+          <button
+            className="kudos-button"
+            onClick={() => {
+              incKudos(review.review_id, { inc_votes: 1 });
+              setReview((current) => {
+                return { ...current, votes: current.votes++ };
+              });
+            }}
+          >
+            Kudos: {review.votes}
+          </button>
         </section>
       </div>
       <section className="comments-container">
