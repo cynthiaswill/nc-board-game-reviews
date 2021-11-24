@@ -44,7 +44,6 @@ export default function Reviews({ catQueries, category }) {
                 <span className="date-posted">Date posted: {review.created_at}</span>
                 <br />
               </div>
-              <p class="read-more"></p>
             </section>
             <Link to="/" className="read-more-button">
               Read More
