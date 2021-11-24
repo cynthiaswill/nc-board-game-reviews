@@ -163,6 +163,10 @@ button {
   max-width: 900px;
 }
 
+.edit-review-button {
+  margin-left: 10px;
+}
+
 .add-comment-button {
   margin: 5px 10px;
 }
@@ -178,7 +182,7 @@ button {
 }
 
 .edit-comment-button {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .delete-comment-button {
