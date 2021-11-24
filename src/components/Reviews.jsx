@@ -45,7 +45,7 @@ export default function Reviews({ catQueries, category }) {
                 <br />
               </div>
             </section>
-            <Link to="/" className="read-more-button">
+            <Link to="/" className="read-more">
               Read More
             </Link>
             <section className="button-container">
