@@ -21,21 +21,29 @@ export default function Reviews({ catQueries, category }) {
       {reviews.map((review) => {
         return (
           <div key={review.review_id} className="review-item">
-            <h3>
-              <Link to={`/reviews/${review.review_id}`}> {review.title} </Link>
-            </h3>
-            <span className="slug-name">Category: {review.category}</span>{" "}
-            <span className="designer-name">Designer: {review.designer}</span>
-            <br />
-            <img
-              className="review-img"
-              src={review.review_img_url}
-              alt={review.title}
-            ></img>
-            <p></p>
-            <p className="review-body">{review.review_body}</p>
-            <span className="author">Author: {review.owner}</span>
-            <span className="date-posted">Date posted: {review.created_at}</span>
+            <section className="review-card">
+              <h3>
+                <Link to={`/reviews/${review.review_id}`}> {review.title} </Link>
+              </h3>
+              <span className="slug-name">Category: {review.category}</span>{" "}
+              <span className="designer-name">Designer: {review.designer}</span>
+              <br />
+              <img
+                className="review-img"
+                src={review.review_img_url}
+                alt={review.title}
+              ></img>
+              <div>
+                <p className="review-body">{review.review_body}</p>
+                <span className="author">Author: {review.owner}</span>
+                <span className="date-posted">Date posted: {review.created_at}</span>
+                <br />
+              </div>
+            </section>
+            <section className="button-container">
+              <button className="comments-button">Comments</button>
+              <button className="kudos-button">Kudos: {review.votes}</button>
+            </section>
           </div>
         );
       })}
