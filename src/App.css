@@ -9,6 +9,16 @@
     "main";
 }
 
+button:hover {
+  box-shadow: 0 2px gray;
+  transform: translateY(-1px);
+}
+button:active {
+  background-color: white;
+  box-shadow: 0 2px gray;
+  transform: translateY(1px);
+}
+
 .header {
   text-align: center;
   grid-area: header;
