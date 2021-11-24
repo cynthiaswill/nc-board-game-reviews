@@ -54,13 +54,13 @@ button {
   border: 2px solid black;
   margin: 10px;
   overflow: auto;
-  max-height: 35vh;
+  max-height: 40vh;
   padding: 5px;
   position: relative;
 }
 
 .review-card {
-  max-height: 30vh;
+  max-height: 35vh;
   margin: 5px;
   overflow: hidden;
   position: relative;
