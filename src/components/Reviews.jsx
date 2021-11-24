@@ -22,7 +22,7 @@ export default function Reviews({ catQueries, category }) {
         return (
           <div key={review.review_id} className="review-item">
             <section className="review-card">
-              <h3>
+              <h3 className="review-title">
                 <Link to={`/reviews/${review.review_id}`}> {review.title} </Link>
               </h3>
               <span className="slug-name">Category: {review.category}</span>{" "}
