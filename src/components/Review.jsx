@@ -93,14 +93,14 @@ export default function Review() {
           {comments.map((comment) => {
             return (
               <div className="comment-box" key={comment.comment_id}>
-                <p>{comment.body}</p>
                 <span className="author">
-                  Author:{" "}
                   <Link to="/" className="author-link">
                     {comment.author}
-                  </Link>
+                  </Link>{" "}
+                  replied:
                 </span>
-                <span className="date-posted">Date posted: {comment.created_at}</span>
+                <p>{comment.body}</p>
+                <span className="date-posted">{comment.created_at}</span>
                 <div className="button-container">
                   <button className="edit-comment-button">Edit</button>
                   <button className="delete-comment-button">Delete</button>
