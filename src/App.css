@@ -103,18 +103,22 @@ button {
 
 .slug-name {
   float: left;
+  font-size: 0.9em;
 }
 
 .designer-name {
   float: right;
+  font-size: 0.9em;
 }
 
 .author {
   float: left;
+  font-size: 0.9em;
 }
 
 .date-posted {
   float: right;
+  font-size: 0.8em;
 }
 
 .review-img {
@@ -141,4 +145,8 @@ button {
 
 .kudos-button {
   float: right;
+}
+
+.data-stamp {
+  font-size: 0.8em;
 }

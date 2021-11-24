@@ -27,13 +27,15 @@ export default function Review() {
           ></img>
           <div>
             <p className="review-body">{review.review_body}</p>
-            <span className="author">
+            <div className="author">
               Author:{" "}
               <Link to="/" className="author-link">
                 {review.owner}
               </Link>
-            </span>
-            <span className="date-posted">Date posted: {review.created_at}</span>
+              <br />
+              <span className="data-stamp">Date posted: {review.created_at}</span>
+            </div>
+
             <br />
           </div>
         </section>
