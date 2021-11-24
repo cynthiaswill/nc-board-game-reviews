@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Reviews({ catQueries, category }) {
   const [reviews, setReviews] = useState([]);
+  const [isVoted, setIsVoted] = useState(false);
 
   useEffect(() => {
     getReviews(catQueries)
@@ -11,7 +12,8 @@ export default function Reviews({ catQueries, category }) {
         setReviews(data.reviews);
       })
       .catch((err) => console.log(err));
-  }, [catQueries, category]);
+    setIsVoted(false);
+  }, [catQueries, category, isVoted]);
 
   return (
     <main className="main">
@@ -54,6 +56,7 @@ export default function Reviews({ catQueries, category }) {
               <button
                 className="kudos-button"
                 onClick={() => {
+                  setIsVoted(true);
                   incKudos(review.review_id, { inc_votes: 1 });
                 }}
               >
