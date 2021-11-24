@@ -35,7 +35,12 @@ export default function Reviews({ catQueries, category }) {
               ></img>
               <div>
                 <p className="review-body">{review.review_body}</p>
-                <span className="author">Author: {review.owner}</span>
+                <span className="author">
+                  Author:{" "}
+                  <Link to="/" className="author-link">
+                    {review.owner}
+                  </Link>
+                </span>
                 <span className="date-posted">Date posted: {review.created_at}</span>
                 <br />
               </div>
