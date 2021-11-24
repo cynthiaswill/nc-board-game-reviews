@@ -63,10 +63,27 @@ button {
   position: relative;
 }
 
+.single-review-item {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  margin: 10px;
+  overflow: auto;
+  padding: 5px;
+  position: relative;
+  max-width: 900px;
+}
+
 .review-card {
   max-height: 35vh;
   margin: 5px;
   overflow: hidden;
+  position: relative;
+}
+
+.single-review-content {
+  margin: 5px;
+  overflow: auto;
   position: relative;
 }
 
@@ -104,6 +121,13 @@ button {
   float: right;
   max-width: 50vw;
   max-height: 25vh;
+  margin: 10px;
+}
+
+.single-review-img {
+  float: right;
+  max-width: 60vw;
+  max-height: 40vh;
   margin: 10px;
 }
 

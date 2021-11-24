@@ -6,7 +6,6 @@ export default function Reviews({ catQueries, category }) {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    console.log(catQueries, "queries");
     getReviews(catQueries)
       .then(({ data }) => {
         setReviews(data.reviews);
@@ -45,7 +44,7 @@ export default function Reviews({ catQueries, category }) {
                 <br />
               </div>
             </section>
-            <Link to="/" className="read-more">
+            <Link to={`/reviews/${review.review_id}`} className="read-more">
               Read More
             </Link>
             <section className="button-container">
