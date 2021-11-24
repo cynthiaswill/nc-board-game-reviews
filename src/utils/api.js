@@ -13,7 +13,6 @@ export const getReviews = ({ sort, order, limit, p, category }) => {
   if (category) {
     path += `&&category=${category}`;
   }
-  console.log(path);
   return gamesApi.get(`${path}`);
 };
 

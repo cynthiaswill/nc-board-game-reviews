@@ -10,7 +10,7 @@ export default function Review() {
     getReviewById(review_id).then(({ data }) => {
       setReview(data.review);
     });
-  }, []);
+  }, [review_id]);
 
   return (
     <main className="main">
