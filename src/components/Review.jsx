@@ -23,8 +23,8 @@ export default function Review() {
     }).then(({ data }) => {
       setComments(data.comments);
     });
-  }, [review_id]);
-  console.log(comments);
+  }, [review_id, limitPerPage]);
+
   return (
     <main className="main">
       <div key={review.review_id} className="single-review-item">
@@ -63,11 +63,7 @@ export default function Review() {
             <select
               className="comments-limit-option"
               onChange={(e) => {
-                setLimitPerPage((current) => {
-                  let newCurrent = { ...current };
-                  newCurrent.limit = e.target.value;
-                  return newCurrent;
-                });
+                setLimitPerPage(e.target.value);
               }}
             >
               <option value="10" default>
