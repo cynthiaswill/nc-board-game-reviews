@@ -41,11 +41,13 @@ export default function Reviews({ catQueries, category }) {
               </div>
               <p class="read-more"></p>
             </section>
-            <Link to="/" class="read-more-button">
+            <Link to="/" className="read-more-button">
               Read More
             </Link>
             <section className="button-container">
-              <button className="comments-button">Comments</button>
+              <button className="comments-button">
+                Comments: {review.comment_count}
+              </button>
               <button className="kudos-button">Kudos: {review.votes}</button>
             </section>
           </div>
