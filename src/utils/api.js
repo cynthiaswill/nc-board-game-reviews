@@ -16,3 +16,7 @@ export const getReviews = ({ sort, order, limit, p, category }) => {
   console.log(path);
   return gamesApi.get(`${path}`);
 };
+
+export const getReviewById = (id) => {
+  return gamesApi.get(`/reviews/${id}`);
+};
