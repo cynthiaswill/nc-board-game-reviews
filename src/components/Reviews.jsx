@@ -1,5 +1,6 @@
 import { getReviews } from "../utils/api";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Reviews({ catQueries, category }) {
   const [reviews, setReviews] = useState([]);
@@ -20,7 +21,9 @@ export default function Reviews({ catQueries, category }) {
       {reviews.map((review) => {
         return (
           <div key={review.review_id} className="review-item">
-            <h3>{review.title}</h3>
+            <h3>
+              <Link to={`/reviews/${review.review_id}`}> {review.title} </Link>
+            </h3>
             <span className="slug-name">Category: {review.category}</span>{" "}
             <span className="designer-name">Designer: {review.designer}</span>
             <br />
