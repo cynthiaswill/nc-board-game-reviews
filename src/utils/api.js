@@ -19,3 +19,11 @@ export const getReviews = ({ sort, order, limit, p, category }) => {
 export const getReviewById = (id) => {
   return gamesApi.get(`/reviews/${id}`);
 };
+
+export const getComments = ({ review_id, limit, p }) => {
+  let path = `/reviews/${review_id}/comments?p=${p}`;
+  if (limit) {
+    path += `&&limit=${limit}`;
+  }
+  return gamesApi.get(`${path}`);
+};

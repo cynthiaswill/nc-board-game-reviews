@@ -89,6 +89,7 @@ button {
 
 .read-more {
   margin-left: 10px;
+  margin-bottom: 5px;
 }
 
 .category-title {
@@ -149,4 +150,37 @@ button {
 
 .data-stamp {
   font-size: 0.8em;
+}
+
+.comment-box {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  margin: 10px;
+  overflow: auto;
+  padding: 5px;
+  position: relative;
+  max-width: 900px;
+}
+
+.add-comment-button {
+  margin: 5px 10px;
+}
+
+.comments-limit-option {
+  margin: 5px 10px;
+}
+
+.comments-sub-bar {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+}
+
+.edit-comment-button {
+  margin-right: 10px;
+}
+
+.delete-comment-button {
+  margin-left: 10px;
 }
