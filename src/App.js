@@ -26,9 +26,8 @@ function App() {
         <Route
           path="/reviews"
           element={<Reviews catQueries={catQueries} category={category} />}
-          exact
         />
-        <Route path="/reviews/:review_id" element={<Review />} exact />
+        <Route path="/reviews/:review_id" element={<Review />} />
       </Routes>
     </div>
   );
