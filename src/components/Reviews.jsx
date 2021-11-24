@@ -1,4 +1,4 @@
-import { getReviews } from "./utils/api";
+import { getReviews } from "../utils/api";
 import { useEffect, useState } from "react";
 
 export default function Reviews({ catQueries, category }) {
@@ -12,7 +12,7 @@ export default function Reviews({ catQueries, category }) {
       })
       .catch((err) => console.log(err));
   }, [catQueries]);
-
+  console.log(category);
   return (
     <main className="main">
       <h3 className="category-title">{category.slug}:</h3>
