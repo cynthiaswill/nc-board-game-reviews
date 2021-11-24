@@ -1,11 +1,11 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
 import Home from "./components/Home";
 import Reviews from "./components/Reviews";
-import Review from "./components/Reviews";
+import Review from "./components/Review";
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [catQueries, setCatQueries] = useState({
@@ -26,9 +26,9 @@ function App() {
         <Route
           path="/reviews"
           element={<Reviews catQueries={catQueries} category={category} />}
+          exact
         />
-        <Route path="/reviews/:review_id" element={<Review />} />
-        <Route path="/reviews/:title" element={<Review />} />
+        <Route path="/reviews/:review_id" element={<Review />} exact />
       </Routes>
     </div>
   );

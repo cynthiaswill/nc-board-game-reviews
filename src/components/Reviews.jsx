@@ -12,8 +12,8 @@ export default function Reviews({ catQueries, category }) {
         setReviews(data.reviews);
       })
       .catch((err) => console.log(err));
-  }, [catQueries]);
-  console.log(category);
+  }, [catQueries, category]);
+
   return (
     <main className="main">
       <h3 className="category-title">{category.slug}:</h3>

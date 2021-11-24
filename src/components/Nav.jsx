@@ -1,7 +1,7 @@
+import { getDescription } from "../utils/utils";
+import { getCategories } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getCategories } from "../utils/api";
-import { getDescription } from "../utils/utils";
 
 export default function Nav({ setCatQueries, setCategory }) {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export default function Nav({ setCatQueries, setCategory }) {
         setCategories(data.categories);
       })
       .catch((err) => console.log(err));
-  }, [categories]);
+  }, []);
 
   return (
     <div className="nav">
