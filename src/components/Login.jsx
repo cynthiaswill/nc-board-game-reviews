@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { getUsers } from "../utils/api";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Login({ setUser }) {
+export default function Login({ setUser, setHidden }) {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getUsers().then(({ data }) => {
@@ -25,6 +27,8 @@ export default function Login({ setUser }) {
             <button
               onClick={() => {
                 setUser(user);
+                setHidden("hidden-element");
+                navigate("/");
               }}
             >
               Login as {user.username}

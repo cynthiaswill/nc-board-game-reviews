@@ -10,6 +10,7 @@ import Login from "./components/Login";
 
 function App() {
   const [user, setUser] = useState({});
+  const [hidden, setHidden] = useState("unhidden-element");
   const [catQueries, setCatQueries] = useState({
     sort: "created_at",
     order: "desc",
@@ -22,7 +23,12 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Nav setCatQueries={setCatQueries} setCategory={setCategory} user={user} />
+      <Nav
+        setCatQueries={setCatQueries}
+        setCategory={setCategory}
+        user={user}
+        hidden={hidden}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -30,7 +36,10 @@ function App() {
           element={<Reviews catQueries={catQueries} category={category} />}
         />
         <Route path="/reviews/:review_id" element={<Review />} />
-        <Route path="/users" element={<Login setUser={setUser} />} />
+        <Route
+          path="/users"
+          element={<Login setUser={setUser} setHidden={setHidden} />}
+        />
       </Routes>
     </div>
   );

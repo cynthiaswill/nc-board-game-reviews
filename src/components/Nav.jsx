@@ -3,9 +3,10 @@ import { getCategories } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export default function Nav({ setCatQueries, setCategory, user }) {
+export default function Nav({ setCatQueries, setCategory, user, hidden }) {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
+
   const numArr = [];
   for (let i = 1; i <= 20; i++) {
     numArr.push(i);
@@ -191,7 +192,9 @@ export default function Nav({ setCatQueries, setCategory, user }) {
             alt={user.username}
           ></img>
           <br />
-          <Link to="/sign-up">Sign Up</Link>
+          <Link className={hidden} to="/sign-up">
+            Sign Up
+          </Link>
         </div>
       </nav>
     </div>

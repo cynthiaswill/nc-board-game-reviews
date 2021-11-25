@@ -307,3 +307,11 @@ button {
   display: flex;
   justify-content: center;
 }
+
+.hidden-element {
+  visibility: hidden;
+}
+
+.unhidden-element {
+  visibility: visible;
+}
