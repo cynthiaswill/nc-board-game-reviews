@@ -9,6 +9,18 @@
     "main";
 }
 
+@media (min-width: 481px) {
+  #narrow-cat-options {
+    display: none;
+  }
+  #narrow-compose-link {
+    display: none;
+  }
+  #narrow-login-link {
+    display: none;
+  }
+}
+
 @media (max-width: 480px) {
   .categories-in-nav {
     display: none;
@@ -16,12 +28,15 @@
   #compose-link {
     display: none;
   }
+  #login-link {
+    display: none;
+  }
   #header {
     margin: 15px;
   }
 }
 
-@media (max-width: 370px) {
+@media (max-width: 320px) {
   #per-page-option {
     display: none;
   }
@@ -228,16 +243,32 @@ button {
 #flex-in-nav {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 #compose-link {
   font-weight: bold;
-  color: teal;
+  color: black;
   font-style: italic;
 }
 
 #login-link {
   font-weight: bold;
-  color: teal;
+  color: black;
+}
+
+#narrow-compose-link {
+  text-align: left;
+  font-weight: bold;
+  color: black;
+  font-style: italic;
+  margin-left: 5px;
+}
+#narrow-login-link {
+  text-align: right;
+  float: right;
+  font-weight: bold;
+  color: black;
+  flex-grow: 1;
+  margin-right: 5px;
 }

@@ -66,6 +66,36 @@ export default function Nav({ setCatQueries, setCategory }) {
           </Link>
           <div className="selectors-in-nav">
             <select
+              id="narrow-cat-options"
+              onChange={(e) => {
+                setCatQueries((current) => {
+                  let newCurrent = { ...current };
+                  newCurrent.category = e.target.value;
+                  navigate("/reviews");
+                  return newCurrent;
+                });
+                setCategory({
+                  slug: `${e.target.value}`,
+                  description: `${getDescription(e.target.value, categories)}`,
+                });
+              }}
+            >
+              <option
+                key={`All categories`}
+                value={`All categories`}
+                default
+              >{`All categories`}</option>
+              {categories.map((category) => {
+                return (
+                  <option
+                    key={category.slug}
+                    value={category.slug}
+                  >{`${category.slug}`}</option>
+                );
+              })}
+            </select>
+
+            <select
               id="sort-option"
               className="nav-options"
               onChange={(e) => {
@@ -129,6 +159,12 @@ export default function Nav({ setCatQueries, setCategory }) {
             </select>
           </div>
           <Link to="/" id="login-link">
+            Login
+          </Link>
+          <Link to="/" id="narrow-compose-link">
+            Compose!
+          </Link>
+          <Link to="/" id="narrow-login-link">
             Login
           </Link>
         </div>
