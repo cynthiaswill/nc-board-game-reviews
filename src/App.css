@@ -319,3 +319,20 @@ button {
 #user-tag-link {
   margin-left: 5px;
 }
+
+.user-container {
+  display: flex;
+  justify-content: center;
+  height: 50vh;
+}
+
+.user-profile {
+  background: lightgrey;
+  border: solid black 2px;
+  margin: 15px;
+  width: 800px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
