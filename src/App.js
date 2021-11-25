@@ -12,7 +12,8 @@ import SignUp from "./components/SignUp";
 
 function App() {
   const [user, setUser] = useState({});
-  const [isLogged, setIsLogged] = useState(false);
+  // const [isLogged, setIsLogged] = useState(false);
+  const isLogged = !!user.username;
   const [catQueries, setCatQueries] = useState({
     sort: "created_at",
     order: "desc",
@@ -29,6 +30,7 @@ function App() {
         setCatQueries={setCatQueries}
         setCategory={setCategory}
         user={user}
+        setUser={setUser}
         isLogged={isLogged}
       />
       <Routes>
@@ -38,15 +40,9 @@ function App() {
           element={<Reviews catQueries={catQueries} category={category} />}
         />
         <Route path="/reviews/:review_id" element={<Review />} />
-        <Route
-          path="/users"
-          element={<Login setUser={setUser} setIsLogged={setIsLogged} />}
-        />
+        <Route path="/users" element={<Login setUser={setUser} />} />
         <Route path="/users/:username" element={<User user={user} setUser={setUser} />} />
-        <Route
-          path="/sign-up"
-          element={<SignUp setUser={setUser} setIsLogged={setIsLogged} />}
-        />
+        <Route path="/sign-up" element={<SignUp setUser={setUser} />} />
       </Routes>
     </div>
   );

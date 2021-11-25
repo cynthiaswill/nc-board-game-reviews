@@ -11,7 +11,7 @@ export default function User({ user, setUser }) {
         setUser(data.user);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [username, setUser]);
 
   return (
     <div className="user-container">

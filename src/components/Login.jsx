@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getUsers } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Login({ setUser, setIsLogged }) {
+export default function Login({ setUser }) {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
@@ -33,7 +33,6 @@ export default function Login({ setUser, setIsLogged }) {
               className="user-login-button"
               onClick={() => {
                 setUser(user);
-                setIsLogged(true);
                 navigate("/reviews");
               }}
             >
