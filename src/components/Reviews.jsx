@@ -1,10 +1,11 @@
 import { getReviews, incKudos } from "../utils/api";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Reviews({ catQueries, category }) {
   const [reviews, setReviews] = useState([]);
   const [isVoted, setIsVoted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getReviews(catQueries)
@@ -50,7 +51,12 @@ export default function Reviews({ catQueries, category }) {
               Read More
             </Link>
             <section className="button-container">
-              <button className="comments-button">
+              <button
+                className="comments-button"
+                onClick={() => {
+                  navigate(`/reviews/${review.review_id}`);
+                }}
+              >
                 Comments: {review.comment_count}
               </button>
               <button
