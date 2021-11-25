@@ -9,6 +9,32 @@
     "main";
 }
 
+@media (max-width: 480px) {
+  .categories-in-nav {
+    display: none;
+  }
+  #compose-link {
+    display: none;
+  }
+  #header {
+    margin: 15px;
+  }
+}
+
+@media (max-width: 370px) {
+  #per-page-option {
+    display: none;
+  }
+  #header {
+    margin: 10px;
+    font-size: 1.5rem;
+  }
+}
+
+#header {
+  color: darkslategrey;
+}
+
 button:hover {
   box-shadow: 0 2px gray;
   transform: translateY(-1px);
@@ -197,4 +223,21 @@ button {
 
 .delete-comment-button {
   margin-left: 10px;
+}
+
+#flex-in-nav {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+#compose-link {
+  font-weight: bold;
+  color: teal;
+  font-style: italic;
+}
+
+#login-link {
+  font-weight: bold;
+  color: teal;
 }

@@ -60,69 +60,77 @@ export default function Nav({ setCatQueries, setCategory }) {
             );
           })}
         </div>
-        <div>
-          <select
-            id="sort-option"
-            className="nav-options"
-            onChange={(e) => {
-              setCatQueries((current) => {
-                let newCurrent = { ...current };
-                newCurrent.sort = e.target.value;
-                navigate("/reviews");
-                return newCurrent;
-              });
-            }}
-          >
-            <option value="created_at" default>
-              sort by
-            </option>
-            <option value="title">title</option>
-            <option value="designer">designer</option>
-            <option value="owner">author</option>
-            <option value="created_at">date created</option>
-            <option value="votes">votes</option>
-          </select>
-          <select
-            id="order-option"
-            className="nav-options"
-            onChange={(e) => {
-              setCatQueries((current) => {
-                let newCurrent = { ...current };
-                newCurrent.order = e.target.value;
-                navigate("/reviews");
-                return newCurrent;
-              });
-            }}
-          >
-            <option value="desc" default>
-              order by
-            </option>
-            <option value="desc">descending</option>
-            <option value="asc">ascending</option>
-          </select>
-          <select
-            id="per-page-option"
-            className="nav-options"
-            onChange={(e) => {
-              setCatQueries((current) => {
-                let newCurrent = { ...current };
-                newCurrent.limit = e.target.value;
-                navigate("/reviews");
-                return newCurrent;
-              });
-            }}
-          >
-            <option value="10" default>
-              reviews per page
-            </option>
-            {numArr.map((num) => {
-              return (
-                <option key={num} value={num}>
-                  {num}
-                </option>
-              );
-            })}
-          </select>
+        <div id="flex-in-nav">
+          <Link to="/" id="compose-link">
+            Compose!
+          </Link>
+          <div className="selectors-in-nav">
+            <select
+              id="sort-option"
+              className="nav-options"
+              onChange={(e) => {
+                setCatQueries((current) => {
+                  let newCurrent = { ...current };
+                  newCurrent.sort = e.target.value;
+                  navigate("/reviews");
+                  return newCurrent;
+                });
+              }}
+            >
+              <option value="created_at" default>
+                sort by
+              </option>
+              <option value="title">title</option>
+              <option value="designer">designer</option>
+              <option value="owner">author</option>
+              <option value="created_at">date created</option>
+              <option value="votes">votes</option>
+            </select>
+            <select
+              id="order-option"
+              className="nav-options"
+              onChange={(e) => {
+                setCatQueries((current) => {
+                  let newCurrent = { ...current };
+                  newCurrent.order = e.target.value;
+                  navigate("/reviews");
+                  return newCurrent;
+                });
+              }}
+            >
+              <option value="desc" default>
+                order by
+              </option>
+              <option value="desc">descending</option>
+              <option value="asc">ascending</option>
+            </select>
+            <select
+              id="per-page-option"
+              className="nav-options"
+              onChange={(e) => {
+                setCatQueries((current) => {
+                  let newCurrent = { ...current };
+                  newCurrent.limit = e.target.value;
+                  navigate("/reviews");
+                  return newCurrent;
+                });
+              }}
+            >
+              <option value="10" default>
+                items per page
+              </option>
+              {numArr.map((num) => {
+                return (
+                  <option key={num} value={num}>
+                    {num}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <Link to="/" id="login-link">
+            Login
+          </Link>
         </div>
       </nav>
     </div>
