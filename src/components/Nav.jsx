@@ -3,7 +3,7 @@ import { getCategories } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export default function Nav({ setCatQueries, setCategory, user, hidden }) {
+export default function Nav({ setCatQueries, setCategory, user, visibility, isLogged }) {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
 
@@ -180,19 +180,21 @@ export default function Nav({ setCatQueries, setCategory, user, hidden }) {
           </Link>
         </div>
         <div className="logged-user">
-          <span>
-            Hello!{" "}
-            <Link to="/" className="user-link">
-              {user.username}
-            </Link>
-          </span>
-          <img
-            className="user-icon"
-            src="https://source.unsplash.com/random/300x200"
-            alt={user.username}
-          ></img>
+          <div className={isLogged.toString()}>
+            <span>
+              Hello!{" "}
+              <Link to="/" className="user-link">
+                {user.username}
+              </Link>
+            </span>
+            <img
+              className="user-icon"
+              src="https://source.unsplash.com/random/300x200"
+              alt={user.username}
+            ></img>
+          </div>
           <br />
-          <Link className={hidden} to="/sign-up">
+          <Link className={visibility} to="/sign-up">
             Sign Up
           </Link>
         </div>

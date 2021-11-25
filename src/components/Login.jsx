@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { getUsers } from "../utils/api";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function Login({ setUser, setHidden }) {
+export default function Login({ setUser, setVisibility, setIsLogged }) {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
@@ -27,7 +27,8 @@ export default function Login({ setUser, setHidden }) {
             <button
               onClick={() => {
                 setUser(user);
-                setHidden("hidden-element");
+                setVisibility("hidden");
+                setIsLogged(true);
                 navigate("/");
               }}
             >

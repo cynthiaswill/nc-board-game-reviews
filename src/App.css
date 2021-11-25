@@ -308,10 +308,18 @@ button {
   justify-content: center;
 }
 
-.hidden-element {
+.hidden {
   visibility: hidden;
 }
 
-.unhidden-element {
+.unhidden {
+  visibility: visible;
+}
+
+.false {
+  visibility: hidden;
+}
+
+.true {
   visibility: visible;
 }

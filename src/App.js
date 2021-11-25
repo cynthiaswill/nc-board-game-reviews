@@ -10,7 +10,8 @@ import Login from "./components/Login";
 
 function App() {
   const [user, setUser] = useState({});
-  const [hidden, setHidden] = useState("unhidden-element");
+  const [visibility, setVisibility] = useState("unhidden");
+  const [isLogged, setIsLogged] = useState(false);
   const [catQueries, setCatQueries] = useState({
     sort: "created_at",
     order: "desc",
@@ -27,7 +28,8 @@ function App() {
         setCatQueries={setCatQueries}
         setCategory={setCategory}
         user={user}
-        hidden={hidden}
+        visibility={visibility}
+        isLogged={isLogged}
       />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -38,7 +40,13 @@ function App() {
         <Route path="/reviews/:review_id" element={<Review />} />
         <Route
           path="/users"
-          element={<Login setUser={setUser} setHidden={setHidden} />}
+          element={
+            <Login
+              setUser={setUser}
+              setVisibility={setVisibility}
+              setIsLogged={setIsLogged}
+            />
+          }
         />
       </Routes>
     </div>
