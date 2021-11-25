@@ -9,7 +9,7 @@
     "main";
 }
 
-@media (min-width: 481px) {
+@media (min-width: 512px) {
   #narrow-cat-options {
     display: none;
   }
@@ -21,7 +21,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 511px) {
   .categories-in-nav {
     display: none;
   }
