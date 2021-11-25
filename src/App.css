@@ -95,7 +95,7 @@ button:active {
 }
 
 button {
-  border-radius: 10px;
+  border-radius: 5px;
   border-style: outset;
 }
 
@@ -335,4 +335,12 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.signup-form-container {
+  text-align: center;
+}
+
+input {
+  margin: 5px;
 }

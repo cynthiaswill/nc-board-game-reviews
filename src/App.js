@@ -43,7 +43,10 @@ function App() {
           element={<Login setUser={setUser} setIsLogged={setIsLogged} />}
         />
         <Route path="/users/:username" element={<User user={user} setUser={setUser} />} />
-        <Route path="/sign-up" element={<SignUp />} />
+        <Route
+          path="/sign-up"
+          element={<SignUp setUser={setUser} setIsLogged={setIsLogged} />}
+        />
       </Routes>
     </div>
   );

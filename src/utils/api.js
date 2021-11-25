@@ -39,3 +39,8 @@ export const getUsers = () => {
 export const getUser = (username) => {
   return gamesApi.get(`/users/${username}`);
 };
+
+export const postUser = (newUser) => {
+  console.log(newUser);
+  return gamesApi.post(`/users`, newUser);
+};
