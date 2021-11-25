@@ -247,7 +247,7 @@ button {
 #flex-in-nav {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 #compose-link {
