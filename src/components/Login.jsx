@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUsers } from "../utils/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login({ setUser, setIsLogged }) {
   const [users, setUsers] = useState([]);
@@ -18,13 +18,20 @@ export default function Login({ setUser, setIsLogged }) {
       {users.map((user) => {
         return (
           <div key={user.username} className="user-card">
-            <img
-              src="https://source.unsplash.com/random/300x200"
-              alt={user.username}
-              className="user-pic"
-            ></img>
-            <h3>{user.username}</h3>
+            <div id="user-tag">
+              <img
+                src="https://source.unsplash.com/random/300x200"
+                alt={user.username}
+                className="user-pic"
+              ></img>
+              <br />
+              <Link id="user-tag-link" to={`/users/${user.username}`}>
+                {user.username}
+              </Link>
+            </div>
+            <br />
             <button
+              className="user-login-button"
               onClick={() => {
                 setUser(user);
                 setIsLogged(true);

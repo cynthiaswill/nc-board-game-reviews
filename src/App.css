@@ -295,6 +295,9 @@ button {
   margin: 15px;
   width: 200px;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .user-icon {
@@ -307,4 +310,12 @@ button {
   display: flex;
   justify-content: center;
   background: lightsteelblue;
+}
+
+.user-login-button {
+  align-self: flex-end;
+}
+
+#user-tag-link {
+  margin-left: 5px;
 }
