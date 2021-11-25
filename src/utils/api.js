@@ -31,3 +31,7 @@ export const getComments = ({ review_id, limit, p }) => {
 export const incKudos = (review_id, { inc_votes }) => {
   return gamesApi.patch(`/reviews/${review_id}`, { inc_votes });
 };
+
+export const getUsers = () => {
+  return gamesApi.get(`/users`);
+};

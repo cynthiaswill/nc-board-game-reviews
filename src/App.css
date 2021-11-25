@@ -276,3 +276,34 @@ button {
   flex-grow: 1;
   margin-right: 5px;
 }
+
+.users-container {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.user-pic {
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 50%;
+}
+
+.user-card {
+  background: lightgrey;
+  border: solid black 2px;
+  margin: 15px;
+  width: 200px;
+  padding: 10px;
+}
+
+.user-icon {
+  max-width: 30px;
+  max-height: 30px;
+  border-radius: 50%;
+}
+
+.logged-user {
+  display: flex;
+  justify-content: center;
+}

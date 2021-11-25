@@ -3,7 +3,7 @@ import { getCategories } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export default function Nav({ setCatQueries, setCategory }) {
+export default function Nav({ setCatQueries, setCategory, user }) {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const numArr = [];
@@ -168,15 +168,30 @@ export default function Nav({ setCatQueries, setCategory }) {
               })}
             </select>
           </div>
-          <Link to="/" id="login-link">
+          <Link to="/users" id="login-link">
             Login
           </Link>
           <Link to="/" id="narrow-compose-link">
             Compose!
           </Link>
-          <Link to="/" id="narrow-login-link">
+          <Link to="/users" id="narrow-login-link">
             Login
           </Link>
+        </div>
+        <div className="logged-user">
+          <span>
+            Hello!{" "}
+            <Link to="/" className="user-link">
+              {user.username}
+            </Link>
+          </span>
+          <img
+            className="user-icon"
+            src="https://source.unsplash.com/random/300x200"
+            alt={user.username}
+          ></img>
+          <br />
+          <Link to="/sign-up">Sign Up</Link>
         </div>
       </nav>
     </div>
