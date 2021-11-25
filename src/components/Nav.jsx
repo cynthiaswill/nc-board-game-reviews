@@ -169,15 +169,27 @@ export default function Nav({ setCatQueries, setCategory, user, isLogged }) {
               })}
             </select>
           </div>
-          <Link to="/users" id="login-link">
-            Login
-          </Link>
+          {isLogged ? (
+            <Link to="/users" id="login-link">
+              Logout
+            </Link>
+          ) : (
+            <Link to="/users" id="login-link">
+              Login
+            </Link>
+          )}
           <Link to="/" id="narrow-compose-link">
             Compose!
           </Link>
-          <Link to="/users" id="narrow-login-link">
-            Login
-          </Link>
+          {isLogged ? (
+            <Link to="/users" id="narrow-login-link">
+              Logout
+            </Link>
+          ) : (
+            <Link to="/users" id="narrow-login-link">
+              Login
+            </Link>
+          )}
         </div>
         <div className="logged-user">
           {isLogged ? (
