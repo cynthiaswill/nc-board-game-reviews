@@ -36,7 +36,7 @@ export default function Nav({ setCatQueries, setCategory }) {
               setCategory({ slug: "All categories", description: "" });
             }}
           >
-            All
+            All categories
           </Link>
           {categories.map((category) => {
             return (
@@ -68,16 +68,26 @@ export default function Nav({ setCatQueries, setCategory }) {
             <select
               id="narrow-cat-options"
               onChange={(e) => {
-                setCatQueries((current) => {
-                  let newCurrent = { ...current };
-                  newCurrent.category = e.target.value;
-                  navigate("/reviews");
-                  return newCurrent;
-                });
-                setCategory({
-                  slug: `${e.target.value}`,
-                  description: `${getDescription(e.target.value, categories)}`,
-                });
+                if (e.target.value === "All categories") {
+                  setCatQueries((current) => {
+                    const newCurrent = { ...current };
+                    newCurrent.category = "";
+                    navigate("/reviews");
+                    return newCurrent;
+                  });
+                  setCategory({ slug: "All categories", description: "" });
+                } else {
+                  setCatQueries((current) => {
+                    let newCurrent = { ...current };
+                    newCurrent.category = e.target.value;
+                    navigate("/reviews");
+                    return newCurrent;
+                  });
+                  setCategory({
+                    slug: `${e.target.value}`,
+                    description: `${getDescription(e.target.value, categories)}`,
+                  });
+                }
               }}
             >
               <option
