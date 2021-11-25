@@ -21,8 +21,8 @@ export default function Nav({ setCatQueries, setCategory, user, isLogged }) {
   }, []);
 
   return (
-    <div className="nav">
-      <nav>
+    <div>
+      <nav className="nav">
         <div className="categories-in-nav">
           <Link
             className="category-links"
@@ -191,28 +191,26 @@ export default function Nav({ setCatQueries, setCategory, user, isLogged }) {
             </Link>
           )}
         </div>
-        <div className="logged-user">
-          {isLogged ? (
-            <div>
-              <span>
-                Hello!{" "}
-                <Link to="/" className="user-link">
-                  {user.username}
-                </Link>
-              </span>
-              <img
-                className="user-icon"
-                src="https://source.unsplash.com/random/300x200"
-                alt={user.username}
-              ></img>
-            </div>
-          ) : (
-            <Link to="/sign-up">Sign Up</Link>
-          )}
-
-          <br />
-        </div>
       </nav>
+      <div className="logged-user">
+        {isLogged ? (
+          <div>
+            <span>
+              Hello!{" "}
+              <Link to="/" className="user-link">
+                {user.username}
+              </Link>
+            </span>
+            <img
+              className="user-icon"
+              src="https://source.unsplash.com/random/300x200"
+              alt={user.username}
+            ></img>
+          </div>
+        ) : (
+          <Link to="/sign-up">Sign Up</Link>
+        )}
+      </div>
     </div>
   );
 }
