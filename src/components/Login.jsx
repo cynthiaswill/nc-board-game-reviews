@@ -8,7 +8,6 @@ export default function Login({ setUser, setIsLogged }) {
 
   useEffect(() => {
     getUsers().then(({ data }) => {
-      console.log(data);
       setUsers(data.users);
     });
   }, []);
