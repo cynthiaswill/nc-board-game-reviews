@@ -10,7 +10,6 @@ import Login from "./components/Login";
 
 function App() {
   const [user, setUser] = useState({});
-  const [visibility, setVisibility] = useState("unhidden");
   const [isLogged, setIsLogged] = useState(false);
   const [catQueries, setCatQueries] = useState({
     sort: "created_at",
@@ -28,7 +27,6 @@ function App() {
         setCatQueries={setCatQueries}
         setCategory={setCategory}
         user={user}
-        visibility={visibility}
         isLogged={isLogged}
       />
       <Routes>
@@ -40,13 +38,7 @@ function App() {
         <Route path="/reviews/:review_id" element={<Review />} />
         <Route
           path="/users"
-          element={
-            <Login
-              setUser={setUser}
-              setVisibility={setVisibility}
-              setIsLogged={setIsLogged}
-            />
-          }
+          element={<Login setUser={setUser} setIsLogged={setIsLogged} />}
         />
       </Routes>
     </div>
