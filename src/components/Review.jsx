@@ -43,7 +43,7 @@ export default function Review() {
             <p className="review-body">{review.review_body}</p>
             <div className="author">
               Author:{" "}
-              <Link to="/" className="author-link">
+              <Link to={`/users/${review.owner}`} className="author-link">
                 {review.owner}
               </Link>
               <br />
@@ -94,7 +94,7 @@ export default function Review() {
             return (
               <div className="comment-box" key={comment.comment_id}>
                 <span className="author">
-                  <Link to="/" className="author-link">
+                  <Link to={`users/${comment.author}`} className="author-link">
                     {comment.author}
                   </Link>{" "}
                   replied:

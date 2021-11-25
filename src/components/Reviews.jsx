@@ -39,7 +39,7 @@ export default function Reviews({ catQueries, category }) {
                 <p className="review-body">{review.review_body}</p>
                 <span className="author">
                   Author:{" "}
-                  <Link to="/" className="author-link">
+                  <Link to={`/users/${review.owner}`} className="author-link">
                     {review.owner}
                   </Link>
                 </span>
