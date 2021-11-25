@@ -3,7 +3,7 @@ import { getCategories } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export default function Nav({ setCatQueries, setCategory, user, isLogged }) {
+export default function Nav({ setCatQueries, setCategory, user, setUser, isLogged }) {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
 
@@ -18,7 +18,7 @@ export default function Nav({ setCatQueries, setCategory, user, isLogged }) {
         setCategories(data.categories);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [user]);
 
   return (
     <div>
@@ -170,7 +170,13 @@ export default function Nav({ setCatQueries, setCategory, user, isLogged }) {
             </select>
           </div>
           {isLogged ? (
-            <Link to="/users" id="login-link">
+            <Link
+              to="/"
+              id="login-link"
+              onClick={() => {
+                setUser({});
+              }}
+            >
               Logout
             </Link>
           ) : (
@@ -182,7 +188,13 @@ export default function Nav({ setCatQueries, setCategory, user, isLogged }) {
             Compose!
           </Link>
           {isLogged ? (
-            <Link to="/users" id="narrow-login-link">
+            <Link
+              to="/"
+              id="narrow-login-link"
+              onClick={() => {
+                setUser({});
+              }}
+            >
               Logout
             </Link>
           ) : (
