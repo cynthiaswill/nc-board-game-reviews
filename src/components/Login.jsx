@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getUsers } from "../utils/api";
+import { getUsers, getUser } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Login({ setUser, setIsLogged }) {

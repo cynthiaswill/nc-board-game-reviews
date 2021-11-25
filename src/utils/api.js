@@ -35,3 +35,7 @@ export const incKudos = (review_id, { inc_votes }) => {
 export const getUsers = () => {
   return gamesApi.get(`/users`);
 };
+
+export const getUser = (username) => {
+  return gamesApi.get(`/users/${username}`);
+};

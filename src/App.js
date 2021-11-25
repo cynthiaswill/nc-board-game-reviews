@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Reviews from "./components/Reviews";
 import Review from "./components/Review";
 import Login from "./components/Login";
+import User from "./components/User";
 
 function App() {
   const [user, setUser] = useState({});
@@ -40,6 +41,7 @@ function App() {
           path="/users"
           element={<Login setUser={setUser} setIsLogged={setIsLogged} />}
         />
+        <Route path="/users/:username" element={<User user={user} />} />
       </Routes>
     </div>
   );
