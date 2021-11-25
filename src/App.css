@@ -1,3 +1,5 @@
+/* setup for main layout with grid */
+
 .App {
   min-height: 100vh;
   display: grid;
@@ -8,6 +10,30 @@
     "nav"
     "main";
 }
+
+header {
+  text-align: center;
+  grid-area: header;
+  border: solid red 2px;
+  background: lightsteelblue;
+}
+
+.nav {
+  text-align: center;
+  grid-area: nav;
+  border: solid green 2px;
+  padding: 2px;
+}
+
+.main {
+  grid-area: main;
+  border: solid blue 2px;
+  background: lightgrey;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* media query of device width */
 
 @media (min-width: 512px) {
   #narrow-cat-options {
@@ -31,7 +57,7 @@
   #login-link {
     display: none;
   }
-  #header {
+  .header {
     margin: 15px;
   }
 }
@@ -40,14 +66,14 @@
   #per-page-option {
     display: none;
   }
-  #header {
+  .header {
     margin: 10px;
     font-size: 1.5rem;
   }
 }
 
 #header {
-  color: darkslategrey;
+  color: black;
 }
 
 button:hover {
@@ -60,34 +86,12 @@ button:active {
   transform: translateY(1px);
 }
 
-.header {
-  text-align: center;
-  grid-area: header;
-  border: solid red 2px;
-  background: lightsteelblue;
-}
-
-.nav {
-  text-align: center;
-  grid-area: nav;
-  border: solid green 2px;
-  padding: 2px;
-}
-
 .welcome {
   text-align: center;
 }
 
 .review-title {
   margin: 0px auto 5px auto;
-}
-
-.main {
-  grid-area: main;
-  border: solid blue 2px;
-  background: lightgrey;
-  max-width: 1100px;
-  margin: 0 auto;
 }
 
 button {
