@@ -35,7 +35,7 @@ export default function Login({ setUser, setIsLogged }) {
               onClick={() => {
                 setUser(user);
                 setIsLogged(true);
-                navigate("/");
+                navigate("/reviews");
               }}
             >
               Login as {user.username}

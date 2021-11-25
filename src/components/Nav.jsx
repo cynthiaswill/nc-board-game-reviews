@@ -209,7 +209,7 @@ export default function Nav({ setCatQueries, setCategory, user, setUser, isLogge
           <div>
             <span>
               Hello!{" "}
-              <Link to="/" className="user-link">
+              <Link to={`/users/${user.username}`} className="user-link">
                 {user.username}
               </Link>
             </span>
