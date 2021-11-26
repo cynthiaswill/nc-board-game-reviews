@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PostComment from "./PostComment";
 import { deleteComment } from "../utils/api";
+import { incLikes } from "../utils/api";
 
 export default function Review({ user }) {
   const [review, setReview] = useState({});
@@ -10,6 +11,7 @@ export default function Review({ user }) {
   const [comments, setComments] = useState([]);
   const [isPosting, setIsPosting] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isVoted, setIsVoted] = useState(false);
 
   const { review_id } = useParams();
   const numArr = [];
@@ -28,8 +30,9 @@ export default function Review({ user }) {
     }).then(({ data }) => {
       setComments(data.comments);
       setIsDeleting(false);
+      setIsVoted(false);
     });
-  }, [review_id, limitPerPage, isPosting, isDeleting]);
+  }, [review_id, limitPerPage, isPosting, isDeleting, isVoted]);
 
   return (
     <main className="main">
@@ -132,7 +135,15 @@ export default function Review({ user }) {
                   >
                     Delete
                   </button>
-                  <button className="kudos-button">Likes: {comment.votes}</button>
+                  <button
+                    className="kudos-button"
+                    onClick={() => {
+                      setIsVoted(true);
+                      incLikes(comment.comment_id, { inc_votes: 1 });
+                    }}
+                  >
+                    Likes: {comment.votes}
+                  </button>
                 </div>
               </div>
             );

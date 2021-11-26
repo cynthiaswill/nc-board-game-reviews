@@ -53,3 +53,9 @@ export const deleteComment = (comment_id) => {
 };
 
 export const postReview = () => {};
+
+export const incLikes = (comment_id, { inc_votes }) => {
+  return gamesApi.patch(`/comments/${comment_id}`, { inc_votes });
+};
+
+export const EditComment = () => {};
