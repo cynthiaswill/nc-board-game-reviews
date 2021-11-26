@@ -9,10 +9,10 @@ import Review from "./components/Review";
 import Login from "./components/Login";
 import User from "./components/User";
 import SignUp from "./components/SignUp";
+import PostComment from "./components/PostComment";
 
 function App() {
   const [user, setUser] = useState({});
-  // const [isLogged, setIsLogged] = useState(false);
   const isLogged = !!user.username;
   const [catQueries, setCatQueries] = useState({
     sort: "created_at",
@@ -39,10 +39,11 @@ function App() {
           path="/reviews"
           element={<Reviews catQueries={catQueries} category={category} />}
         />
-        <Route path="/reviews/:review_id" element={<Review />} />
+        <Route path="/reviews/:review_id" element={<Review user={user} />} />
         <Route path="/users" element={<Login setUser={setUser} />} />
         <Route path="/users/:username" element={<User user={user} setUser={setUser} />} />
         <Route path="/sign-up" element={<SignUp setUser={setUser} />} />
+        <Route path="/post-comment" element={<PostComment />} />
       </Routes>
     </div>
   );

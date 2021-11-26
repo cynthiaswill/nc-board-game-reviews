@@ -344,3 +344,15 @@ button {
 input {
   margin: 5px;
 }
+
+#comment-typing-box {
+  display: flex;
+  border: 2px solid black;
+  margin: 10px;
+  justify-content: center;
+}
+
+#post-comment-buttons {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,11 +1,13 @@
 import { getReviewById, getComments, incKudos } from "../utils/api";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import PostComment from "./PostComment";
 
-export default function Review() {
+export default function Review({ user }) {
   const [review, setReview] = useState({});
   const [limitPerPage, setLimitPerPage] = useState(10);
   const [comments, setComments] = useState([]);
+  const [isPosting, setIsPosting] = useState(false);
 
   const { review_id } = useParams();
   const numArr = [];
@@ -24,7 +26,7 @@ export default function Review() {
     }).then(({ data }) => {
       setComments(data.comments);
     });
-  }, [review_id, limitPerPage]);
+  }, [review_id, limitPerPage, isPosting]);
 
   return (
     <main className="main">
@@ -71,7 +73,14 @@ export default function Review() {
       <section className="comments-container">
         <div>
           <div className="comments-sub-bar">
-            <button className="add-comment-button">Add Comment</button>
+            <button
+              onClick={() => {
+                setIsPosting(true);
+              }}
+              className="add-comment-button"
+            >
+              Add Comment
+            </button>
             <select
               className="comments-limit-option"
               onChange={(e) => {
@@ -90,6 +99,13 @@ export default function Review() {
               })}
             </select>
           </div>
+
+          <div id="comment-typing-box">
+            {isPosting ? (
+              <PostComment user={user} review={review} setIsPosting={setIsPosting} />
+            ) : null}
+          </div>
+
           {comments.map((comment) => {
             return (
               <div className="comment-box" key={comment.comment_id}>

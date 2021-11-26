@@ -44,3 +44,7 @@ export const postUser = (newUser) => {
   console.log(newUser);
   return gamesApi.post(`/users`, newUser);
 };
+
+export const postComment = (review_id, body) => {
+  return gamesApi.post(`/reviews/${review_id}/comments`, body);
+};
