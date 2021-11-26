@@ -9,34 +9,34 @@ export default function PostComment({ user, review, setIsPosting }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    postComment(review.review_id, newComment);
+    postComment(review.review_id, newComment).then(() => {
+      setIsPosting(false);
+    });
   };
 
   return (
-    <div className="signup-form-container">
+    <div>
       <h3>Write a new comment below:</h3>
       <form id="post-comment-form" onSubmit={handleSubmit}>
         <div className="post-comment-form">
-          <br />
-          <label>
-            <input
-              id="comment-input-box"
-              type="text"
-              placeholder="Write your comment here..."
-              name="body"
-              onChange={(event) => {
-                setNewComment((current) => {
-                  return {
-                    ...current,
-                    body: event.target.value,
-                  };
-                });
-              }}
-            />
-          </label>
+          <textarea
+            id="comment-input-box"
+            rows="10"
+            placeholder="Write your comment here..."
+            name="body"
+            onChange={(event) => {
+              setNewComment((current) => {
+                return {
+                  ...current,
+                  body: event.target.value,
+                };
+              });
+            }}
+          />
+
           <br />
           <br />
-          <br />
+
           <div id="post-comment-buttons">
             <button
               onClick={() => {

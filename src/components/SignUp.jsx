@@ -2,7 +2,7 @@ import { useState } from "react";
 import { postUser } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 
-export default function SignUp({ setUser, setIsLogged }) {
+export default function SignUp({ setUser }) {
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState({
     username: "",
@@ -14,7 +14,6 @@ export default function SignUp({ setUser, setIsLogged }) {
     e.preventDefault();
     postUser(newUser).then(() => {
       setUser(newUser);
-      setIsLogged(true);
     });
     navigate("/reviews");
   };

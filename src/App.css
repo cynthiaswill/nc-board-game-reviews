@@ -355,4 +355,10 @@ input {
 #post-comment-buttons {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#comment-input-box {
+  width: 70vw;
+  height: 15vh;
 }
