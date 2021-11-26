@@ -2,16 +2,17 @@ import { getReviewById, getComments, incKudos } from "../utils/api";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PostComment from "./PostComment";
-import { deleteComment } from "../utils/api";
-import { incLikes } from "../utils/api";
+import { deleteComment, incLikes } from "../utils/api";
+import EditComment from "./EditComment";
 
-export default function Review({ user }) {
+export default function Review({ user, isLogged }) {
   const [review, setReview] = useState({});
   const [limitPerPage, setLimitPerPage] = useState(10);
   const [comments, setComments] = useState([]);
   const [isPosting, setIsPosting] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isVoted, setIsVoted] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const { review_id } = useParams();
   const numArr = [];
@@ -32,7 +33,7 @@ export default function Review({ user }) {
       setIsDeleting(false);
       setIsVoted(false);
     });
-  }, [review_id, limitPerPage, isPosting, isDeleting, isVoted]);
+  }, [review_id, limitPerPage, isPosting, isDeleting, isVoted, isEditing]);
 
   return (
     <main className="main">
@@ -123,8 +124,25 @@ export default function Review({ user }) {
                 </span>
                 <p>{comment.body}</p>
                 <span className="date-posted">{comment.created_at}</span>
+
                 <div className="button-container">
-                  <button className="edit-comment-button">Edit</button>
+                  {isLogged && isEditing ? (
+                    <EditComment
+                      user={user}
+                      comment={comment}
+                      setIsEditing={setIsEditing}
+                    />
+                  ) : (
+                    <button
+                      className="edit-comment-button"
+                      onClick={() => {
+                        setIsEditing(true);
+                      }}
+                    >
+                      Edit
+                    </button>
+                  )}
+
                   <button
                     onClick={() => {
                       deleteComment(comment.comment_id).then(() => {

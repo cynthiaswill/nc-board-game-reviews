@@ -39,7 +39,10 @@ function App() {
           path="/reviews"
           element={<Reviews catQueries={catQueries} category={category} />}
         />
-        <Route path="/reviews/:review_id" element={<Review user={user} />} />
+        <Route
+          path="/reviews/:review_id"
+          element={<Review user={user} isLogged={isLogged} />}
+        />
         <Route path="/users" element={<Login setUser={setUser} />} />
         <Route path="/users/:username" element={<User user={user} setUser={setUser} />} />
         <Route path="/sign-up" element={<SignUp setUser={setUser} />} />
