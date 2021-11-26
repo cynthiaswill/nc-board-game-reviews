@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { editComment } from "../utils/api";
 
-export default function EditComment({ user, comment, setIsEditing }) {
+export default function EditComment({ user, toBeEditedComment, setIsEditing }) {
   const [newComment, setNewComment] = useState({
     username: `${user.username}`,
     body: "",
@@ -13,7 +13,7 @@ export default function EditComment({ user, comment, setIsEditing }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editComment(comment.comment_id, newComment).then(() => {
+    editComment(toBeEditedComment.comment_id, newComment).then(() => {
       setIsEditing(false);
     });
   };
@@ -36,9 +36,8 @@ export default function EditComment({ user, comment, setIsEditing }) {
                 };
               });
             }}
-          >
-            {comment.body}
-          </textarea>
+            value={toBeEditedComment.body}
+          />
 
           <br />
           <br />

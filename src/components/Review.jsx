@@ -13,6 +13,7 @@ export default function Review({ user, isLogged }) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isVoted, setIsVoted] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [toBeEditedComment, setToBeEditedComment] = useState({});
 
   const { review_id } = useParams();
   const numArr = [];
@@ -113,6 +114,14 @@ export default function Review({ user, isLogged }) {
             ) : null}
           </div>
 
+          {isLogged && isEditing ? (
+            <EditComment
+              user={user}
+              toBeEditedComment={toBeEditedComment}
+              setIsEditing={setIsEditing}
+            />
+          ) : null}
+
           {comments.map((comment) => {
             return (
               <div className="comment-box" key={comment.comment_id}>
@@ -126,27 +135,19 @@ export default function Review({ user, isLogged }) {
                 <span className="date-posted">{comment.created_at}</span>
 
                 <div className="button-container">
-                  {isLogged && isEditing ? (
-                    <EditComment
-                      user={user}
-                      comment={comment}
-                      setIsEditing={setIsEditing}
-                    />
-                  ) : (
-                    <button
-                      className="edit-comment-button"
-                      onClick={() => {
-                        setIsEditing(true);
-                      }}
-                    >
-                      Edit
-                    </button>
-                  )}
-
+                  <button
+                    className="edit-comment-button"
+                    onClick={() => {
+                      setIsEditing(true);
+                    }}
+                  >
+                    Edit
+                  </button>
                   <button
                     onClick={() => {
                       deleteComment(comment.comment_id).then(() => {
                         setIsDeleting(true);
+                        setToBeEditedComment(comment);
                       });
                     }}
                     className="delete-comment-button"
