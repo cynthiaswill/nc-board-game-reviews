@@ -7,9 +7,9 @@ export default function EditComment({ user, comment, setIsEditing }) {
     body: "",
   });
 
-  useEffect(() => {
-    setIsEditing(false);
-  }, []);
+  // useEffect(() => {
+  //   setIsEditing(false);
+  // }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
