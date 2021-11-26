@@ -37,9 +37,8 @@ export default function EditComment({ user, toBeEditedComment, setIsEditing }) {
                 };
               });
             }}
-          >
-            {toBeEditedComment.body}
-          </textarea>
+            defaultValue={toBeEditedComment.body}
+          />
 
           <br />
           <br />
