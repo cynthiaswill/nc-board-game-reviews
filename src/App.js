@@ -9,7 +9,7 @@ import Review from "./components/Review";
 import Login from "./components/Login";
 import User from "./components/User";
 import SignUp from "./components/SignUp";
-import PostComment from "./components/PostComment";
+import PostReview from "./components/PostReview";
 
 function App() {
   const [user, setUser] = useState({});
@@ -43,7 +43,7 @@ function App() {
         <Route path="/users" element={<Login setUser={setUser} />} />
         <Route path="/users/:username" element={<User user={user} setUser={setUser} />} />
         <Route path="/sign-up" element={<SignUp setUser={setUser} />} />
-        <Route path="/post-comment" element={<PostComment />} />
+        <Route path="/compose" element={<PostReview />} />
       </Routes>
     </div>
   );

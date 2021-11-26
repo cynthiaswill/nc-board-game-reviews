@@ -350,6 +350,7 @@ input {
   border: 2px solid black;
   margin: 10px;
   justify-content: center;
+  max-width: 900px;
 }
 
 #post-comment-buttons {
@@ -361,4 +362,13 @@ input {
 #comment-input-box {
   width: 70vw;
   height: 15vh;
+}
+
+#comment-typing-box-wrapper {
+  margin: 20px;
+  max-width: 900px;
+}
+
+textarea {
+  max-width: 800px;
 }

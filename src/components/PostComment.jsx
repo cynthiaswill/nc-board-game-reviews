@@ -15,7 +15,7 @@ export default function PostComment({ user, review, setIsPosting }) {
   };
 
   return (
-    <div>
+    <div id="comment-typing-box-wrapper">
       <h3>Write a new comment below:</h3>
       <form id="post-comment-form" onSubmit={handleSubmit}>
         <div className="post-comment-form">
