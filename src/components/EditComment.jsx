@@ -1,23 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { editComment } from "../utils/api";
 
-export default function EditComment({ user, review, setIsEditing }) {
+export default function EditComment({ user, comment, setIsEditing }) {
   const [newComment, setNewComment] = useState({
     username: `${user.username}`,
     body: "",
   });
 
+  useEffect(() => {
+    setIsEditing(false);
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    editComment(review.review_id, newComment).then(() => {
+    editComment(comment.comment_id, newComment).then(() => {
       setIsEditing(false);
     });
   };
 
   return (
-    <div id="comment-typing-box-wrapper">
-      <h3>Write a new comment below:</h3>
-      <form id="post-comment-form" onSubmit={handleSubmit}>
+    <div>
+      <h3>Edit your comment below:</h3>
+      <form onSubmit={handleSubmit}>
         <div className="post-comment-form">
           <textarea
             id="comment-input-box"
@@ -32,7 +36,9 @@ export default function EditComment({ user, review, setIsEditing }) {
                 };
               });
             }}
-          />
+          >
+            {comment.body}
+          </textarea>
 
           <br />
           <br />
