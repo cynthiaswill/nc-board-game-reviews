@@ -41,10 +41,13 @@ export const getUser = (username) => {
 };
 
 export const postUser = (newUser) => {
-  console.log(newUser);
   return gamesApi.post(`/users`, newUser);
 };
 
 export const postComment = (review_id, body) => {
   return gamesApi.post(`/reviews/${review_id}/comments`, body);
+};
+
+export const deleteComment = (comment_id) => {
+  return gamesApi.delete(`comments/${comment_id}`);
 };

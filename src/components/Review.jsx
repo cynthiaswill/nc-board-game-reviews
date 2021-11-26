@@ -2,12 +2,14 @@ import { getReviewById, getComments, incKudos } from "../utils/api";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PostComment from "./PostComment";
+import { deleteComment } from "../utils/api";
 
 export default function Review({ user }) {
   const [review, setReview] = useState({});
   const [limitPerPage, setLimitPerPage] = useState(10);
   const [comments, setComments] = useState([]);
   const [isPosting, setIsPosting] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const { review_id } = useParams();
   const numArr = [];
@@ -25,8 +27,9 @@ export default function Review({ user }) {
       p: 1,
     }).then(({ data }) => {
       setComments(data.comments);
+      setIsDeleting(false);
     });
-  }, [review_id, limitPerPage, isPosting]);
+  }, [review_id, limitPerPage, isPosting, isDeleting]);
 
   return (
     <main className="main">
@@ -119,7 +122,16 @@ export default function Review({ user }) {
                 <span className="date-posted">{comment.created_at}</span>
                 <div className="button-container">
                   <button className="edit-comment-button">Edit</button>
-                  <button className="delete-comment-button">Delete</button>
+                  <button
+                    onClick={() => {
+                      deleteComment(comment.comment_id).then(() => {
+                        setIsDeleting(true);
+                      });
+                    }}
+                    className="delete-comment-button"
+                  >
+                    Delete
+                  </button>
                   <button className="kudos-button">Likes: {comment.votes}</button>
                 </div>
               </div>
