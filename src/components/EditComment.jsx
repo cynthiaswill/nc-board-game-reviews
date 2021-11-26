@@ -13,11 +13,13 @@ export default function EditComment({ user, toBeEditedComment, setIsEditing }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editComment(toBeEditedComment.comment_id, newComment).then(() => {
-      setIsEditing(false);
-    });
+    editComment(toBeEditedComment.comment_id, newComment)
+      .then(() => {
+        setIsEditing(false);
+      })
+      .catch((err) => console.dir(err));
   };
-
+  console.log(toBeEditedComment);
   return (
     <div>
       <h3>Edit your comment below:</h3>
@@ -26,7 +28,6 @@ export default function EditComment({ user, toBeEditedComment, setIsEditing }) {
           <textarea
             id="comment-input-box"
             rows="10"
-            placeholder="Write your comment here..."
             name="body"
             onChange={(event) => {
               setNewComment((current) => {
@@ -36,8 +37,9 @@ export default function EditComment({ user, toBeEditedComment, setIsEditing }) {
                 };
               });
             }}
-            value={toBeEditedComment.body}
-          />
+          >
+            {toBeEditedComment.body}
+          </textarea>
 
           <br />
           <br />

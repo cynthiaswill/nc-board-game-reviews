@@ -139,6 +139,7 @@ export default function Review({ user, isLogged }) {
                     className="edit-comment-button"
                     onClick={() => {
                       setIsEditing(true);
+                      setToBeEditedComment(comment);
                     }}
                   >
                     Edit
@@ -147,7 +148,6 @@ export default function Review({ user, isLogged }) {
                     onClick={() => {
                       deleteComment(comment.comment_id).then(() => {
                         setIsDeleting(true);
-                        setToBeEditedComment(comment);
                       });
                     }}
                     className="delete-comment-button"
