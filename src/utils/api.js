@@ -58,4 +58,6 @@ export const incLikes = (comment_id, { inc_votes }) => {
   return gamesApi.patch(`/comments/${comment_id}`, { inc_votes });
 };
 
-export const EditComment = () => {};
+export const EditComment = (comment_id, { body }) => {
+  return gamesApi.patch(`/comments/${comment_id}`, { body });
+};
