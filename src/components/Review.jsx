@@ -108,20 +108,20 @@ export default function Review({ user, isLogged }) {
             </select>
           </div>
 
-          <div id="comment-typing-box">
+          <div className="comment-typing-box">
             {isPosting ? (
               <PostComment user={user} review={review} setIsPosting={setIsPosting} />
             ) : null}
           </div>
-
-          {isLogged && isEditing ? (
-            <EditComment
-              user={user}
-              toBeEditedComment={toBeEditedComment}
-              setIsEditing={setIsEditing}
-            />
-          ) : null}
-
+          <div className="comment-typing-box">
+            {isLogged && isEditing ? (
+              <EditComment
+                user={user}
+                toBeEditedComment={toBeEditedComment}
+                setIsEditing={setIsEditing}
+              />
+            ) : null}
+          </div>
           {comments.map((comment) => {
             return (
               <div className="comment-box" key={comment.comment_id}>
