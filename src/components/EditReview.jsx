@@ -1,39 +1,37 @@
 import { useState } from "react";
-import { editComment } from "../utils/api";
+import { editReview } from "../utils/api";
 
-export default function EditComment({ user, toBeEditedComment, setIsEditingComment }) {
-  const [newComment, setNewComment] = useState({
-    username: `${user.username}`,
-    body: "",
+export default function EditComment({ review, setIsEditingReview }) {
+  const [newReviewBody, setNewReviewBody] = useState({
+    review_body: "",
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    editComment(toBeEditedComment.comment_id, newComment)
+    editReview(review.review_id, newReviewBody)
       .then(() => {
-        setIsEditingComment(false);
+        setIsEditingReview(false);
       })
       .catch((err) => console.dir(err));
   };
-  console.log(toBeEditedComment);
   return (
     <div>
-      <h3>Edit your comment below:</h3>
+      <h3>Edit your review below:</h3>
       <form onSubmit={handleSubmit}>
         <div className="post-comment-form">
           <textarea
             id="comment-input-box"
-            rows="10"
-            name="body"
+            rows="20"
+            name="review_body"
             onChange={(event) => {
-              setNewComment((current) => {
+              setNewReviewBody((current) => {
                 return {
                   ...current,
-                  body: event.target.value,
+                  review_body: event.target.value,
                 };
               });
             }}
-            defaultValue={toBeEditedComment.body}
+            defaultValue={review.review_body}
           />
 
           <br />
@@ -42,7 +40,7 @@ export default function EditComment({ user, toBeEditedComment, setIsEditingComme
           <div id="post-comment-buttons">
             <button
               onClick={() => {
-                setIsEditingComment(false);
+                setIsEditingReview(false);
               }}
             >
               Close

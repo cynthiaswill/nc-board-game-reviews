@@ -32,6 +32,10 @@ export const incKudos = (review_id, { inc_votes }) => {
   return gamesApi.patch(`/reviews/${review_id}`, { inc_votes });
 };
 
+export const incLikes = (comment_id, { inc_votes }) => {
+  return gamesApi.patch(`/comments/${comment_id}`, { inc_votes });
+};
+
 export const getUsers = () => {
   return gamesApi.get(`/users`);
 };
@@ -54,10 +58,10 @@ export const deleteComment = (comment_id) => {
 
 export const postReview = () => {};
 
-export const incLikes = (comment_id, { inc_votes }) => {
-  return gamesApi.patch(`/comments/${comment_id}`, { inc_votes });
-};
-
 export const editComment = (comment_id, { body }) => {
   return gamesApi.patch(`/comments/${comment_id}`, { body });
+};
+
+export const editReview = (review_id, { review_body }) => {
+  return gamesApi.patch(`reviews/${review_id}`, { review_body });
 };

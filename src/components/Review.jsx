@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import PostComment from "./PostComment";
 import { deleteComment, incLikes } from "../utils/api";
 import EditComment from "./EditComment";
+import EditReview from "./EditReview";
 
 export default function Review({ user, isLogged }) {
   const [review, setReview] = useState({});
@@ -12,7 +13,8 @@ export default function Review({ user, isLogged }) {
   const [isPosting, setIsPosting] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isVoted, setIsVoted] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditingReview, setIsEditingReview] = useState(false);
+  const [isEditingComment, setIsEditingComment] = useState(false);
   const [toBeEditedComment, setToBeEditedComment] = useState({});
 
   const { review_id } = useParams();
@@ -34,7 +36,15 @@ export default function Review({ user, isLogged }) {
       setIsDeleting(false);
       setIsVoted(false);
     });
-  }, [review_id, limitPerPage, isPosting, isDeleting, isVoted, isEditing]);
+  }, [
+    review_id,
+    limitPerPage,
+    isPosting,
+    isDeleting,
+    isVoted,
+    isEditingComment,
+    isEditingReview,
+  ]);
 
   return (
     <main className="main">
@@ -64,7 +74,14 @@ export default function Review({ user, isLogged }) {
         </section>
         <section className="button-container">
           <button className="comments-button">Comments: {review.comment_count}</button>
-          <button className="edit-review-button">Edit</button>
+          <button
+            className="edit-review-button"
+            onClick={() => {
+              setIsEditingReview(true);
+            }}
+          >
+            Edit
+          </button>
           <button
             className="kudos-button"
             onClick={() => {
@@ -107,18 +124,23 @@ export default function Review({ user, isLogged }) {
               })}
             </select>
           </div>
-
+          <div className="comment-typing-box">
+            {isLogged && isEditingReview ? (
+              <EditReview review={review} setIsEditingReview={setIsEditingReview} />
+            ) : null}
+          </div>
           <div className="comment-typing-box">
             {isPosting ? (
               <PostComment user={user} review={review} setIsPosting={setIsPosting} />
             ) : null}
           </div>
+
           <div className="comment-typing-box">
-            {isLogged && isEditing ? (
+            {isLogged && isEditingComment ? (
               <EditComment
                 user={user}
                 toBeEditedComment={toBeEditedComment}
-                setIsEditing={setIsEditing}
+                setIsEditingComment={setIsEditingComment}
               />
             ) : null}
           </div>
@@ -138,7 +160,7 @@ export default function Review({ user, isLogged }) {
                   <button
                     className="edit-comment-button"
                     onClick={() => {
-                      setIsEditing(true);
+                      setIsEditingComment(true);
                       setToBeEditedComment(comment);
                     }}
                   >
