@@ -1,11 +1,18 @@
 import { getDescription } from "../utils/utils";
 import { getCategories } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-export default function Nav({ setCatQueries, setCategory, user, setUser, isLogged }) {
+export default function Nav({
+  setCatQueries,
+  setCategory,
+  user,
+  setUser,
+  isLogged,
+  categories,
+  setCategories,
+}) {
   const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
 
   const numArr = [];
   for (let i = 1; i <= 20; i++) {
@@ -18,7 +25,7 @@ export default function Nav({ setCatQueries, setCategory, user, setUser, isLogge
         setCategories(data.categories);
       })
       .catch((err) => console.log(err));
-  }, [user]);
+  }, [user, setCategories]);
 
   return (
     <div>
@@ -184,7 +191,7 @@ export default function Nav({ setCatQueries, setCategory, user, setUser, isLogge
               Login
             </Link>
           )}
-          <Link to="/" id="narrow-compose-link">
+          <Link to="/compose" id="narrow-compose-link">
             Compose!
           </Link>
           {isLogged ? (

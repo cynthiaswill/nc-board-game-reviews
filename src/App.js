@@ -13,6 +13,7 @@ import Compose from "./components/Compose";
 
 function App() {
   const [user, setUser] = useState({});
+  const [categories, setCategories] = useState([]);
   const isLogged = !!user.username;
   const [catQueries, setCatQueries] = useState({
     sort: "created_at",
@@ -32,6 +33,8 @@ function App() {
         user={user}
         setUser={setUser}
         isLogged={isLogged}
+        categories={categories}
+        setCategories={setCategories}
       />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -46,7 +49,10 @@ function App() {
         <Route path="/users" element={<Login setUser={setUser} />} />
         <Route path="/users/:username" element={<User user={user} setUser={setUser} />} />
         <Route path="/sign-up" element={<SignUp setUser={setUser} />} />
-        <Route path="/compose" element={<Compose />} />
+        <Route
+          path="/compose"
+          element={<Compose categories={categories} setCategories={setCategories} />}
+        />
       </Routes>
     </div>
   );

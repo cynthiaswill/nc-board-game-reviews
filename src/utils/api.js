@@ -63,5 +63,9 @@ export const editComment = (comment_id, { body }) => {
 };
 
 export const editReview = (review_id, { review_body }) => {
-  return gamesApi.patch(`reviews/${review_id}`, { review_body });
+  return gamesApi.patch(`/reviews/${review_id}`, { review_body });
+};
+
+export const postCategory = ({ slug, description }) => {
+  return gamesApi.post(`/categories`);
 };
