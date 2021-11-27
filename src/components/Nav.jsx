@@ -62,7 +62,7 @@ export default function Nav({ setCatQueries, setCategory, user, setUser, isLogge
           })}
         </div>
         <div id="flex-in-nav">
-          <Link to="/" id="compose-link">
+          <Link to="/compose" id="compose-link">
             Compose!
           </Link>
           <div className="selectors-in-nav">
