@@ -1,3 +1,4 @@
+import "../styles/Review.css";
 import { getReviewById, getComments, incKudos } from "../utils/api";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";

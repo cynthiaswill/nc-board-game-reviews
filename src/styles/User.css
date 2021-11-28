@@ -6,6 +6,7 @@
   width: 100vw;
   margin: 0 auto;
   align-items: stretch;
+  border-radius: 5px;
 }
 
 .user-profile {
