@@ -38,7 +38,7 @@ export default function Compose({ user, categories, setCategories }) {
   };
 
   return (
-    <div>
+    <div className="main-container">
       <main className="main-compose">
         <div className="compose-container">
           <h3 className="compose-title">Compose a new Review:</h3>
