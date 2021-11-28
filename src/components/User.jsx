@@ -1,8 +1,10 @@
+import "../styles/User.css";
 import { getUser } from "../utils/api";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function User({ user, setUser }) {
+  const navigate = useNavigate();
   const { username } = useParams();
 
   useEffect(() => {
@@ -21,6 +23,15 @@ export default function User({ user, setUser }) {
         <h3>
           <span>username:</span> {user.username}
         </h3>
+        <button
+          className="single-user-login-button"
+          onClick={() => {
+            setUser(user);
+            navigate("/reviews");
+          }}
+        >
+          Login as {user.username}
+        </button>
       </div>
     </div>
   );
