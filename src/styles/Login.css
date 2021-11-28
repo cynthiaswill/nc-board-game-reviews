@@ -8,7 +8,9 @@
 
 .login-title {
   text-align: center;
-  color: orange;
+  color: white;
+  font-family: fantasy;
+  font-weight: bold;
 }
 
 .users-container {
