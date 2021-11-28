@@ -17,12 +17,12 @@ export default function EditComment({ user, toBeEditedComment, setIsEditingComme
   };
   console.log(toBeEditedComment);
   return (
-    <div>
+    <div className="comment-typing-box-wrapper">
       <h3>Edit your comment below:</h3>
       <form onSubmit={handleSubmit}>
-        <div className="post-comment-form">
+        <div>
           <textarea
-            id="comment-input-box"
+            className="comment-input-box"
             rows="10"
             name="body"
             onChange={(event) => {
@@ -35,11 +35,9 @@ export default function EditComment({ user, toBeEditedComment, setIsEditingComme
             }}
             defaultValue={toBeEditedComment.body}
           />
-
           <br />
           <br />
-
-          <div id="post-comment-buttons">
+          <div className="post-comment-buttons">
             <button
               onClick={() => {
                 setIsEditingComment(false);
@@ -47,9 +45,7 @@ export default function EditComment({ user, toBeEditedComment, setIsEditingComme
             >
               Close
             </button>
-            <button id="new-comment-submit-button" type="submit">
-              Submit
-            </button>
+            <button type="submit">Submit</button>
           </div>
         </div>
       </form>

@@ -61,7 +61,7 @@ export default function Review({ user, isLogged }) {
             alt={review.title}
           ></img>
           <div>
-            <p className="review-body">{review.review_body}</p>
+            <p>{review.review_body}</p>
             <div className="author">
               Author:{" "}
               <Link to={`/users/${review.owner}`} className="author-link">
@@ -73,7 +73,7 @@ export default function Review({ user, isLogged }) {
             <br />
           </div>
         </section>
-        <section className="button-container">
+        <section>
           <button className="comments-button">Comments: {review.comment_count}</button>
           <button
             className="edit-review-button"
@@ -96,7 +96,7 @@ export default function Review({ user, isLogged }) {
           </button>
         </section>
       </div>
-      <section className="comments-container">
+      <section>
         <div>
           <div className="comments-sub-bar">
             <button

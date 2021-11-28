@@ -8,16 +8,6 @@ button {
   margin: 5px;
 }
 
-button:hover {
-  box-shadow: 0 2px gray;
-  transform: translateY(-1px);
-}
-button:active {
-  background-color: white;
-  box-shadow: 0 2px gray;
-  transform: translateY(1px);
-}
-
 .main-container {
   grid-area: main;
   background: grey;

@@ -27,6 +27,11 @@
   position: relative;
 }
 
+.read-more {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
 .review-title {
   margin: 0px auto 5px auto;
 }

@@ -18,9 +18,9 @@ export default function EditComment({ review, setIsEditingReview }) {
     <div>
       <h3>Edit your review below:</h3>
       <form onSubmit={handleSubmit}>
-        <div className="post-comment-form">
+        <div>
           <textarea
-            id="comment-input-box"
+            className="comment-input-box"
             rows="20"
             name="review_body"
             onChange={(event) => {
@@ -37,7 +37,7 @@ export default function EditComment({ review, setIsEditingReview }) {
           <br />
           <br />
 
-          <div id="post-comment-buttons">
+          <div className="post-comment-buttons">
             <button
               onClick={() => {
                 setIsEditingReview(false);
@@ -45,9 +45,7 @@ export default function EditComment({ review, setIsEditingReview }) {
             >
               Close
             </button>
-            <button id="new-comment-submit-button" type="submit">
-              Submit
-            </button>
+            <button type="submit">Submit</button>
           </div>
         </div>
       </form>

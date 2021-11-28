@@ -15,12 +15,12 @@ export default function PostComment({ user, review, setIsPosting }) {
   };
 
   return (
-    <div id="comment-typing-box-wrapper">
+    <div className="comment-typing-box-wrapper">
       <h3>Write a new comment below:</h3>
-      <form id="post-comment-form" onSubmit={handleSubmit}>
-        <div className="post-comment-form">
+      <form onSubmit={handleSubmit}>
+        <div>
           <textarea
-            id="comment-input-box"
+            className="comment-input-box"
             rows="10"
             placeholder="Write your comment here..."
             name="body"
@@ -33,11 +33,9 @@ export default function PostComment({ user, review, setIsPosting }) {
               });
             }}
           />
-
           <br />
           <br />
-
-          <div id="post-comment-buttons">
+          <div className="post-comment-buttons">
             <button
               onClick={() => {
                 setIsPosting(false);
@@ -45,9 +43,7 @@ export default function PostComment({ user, review, setIsPosting }) {
             >
               Close
             </button>
-            <button id="new-comment-submit-button" type="submit">
-              Submit
-            </button>
+            <button type="submit">Submit</button>
           </div>
         </div>
       </form>

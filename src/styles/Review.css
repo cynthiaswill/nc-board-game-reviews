@@ -1,0 +1,121 @@
+.single-review-item {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 10px;
+  overflow: auto;
+  padding: 5px;
+  position: relative;
+  max-width: 900px;
+  background: lightgrey;
+}
+
+.single-review-content {
+  margin: 5px;
+  overflow: auto;
+  position: relative;
+}
+
+.review-title {
+  margin: 0px auto 5px auto;
+}
+
+.slug-name {
+  float: left;
+  font-size: 0.9em;
+}
+
+.designer-name {
+  float: right;
+  font-size: 0.9em;
+}
+
+.single-review-img {
+  float: right;
+  max-width: 60vw;
+  max-height: 40vh;
+  margin: 10px;
+}
+
+.author {
+  float: left;
+  font-size: 0.9em;
+}
+
+.data-stamp {
+  font-size: 0.8em;
+}
+
+.edit-review-button {
+  margin-left: 10px;
+}
+
+.comments-button {
+  float: left;
+}
+
+.kudos-button {
+  float: right;
+}
+
+.add-comment-button {
+  margin: 5px 10px;
+}
+
+.comments-limit-option {
+  margin: 5px 10px;
+}
+
+.comments-sub-bar {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+}
+
+.edit-comment-button {
+  margin-right: 5px;
+}
+
+.delete-comment-button {
+  margin-left: 10px;
+}
+
+.comment-box {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 10px;
+  overflow: auto;
+  padding: 5px;
+  position: relative;
+  max-width: 900px;
+  background: lightgrey;
+}
+
+.comment-typing-box {
+  display: flex;
+  border-radius: 10px;
+  margin: 10px;
+  justify-content: center;
+  max-width: 900px;
+  background: lightgrey;
+  border: 1px solid white;
+}
+
+/* below are for EditComment, EditReview and PostComment components: */
+
+.post-comment-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.comment-input-box {
+  width: 70vw;
+  height: 15vh;
+}
+
+.comment-typing-box-wrapper {
+  margin: 20px;
+  max-width: 900px;
+}
