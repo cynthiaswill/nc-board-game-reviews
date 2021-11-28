@@ -1,3 +1,4 @@
+import "../styles/SignUp.css";
 import { useState } from "react";
 import { postUser } from "../utils/api";
 import { useNavigate } from "react-router-dom";
@@ -19,10 +20,10 @@ export default function SignUp({ setUser }) {
   };
 
   return (
-    <div className="signup-form-container">
-      <h1>Create a User</h1>
-      <form id="sign-up-form" onSubmit={handleSubmit}>
-        <div className="sign-up-form">
+    <div className="sign-up-form-container">
+      <section className="sign-up-form">
+        <h1>Create a User</h1>
+        <form onSubmit={handleSubmit}>
           <label>
             <input
               type="text"
@@ -73,8 +74,8 @@ export default function SignUp({ setUser }) {
           <br />
           <br />
           <button type="submit">Submit</button>
-        </div>
-      </form>
+        </form>
+      </section>
     </div>
   );
 }
