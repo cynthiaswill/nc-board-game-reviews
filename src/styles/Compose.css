@@ -1,4 +1,24 @@
-.main {
+textarea {
+  max-width: 800px;
+}
+
+button {
+  border-radius: 5px;
+  border-style: outset;
+  margin: 5px;
+}
+
+button:hover {
+  box-shadow: 0 2px gray;
+  transform: translateY(-1px);
+}
+button:active {
+  background-color: white;
+  box-shadow: 0 2px gray;
+  transform: translateY(1px);
+}
+
+.main-compose {
   grid-area: main;
   border: solid blue 2px;
   background: lightgrey;
@@ -8,4 +28,25 @@
 
 .compose-title {
   text-align: center;
+}
+
+.yes-or-no {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.compose-container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  margin: 40px;
+}
+
+.compose-form {
+  text-align: center;
+}
+
+#review-writing-box {
+  width: 60vw;
 }
