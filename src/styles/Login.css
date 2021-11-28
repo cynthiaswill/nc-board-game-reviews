@@ -1,0 +1,37 @@
+.login-container {
+  background: grey;
+  max-width: 900px;
+  width: 100vw;
+  margin: 0 auto;
+}
+
+.login-title {
+  text-align: center;
+}
+
+.users-container {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.user-card {
+  background: lightgrey;
+  border-radius: 10px;
+  margin: 15px;
+  width: 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.user-pic {
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 20%;
+}
+
+.user-login-button {
+  align-self: flex-end;
+}
