@@ -1,18 +1,12 @@
 import { getDescription } from "../utils/utils";
 import { getCategories } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
-export default function Nav({
-  setCatQueries,
-  setCategory,
-  user,
-  setUser,
-  isLogged,
-  categories,
-  setCategories,
-}) {
+export default function Nav({ setCatQueries, setCategory, categories, setCategories }) {
   const navigate = useNavigate();
+  const { user, setUser, isLogged } = useContext(UserContext);
 
   const numArr = [];
   for (let i = 1; i <= 20; i++) {

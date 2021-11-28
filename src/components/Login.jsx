@@ -1,9 +1,11 @@
 import "../styles/Login.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getUsers } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
-export default function Login({ setUser }) {
+export default function Login() {
+  const { setUser } = useContext(UserContext);
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 

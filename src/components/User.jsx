@@ -1,9 +1,11 @@
 import "../styles/User.css";
 import { getUser } from "../utils/api";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
-export default function User({ user, setUser }) {
+export default function User() {
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const { username } = useParams();
 

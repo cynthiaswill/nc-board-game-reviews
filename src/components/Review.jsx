@@ -1,13 +1,15 @@
 import "../styles/Review.css";
 import { getReviewById, getComments, incKudos } from "../utils/api";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import PostComment from "./PostComment";
 import { deleteComment, incLikes } from "../utils/api";
 import EditComment from "./EditComment";
 import EditReview from "./EditReview";
+import { UserContext } from "../contexts/UserContext";
 
-export default function Review({ user, isLogged }) {
+export default function Review() {
+  const { user, isLogged } = useContext(UserContext);
   const [review, setReview] = useState({});
   const [limitPerPage, setLimitPerPage] = useState(10);
   const [comments, setComments] = useState([]);

@@ -10,11 +10,10 @@ import Login from "./components/Login";
 import User from "./components/User";
 import SignUp from "./components/SignUp";
 import Compose from "./components/Compose";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
-  const [user, setUser] = useState({});
   const [categories, setCategories] = useState([]);
-  const isLogged = !!user.username;
   const [catQueries, setCatQueries] = useState({
     sort: "created_at",
     order: "desc",
@@ -31,9 +30,6 @@ function App() {
         <Nav
           setCatQueries={setCatQueries}
           setCategory={setCategory}
-          user={user}
-          setUser={setUser}
-          isLogged={isLogged}
           categories={categories}
           setCategories={setCategories}
         />
@@ -43,26 +39,15 @@ function App() {
             path="/reviews"
             element={<Reviews catQueries={catQueries} category={category} />}
           />
-          <Route
-            path="/reviews/:review_id"
-            element={<Review user={user} isLogged={isLogged} />}
-          />
-          <Route path="/users" element={<Login setUser={setUser} />} />
-          <Route
-            path="/users/:username"
-            element={<User user={user} setUser={setUser} />}
-          />
-          <Route path="/sign-up" element={<SignUp setUser={setUser} />} />
+          <Route path="/reviews/:review_id" element={<Review />} />
+          <Route path="/users" element={<Login />} />
+          <Route path="/users/:username" element={<User />} />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route
             path="/compose"
-            element={
-              <Compose
-                categories={categories}
-                setCategories={setCategories}
-                user={user}
-              />
-            }
+            element={<Compose categories={categories} setCategories={setCategories} />}
           />
+          <Route path="*" element={ErrorPage} />
         </Routes>
       </div>
     </BrowserRouter>

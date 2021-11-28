@@ -1,9 +1,11 @@
 import "../styles/SignUp.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { postUser } from "../utils/api";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
-export default function SignUp({ setUser }) {
+export default function SignUp() {
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState({
     username: "",
