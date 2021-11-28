@@ -7,6 +7,7 @@ import { deleteComment, incLikes } from "../utils/api";
 import EditComment from "./EditComment";
 import EditReview from "./EditReview";
 import { UserContext } from "../contexts/UserContext";
+import { numArr } from "../utils/utils";
 
 export default function Review() {
   const { user, isLogged } = useContext(UserContext);
@@ -21,10 +22,6 @@ export default function Review() {
   const [toBeEditedComment, setToBeEditedComment] = useState({});
 
   const { review_id } = useParams();
-  const numArr = [];
-  for (let i = 1; i <= 20; i++) {
-    numArr.push(i);
-  }
 
   useEffect(() => {
     getReviewById(review_id).then(({ data }) => {

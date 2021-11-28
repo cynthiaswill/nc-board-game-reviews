@@ -3,15 +3,11 @@ import { getCategories } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { numArr } from "../utils/utils";
 
 export default function Nav({ setCatQueries, setCategory, categories, setCategories }) {
   const navigate = useNavigate();
   const { user, setUser, isLogged } = useContext(UserContext);
-
-  const numArr = [];
-  for (let i = 1; i <= 20; i++) {
-    numArr.push(i);
-  }
 
   useEffect(() => {
     getCategories()
