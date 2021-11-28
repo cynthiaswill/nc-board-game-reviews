@@ -67,5 +67,5 @@ export const editReview = (review_id, { review_body }) => {
 };
 
 export const postCategory = ({ slug, description }) => {
-  return gamesApi.post(`/categories`);
+  return gamesApi.post(`/categories`, { slug, description });
 };
