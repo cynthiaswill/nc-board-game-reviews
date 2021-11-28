@@ -56,8 +56,6 @@ export const deleteComment = (comment_id) => {
   return gamesApi.delete(`comments/${comment_id}`);
 };
 
-export const postReview = () => {};
-
 export const editComment = (comment_id, { body }) => {
   return gamesApi.patch(`/comments/${comment_id}`, { body });
 };
@@ -68,4 +66,8 @@ export const editReview = (review_id, { review_body }) => {
 
 export const postCategory = ({ slug, description }) => {
   return gamesApi.post(`/categories`, { slug, description });
+};
+
+export const postReview = (body) => {
+  return gamesApi.post("/reviews", body);
 };

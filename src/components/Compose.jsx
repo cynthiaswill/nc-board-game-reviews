@@ -1,22 +1,29 @@
 import "../styles/Compose.css";
-import { postCategory, getCategories } from "../utils/api";
+import { postCategory, getCategories, postReview } from "../utils/api";
 import { useState, useEffect } from "react";
 
-export default function Compose({ categories, setCategories }) {
+export default function Compose({ user, categories, setCategories }) {
   const [newCategory, setNewCategory] = useState({});
 
   const [newReview, setNewReview] = useState({});
   const [needNewCat, setNeedNewCat] = useState(false);
 
-  const handleSubmit = (e) => {};
-
   useEffect(() => {
+    setNewReview((current) => {
+      return { ...current, owner: `${user.username}` };
+    });
     getCategories()
       .then(({ data }) => {
         setCategories(data.categories);
       })
       .catch((err) => console.log(err));
-  }, [newCategory, setNewCategory]);
+  }, [newCategory, setCategories, user]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(newReview);
+    postReview(newReview).catch((err) => console.dir(err));
+  };
 
   const submitCategory = (e) => {
     e.preventDefault();
@@ -93,7 +100,7 @@ export default function Compose({ categories, setCategories }) {
               )}
             </section>
           ) : (
-            <form className="compose-form">
+            <form className="compose-form" onSubmit={handleSubmit}>
               <p>Please give a review title:</p>
               <input
                 type="text"
@@ -118,6 +125,9 @@ export default function Compose({ categories, setCategories }) {
                   });
                 }}
               >
+                <option default hidden>
+                  ...
+                </option>
                 {categories.map((category) => {
                   return (
                     <option
@@ -137,7 +147,7 @@ export default function Compose({ categories, setCategories }) {
                   setNewReview((current) => {
                     return {
                       ...current,
-                      title: event.target.value,
+                      designer: event.target.value,
                     };
                   });
                 }}
@@ -153,7 +163,7 @@ export default function Compose({ categories, setCategories }) {
                   setNewReview((current) => {
                     return {
                       ...current,
-                      title: event.target.value,
+                      review_body: event.target.value,
                     };
                   });
                 }}

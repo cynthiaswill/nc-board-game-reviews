@@ -51,7 +51,9 @@ function App() {
         <Route path="/sign-up" element={<SignUp setUser={setUser} />} />
         <Route
           path="/compose"
-          element={<Compose categories={categories} setCategories={setCategories} />}
+          element={
+            <Compose categories={categories} setCategories={setCategories} user={user} />
+          }
         />
       </Routes>
     </div>
