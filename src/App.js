@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
@@ -25,38 +25,47 @@ function App() {
   const [category, setCategory] = useState({ slug: "All categories", description: "" });
 
   return (
-    <div className="App">
-      <Header />
-      <Nav
-        setCatQueries={setCatQueries}
-        setCategory={setCategory}
-        user={user}
-        setUser={setUser}
-        isLogged={isLogged}
-        categories={categories}
-        setCategories={setCategories}
-      />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/reviews"
-          element={<Reviews catQueries={catQueries} category={category} />}
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <Nav
+          setCatQueries={setCatQueries}
+          setCategory={setCategory}
+          user={user}
+          setUser={setUser}
+          isLogged={isLogged}
+          categories={categories}
+          setCategories={setCategories}
         />
-        <Route
-          path="/reviews/:review_id"
-          element={<Review user={user} isLogged={isLogged} />}
-        />
-        <Route path="/users" element={<Login setUser={setUser} />} />
-        <Route path="/users/:username" element={<User user={user} setUser={setUser} />} />
-        <Route path="/sign-up" element={<SignUp setUser={setUser} />} />
-        <Route
-          path="/compose"
-          element={
-            <Compose categories={categories} setCategories={setCategories} user={user} />
-          }
-        />
-      </Routes>
-    </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/reviews"
+            element={<Reviews catQueries={catQueries} category={category} />}
+          />
+          <Route
+            path="/reviews/:review_id"
+            element={<Review user={user} isLogged={isLogged} />}
+          />
+          <Route path="/users" element={<Login setUser={setUser} />} />
+          <Route
+            path="/users/:username"
+            element={<User user={user} setUser={setUser} />}
+          />
+          <Route path="/sign-up" element={<SignUp setUser={setUser} />} />
+          <Route
+            path="/compose"
+            element={
+              <Compose
+                categories={categories}
+                setCategories={setCategories}
+                user={user}
+              />
+            }
+          />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
