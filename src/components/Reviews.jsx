@@ -1,3 +1,4 @@
+import "../styles/Reviews.css";
 import { getReviews, incKudos } from "../utils/api";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -36,7 +37,7 @@ export default function Reviews({ catQueries, category }) {
                 alt={review.title}
               ></img>
               <div>
-                <p className="review-body">{review.review_body}</p>
+                <p>{review.review_body}</p>
                 <span className="author">
                   Author:{" "}
                   <Link to={`/users/${review.owner}`} className="author-link">
@@ -50,7 +51,7 @@ export default function Reviews({ catQueries, category }) {
             <Link to={`/reviews/${review.review_id}`} className="read-more">
               Read More
             </Link>
-            <section className="button-container">
+            <section>
               <button
                 className="comments-button"
                 onClick={() => {

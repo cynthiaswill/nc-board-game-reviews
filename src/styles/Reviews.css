@@ -1,0 +1,67 @@
+.category-title {
+  font-style: italic;
+  margin: 5px;
+}
+
+.category-description {
+  font-style: italic;
+  margin: 5px;
+}
+
+.review-item {
+  background: lightgrey;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 15px;
+  overflow: auto;
+  max-height: 32vh;
+  padding: 5px;
+  position: relative;
+}
+
+.review-card {
+  max-height: 35vh;
+  margin: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.review-title {
+  margin: 0px auto 5px auto;
+}
+
+.slug-name {
+  float: left;
+  font-size: 0.9em;
+}
+
+.designer-name {
+  float: right;
+  font-size: 0.9em;
+}
+
+.author {
+  float: left;
+  font-size: 0.9em;
+}
+
+.date-posted {
+  float: right;
+  font-size: 0.7em;
+}
+
+.review-img {
+  float: right;
+  max-width: 50vw;
+  max-height: 25vh;
+  margin: 10px;
+}
+
+.comments-button {
+  float: left;
+}
+
+.kudos-button {
+  float: right;
+}
