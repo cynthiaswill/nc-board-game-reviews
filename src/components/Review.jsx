@@ -23,16 +23,13 @@ export default function Review() {
   const [isEditingReview, setIsEditingReview] = useState(false);
   const [isEditingComment, setIsEditingComment] = useState(false);
   const [toBeEditedComment, setToBeEditedComment] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
 
   const { review_id } = useParams();
 
   useEffect(() => {
-    setIsLoading(true);
     getReviewById(review_id)
       .then(({ data }) => {
         setReview(data.review);
-        setIsLoading(false);
       })
       .catch((err) => {
         if (err) {
@@ -68,9 +65,6 @@ export default function Review() {
     navigate,
   ]);
 
-  if (isLoading === true) {
-    return <h2>Loading...</h2>;
-  }
   return (
     <main className="main">
       <div key={review.review_id} className="single-review-item">
