@@ -3,9 +3,11 @@ import { getReviews, incKudos } from "../utils/api";
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
+import { UserContext } from "../contexts/UserContext";
 
 export default function Reviews({ catQueries, category }) {
   const { setError } = useContext(ErrorContext);
+  const { user } = useContext(UserContext);
   const [reviews, setReviews] = useState([]);
   const [isVoted, setIsVoted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -75,6 +77,7 @@ export default function Reviews({ catQueries, category }) {
               </button>
               <button
                 className="kudos-button"
+                disabled={!!(user.username === review.owner)}
                 onClick={() => {
                   setIsVoted(true);
                   incKudos(review.review_id, { inc_votes: 1 });
