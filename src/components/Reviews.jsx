@@ -20,7 +20,6 @@ export default function Reviews({ catQueries, category, setReviewsCount }) {
         setReviews(data.reviews);
         setReviewsCount(reviews.length);
         setIsLoading(false);
-        console.log(catQueries);
       })
       .catch((err) => {
         if (err) {
@@ -28,7 +27,7 @@ export default function Reviews({ catQueries, category, setReviewsCount }) {
           navigate("*");
         }
       });
-  }, [catQueries, category, setError, navigate]);
+  }, [catQueries, category, setError, navigate, setReviewsCount, reviews.length]);
 
   if (isLoading === true) {
     return <h2>Loading...</h2>;

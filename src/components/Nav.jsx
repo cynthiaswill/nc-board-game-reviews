@@ -30,7 +30,7 @@ export default function Nav({
         }
       });
   }, [user, setCategories, navigate, setError]);
-  console.log(reviewsCount);
+
   return (
     <div>
       <nav className="nav">
