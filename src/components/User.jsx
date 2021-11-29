@@ -3,9 +3,11 @@ import { getUser } from "../utils/api";
 import { useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import { ErrorContext } from "../contexts/ErrorContext";
 
 export default function User() {
   const { user, setUser } = useContext(UserContext);
+  const { setError } = useContext(ErrorContext);
   const navigate = useNavigate();
   const { username } = useParams();
 
@@ -14,8 +16,13 @@ export default function User() {
       .then(({ data }) => {
         setUser(data.user);
       })
-      .catch((err) => console.log(err));
-  }, [username, setUser]);
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
+      });
+  }, [username, setUser, setError, navigate]);
 
   return (
     <div className="user-container">

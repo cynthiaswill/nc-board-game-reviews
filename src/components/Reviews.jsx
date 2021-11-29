@@ -1,9 +1,11 @@
 import "../styles/Reviews.css";
 import { getReviews, incKudos } from "../utils/api";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ErrorContext } from "../contexts/ErrorContext";
 
 export default function Reviews({ catQueries, category }) {
+  const { setError } = useContext(ErrorContext);
   const [reviews, setReviews] = useState([]);
   const [isVoted, setIsVoted] = useState(false);
   const navigate = useNavigate();
@@ -13,9 +15,14 @@ export default function Reviews({ catQueries, category }) {
       .then(({ data }) => {
         setReviews(data.reviews);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
+      });
     setIsVoted(false);
-  }, [catQueries, category, isVoted]);
+  }, [catQueries, category, isVoted, setError, navigate]);
 
   return (
     <main className="main">

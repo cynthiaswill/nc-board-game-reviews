@@ -3,9 +3,11 @@ import { useState, useContext } from "react";
 import { postUser } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import { ErrorContext } from "../contexts/ErrorContext";
 
 export default function SignUp() {
   const { setUser } = useContext(UserContext);
+  const { setError } = useContext(ErrorContext);
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState({
     username: "",
@@ -15,9 +17,16 @@ export default function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postUser(newUser).then(() => {
-      setUser(newUser);
-    });
+    postUser(newUser)
+      .then(() => {
+        setUser(newUser);
+      })
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
+      });
     navigate("/reviews");
   };
 

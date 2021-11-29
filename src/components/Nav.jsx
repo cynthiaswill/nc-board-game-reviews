@@ -4,18 +4,25 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { numArr } from "../utils/utils";
+import { ErrorContext } from "../contexts/ErrorContext";
 
 export default function Nav({ setCatQueries, setCategory, categories, setCategories }) {
   const navigate = useNavigate();
   const { user, setUser, isLogged } = useContext(UserContext);
+  const { setError } = useContext(ErrorContext);
 
   useEffect(() => {
     getCategories()
       .then(({ data }) => {
         setCategories(data.categories);
       })
-      .catch((err) => console.log(err));
-  }, [user, setCategories]);
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
+      });
+  }, [user, setCategories, navigate, setError]);
 
   return (
     <div>

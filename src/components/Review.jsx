@@ -1,16 +1,19 @@
 import "../styles/Review.css";
 import { getReviewById, getComments, incKudos } from "../utils/api";
 import { useEffect, useState, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import PostComment from "./PostComment";
 import { deleteComment, incLikes } from "../utils/api";
 import EditComment from "./EditComment";
 import EditReview from "./EditReview";
 import { UserContext } from "../contexts/UserContext";
 import { numArr } from "../utils/utils";
+import { ErrorContext } from "../contexts/ErrorContext";
 
 export default function Review() {
   const { user, isLogged } = useContext(UserContext);
+  const { setError } = useContext(ErrorContext);
+  const navigate = useNavigate();
   const [review, setReview] = useState({});
   const [limitPerPage, setLimitPerPage] = useState(10);
   const [comments, setComments] = useState([]);
@@ -31,11 +34,18 @@ export default function Review() {
       review_id: `${review_id}`,
       limit: `${limitPerPage}`,
       p: 1,
-    }).then(({ data }) => {
-      setComments(data.comments);
-      setIsDeleting(false);
-      setIsVoted(false);
-    });
+    })
+      .then(({ data }) => {
+        setComments(data.comments);
+        setIsDeleting(false);
+        setIsVoted(false);
+      })
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
+      });
   }, [
     review_id,
     limitPerPage,
@@ -44,6 +54,8 @@ export default function Review() {
     isVoted,
     isEditingComment,
     isEditingReview,
+    setError,
+    navigate,
   ]);
 
   return (

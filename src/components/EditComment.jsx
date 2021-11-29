@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { editComment } from "../utils/api";
+import { ErrorContext } from "../contexts/ErrorContext";
+import { useNavigate } from "react-router-dom";
 
 export default function EditComment({ user, toBeEditedComment, setIsEditingComment }) {
   const [newComment, setNewComment] = useState({
     username: `${user.username}`,
     body: "",
   });
+  const { setError } = useContext(ErrorContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -13,9 +17,14 @@ export default function EditComment({ user, toBeEditedComment, setIsEditingComme
       .then(() => {
         setIsEditingComment(false);
       })
-      .catch((err) => console.dir(err));
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
+      });
   };
-  console.log(toBeEditedComment);
+
   return (
     <div className="comment-typing-box-wrapper">
       <h3>Edit your comment below:</h3>

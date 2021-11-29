@@ -3,17 +3,26 @@ import { useEffect, useState, useContext } from "react";
 import { getUsers } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import { ErrorContext } from "../contexts/ErrorContext";
 
 export default function Login() {
   const { setUser } = useContext(UserContext);
+  const { setError } = useContext(ErrorContext);
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    getUsers().then(({ data }) => {
-      setUsers(data.users);
-    });
-  }, []);
+    getUsers()
+      .then(({ data }) => {
+        setUsers(data.users);
+      })
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
+      });
+  }, [setError, navigate]);
 
   return (
     <div className="login-container">

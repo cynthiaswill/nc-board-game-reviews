@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { editReview } from "../utils/api";
+import { ErrorContext } from "../contexts/ErrorContext";
+import { useNavigate } from "react-router-dom";
 
 export default function EditComment({ review, setIsEditingReview }) {
   const [newReviewBody, setNewReviewBody] = useState({
     review_body: "",
   });
+  const { setError } = useContext(ErrorContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -12,8 +16,14 @@ export default function EditComment({ review, setIsEditingReview }) {
       .then(() => {
         setIsEditingReview(false);
       })
-      .catch((err) => console.dir(err));
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
+      });
   };
+
   return (
     <div>
       <h3>Edit your review below:</h3>
