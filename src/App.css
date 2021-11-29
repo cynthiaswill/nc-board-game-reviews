@@ -115,6 +115,10 @@ button {
   border-style: outset;
 }
 
+.page-button {
+  margin: 0 5px;
+}
+
 .category-links {
   margin: 5px;
 }

@@ -15,6 +15,7 @@ export default function Reviews({ catQueries, category }) {
 
   useEffect(() => {
     setIsLoading(true);
+    console.log(catQueries);
     getReviews(catQueries)
       .then(({ data }) => {
         setReviews(data.reviews);

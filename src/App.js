@@ -28,6 +28,7 @@ function App() {
       <div className="App">
         <Header />
         <Nav
+          catQueries={catQueries}
           setCatQueries={setCatQueries}
           setCategory={setCategory}
           categories={categories}

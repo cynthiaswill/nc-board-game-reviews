@@ -6,7 +6,13 @@ import { UserContext } from "../contexts/UserContext";
 import { numArr } from "../utils/utils";
 import { ErrorContext } from "../contexts/ErrorContext";
 
-export default function Nav({ setCatQueries, setCategory, categories, setCategories }) {
+export default function Nav({
+  catQueries,
+  setCatQueries,
+  setCategory,
+  categories,
+  setCategories,
+}) {
   const navigate = useNavigate();
   const { user, setUser, isLogged } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
@@ -209,6 +215,18 @@ export default function Nav({ setCatQueries, setCategory, categories, setCategor
         </div>
       </nav>
       <div className="logged-user">
+        <button
+          className="page-button"
+          disabled={catQueries.p === 1}
+          onClick={() => {
+            setCatQueries((curr) => {
+              return { ...curr, p: curr.p - 1 };
+            });
+            navigate("/reviews");
+          }}
+        >
+          &lt;&lt; prev
+        </button>
         {isLogged ? (
           <div>
             <span>
@@ -226,6 +244,17 @@ export default function Nav({ setCatQueries, setCategory, categories, setCategor
         ) : (
           <Link to="/sign-up">Sign Up</Link>
         )}
+        <button
+          className="page-button"
+          onClick={() => {
+            setCatQueries((curr) => {
+              return { ...curr, p: curr.p + 1 };
+            });
+            navigate("/reviews");
+          }}
+        >
+          next &gt;&gt;
+        </button>
       </div>
     </div>
   );
