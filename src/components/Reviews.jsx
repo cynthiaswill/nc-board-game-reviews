@@ -8,12 +8,15 @@ export default function Reviews({ catQueries, category }) {
   const { setError } = useContext(ErrorContext);
   const [reviews, setReviews] = useState([]);
   const [isVoted, setIsVoted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
+    setIsLoading(true);
     getReviews(catQueries)
       .then(({ data }) => {
         setReviews(data.reviews);
+        setIsLoading(false);
       })
       .catch((err) => {
         if (err) {
@@ -24,6 +27,9 @@ export default function Reviews({ catQueries, category }) {
     setIsVoted(false);
   }, [catQueries, category, isVoted, setError, navigate]);
 
+  if (isLoading === true) {
+    return <h2>Loading...</h2>;
+  }
   return (
     <main className="main">
       <h3 className="category-title">{category.slug}:</h3>

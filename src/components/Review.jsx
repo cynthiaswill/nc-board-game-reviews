@@ -23,13 +23,23 @@ export default function Review() {
   const [isEditingReview, setIsEditingReview] = useState(false);
   const [isEditingComment, setIsEditingComment] = useState(false);
   const [toBeEditedComment, setToBeEditedComment] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const { review_id } = useParams();
 
   useEffect(() => {
-    getReviewById(review_id).then(({ data }) => {
-      setReview(data.review);
-    });
+    setIsLoading(true);
+    getReviewById(review_id)
+      .then(({ data }) => {
+        setReview(data.review);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
+      });
     getComments({
       review_id: `${review_id}`,
       limit: `${limitPerPage}`,
@@ -58,6 +68,9 @@ export default function Review() {
     navigate,
   ]);
 
+  if (isLoading === true) {
+    return <h2>Loading...</h2>;
+  }
   return (
     <main className="main">
       <div key={review.review_id} className="single-review-item">

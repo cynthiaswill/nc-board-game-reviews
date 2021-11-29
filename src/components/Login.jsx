@@ -9,12 +9,15 @@ export default function Login() {
   const { setUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
+    setIsLoading(true);
     getUsers()
       .then(({ data }) => {
         setUsers(data.users);
+        setIsLoading(false);
       })
       .catch((err) => {
         if (err) {
@@ -24,6 +27,9 @@ export default function Login() {
       });
   }, [setError, navigate]);
 
+  if (isLoading === true) {
+    return <h2>Loading...</h2>;
+  }
   return (
     <div className="login-container">
       <h3 className="login-title">Please choose an account to log in:</h3>
