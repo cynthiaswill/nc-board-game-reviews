@@ -1,17 +1,29 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { postComment } from "../utils/api";
+import { ErrorContext } from "../contexts/ErrorContext";
+import { useNavigate } from "react-router-dom";
 
 export default function PostComment({ user, review, setIsPosting }) {
+  const { error, setError } = useContext(ErrorContext);
   const [newComment, setNewComment] = useState({
     username: `${user.username}`,
     body: "",
   });
 
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    postComment(review.review_id, newComment).then(() => {
-      setIsPosting(false);
-    });
+    postComment(review.review_id, newComment)
+      .then(() => {
+        setIsPosting(false);
+      })
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
+      });
   };
 
   return (

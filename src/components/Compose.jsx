@@ -2,12 +2,14 @@ import "../styles/Compose.css";
 import { postCategory, getCategories, postReview } from "../utils/api";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Compose({ categories, setCategories }) {
   const { user } = useContext(UserContext);
   const [newCategory, setNewCategory] = useState({});
   const [newReview, setNewReview] = useState({});
   const [needNewCat, setNeedNewCat] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setNewReview((current) => {
@@ -17,7 +19,9 @@ export default function Compose({ categories, setCategories }) {
       .then(({ data }) => {
         setCategories(data.categories);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err) navigate("*");
+      });
   }, [newCategory, setCategories, user]);
 
   const handleSubmit = (e) => {
