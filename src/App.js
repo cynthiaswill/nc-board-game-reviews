@@ -22,6 +22,7 @@ function App() {
     category: "",
   });
   const [category, setCategory] = useState({ slug: "All categories", description: "" });
+  const [reviewsCount, setReviewsCount] = useState(0);
 
   return (
     <BrowserRouter>
@@ -33,12 +34,19 @@ function App() {
           setCategory={setCategory}
           categories={categories}
           setCategories={setCategories}
+          reviewsCount={reviewsCount}
         />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
             path="/reviews"
-            element={<Reviews catQueries={catQueries} category={category} />}
+            element={
+              <Reviews
+                catQueries={catQueries}
+                category={category}
+                setReviewsCount={setReviewsCount}
+              />
+            }
           />
           <Route path="/reviews/:review_id" element={<Review />} />
           <Route path="/users" element={<Login />} />

@@ -12,6 +12,7 @@ export default function Nav({
   setCategory,
   categories,
   setCategories,
+  reviewsCount,
 }) {
   const navigate = useNavigate();
   const { user, setUser, isLogged } = useContext(UserContext);
@@ -29,7 +30,7 @@ export default function Nav({
         }
       });
   }, [user, setCategories, navigate, setError]);
-
+  console.log(reviewsCount);
   return (
     <div>
       <nav className="nav">
@@ -246,6 +247,7 @@ export default function Nav({
         )}
         <button
           className="page-button"
+          disabled={reviewsCount < catQueries.limit}
           onClick={() => {
             setCatQueries((curr) => {
               return { ...curr, p: curr.p + 1 };

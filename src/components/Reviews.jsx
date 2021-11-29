@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { UserContext } from "../contexts/UserContext";
 
-export default function Reviews({ catQueries, category }) {
+export default function Reviews({ catQueries, category, setReviewsCount }) {
   const { setError } = useContext(ErrorContext);
   const { user } = useContext(UserContext);
   const [reviews, setReviews] = useState([]);
@@ -15,11 +15,12 @@ export default function Reviews({ catQueries, category }) {
 
   useEffect(() => {
     setIsLoading(true);
-    console.log(catQueries);
     getReviews(catQueries)
       .then(({ data }) => {
         setReviews(data.reviews);
+        setReviewsCount(reviews.length);
         setIsLoading(false);
+        console.log(catQueries);
       })
       .catch((err) => {
         if (err) {
