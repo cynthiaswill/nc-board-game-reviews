@@ -3,9 +3,11 @@ import { postCategory, getCategories, postReview } from "../utils/api";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
+import { ErrorContext } from "../contexts/ErrorContext";
 
 export default function Compose({ categories, setCategories }) {
   const { user } = useContext(UserContext);
+  const { setError } = useContext(ErrorContext);
   const [newCategory, setNewCategory] = useState({});
   const [newReview, setNewReview] = useState({});
   const [needNewCat, setNeedNewCat] = useState(false);
@@ -20,26 +22,43 @@ export default function Compose({ categories, setCategories }) {
         setCategories(data.categories);
       })
       .catch((err) => {
-        if (err) navigate("*");
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
       });
-  }, [newCategory, setCategories, user]);
+  }, [newCategory, setCategories, user, navigate, setError]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(newReview);
-    postReview(newReview).catch((err) => console.dir(err));
+    postReview(newReview).catch((err) => {
+      if (err) {
+        setError(err.response.status);
+        navigate("*");
+      }
+    });
   };
 
   const submitCategory = (e) => {
     e.preventDefault();
-    postCategory(newCategory).catch((err) => console.dir(err));
+    postCategory(newCategory).catch((err) => {
+      if (err) {
+        setError(err.response.status);
+        navigate("*");
+      }
+    });
     setNewCategory({});
     setNeedNewCat(false);
     getCategories()
       .then(({ data }) => {
         setCategories(data.categories);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
+      });
   };
 
   return (

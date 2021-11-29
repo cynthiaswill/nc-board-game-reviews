@@ -4,7 +4,7 @@ import { ErrorContext } from "../contexts/ErrorContext";
 import { useNavigate } from "react-router-dom";
 
 export default function PostComment({ user, review, setIsPosting }) {
-  const { error, setError } = useContext(ErrorContext);
+  const { setError } = useContext(ErrorContext);
   const [newComment, setNewComment] = useState({
     username: `${user.username}`,
     body: "",
