@@ -95,6 +95,7 @@ export default function Review() {
           <button className="comments-button">Comments: {review.comment_count}</button>
           <button
             className="edit-review-button"
+            disabled={!!(user.username !== review.owner)}
             onClick={() => {
               setIsEditingReview(true);
             }}
@@ -103,6 +104,7 @@ export default function Review() {
           </button>
           <button
             className="kudos-button"
+            disabled={!!(user.username === review.owner)}
             onClick={() => {
               incKudos(review.review_id, { inc_votes: 1 });
               setReview((current) => {
@@ -178,6 +180,7 @@ export default function Review() {
                 <div className="button-container">
                   <button
                     className="edit-comment-button"
+                    disabled={!!(user.username !== comment.author)}
                     onClick={() => {
                       setIsEditingComment(true);
                       setToBeEditedComment(comment);
@@ -186,10 +189,18 @@ export default function Review() {
                     Edit
                   </button>
                   <button
+                    disabled={!!(user.username !== comment.author)}
                     onClick={() => {
-                      deleteComment(comment.comment_id).then(() => {
-                        setIsDeleting(true);
-                      });
+                      deleteComment(comment.comment_id)
+                        .then(() => {
+                          setIsDeleting(true);
+                        })
+                        .catch((err) => {
+                          if (err) {
+                            setError(err.response.status);
+                            navigate("*");
+                          }
+                        });
                     }}
                     className="delete-comment-button"
                   >
@@ -197,6 +208,7 @@ export default function Review() {
                   </button>
                   <button
                     className="kudos-button"
+                    disabled={!!(user.username === comment.author)}
                     onClick={() => {
                       setIsVoted(true);
                       incLikes(comment.comment_id, { inc_votes: 1 });
