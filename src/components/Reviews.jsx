@@ -9,7 +9,7 @@ export default function Reviews({ catQueries, category }) {
   const { setError } = useContext(ErrorContext);
   const { user } = useContext(UserContext);
   const [reviews, setReviews] = useState([]);
-  const [isVoted, setIsVoted] = useState(false);
+  const [addedKudos, setAddedKudos] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -26,8 +26,7 @@ export default function Reviews({ catQueries, category }) {
           navigate("*");
         }
       });
-    setIsVoted(false);
-  }, [catQueries, category, isVoted, setError, navigate]);
+  }, [catQueries, category, setError, navigate]);
 
   if (isLoading === true) {
     return <h2>Loading...</h2>;
@@ -79,11 +78,13 @@ export default function Reviews({ catQueries, category }) {
                 className="kudos-button"
                 disabled={!!(user.username === review.owner)}
                 onClick={() => {
-                  setIsVoted(true);
+                  setAddedKudos((current) => {
+                    return current + 1;
+                  });
                   incKudos(review.review_id, { inc_votes: 1 });
                 }}
               >
-                Kudos: {review.votes}
+                Kudos: {review.votes + addedKudos}
               </button>
             </section>
           </div>
