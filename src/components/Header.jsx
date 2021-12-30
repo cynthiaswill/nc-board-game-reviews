@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
+
   return (
     <header>
       <h1 className="header">
@@ -8,6 +10,7 @@ export default function Header() {
           id="header"
           to="/"
           onClick={() => {
+            navigate("*");
             window.location.reload(false);
           }}
         >
