@@ -72,20 +72,22 @@ export default function Compose({ categories, setCategories }) {
           <h3 className="compose-title">Compose a new Review:</h3>
           <p className="yes-or-no">
             Do you need to create a new category?
-            <button
-              onClick={() => {
-                setNeedNewCat(true);
-              }}
-            >
-              Yes
-            </button>
-            <button
-              onClick={() => {
-                setNeedNewCat(false);
-              }}
-            >
-              No
-            </button>
+            <section className="yes-no-buttons">
+              <button
+                onClick={() => {
+                  setNeedNewCat(true);
+                }}
+              >
+                Yes
+              </button>
+              <button
+                onClick={() => {
+                  setNeedNewCat(false);
+                }}
+              >
+                No
+              </button>
+            </section>
           </p>
           {needNewCat ? (
             <section className="yes-or-no">
