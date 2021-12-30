@@ -102,11 +102,12 @@ export default function Nav({
                 }
               }}
             >
-              <option
-                key={`All categories`}
-                value={`All categories`}
-                default
-              >{`All categories`}</option>
+              <option key={`select category`} value={`All categories`} default>
+                by category ...
+              </option>
+              <option key={`All categories`} value={`All categories`}>
+                All categories
+              </option>
               {categories.map((category) => {
                 return (
                   <option
@@ -130,7 +131,7 @@ export default function Nav({
               }}
             >
               <option value="created_at" default>
-                sort by
+                sort by ...
               </option>
               <option value="title">title</option>
               <option value="designer">designer</option>
@@ -151,7 +152,7 @@ export default function Nav({
               }}
             >
               <option value="desc" default>
-                order by
+                order by ...
               </option>
               <option value="desc">descending</option>
               <option value="asc">ascending</option>
