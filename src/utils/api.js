@@ -20,6 +20,10 @@ export const getReviewById = (id) => {
   return gamesApi.get(`/reviews/${id}`);
 };
 
+export const deleteReviewById = (id) => {
+  return gamesApi.delete(`/reviews/${id}`);
+};
+
 export const getComments = ({ review_id, limit, p }) => {
   let path = `/reviews/${review_id}/comments?p=${p}`;
   if (limit) {

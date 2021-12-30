@@ -1,5 +1,5 @@
 import "../styles/Review.css";
-import { getReviewById, getComments, incKudos } from "../utils/api";
+import { getReviewById, getComments, incKudos, deleteReviewById } from "../utils/api";
 import { useEffect, useState, useContext, useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import PostComment from "./PostComment";
@@ -30,6 +30,11 @@ export default function Review() {
   const servicesRef = useRef(null);
 
   const gotoServices = () => servicesRef.current.scrollIntoView({ behavior: "smooth" });
+
+  const deleteReview = () => {
+    deleteReviewById(review_id);
+    navigate("/reviews");
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -114,6 +119,13 @@ export default function Review() {
             }}
           >
             Edit
+          </button>
+          <button
+            className="delete-review-button"
+            disabled={!!(user.username !== review.owner)}
+            onClick={deleteReview}
+          >
+            Delete
           </button>
           <button
             className="kudos-button"
