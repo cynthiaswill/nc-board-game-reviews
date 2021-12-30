@@ -1,6 +1,6 @@
 import "../styles/Review.css";
 import { getReviewById, getComments, incKudos } from "../utils/api";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import PostComment from "./PostComment";
 import { deleteComment, incLikes } from "../utils/api";
@@ -27,6 +27,9 @@ export default function Review() {
   const [toBeEditedComment, setToBeEditedComment] = useState({});
 
   const { review_id } = useParams();
+  const servicesRef = useRef(null);
+
+  const gotoServices = () => servicesRef.current.scrollIntoView({ behavior: "smooth" });
 
   useEffect(() => {
     setIsLoading(true);
@@ -100,7 +103,9 @@ export default function Review() {
           </div>
         </section>
         <section>
-          <button className="comments-button">Comments: {review.comment_count}</button>
+          <button className="comments-button" onClick={gotoServices}>
+            Comments: {review.comment_count}
+          </button>
           <button
             className="edit-review-button"
             disabled={!!(user.username !== review.owner)}
@@ -125,7 +130,7 @@ export default function Review() {
         </section>
       </div>
       <section>
-        <div>
+        <div ref={servicesRef}>
           <div className="comments-sub-bar">
             <button
               onClick={() => {
