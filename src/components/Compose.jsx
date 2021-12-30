@@ -31,12 +31,16 @@ export default function Compose({ categories, setCategories }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postReview(newReview).catch((err) => {
-      if (err) {
-        setError(err.response.status);
-        navigate("*");
-      }
-    });
+    postReview(newReview)
+      .then(() => {
+        navigate("/reviews");
+      })
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("*");
+        }
+      });
   };
 
   const submitCategory = (e) => {
