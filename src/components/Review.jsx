@@ -14,6 +14,7 @@ export default function Review() {
   const { user, isLogged } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const navigate = useNavigate();
+  const [addedKudos, setAddedKudos] = useState(0);
   const [review, setReview] = useState({});
   const [limitPerPage, setLimitPerPage] = useState(10);
   const [comments, setComments] = useState([]);
@@ -106,13 +107,13 @@ export default function Review() {
             className="kudos-button"
             disabled={!!(user.username === review.owner)}
             onClick={() => {
-              incKudos(review.review_id, { inc_votes: 1 });
-              setReview((current) => {
-                return { ...current, votes: current.votes++ };
+              setAddedKudos((current) => {
+                return current + 1;
               });
+              incKudos(review.review_id, { inc_votes: 1 });
             }}
           >
-            Kudos: {review.votes}
+            Kudos: {review.votes + addedKudos}
           </button>
         </section>
       </div>
