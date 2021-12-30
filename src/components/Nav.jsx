@@ -80,7 +80,7 @@ export default function Nav({
             <select
               id="narrow-cat-options"
               onChange={(e) => {
-                if (e.target.value === "All categories") {
+                if (e.target.value === "All categories" || "all") {
                   setCatQueries((current) => {
                     const newCurrent = { ...current };
                     newCurrent.category = "";
@@ -102,7 +102,7 @@ export default function Nav({
                 }
               }}
             >
-              <option key={`select category`} value={`All categories`} default>
+              <option key={`select category`} value={`all`} default>
                 by category ...
               </option>
               <option key={`All categories`} value={`All categories`}>

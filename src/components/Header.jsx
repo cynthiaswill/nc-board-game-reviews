@@ -11,7 +11,6 @@ export default function Header() {
           to="/"
           onClick={() => {
             navigate("*");
-            window.location.reload(false);
           }}
         >
           Board Game Reviews

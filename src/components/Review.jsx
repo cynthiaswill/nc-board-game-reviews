@@ -65,17 +65,7 @@ export default function Review() {
           navigate("*");
         }
       });
-  }, [
-    review_id,
-    limitPerPage,
-    isPosting,
-    isDeleting,
-    isVoted,
-    isEditingComment,
-    isEditingReview,
-    setError,
-    navigate,
-  ]);
+  }, [review_id, limitPerPage, isDeleting, isVoted, setError, navigate]);
 
   if (isLoading === true) {
     return <h2>Loading...</h2>;
