@@ -59,6 +59,10 @@
   float: right;
 }
 
+.likes-button {
+  float: right;
+}
+
 .add-comment-button {
   margin: 5px 10px;
 }

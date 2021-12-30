@@ -208,7 +208,7 @@ export default function Review() {
                     Delete
                   </button>
                   <button
-                    className="kudos-button"
+                    className="likes-button"
                     disabled={!!(user.username === comment.author)}
                     onClick={() => {
                       setIsVoted(true);
