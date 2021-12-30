@@ -14,6 +14,7 @@ export default function Review() {
   const { user, isLogged } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
   const [addedKudos, setAddedKudos] = useState(0);
   const [review, setReview] = useState({});
   const [limitPerPage, setLimitPerPage] = useState(10);
@@ -28,6 +29,7 @@ export default function Review() {
   const { review_id } = useParams();
 
   useEffect(() => {
+    setIsLoading(true);
     getReviewById(review_id)
       .then(({ data }) => {
         setReview(data.review);
@@ -47,6 +49,7 @@ export default function Review() {
         setComments(data.comments);
         setIsDeleting(false);
         setIsVoted(false);
+        setIsLoading(false);
       })
       .catch((err) => {
         if (err) {
@@ -65,6 +68,10 @@ export default function Review() {
     setError,
     navigate,
   ]);
+
+  if (isLoading === true) {
+    return <h2>Loading...</h2>;
+  }
 
   return (
     <main className="main">
