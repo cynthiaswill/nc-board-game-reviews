@@ -184,7 +184,7 @@ export default function Review() {
             return (
               <div className="comment-box" key={comment.comment_id}>
                 <span className="author">
-                  <Link to={`users/${comment.author}`} className="author-link">
+                  <Link to={`/users/${comment.author}`} className="author-link">
                     {comment.author}
                   </Link>{" "}
                   replied:
