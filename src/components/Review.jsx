@@ -1,14 +1,14 @@
 import "../styles/Review.css";
-import { getReviewById, getComments, incKudos, deleteReviewById } from "../utils/api";
+import { getReviewById, incKudos, deleteReviewById } from "../utils/api";
 import { useEffect, useState, useContext, useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import PostComment from "./PostComment";
-import { deleteComment, incLikes } from "../utils/api";
 import EditComment from "./EditComment";
 import EditReview from "./EditReview";
 import { UserContext } from "../contexts/UserContext";
 import { numArr } from "../utils/utils";
 import { ErrorContext } from "../contexts/ErrorContext";
+import Comments from "./Comments";
 
 export default function Review() {
   const { user, isLogged } = useContext(UserContext);
@@ -20,8 +20,6 @@ export default function Review() {
   const [limitPerPage, setLimitPerPage] = useState(10);
   const [comments, setComments] = useState([]);
   const [isPosting, setIsPosting] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isVoted, setIsVoted] = useState(false);
   const [isEditingReview, setIsEditingReview] = useState(false);
   const [isEditingComment, setIsEditingComment] = useState(false);
   const [toBeEditedComment, setToBeEditedComment] = useState({});
@@ -41,22 +39,6 @@ export default function Review() {
     getReviewById(review_id)
       .then(({ data }) => {
         setReview(data.review);
-      })
-      .catch((err) => {
-        if (err) {
-          setError(err.response.status);
-          navigate("*");
-        }
-      });
-    getComments({
-      review_id: `${review_id}`,
-      limit: `${limitPerPage}`,
-      p: 1,
-    })
-      .then(({ data }) => {
-        setComments(data.comments);
-        setIsDeleting(false);
-        setIsVoted(false);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -65,7 +47,7 @@ export default function Review() {
           navigate("*");
         }
       });
-  }, [review_id, limitPerPage, isDeleting, isVoted, setError, navigate]);
+  }, [review_id, setError, isEditingReview, navigate]);
 
   if (isLoading === true) {
     return <h2>Loading...</h2>;
@@ -180,61 +162,18 @@ export default function Review() {
               />
             ) : null}
           </div>
-          {comments.map((comment) => {
-            return (
-              <div className="comment-box" key={comment.comment_id}>
-                <span className="author">
-                  <Link to={`/users/${comment.author}`} className="author-link">
-                    {comment.author}
-                  </Link>{" "}
-                  replied:
-                </span>
-                <p>{comment.body}</p>
-                <span className="date-posted">{comment.created_at}</span>
-
-                <div className="button-container">
-                  <button
-                    className="edit-comment-button"
-                    disabled={!!(user.username !== comment.author)}
-                    onClick={() => {
-                      setIsEditingComment(true);
-                      setToBeEditedComment(comment);
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    disabled={!!(user.username !== comment.author)}
-                    onClick={() => {
-                      deleteComment(comment.comment_id)
-                        .then(() => {
-                          setIsDeleting(true);
-                        })
-                        .catch((err) => {
-                          if (err) {
-                            setError(err.response.status);
-                            navigate("*");
-                          }
-                        });
-                    }}
-                    className="delete-comment-button"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    className="likes-button"
-                    disabled={!!(user.username === comment.author)}
-                    onClick={() => {
-                      setIsVoted(true);
-                      incLikes(comment.comment_id, { inc_votes: 1 });
-                    }}
-                  >
-                    Likes: {comment.votes}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+          <Comments
+            comments={comments}
+            setComments={setComments}
+            isEditingComment={isEditingComment}
+            setIsEditingComment={setIsEditingComment}
+            toBeEditedComment={toBeEditedComment}
+            setToBeEditedComment={setToBeEditedComment}
+            review_id={review_id}
+            limitPerPage={limitPerPage}
+            isPosting={isPosting}
+            setIsPosting={setIsPosting}
+          />
         </div>
       </section>
     </main>
