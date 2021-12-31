@@ -27,8 +27,21 @@ export default function Review() {
 
   const { review_id } = useParams();
   const servicesRef = useRef(null);
+  const editReviewRef = useRef(null);
+  const addCommentRef = useRef(null);
+  const editCommentRef = useRef(null);
 
   const gotoServices = () => servicesRef.current.scrollIntoView({ behavior: "smooth" });
+
+  const gotoEditReview = () => {
+    editReviewRef.current.scrollIntoView({ behavior: "smooth" });
+    setIsEditingReview(true);
+  };
+
+  const gotoAddComment = () => {
+    addCommentRef.current.scrollIntoView({ behavior: "smooth" });
+    setIsPosting(true);
+  };
 
   const deleteReview = () => {
     deleteReviewById(review_id);
@@ -88,9 +101,7 @@ export default function Review() {
           <button
             className="edit-review-button"
             disabled={!!(user.username !== review.owner)}
-            onClick={() => {
-              setIsEditingReview(true);
-            }}
+            onClick={gotoEditReview}
           >
             Edit
           </button>
@@ -118,12 +129,7 @@ export default function Review() {
       <section>
         <div ref={servicesRef}>
           <div className="comments-sub-bar">
-            <button
-              onClick={() => {
-                setIsPosting(true);
-              }}
-              className="add-comment-button"
-            >
+            <button onClick={gotoAddComment} className="add-comment-button">
               Add Comment
             </button>
             <select
@@ -144,7 +150,7 @@ export default function Review() {
               })}
             </select>
           </div>
-          <div className="comment-typing-box">
+          <div className="comment-typing-box" ref={editReviewRef}>
             {isLogged && isEditingReview ? (
               <EditReview
                 review={review}
@@ -153,13 +159,13 @@ export default function Review() {
               />
             ) : null}
           </div>
-          <div className="comment-typing-box">
+          <div className="comment-typing-box" ref={addCommentRef}>
             {isPosting ? (
               <PostComment user={user} review={review} setIsPosting={setIsPosting} />
             ) : null}
           </div>
 
-          <div className="comment-typing-box">
+          <div className="comment-typing-box" ref={editCommentRef}>
             {isLogged && isEditingComment ? (
               <EditComment
                 user={user}
@@ -179,6 +185,7 @@ export default function Review() {
             limitPerPage={limitPerPage}
             isPosting={isPosting}
             setIsPosting={setIsPosting}
+            editCommentRef={editCommentRef}
           />
         </div>
       </section>
