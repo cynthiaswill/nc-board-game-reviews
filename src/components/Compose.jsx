@@ -70,7 +70,7 @@ export default function Compose({ categories, setCategories }) {
       <main className="main-compose">
         <div className="compose-container">
           <h3 className="compose-title">Compose a new Review:</h3>
-          <p className="yes-or-no">
+          <div className="yes-or-no">
             Do you need to create a new category?
             <section className="yes-no-buttons">
               <button
@@ -88,7 +88,7 @@ export default function Compose({ categories, setCategories }) {
                 No
               </button>
             </section>
-          </p>
+          </div>
           {needNewCat ? (
             <section className="yes-or-no">
               {categories
