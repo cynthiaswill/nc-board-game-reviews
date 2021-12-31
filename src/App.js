@@ -23,11 +23,12 @@ function App() {
   });
   const [category, setCategory] = useState({ slug: "All categories", description: "" });
   const [reviewsCount, setReviewsCount] = useState(0);
+  const [reset, setReset] = useState(false);
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
+        <Header setReset={setReset} />
         <Nav
           catQueries={catQueries}
           setCatQueries={setCatQueries}
@@ -35,6 +36,8 @@ function App() {
           categories={categories}
           setCategories={setCategories}
           reviewsCount={reviewsCount}
+          reset={reset}
+          setReset={setReset}
         />
         <Routes>
           <Route path="/" element={<Home />} />

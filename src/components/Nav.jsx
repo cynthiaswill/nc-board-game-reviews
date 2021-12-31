@@ -13,6 +13,8 @@ export default function Nav({
   categories,
   setCategories,
   reviewsCount,
+  reset,
+  setReset,
 }) {
   const navigate = useNavigate();
   const { user, setUser, isLogged } = useContext(UserContext);
@@ -29,6 +31,13 @@ export default function Nav({
           navigate("*");
         }
       });
+    if (reset) {
+      document.getElementById("narrow-cat-options").selectedIndex = "null";
+      document.getElementById("sort-option").selectedIndex = "null";
+      document.getElementById("order-option").selectedIndex = "null";
+      document.getElementById("per-page-option").selectedIndex = "null";
+      setReset(false);
+    }
   }, [user, setCategories, navigate, setError]);
 
   return (
@@ -151,7 +160,7 @@ export default function Nav({
                 });
               }}
             >
-              <option value="desc" default>
+              <option value="DESC" default>
                 order by ...
               </option>
               <option value="desc">descending</option>

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ setReset }) {
   const navigate = useNavigate();
 
   return (
@@ -11,6 +11,7 @@ export default function Header() {
           to="/"
           onClick={() => {
             navigate("*");
+            setReset(true);
           }}
         >
           Board Game Reviews
