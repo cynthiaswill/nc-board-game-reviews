@@ -3,7 +3,7 @@ import { editReview } from "../utils/api";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { useNavigate } from "react-router-dom";
 
-export default function EditComment({ review, setIsEditingReview }) {
+export default function EditComment({ review, setIsEditingReview, setIsReloading }) {
   const [newReviewBody, setNewReviewBody] = useState({
     review_body: "",
   });
@@ -15,6 +15,7 @@ export default function EditComment({ review, setIsEditingReview }) {
     editReview(review.review_id, newReviewBody)
       .then(() => {
         setIsEditingReview(false);
+        setIsReloading(true);
       })
       .catch((err) => {
         if (err) {

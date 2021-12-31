@@ -23,6 +23,7 @@ export default function Review() {
   const [isEditingReview, setIsEditingReview] = useState(false);
   const [isEditingComment, setIsEditingComment] = useState(false);
   const [toBeEditedComment, setToBeEditedComment] = useState({});
+  const [isReloading, setIsReloading] = useState(false);
 
   const { review_id } = useParams();
   const servicesRef = useRef(null);
@@ -40,6 +41,7 @@ export default function Review() {
       .then(({ data }) => {
         setReview(data.review);
         setIsLoading(false);
+        setIsReloading(false);
       })
       .catch((err) => {
         if (err) {
@@ -47,7 +49,7 @@ export default function Review() {
           navigate("*");
         }
       });
-  }, [review_id, setError, isEditingReview, navigate]);
+  }, [review_id, setError, isReloading, navigate]);
 
   if (isLoading === true) {
     return <h2>Loading...</h2>;
@@ -144,7 +146,11 @@ export default function Review() {
           </div>
           <div className="comment-typing-box">
             {isLogged && isEditingReview ? (
-              <EditReview review={review} setIsEditingReview={setIsEditingReview} />
+              <EditReview
+                review={review}
+                setIsEditingReview={setIsEditingReview}
+                setIsReloading={setIsReloading}
+              />
             ) : null}
           </div>
           <div className="comment-typing-box">
