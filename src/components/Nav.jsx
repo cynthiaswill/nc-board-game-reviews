@@ -38,7 +38,7 @@ export default function Nav({
       document.getElementById("per-page-option").selectedIndex = "null";
       setReset(false);
     }
-  }, [user, setCategories, navigate, setError]);
+  }, [user, setCategories, navigate, reset, setReset, setError]);
 
   return (
     <div>

@@ -6,7 +6,7 @@ import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 
 export default function User() {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const navigate = useNavigate();
   const { username } = useParams();
