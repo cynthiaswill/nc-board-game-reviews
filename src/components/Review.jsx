@@ -89,7 +89,9 @@ export default function Review() {
                 {review.owner}
               </Link>
               <br />
-              <span className="data-stamp">Date posted: {review.created_at}</span>
+              <span className="data-stamp">
+                Date posted: {review.created_at.slice(0, 19).replaceAll("T", " at ")}
+              </span>
             </div>
             <br />
           </div>

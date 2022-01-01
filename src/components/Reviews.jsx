@@ -59,7 +59,9 @@ export default function Reviews({ catQueries, category, setReviewsCount }) {
                     {review.owner}
                   </Link>
                 </span>
-                <span className="date-posted">Date posted: {review.created_at}</span>
+                <span className="date-posted">
+                  Date posted: {review.created_at.slice(0, 19).replaceAll("T", " at ")}
+                </span>
                 <br />
               </div>
             </section>

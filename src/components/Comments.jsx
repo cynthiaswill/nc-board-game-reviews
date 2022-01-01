@@ -66,7 +66,9 @@ export default function Comments({
               replied:
             </span>
             <p>{comment.body}</p>
-            <span className="date-posted">{comment.created_at}</span>
+            <span className="date-posted">
+              {comment.created_at.slice(0, 19).replaceAll("T", " at ")}
+            </span>
 
             <div className="button-container">
               <button
