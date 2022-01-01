@@ -108,6 +108,7 @@ button:active {
 
 .welcome {
   text-align: center;
+  text-shadow: 0 0 3px white, 0 0 5px white;
   background-image: url("https://assets.dicebreaker.com/lords-of-waterdeep-board-game-layout.jpg/BROK/resize/1920x1920%3E/format/jpg/quality/80/lords-of-waterdeep-board-game-layout.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
