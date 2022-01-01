@@ -15,7 +15,7 @@
   border-radius: 10px;
   margin: 15px;
   overflow: auto;
-  max-height: 36vh;
+  max-height: 39vh;
   padding: 5px;
   position: relative;
 }
@@ -34,7 +34,7 @@
 }
 
 .review-title {
-  margin: 0px auto 5px auto;
+  margin: 0px auto;
 }
 
 .slug-name {
@@ -59,8 +59,8 @@
 
 .review-img {
   float: right;
-  max-width: 50vw;
-  max-height: 25vh;
+  max-width: 45vw;
+  max-height: 20vh;
   margin: 10px;
   border-radius: 5px;
 }
