@@ -14,7 +14,7 @@ export default function Header({ setReset }) {
             setReset(true);
           }}
         >
-          Board Game Reviews
+          &#127968; Board Game Reviews
         </Link>
       </h1>
     </header>
