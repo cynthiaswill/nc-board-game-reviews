@@ -2,9 +2,10 @@ import "../styles/Review.css";
 import { getComments } from "../utils/api";
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { deleteComment, incLikes } from "../utils/api";
+import { deleteComment } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
+import Likes from "./Likes";
 
 export default function Comments({
   comments,
@@ -101,16 +102,7 @@ export default function Comments({
               >
                 Delete
               </button>
-              <button
-                className="likes-button"
-                disabled={!!(user.username === comment.author)}
-                onClick={() => {
-                  setIsVoted(true);
-                  incLikes(comment.comment_id, { inc_votes: 1 });
-                }}
-              >
-                Likes: {comment.votes}
-              </button>
+              <Likes />
             </div>
           </div>
         );
