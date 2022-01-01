@@ -29,7 +29,7 @@ export default function Home() {
       ) : (
         <div className="welcome">
           <h2>Welcome to NC Board Game Reviews</h2>
-          <p>redirecting after {counter} seconds ...</p>
+          <p>redirecting to reviews after {counter} seconds ...</p>
         </div>
       )}
     </>
