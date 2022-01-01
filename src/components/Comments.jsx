@@ -24,7 +24,6 @@ export default function Comments({
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isVoted, setIsVoted] = useState(false);
 
   useEffect(() => {
     getComments({
@@ -35,7 +34,6 @@ export default function Comments({
       .then(({ data }) => {
         setComments(data.comments);
         setIsDeleting(false);
-        setIsVoted(false);
       })
       .catch((err) => {
         if (err) {
@@ -44,11 +42,9 @@ export default function Comments({
         }
       });
   }, [
-    setIsVoted,
     limitPerPage,
     navigate,
     isDeleting,
-    isVoted,
     isPosting,
     isEditingComment,
     toBeEditedComment,
@@ -102,7 +98,7 @@ export default function Comments({
               >
                 Delete
               </button>
-              <Likes />
+              <Likes comment={comment} />
             </div>
           </div>
         );
