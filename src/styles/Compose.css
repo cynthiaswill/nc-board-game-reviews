@@ -37,7 +37,7 @@ button {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
-  margin: 40px;
+  margin: 20px 40px 50px 40px;
 }
 
 .compose-form {
