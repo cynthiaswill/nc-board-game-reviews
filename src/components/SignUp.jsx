@@ -60,6 +60,7 @@ export default function SignUp() {
                 }
               }}
               required
+              maxLength="25"
             />
             {showUsernameValidation ? (
               <p className="validation-warning">
@@ -90,7 +91,7 @@ export default function SignUp() {
                 }
               }}
               required
-              maxlength="25"
+              maxLength="25"
             />
             {showNameValidation ? (
               <p className="validation-warning">
@@ -121,7 +122,6 @@ export default function SignUp() {
                 }
               }}
               required
-              maxlength="25"
             />
             <p className={visibility}>Please add a valid URL!</p>
           </label>
