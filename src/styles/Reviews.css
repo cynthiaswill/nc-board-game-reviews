@@ -43,7 +43,7 @@
 }
 
 .designer-name-in-reviews {
-  float: left;
+  float: right;
   font-size: smaller;
 }
 
@@ -58,11 +58,18 @@
 }
 
 .review-img {
-  float: right;
   max-width: 45vw;
   max-height: 20vh;
+  overflow: hidden;
+}
+
+.image-container-in-reviews {
+  float: right;
+  max-width: 45vw;
+  max-height: 17vh;
   margin: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .body-text-in-reviews {

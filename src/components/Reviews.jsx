@@ -44,17 +44,18 @@ export default function Reviews({ catQueries, category, setReviewsCount }) {
               <h3 className="review-title">
                 <Link to={`/reviews/${review.review_id}`}> {review.title} </Link>
               </h3>
-              <img
-                className="review-img"
-                src={review.review_img_url}
-                alt={review.title}
-              ></img>
               <span className="slug-name-in-reviews">Category: {review.category}</span>{" "}
-              <br />
               <span className="designer-name-in-reviews">
                 Designer: {review.designer}
               </span>
               <br />
+              <div className="image-container-in-reviews">
+                <img
+                  className="review-img"
+                  src={review.review_img_url}
+                  alt={review.title}
+                />
+              </div>
               <div>
                 <p className="body-text-in-reviews">{review.review_body}</p>
                 <span className="author-in-reviews">

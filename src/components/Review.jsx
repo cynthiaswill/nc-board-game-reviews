@@ -81,7 +81,7 @@ export default function Review() {
             className="single-review-img"
             src={review.review_img_url}
             alt={review.title}
-          ></img>
+          />
           <div>
             <p>{review.review_body}</p>
             <div className="author">
