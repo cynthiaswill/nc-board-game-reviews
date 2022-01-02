@@ -24,6 +24,7 @@ h1 {
 h2 {
   font-family: papyrus;
   text-align: center;
+  text-shadow: 0 0 4px white, 0 0 5px white;
 }
 
 h3 {
