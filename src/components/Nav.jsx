@@ -36,6 +36,14 @@ export default function Nav({
       document.getElementById("sort-option").selectedIndex = "null";
       document.getElementById("order-option").selectedIndex = "null";
       document.getElementById("per-page-option").selectedIndex = "null";
+      setCategory({ slug: "All categories", description: "" });
+      setCatQueries({
+        sort: "created_at",
+        order: "desc",
+        limit: 10,
+        p: 1,
+        category: "",
+      });
       setReset(false);
     }
   }, [user, setCategories, navigate, reset, setReset, setError]);
@@ -89,7 +97,7 @@ export default function Nav({
             <select
               id="narrow-cat-options"
               onChange={(e) => {
-                if (e.target.value === "All categories" || "all") {
+                if (e.target.value === "All categories" || e.target.value === "all") {
                   setCatQueries((current) => {
                     const newCurrent = { ...current };
                     newCurrent.category = "";
@@ -111,10 +119,10 @@ export default function Nav({
                 }
               }}
             >
-              <option key={`select category`} value={`all`} default>
+              <option key="select category" value="all" default>
                 by category ...
               </option>
-              <option key={`All categories`} value={`All categories`}>
+              <option key="All categories" value="All categories">
                 All categories
               </option>
               {categories.map((category) => {
