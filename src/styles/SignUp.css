@@ -27,10 +27,12 @@
   font-size: x-small;
   font-weight: 600;
   margin: 0px;
+  color: purple;
 }
 
 .validation-warning {
   font-size: x-small;
   font-weight: 600;
   margin: 0px auto 10px auto;
+  color: purple;
 }
