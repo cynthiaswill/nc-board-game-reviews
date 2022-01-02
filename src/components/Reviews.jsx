@@ -4,8 +4,15 @@ import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { UserContext } from "../contexts/UserContext";
+import { filterReviewsByAuthor } from "../utils/utils";
 
-export default function Reviews({ catQueries, category, setReviewsCount }) {
+export default function Reviews({
+  catQueries,
+  category,
+  setReviewsCount,
+  author,
+  setAuthors,
+}) {
   const { setError } = useContext(ErrorContext);
   const { user } = useContext(UserContext);
   const [reviews, setReviews] = useState([]);
@@ -18,7 +25,16 @@ export default function Reviews({ catQueries, category, setReviewsCount }) {
     setIsLoading(true);
     getReviews(catQueries)
       .then(({ data }) => {
-        setReviews(data.reviews);
+        const authorsArr = data.reviews.map((review) => {
+          return review.owner;
+        });
+        setAuthors([...new Set(authorsArr)]);
+
+        if (author !== "") {
+          setReviews(filterReviewsByAuthor(data.reviews, author));
+        } else {
+          setReviews(data.reviews);
+        }
         setReviewsCount(reviews.length);
         setIsLoading(false);
       })
@@ -28,7 +44,16 @@ export default function Reviews({ catQueries, category, setReviewsCount }) {
           navigate("/error");
         }
       });
-  }, [catQueries, category, setError, navigate, setReviewsCount, reviews.length]);
+  }, [
+    catQueries,
+    category,
+    setError,
+    navigate,
+    setReviewsCount,
+    reviews.length,
+    author,
+    setAuthors,
+  ]);
 
   if (isLoading === true) {
     return <h2>Loading...</h2>;

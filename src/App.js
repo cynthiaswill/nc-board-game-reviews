@@ -23,6 +23,8 @@ function App() {
   });
   const [category, setCategory] = useState({ slug: "All categories", description: "" });
   const [reviewsCount, setReviewsCount] = useState(0);
+  const [author, setAuthor] = useState("");
+  const [authors, setAuthors] = useState([]);
   const [reset, setReset] = useState(false);
 
   return (
@@ -37,6 +39,8 @@ function App() {
         reviewsCount={reviewsCount}
         reset={reset}
         setReset={setReset}
+        setAuthor={setAuthor}
+        authors={authors}
       />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -47,6 +51,8 @@ function App() {
               catQueries={catQueries}
               category={category}
               setReviewsCount={setReviewsCount}
+              author={author}
+              setAuthors={setAuthors}
             />
           }
         />

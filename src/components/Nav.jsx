@@ -16,6 +16,8 @@ export default function Nav({
   reviewsCount,
   reset,
   setReset,
+  setAuthor,
+  authors,
 }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -81,6 +83,7 @@ export default function Nav({
                 return newCurrent;
               });
               setCategory({ slug: "All categories", description: "" });
+              setAuthor("");
             }}
           >
             All categories
@@ -102,6 +105,7 @@ export default function Nav({
                     slug: `${category.slug}`,
                     description: `${getDescription(category.slug, categories)}`,
                   });
+                  setAuthor("");
                 }}
               >{`${category.slug}`}</Link>
             );
@@ -135,9 +139,10 @@ export default function Nav({
                     description: `${getDescription(e.target.value, categories)}`,
                   });
                 }
+                setAuthor("");
               }}
             >
-              <option key="select category" value="all" default>
+              <option key="select category" value="all" default hidden>
                 by category ...
               </option>
               <option key="All categories" value="All categories">
@@ -152,7 +157,22 @@ export default function Nav({
                 );
               })}
             </select>
-
+            <select
+              id="author-option"
+              className="nav-options"
+              onChange={(e) => {
+                setAuthor(e.target.value);
+                navigate("/reviews");
+              }}
+            >
+              <option value="" default hidden>
+                by author ...
+              </option>
+              <option value="">all authors</option>
+              {authors.map((author) => {
+                return <option key={author} value={author}>{`${author}`}</option>;
+              })}
+            </select>
             <select
               id="sort-option"
               className="nav-options"
