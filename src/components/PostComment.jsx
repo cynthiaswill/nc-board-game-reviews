@@ -44,6 +44,7 @@ export default function PostComment({ user, review, setIsPosting }) {
                 };
               });
             }}
+            required
           />
           <br />
           <br />
