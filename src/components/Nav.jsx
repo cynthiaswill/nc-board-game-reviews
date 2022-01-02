@@ -1,10 +1,11 @@
 import { getDescription } from "../utils/utils";
 import { getCategories } from "../utils/api";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { numArr } from "../utils/utils";
 import { ErrorContext } from "../contexts/ErrorContext";
+import { useState } from "react/cjs/react.development";
 
 export default function Nav({
   catQueries,
@@ -17,10 +18,17 @@ export default function Nav({
   setReset,
 }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, setUser, isLogged } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const [showPagination, setShowPagination] = useState(true);
 
   useEffect(() => {
+    if (location.pathname === "/reviews") {
+      setShowPagination(true);
+    } else {
+      setShowPagination(false);
+    }
     getCategories()
       .then(({ data }) => {
         setCategories(data.categories);
@@ -46,7 +54,17 @@ export default function Nav({
       });
       setReset(false);
     }
-  }, [user, setCategories, navigate, reset, setReset, setError]);
+  }, [
+    user,
+    setCategories,
+    navigate,
+    reset,
+    setReset,
+    setError,
+    location.pathname,
+    setCatQueries,
+    setCategory,
+  ]);
 
   return (
     <div>
@@ -234,18 +252,20 @@ export default function Nav({
         </div>
       </nav>
       <div className="logged-user">
-        <button
-          className="page-button"
-          disabled={catQueries.p === 1}
-          onClick={() => {
-            setCatQueries((curr) => {
-              return { ...curr, p: curr.p - 1 };
-            });
-            navigate("/reviews");
-          }}
-        >
-          &lt;&lt; prev
-        </button>
+        {showPagination ? (
+          <button
+            className="page-button"
+            disabled={catQueries.p === 1}
+            onClick={() => {
+              setCatQueries((curr) => {
+                return { ...curr, p: curr.p - 1 };
+              });
+              navigate("/reviews");
+            }}
+          >
+            &lt;&lt; prev
+          </button>
+        ) : null}
         {isLogged ? (
           <div>
             <span>
@@ -263,18 +283,20 @@ export default function Nav({
         ) : (
           <Link to="/sign-up">Sign Up</Link>
         )}
-        <button
-          className="page-button"
-          disabled={reviewsCount < catQueries.limit}
-          onClick={() => {
-            setCatQueries((curr) => {
-              return { ...curr, p: curr.p + 1 };
-            });
-            navigate("/reviews");
-          }}
-        >
-          next &gt;&gt;
-        </button>
+        {showPagination ? (
+          <button
+            className="page-button"
+            disabled={reviewsCount < catQueries.limit}
+            onClick={() => {
+              setCatQueries((curr) => {
+                return { ...curr, p: curr.p + 1 };
+              });
+              navigate("/reviews");
+            }}
+          >
+            next &gt;&gt;
+          </button>
+        ) : null}
       </div>
     </div>
   );
