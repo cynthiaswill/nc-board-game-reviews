@@ -9,7 +9,13 @@
     "header"
     "nav"
     "main";
+  background-image: url("https://i.pinimg.com/originals/96/16/03/961603c48b37b1cd47d21e0b1601103e.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
+/* backup image */
+/* background-image: url("https://toybook.com/wp-content/uploads/2011/08/Conquest-beauty-shot-HI-RES.jpg"); */
 
 h1 {
   font-family: papyrus;
@@ -27,7 +33,7 @@ h3 {
 header {
   text-align: center;
   grid-area: header;
-  background: grey;
+  /* background: grey; */
   border-radius: 5px;
 }
 
@@ -37,6 +43,7 @@ header {
   border: solid slategray 2px;
   border-radius: 5px;
   padding: 2px;
+  background: white;
 }
 
 .main {
@@ -109,10 +116,6 @@ button:active {
 .welcome {
   text-align: center;
   text-shadow: 0 0 3px white, 0 0 5px white;
-  background-image: url("https://i.pinimg.com/originals/96/16/03/961603c48b37b1cd47d21e0b1601103e.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
 }
 
 button {
@@ -127,6 +130,8 @@ button {
 .category-links {
   margin: 5px;
   font-size: smaller;
+  font-weight: bold;
+  text-shadow: 0 0 3px white, 0 0 5px white;
 }
 
 .category-title {
@@ -152,6 +157,7 @@ button {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
+  text-shadow: 0 0 3px white, 0 0 5px white;
 }
 
 #compose-link {
@@ -210,8 +216,4 @@ textarea {
 .error-page {
   text-align: center;
   text-shadow: 0 0 3px white, 0 0 5px white;
-  background-image: url("https://i.pinimg.com/originals/96/16/03/961603c48b37b1cd47d21e0b1601103e.jpg");
-  background-repeat: no-repeat;
-  background-attachment: local;
-  background-size: cover;
 }
