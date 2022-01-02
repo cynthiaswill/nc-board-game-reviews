@@ -165,7 +165,12 @@ export default function Review() {
           </div>
           <div className="comment-typing-box" ref={addCommentRef}>
             {isPosting ? (
-              <PostComment user={user} review={review} setIsPosting={setIsPosting} />
+              <PostComment
+                user={user}
+                isLogged={isLogged}
+                review={review}
+                setIsPosting={setIsPosting}
+              />
             ) : null}
           </div>
 

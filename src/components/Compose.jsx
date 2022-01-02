@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 
 export default function Compose({ categories, setCategories }) {
-  const { user } = useContext(UserContext);
+  const { user, isLogged } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const [newCategory, setNewCategory] = useState({});
   const [newReview, setNewReview] = useState({});
@@ -35,38 +35,48 @@ export default function Compose({ categories, setCategories }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postReview(newReview)
-      .then(() => {
-        navigate("/reviews");
-      })
-      .catch((err) => {
-        if (err) {
-          setError(err.response.status);
-          navigate("/error");
-        }
-      });
+    if (isLogged) {
+      postReview(newReview)
+        .then(() => {
+          navigate("/reviews");
+        })
+        .catch((err) => {
+          if (err) {
+            setError(err.response.status);
+            navigate("/error");
+          }
+        });
+    } else {
+      setError(530);
+      navigate("/error");
+    }
   };
 
   const submitCategory = (e) => {
     e.preventDefault();
-    postCategory(newCategory).catch((err) => {
-      if (err) {
-        setError(err.response.status);
-        navigate("/error");
-      }
-    });
-    setNewCategory({});
-    setNeedNewCat(false);
-    getCategories()
-      .then(({ data }) => {
-        setCategories(data.categories);
-      })
-      .catch((err) => {
+    if (isLogged) {
+      postCategory(newCategory).catch((err) => {
         if (err) {
           setError(err.response.status);
           navigate("/error");
         }
       });
+      setNewCategory({});
+      setNeedNewCat(false);
+      getCategories()
+        .then(({ data }) => {
+          setCategories(data.categories);
+        })
+        .catch((err) => {
+          if (err) {
+            setError(err.response.status);
+            navigate("/error");
+          }
+        });
+    } else {
+      setError(530);
+      navigate("/error");
+    }
   };
 
   return (

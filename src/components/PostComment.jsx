@@ -3,7 +3,7 @@ import { postComment } from "../utils/api";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { useNavigate } from "react-router-dom";
 
-export default function PostComment({ user, review, setIsPosting }) {
+export default function PostComment({ user, isLogged, review, setIsPosting }) {
   const { setError } = useContext(ErrorContext);
   const [newComment, setNewComment] = useState({
     username: `${user.username}`,
@@ -14,16 +14,21 @@ export default function PostComment({ user, review, setIsPosting }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    postComment(review.review_id, newComment)
-      .then(() => {
-        setIsPosting(false);
-      })
-      .catch((err) => {
-        if (err) {
-          setError(err.response.status);
-          navigate("/error");
-        }
-      });
+    if (isLogged) {
+      postComment(review.review_id, newComment)
+        .then(() => {
+          setIsPosting(false);
+        })
+        .catch((err) => {
+          if (err) {
+            setError(err.response.status);
+            navigate("/error");
+          }
+        });
+    } else {
+      setError(530);
+      navigate("/error");
+    }
   };
 
   return (
