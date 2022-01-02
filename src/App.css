@@ -111,7 +111,7 @@ button:active {
   text-shadow: 0 0 3px white, 0 0 5px white;
   background-image: url("https://i.pinimg.com/originals/96/16/03/961603c48b37b1cd47d21e0b1601103e.jpg");
   background-repeat: no-repeat;
-  background-attachment: local;
+  background-attachment: fixed;
   background-size: cover;
 }
 
