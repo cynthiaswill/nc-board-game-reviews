@@ -110,6 +110,7 @@ export default function Compose({ categories, setCategories }) {
                         };
                       });
                     }}
+                    required
                   />
                   <input
                     type="text"
@@ -124,6 +125,7 @@ export default function Compose({ categories, setCategories }) {
                         };
                       });
                     }}
+                    required
                   />
                   <button type="submit">Submit Category</button>
                 </form>
@@ -144,6 +146,7 @@ export default function Compose({ categories, setCategories }) {
                     };
                   });
                 }}
+                required
               />
               <br />
               <p>Please choose your category:</p>
@@ -181,6 +184,7 @@ export default function Compose({ categories, setCategories }) {
                     };
                   });
                 }}
+                required
               />
               <br />
               <p>Please write review in the box below:</p>
@@ -197,6 +201,7 @@ export default function Compose({ categories, setCategories }) {
                     };
                   });
                 }}
+                required
               />
               <br />
               <br />
