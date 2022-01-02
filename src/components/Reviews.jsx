@@ -11,6 +11,7 @@ export default function Reviews({ catQueries, category, setReviewsCount }) {
   const [reviews, setReviews] = useState([]);
   const [addedKudos, setAddedKudos] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasVoted, setHasVoted] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -79,12 +80,13 @@ export default function Reviews({ catQueries, category, setReviewsCount }) {
               </button>
               <button
                 className="kudos-button"
-                disabled={!!(user.username === review.owner)}
+                disabled={!!(user.username === review.owner) || hasVoted}
                 onClick={() => {
                   setAddedKudos((current) => {
                     return current + 1;
                   });
                   incKudos(review.review_id, { inc_votes: 1 });
+                  setHasVoted(true);
                 }}
               >
                 Kudos: {review.votes + addedKudos}

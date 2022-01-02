@@ -24,6 +24,7 @@ export default function Review() {
   const [isEditingComment, setIsEditingComment] = useState(false);
   const [toBeEditedComment, setToBeEditedComment] = useState({});
   const [isReloading, setIsReloading] = useState(false);
+  const [hasVoted, setHasVoted] = useState(false);
 
   const { review_id } = useParams();
   const servicesRef = useRef(null);
@@ -116,12 +117,13 @@ export default function Review() {
           </button>
           <button
             className="kudos-button"
-            disabled={!!(user.username === review.owner)}
+            disabled={!!(user.username === review.owner) || hasVoted}
             onClick={() => {
               setAddedKudos((current) => {
                 return current + 1;
               });
               incKudos(review.review_id, { inc_votes: 1 });
+              setHasVoted(true);
             }}
           >
             Kudos: {review.votes + addedKudos}
