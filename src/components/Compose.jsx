@@ -11,6 +11,10 @@ export default function Compose({ categories, setCategories }) {
   const [newCategory, setNewCategory] = useState({});
   const [newReview, setNewReview] = useState({});
   const [needNewCat, setNeedNewCat] = useState(false);
+  const [showValidation, setShowValidation] = useState(false);
+  const [showDesignerValidation, setShowDesignerValidation] = useState(false);
+  const [showV1, setShowV1] = useState(false);
+  const [showV2, setShowV2] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -89,125 +93,185 @@ export default function Compose({ categories, setCategories }) {
               </button>
             </section>
           </div>
-          {needNewCat ? (
-            <section className="yes-or-no">
-              {categories
-                .map((category) => {
-                  return category.slug;
-                })
-                .includes(newCategory.slug) ? null : (
-                <form onSubmit={submitCategory}>
-                  <input
-                    type="text"
-                    size="22"
-                    placeholder="enter new category name"
-                    name="slug"
-                    onChange={(event) => {
-                      setNewCategory((current) => {
-                        return {
-                          ...current,
-                          slug: event.target.value,
-                        };
-                      });
-                    }}
-                    required
-                  />
-                  <input
-                    type="text"
-                    size="22"
-                    placeholder="please give a description..."
-                    name="description"
-                    onChange={(event) => {
-                      setNewCategory((current) => {
-                        return {
-                          ...current,
-                          description: event.target.value,
-                        };
-                      });
-                    }}
-                    required
-                  />
-                  <button type="submit">Submit Category</button>
-                </form>
-              )}
-            </section>
-          ) : (
-            <form className="compose-form" onSubmit={handleSubmit}>
-              <p>Please give a review title:</p>
-              <input
-                type="text"
-                placeholder="review title"
-                name="title"
-                onChange={(event) => {
-                  setNewReview((current) => {
-                    return {
-                      ...current,
-                      title: event.target.value,
-                    };
-                  });
-                }}
-                required
-              />
-              <br />
-              <p>Please choose your category:</p>
-              <select
-                name="category"
-                onChange={(event) => {
-                  setNewReview((current) => {
-                    return { ...current, category: event.target.value };
-                  });
-                }}
-              >
-                <option default hidden>
-                  ...
-                </option>
-                {categories.map((category) => {
-                  return (
-                    <option
-                      key={category.slug}
-                      value={category.slug}
-                    >{`${category.slug}`}</option>
-                  );
-                })}
-              </select>
-              <br />
-              <p>Please enter game designer's name:</p>
-              <input
-                type="text"
-                placeholder="designer"
-                name="designer"
-                onChange={(event) => {
-                  setNewReview((current) => {
-                    return {
-                      ...current,
-                      designer: event.target.value,
-                    };
-                  });
-                }}
-                required
-              />
-              <br />
-              <p>Please write review in the box below:</p>
-              <textarea
-                id="review-writing-box"
-                rows="20"
-                placeholder="write your review here ..."
-                name="review_body"
-                onChange={(event) => {
-                  setNewReview((current) => {
-                    return {
-                      ...current,
-                      review_body: event.target.value,
-                    };
-                  });
-                }}
-                required
-              />
-              <br />
-              <br />
-              <button type="submit">Submit</button>
-            </form>
-          )}
+          <>
+            {needNewCat ? (
+              <section className="yes-or-no">
+                {categories
+                  .map((category) => {
+                    return category.slug;
+                  })
+                  .includes(newCategory.slug) ? null : (
+                  <form onSubmit={submitCategory}>
+                    <input
+                      type="text"
+                      size="22"
+                      placeholder="enter new category name"
+                      name="slug"
+                      onChange={(event) => {
+                        setNewCategory((current) => {
+                          return {
+                            ...current,
+                            slug: event.target.value,
+                          };
+                        });
+                      }}
+                      onBlur={(event) => {
+                        if (/[^\w-.\s]/.test(event.target.value)) {
+                          setShowV1(true);
+                        } else {
+                          setShowV1(false);
+                        }
+                      }}
+                      required
+                      maxLength="25"
+                    />
+                    <input
+                      type="text"
+                      size="22"
+                      placeholder="please give a description..."
+                      name="description"
+                      onChange={(event) => {
+                        setNewCategory((current) => {
+                          return {
+                            ...current,
+                            description: event.target.value,
+                          };
+                        });
+                      }}
+                      onBlur={(event) => {
+                        if (/[^\w-.\s]/.test(event.target.value)) {
+                          setShowV2(true);
+                        } else {
+                          setShowV2(false);
+                        }
+                      }}
+                      required
+                    />
+                    {showV1 ? (
+                      <p className="validation">
+                        Category can only contain any text characters or punctuations.
+                      </p>
+                    ) : (
+                      <br />
+                    )}
+                    {showV2 ? (
+                      <p className="validation">
+                        Description can only contain any text characters or punctuations.
+                      </p>
+                    ) : (
+                      <br />
+                    )}
+                    <button type="submit">Submit Category</button>
+                  </form>
+                )}
+              </section>
+            ) : (
+              <form className="compose-form" onSubmit={handleSubmit}>
+                <p>Please give a review title:</p>
+                <input
+                  type="text"
+                  placeholder="review title"
+                  name="title"
+                  onChange={(event) => {
+                    setNewReview((current) => {
+                      return {
+                        ...current,
+                        title: event.target.value,
+                      };
+                    });
+                  }}
+                  onBlur={(event) => {
+                    if (/[^\w-.\s]/.test(event.target.value)) {
+                      setShowValidation(true);
+                    } else {
+                      setShowValidation(false);
+                    }
+                  }}
+                  required
+                  maxLength="25"
+                />
+                {showValidation ? (
+                  <p className="validation">
+                    Title can only contain any text characters or punctuations.
+                  </p>
+                ) : (
+                  <br />
+                )}
+                <p>Please choose your category:</p>
+                <select
+                  name="category"
+                  onChange={(event) => {
+                    setNewReview((current) => {
+                      return { ...current, category: event.target.value };
+                    });
+                  }}
+                >
+                  <option default hidden>
+                    ...
+                  </option>
+                  {categories.map((category) => {
+                    return (
+                      <option
+                        key={category.slug}
+                        value={category.slug}
+                      >{`${category.slug}`}</option>
+                    );
+                  })}
+                </select>
+                <br />
+                <p>Please enter game designer's name:</p>
+                <input
+                  type="text"
+                  placeholder="designer"
+                  name="designer"
+                  onChange={(event) => {
+                    setNewReview((current) => {
+                      return {
+                        ...current,
+                        designer: event.target.value,
+                      };
+                    });
+                  }}
+                  onBlur={(event) => {
+                    if (/[^\w-.\s]/.test(event.target.value)) {
+                      setShowDesignerValidation(true);
+                    } else {
+                      setShowDesignerValidation(false);
+                    }
+                  }}
+                  required
+                  maxLength="25"
+                />
+                {showDesignerValidation ? (
+                  <p className="validation">
+                    Designer can only contain any word characters.
+                  </p>
+                ) : (
+                  <br />
+                )}
+                <br />
+                <p>Please write review in the box below:</p>
+                <textarea
+                  id="review-writing-box"
+                  rows="20"
+                  placeholder="write your review here ..."
+                  name="review_body"
+                  onChange={(event) => {
+                    setNewReview((current) => {
+                      return {
+                        ...current,
+                        review_body: event.target.value,
+                      };
+                    });
+                  }}
+                  required
+                />
+                <br />
+                <br />
+                <button type="submit">Submit</button>
+              </form>
+            )}
+          </>
         </div>
       </main>
     </div>
