@@ -20,7 +20,7 @@ export default function EditComment({ review, setIsEditingReview, setIsReloading
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
   };

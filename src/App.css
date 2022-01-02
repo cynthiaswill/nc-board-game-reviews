@@ -109,9 +109,9 @@ button:active {
 .welcome {
   text-align: center;
   text-shadow: 0 0 3px white, 0 0 5px white;
-  background-image: url("https://assets.dicebreaker.com/lords-of-waterdeep-board-game-layout.jpg/BROK/resize/1920x1920%3E/format/jpg/quality/80/lords-of-waterdeep-board-game-layout.jpg");
+  background-image: url("https://toybook.com/wp-content/uploads/2011/08/Conquest-beauty-shot-HI-RES.jpg");
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: local;
   background-size: cover;
 }
 
@@ -205,4 +205,13 @@ input {
 
 textarea {
   max-width: 800px;
+}
+
+.error-page {
+  text-align: center;
+  text-shadow: 0 0 3px white, 0 0 5px white;
+  background-image: url("https://i.pinimg.com/originals/96/16/03/961603c48b37b1cd47d21e0b1601103e.jpg");
+  background-repeat: no-repeat;
+  background-attachment: local;
+  background-size: cover;
 }

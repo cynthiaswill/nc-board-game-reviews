@@ -21,7 +21,7 @@ export default function PostComment({ user, review, setIsPosting }) {
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
   };

@@ -25,7 +25,7 @@ export default function Reviews({ catQueries, category, setReviewsCount }) {
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
   }, [catQueries, category, setError, navigate, setReviewsCount, reviews.length]);

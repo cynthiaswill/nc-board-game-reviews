@@ -38,7 +38,7 @@ export default function Comments({
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
   }, [
@@ -92,7 +92,7 @@ export default function Comments({
                     .catch((err) => {
                       if (err) {
                         setError(err.response.status);
-                        navigate("*");
+                        navigate("/error");
                       }
                     });
                 }}

@@ -28,7 +28,7 @@ export default function SignUp() {
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
     navigate("/reviews");

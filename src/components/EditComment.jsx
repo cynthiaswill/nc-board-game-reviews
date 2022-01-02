@@ -20,7 +20,7 @@ export default function EditComment({ user, toBeEditedComment, setIsEditingComme
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
   };

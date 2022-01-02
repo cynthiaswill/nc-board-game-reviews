@@ -60,7 +60,7 @@ export default function Review() {
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
   }, [review_id, setError, isReloading, navigate]);

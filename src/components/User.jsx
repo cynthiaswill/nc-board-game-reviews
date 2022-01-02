@@ -20,7 +20,7 @@ export default function User() {
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
   }, [username, setError, navigate]);

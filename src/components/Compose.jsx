@@ -28,7 +28,7 @@ export default function Compose({ categories, setCategories }) {
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
   }, [newCategory, setCategories, user, navigate, setError]);
@@ -42,7 +42,7 @@ export default function Compose({ categories, setCategories }) {
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
   };
@@ -52,7 +52,7 @@ export default function Compose({ categories, setCategories }) {
     postCategory(newCategory).catch((err) => {
       if (err) {
         setError(err.response.status);
-        navigate("*");
+        navigate("/error");
       }
     });
     setNewCategory({});
@@ -64,7 +64,7 @@ export default function Compose({ categories, setCategories }) {
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
   };

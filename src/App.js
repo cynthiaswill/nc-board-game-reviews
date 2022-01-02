@@ -58,7 +58,7 @@ function App() {
           path="/compose"
           element={<Compose categories={categories} setCategories={setCategories} />}
         />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="/error" element={<ErrorPage />} />
       </Routes>
     </div>
   );

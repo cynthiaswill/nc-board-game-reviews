@@ -28,7 +28,7 @@ export default function Nav({
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
     if (reset) {

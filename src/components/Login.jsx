@@ -22,7 +22,7 @@ export default function Login() {
       .catch((err) => {
         if (err) {
           setError(err.response.status);
-          navigate("*");
+          navigate("/error");
         }
       });
   }, [setError, navigate]);
