@@ -44,23 +44,26 @@ export default function Reviews({ catQueries, category, setReviewsCount }) {
               <h3 className="review-title">
                 <Link to={`/reviews/${review.review_id}`}> {review.title} </Link>
               </h3>
-              <span className="slug-name">Category: {review.category}</span>{" "}
-              <span className="designer-name">Designer: {review.designer}</span>
-              <br />
               <img
                 className="review-img"
                 src={review.review_img_url}
                 alt={review.title}
               ></img>
+              <span className="slug-name-in-reviews">Category: {review.category}</span>{" "}
+              <br />
+              <span className="designer-name-in-reviews">
+                Designer: {review.designer}
+              </span>
+              <br />
               <div>
-                <p>{review.review_body}</p>
-                <span className="author">
+                <p className="body-text-in-reviews">{review.review_body}</p>
+                <span className="author-in-reviews">
                   Author:{" "}
                   <Link to={`/users/${review.owner}`} className="author-link">
                     {review.owner}
                   </Link>
                 </span>
-                <span className="date-posted">
+                <span className="date-posted-in-reviews">
                   Date posted: {review.created_at.slice(0, 19).replaceAll("T", " at ")}
                 </span>
                 <br />

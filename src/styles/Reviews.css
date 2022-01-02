@@ -15,7 +15,7 @@
   border-radius: 10px;
   margin: 15px;
   overflow: auto;
-  max-height: 39vh;
+  max-height: 36vh;
   padding: 5px;
   position: relative;
 }
@@ -37,24 +37,24 @@
   margin: 0px auto;
 }
 
-.slug-name {
+.slug-name-in-reviews {
   float: left;
-  font-size: 0.9em;
+  font-size: smaller;
 }
 
-.designer-name {
-  float: right;
-  font-size: 0.9em;
-}
-
-.author {
+.designer-name-in-reviews {
   float: left;
-  font-size: 0.9em;
+  font-size: smaller;
 }
 
-.date-posted {
+.author-in-reviews {
+  float: left;
+  font-size: small;
+}
+
+.date-posted-in-reviews {
   float: right;
-  font-size: 0.7em;
+  font-size: 0.65em;
 }
 
 .review-img {
@@ -62,7 +62,11 @@
   max-width: 45vw;
   max-height: 20vh;
   margin: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
+}
+
+.body-text-in-reviews {
+  font-size: small;
 }
 
 .comments-button {
