@@ -26,4 +26,11 @@
   visibility: visible;
   font-size: x-small;
   font-weight: 600;
+  margin: 0px;
+}
+
+.validation-warning {
+  font-size: x-small;
+  font-weight: 600;
+  margin: 0px auto 10px auto;
 }

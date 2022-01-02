@@ -16,6 +16,8 @@ export default function SignUp() {
     name: "",
   });
   const [visibility, setVisibility] = useState("hidden");
+  const [showNameValidation, setShowNameValidation] = useState(false);
+  const [showUsernameValidation, setShowUsernameValidation] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,9 +52,23 @@ export default function SignUp() {
                   };
                 });
               }}
+              onBlur={(event) => {
+                if (/[^\w]/.test(event.target.value)) {
+                  setShowUsernameValidation(true);
+                } else {
+                  setShowUsernameValidation(false);
+                }
+              }}
+              required
             />
+            {showUsernameValidation ? (
+              <p className="validation-warning">
+                Username can only contain alphanumeric and underscore.
+              </p>
+            ) : (
+              <br />
+            )}
           </label>
-          <br />
           <label>
             <input
               type="text"
@@ -66,9 +82,24 @@ export default function SignUp() {
                   };
                 });
               }}
+              onBlur={(event) => {
+                if (/[^a-zA-Z.\s]/.test(event.target.value)) {
+                  setShowNameValidation(true);
+                } else {
+                  setShowNameValidation(false);
+                }
+              }}
+              required
+              maxlength="25"
             />
+            {showNameValidation ? (
+              <p className="validation-warning">
+                Name must only contain letters, white space or period sign.
+              </p>
+            ) : (
+              <br />
+            )}
           </label>
-          <br />
           <label>
             <input
               type="text"
@@ -90,6 +121,7 @@ export default function SignUp() {
                 }
               }}
               required
+              maxlength="25"
             />
             <p className={visibility}>Please add a valid URL!</p>
           </label>
