@@ -1,9 +1,8 @@
 import "../styles/Review.css";
-import { getComments } from "../utils/api";
+import { getComments, deleteComment } from "../utils/api";
 import { setVisibility } from "../utils/utils";
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { deleteComment } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 import Likes from "./Likes";

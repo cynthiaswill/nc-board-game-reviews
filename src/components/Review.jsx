@@ -6,8 +6,8 @@ import PostComment from "./PostComment";
 import EditComment from "./EditComment";
 import EditReview from "./EditReview";
 import { UserContext } from "../contexts/UserContext";
-import { numArr, setVisibility } from "../utils/utils";
 import { ErrorContext } from "../contexts/ErrorContext";
+import { numArr, setVisibility } from "../utils/utils";
 import Comments from "./Comments";
 
 export default function Review() {
