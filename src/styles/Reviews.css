@@ -83,3 +83,9 @@
 .kudos-button {
   float: right;
 }
+
+.page-number-in-reviews {
+  float: right;
+  margin-right: 10px;
+  font-size: smaller;
+}

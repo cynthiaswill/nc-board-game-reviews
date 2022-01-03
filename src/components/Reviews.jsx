@@ -60,7 +60,11 @@ export default function Reviews({
   }
   return (
     <main className="main">
-      <h3 className="category-title">{category.slug}:</h3>
+      <h3 className="category-title">
+        {category.slug}:
+        <span className="page-number-in-reviews">Page {catQueries.p}</span>
+      </h3>
+
       <p className="category-description">{category.description}</p>
       {reviews.map((review) => {
         return (

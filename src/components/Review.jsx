@@ -148,7 +148,7 @@ export default function Review() {
             >
               &lt;&lt; prev
             </button>
-
+            <span className="page-number">Page {page}</span>
             <button
               disabled={review.comment_count <= limitPerPage * page}
               onClick={() => {

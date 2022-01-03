@@ -219,3 +219,7 @@ textarea {
   text-align: center;
   text-shadow: 0 0 3px white, 0 0 5px white;
 }
+
+.page-number {
+  font-family: cursive;
+}
