@@ -18,7 +18,7 @@ export default function Comments({
   limitPerPage,
   isPosting,
   setIsPosting,
-  editCommentRef,
+  openWindowRef,
   page,
 }) {
   const navigate = useNavigate();
@@ -79,7 +79,7 @@ export default function Comments({
                 onClick={() => {
                   setIsEditingComment(true);
                   setToBeEditedComment(comment);
-                  editCommentRef.current.scrollIntoView({ behavior: "smooth" });
+                  openWindowRef.current.scrollIntoView({ behavior: "smooth" });
                 }}
               >
                 Edit

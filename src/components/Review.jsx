@@ -29,19 +29,17 @@ export default function Review() {
 
   const { review_id } = useParams();
   const servicesRef = useRef(null);
-  const editReviewRef = useRef(null);
-  const addCommentRef = useRef(null);
-  const editCommentRef = useRef(null);
+  const openWindowRef = useRef(null);
 
   const gotoServices = () => servicesRef.current.scrollIntoView({ behavior: "smooth" });
 
   const gotoEditReview = () => {
-    editReviewRef.current.scrollIntoView({ behavior: "smooth" });
+    openWindowRef.current.scrollIntoView({ behavior: "smooth" });
     setIsEditingReview(true);
   };
 
   const gotoAddComment = () => {
-    addCommentRef.current.scrollIntoView({ behavior: "smooth" });
+    openWindowRef.current.scrollIntoView({ behavior: "smooth" });
     setIsPosting(true);
   };
 
@@ -179,7 +177,7 @@ export default function Review() {
               })}
             </select>
           </div>
-          <div className="comment-typing-box" ref={editReviewRef}>
+          <div className="comment-typing-box" ref={openWindowRef}>
             {isLogged && isEditingReview ? (
               <EditReview
                 review={review}
@@ -187,8 +185,6 @@ export default function Review() {
                 setIsReloading={setIsReloading}
               />
             ) : null}
-          </div>
-          <div className="comment-typing-box" ref={addCommentRef}>
             {isPosting ? (
               <PostComment
                 user={user}
@@ -197,9 +193,6 @@ export default function Review() {
                 setIsPosting={setIsPosting}
               />
             ) : null}
-          </div>
-
-          <div className="comment-typing-box" ref={editCommentRef}>
             {isLogged && isEditingComment ? (
               <EditComment
                 user={user}
@@ -219,7 +212,7 @@ export default function Review() {
             limitPerPage={limitPerPage}
             isPosting={isPosting}
             setIsPosting={setIsPosting}
-            editCommentRef={editCommentRef}
+            openWindowRef={openWindowRef}
             page={page}
           />
         </div>
