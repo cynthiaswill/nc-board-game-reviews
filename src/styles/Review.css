@@ -133,3 +133,7 @@
   margin: 20px;
   max-width: 900px;
 }
+
+.date-posted {
+  font-size: 0.7em;
+}
