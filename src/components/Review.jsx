@@ -168,7 +168,7 @@ export default function Review() {
               }}
             >
               <option value="5" default hidden>
-                5 per page
+                comments per page
               </option>
               {numArr.map((num) => {
                 return (

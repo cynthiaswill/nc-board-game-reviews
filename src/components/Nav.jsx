@@ -216,7 +216,7 @@ export default function Nav({
               }}
             >
               <option value="10" default hidden>
-                10 per page
+                reviews per page
               </option>
               {numArr.map((num) => {
                 return (
