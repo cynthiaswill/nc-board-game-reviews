@@ -221,6 +221,8 @@ textarea {
 }
 
 .page-number {
-  font-family: cursive;
+  font-family: papyrus;
   color: white;
+  font-style: italic;
+  font-size: small;
 }
