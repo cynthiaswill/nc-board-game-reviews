@@ -69,10 +69,12 @@
 
 .add-comment-button {
   margin: 5px 10px;
+  font-size: small;
 }
 
 .comments-limit-option {
   margin: 5px 10px;
+  font-size: small;
 }
 
 .comments-sub-bar {

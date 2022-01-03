@@ -135,7 +135,7 @@ export default function Review() {
         <div ref={servicesRef}>
           <div className="comments-sub-bar">
             <button onClick={gotoAddComment} className="add-comment-button">
-              Add Comment
+              New Comment
             </button>
             <div>
               <button
@@ -168,7 +168,7 @@ export default function Review() {
               }}
             >
               <option value="5" default hidden>
-                comments per page
+                5 per page
               </option>
               {numArr.map((num) => {
                 return (
