@@ -285,7 +285,7 @@ export default function Nav({
             </span>
             <img
               className="user-icon"
-              src="https://source.unsplash.com/random/300x200"
+              src={user.avatar_url || "https://source.unsplash.com/random/300x200"}
               alt={user.username}
             ></img>
           </div>

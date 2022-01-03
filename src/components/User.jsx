@@ -30,7 +30,7 @@ export default function User() {
       <div key={viewedUser.username} className="user-profile">
         <h3>{viewedUser.name}</h3>
         <img
-          src={viewedUser.avatar_url}
+          src={viewedUser.avatar_url || "https://source.unsplash.com/random/300x200"}
           alt={viewedUser.username}
           className="user-pic"
         ></img>
