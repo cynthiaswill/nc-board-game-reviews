@@ -11,6 +11,7 @@ import User from "./components/User";
 import SignUp from "./components/SignUp";
 import Compose from "./components/Compose";
 import ErrorPage from "./components/ErrorPage";
+import InvalidRoute from "./components/InvalidRoute";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -65,6 +66,7 @@ function App() {
           element={<Compose categories={categories} setCategories={setCategories} />}
         />
         <Route path="/error" element={<ErrorPage />} />
+        <Route path="*" element={<InvalidRoute />} />
       </Routes>
     </div>
   );
