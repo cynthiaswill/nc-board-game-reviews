@@ -146,7 +146,7 @@ export default function Review() {
                   });
                 }}
               >
-                &lt;&lt; prev
+                &lt;&lt;
               </button>
               <span className="page-number">Page {page}</span>
               <button
@@ -157,7 +157,7 @@ export default function Review() {
                   });
                 }}
               >
-                next &gt;&gt;
+                &gt;&gt;
               </button>
             </div>
             <select
