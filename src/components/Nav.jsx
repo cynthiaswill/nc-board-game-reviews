@@ -1,11 +1,10 @@
 import { getDescription } from "../utils/utils";
 import { getCategories } from "../utils/api";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { numArr } from "../utils/utils";
 import { ErrorContext } from "../contexts/ErrorContext";
-import { useState } from "react/cjs/react.development";
 
 export default function Nav({
   catQueries,
