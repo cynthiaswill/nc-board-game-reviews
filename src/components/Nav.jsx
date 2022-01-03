@@ -185,7 +185,7 @@ export default function Nav({
                 });
               }}
             >
-              <option value="created_at" default>
+              <option value="created_at" default hidden>
                 sort by ...
               </option>
               <option value="title">title</option>
@@ -206,7 +206,7 @@ export default function Nav({
                 });
               }}
             >
-              <option value="DESC" default>
+              <option value="DESC" default hidden>
                 order by ...
               </option>
               <option value="desc">descending</option>
