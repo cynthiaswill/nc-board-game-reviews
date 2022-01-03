@@ -137,29 +137,29 @@ export default function Review() {
             <button onClick={gotoAddComment} className="add-comment-button">
               Add Comment
             </button>
-
-            <button
-              disabled={page === 1}
-              onClick={() => {
-                setPage((curr) => {
-                  return curr - 1;
-                });
-              }}
-            >
-              &lt;&lt; prev
-            </button>
-            <span className="page-number">Page {page}</span>
-            <button
-              disabled={review.comment_count <= limitPerPage * page}
-              onClick={() => {
-                setPage((curr) => {
-                  return curr + 1;
-                });
-              }}
-            >
-              next &gt;&gt;
-            </button>
-
+            <div>
+              <button
+                disabled={page === 1}
+                onClick={() => {
+                  setPage((curr) => {
+                    return curr - 1;
+                  });
+                }}
+              >
+                &lt;&lt; prev
+              </button>
+              <span className="page-number">Page {page}</span>
+              <button
+                disabled={review.comment_count <= limitPerPage * page}
+                onClick={() => {
+                  setPage((curr) => {
+                    return curr + 1;
+                  });
+                }}
+              >
+                next &gt;&gt;
+              </button>
+            </div>
             <select
               className="comments-limit-option"
               onChange={(e) => {
