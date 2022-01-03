@@ -175,7 +175,7 @@ export default function Compose({ categories, setCategories }) {
                       required
                     />
                   </div>
-                  <p
+                  <div
                     style={{
                       display: "flex",
                       flexDirection: "column",
@@ -194,7 +194,7 @@ export default function Compose({ categories, setCategories }) {
                     {showV3 ? (
                       <p className="validation">This category name already exist...</p>
                     ) : null}
-                  </p>
+                  </div>
                   <button
                     type="submit"
                     style={{
