@@ -119,20 +119,19 @@ export default function Compose({ categories, setCategories }) {
                       placeholder="enter new category name"
                       name="slug"
                       onChange={(event) => {
-                        setNewCategory((current) => {
-                          return {
-                            ...current,
-                            slug: event.target.value,
-                          };
-                        });
-                      }}
-                      onChange={(event) => {
                         if (
                           categories
                             .map((category) => category.slug)
                             .includes(event.target.value)
                         ) {
                           setShowV3(true);
+                        } else {
+                          setNewCategory((current) => {
+                            return {
+                              ...current,
+                              slug: event.target.value,
+                            };
+                          });
                         }
                       }}
                       onBlur={(event) => {
