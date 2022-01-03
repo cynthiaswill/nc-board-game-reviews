@@ -171,7 +171,7 @@ export default function Review() {
               {numArr.map((num) => {
                 return (
                   <option key={num} value={num}>
-                    {num}
+                    {num} per page
                   </option>
                 );
               })}
