@@ -6,7 +6,7 @@ import PostComment from "./PostComment";
 import EditComment from "./EditComment";
 import EditReview from "./EditReview";
 import { UserContext } from "../contexts/UserContext";
-import { numArr } from "../utils/utils";
+import { numArr, setVisibility } from "../utils/utils";
 import { ErrorContext } from "../contexts/ErrorContext";
 import Comments from "./Comments";
 
@@ -103,6 +103,7 @@ export default function Review() {
           <button
             className="edit-review-button"
             disabled={!!(user.username !== review.owner)}
+            style={{ visibility: `${setVisibility(!!(user.username !== review.owner))}` }}
             onClick={gotoEditReview}
           >
             Edit
@@ -110,6 +111,7 @@ export default function Review() {
           <button
             className="delete-review-button"
             disabled={!!(user.username !== review.owner)}
+            style={{ visibility: `${setVisibility(!!(user.username !== review.owner))}` }}
             onClick={deleteReview}
           >
             Delete

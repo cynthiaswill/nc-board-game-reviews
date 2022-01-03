@@ -19,3 +19,7 @@ export const urlRegex =
 export const filterReviewsByAuthor = (reviews, author) => {
   return reviews.filter((review) => review.owner === author);
 };
+
+export const setVisibility = (isButtonDisabled) => {
+  return isButtonDisabled ? "hidden" : "visible";
+};

@@ -1,5 +1,6 @@
 import "../styles/Compose.css";
 import { postCategory, getCategories, postReview } from "../utils/api";
+import { setVisibility } from "../utils/utils";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -85,11 +86,19 @@ export default function Compose({ categories, setCategories }) {
       <main className="main-compose">
         <div className="compose-container">
           <h3 className="compose-title">Compose a new Review:</h3>
-          <div className="yes-or-no">
-            Do you need to create a new category?
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <div style={{ alignSelf: "center" }}>
+              Do you need to create a new category?
+            </div>
             <section className="yes-no-buttons">
               <button
                 disabled={needNewCat}
+                style={{ visibility: `${setVisibility(needNewCat)}` }}
                 onClick={() => {
                   setNeedNewCat(true);
                 }}
@@ -98,6 +107,7 @@ export default function Compose({ categories, setCategories }) {
               </button>
               <button
                 disabled={!needNewCat}
+                style={{ visibility: `${setVisibility(!needNewCat)}` }}
                 onClick={() => {
                   setNeedNewCat(false);
                   setShowV1(false);
@@ -107,11 +117,13 @@ export default function Compose({ categories, setCategories }) {
               >
                 No
               </button>
+              <br />
             </section>
           </div>
           <>
             {needNewCat ? (
               <section>
+                <br />
                 <form
                   onSubmit={submitCategory}
                   style={{
@@ -195,6 +207,7 @@ export default function Compose({ categories, setCategories }) {
                       <p className="validation">This category name already exist...</p>
                     ) : null}
                   </div>
+                  <br />
                   <button
                     type="submit"
                     style={{

@@ -55,3 +55,9 @@ button {
   text-align: center;
   color: purple;
 }
+
+.yes-no-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  align-self: center;
+}

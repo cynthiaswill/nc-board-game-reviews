@@ -1,5 +1,6 @@
 import "../styles/Review.css";
 import { getComments } from "../utils/api";
+import { setVisibility } from "../utils/utils";
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { deleteComment } from "../utils/api";
@@ -76,6 +77,9 @@ export default function Comments({
               <button
                 className="edit-comment-button"
                 disabled={!!(user.username !== comment.author)}
+                style={{
+                  visibility: `${setVisibility(!!(user.username !== comment.author))}`,
+                }}
                 onClick={() => {
                   setIsEditingComment(true);
                   setToBeEditedComment(comment);
@@ -86,6 +90,9 @@ export default function Comments({
               </button>
               <button
                 disabled={!!(user.username !== comment.author)}
+                style={{
+                  visibility: `${setVisibility(!!(user.username !== comment.author))}`,
+                }}
                 onClick={() => {
                   deleteComment(comment.comment_id)
                     .then(() => {
