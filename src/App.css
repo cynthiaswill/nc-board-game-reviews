@@ -58,7 +58,7 @@ header {
 
 /* media query of device width */
 
-@media (min-width: 512px) {
+@media (min-width: 601px) {
   #narrow-cat-options {
     display: none;
   }
@@ -73,7 +73,7 @@ header {
   }
 }
 
-@media (max-width: 511px) {
+@media (max-width: 600px) {
   .categories-in-nav {
     display: none;
   }

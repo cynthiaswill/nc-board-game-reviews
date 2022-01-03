@@ -191,7 +191,7 @@ export default function Nav({
               <option value="title">title</option>
               <option value="designer">designer</option>
               <option value="owner">author</option>
-              <option value="created_at">date created</option>
+              <option value="created_at">date</option>
               <option value="votes">votes</option>
             </select>
             <select
