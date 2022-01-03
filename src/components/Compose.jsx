@@ -15,6 +15,7 @@ export default function Compose({ categories, setCategories }) {
   const [showDesignerValidation, setShowDesignerValidation] = useState(false);
   const [showV1, setShowV1] = useState(false);
   const [showV2, setShowV2] = useState(false);
+  const [showV3, setShowV3] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -125,6 +126,15 @@ export default function Compose({ categories, setCategories }) {
                           };
                         });
                       }}
+                      onChange={(event) => {
+                        if (
+                          categories
+                            .map((category) => category.slug)
+                            .includes(event.target.value)
+                        ) {
+                          setShowV3(true);
+                        }
+                      }}
                       onBlur={(event) => {
                         if (/[^\w-.\s]/.test(event.target.value)) {
                           setShowV1(true);
@@ -168,6 +178,11 @@ export default function Compose({ categories, setCategories }) {
                       <p className="validation">
                         Description can only contain any text characters or punctuations.
                       </p>
+                    ) : (
+                      <br />
+                    )}
+                    {showV3 ? (
+                      <p className="validation">This category already exist.</p>
                     ) : (
                       <br />
                     )}
