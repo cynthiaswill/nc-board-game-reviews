@@ -77,12 +77,10 @@ export default function Nav({
             to="/reviews"
             onClick={() => {
               setCatQueries((current) => {
-                const newCurrent = { ...current };
-                newCurrent.category = "";
-                navigate("/reviews");
-                return newCurrent;
+                return { ...current, p: 1, category: "" };
               });
               setCategory({ slug: "All categories", description: "" });
+              navigate("/reviews");
               setAuthor("");
             }}
           >
@@ -96,11 +94,9 @@ export default function Nav({
                 to="/reviews"
                 onClick={(e) => {
                   setCatQueries((current) => {
-                    let newCurrent = { ...current };
-                    newCurrent.category = category.slug;
-                    navigate("/reviews");
-                    return newCurrent;
+                    return { ...current, p: 1, category: category.slug };
                   });
+                  navigate("/reviews");
                   setCategory({
                     slug: `${category.slug}`,
                     description: `${getDescription(category.slug, categories)}`,
@@ -121,24 +117,19 @@ export default function Nav({
               onChange={(e) => {
                 if (e.target.value === "All categories" || e.target.value === "all") {
                   setCatQueries((current) => {
-                    const newCurrent = { ...current };
-                    newCurrent.category = "";
-                    navigate("/reviews");
-                    return newCurrent;
+                    return { ...current, category: "", p: 1 };
                   });
                   setCategory({ slug: "All categories", description: "" });
                 } else {
                   setCatQueries((current) => {
-                    let newCurrent = { ...current };
-                    newCurrent.category = e.target.value;
-                    navigate("/reviews");
-                    return newCurrent;
+                    return { ...current, category: e.target.value, p: 1 };
                   });
                   setCategory({
                     slug: `${e.target.value}`,
                     description: `${getDescription(e.target.value, categories)}`,
                   });
                 }
+                navigate("/reviews");
                 setAuthor("");
               }}
             >

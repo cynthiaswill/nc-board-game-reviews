@@ -164,6 +164,7 @@ export default function Review() {
               className="comments-limit-option"
               onChange={(e) => {
                 setLimitPerPage(e.target.value);
+                setPage(1);
               }}
             >
               <option value="10" default>
