@@ -25,6 +25,7 @@ export default function Review() {
   const [toBeEditedComment, setToBeEditedComment] = useState({});
   const [isReloading, setIsReloading] = useState(false);
   const [hasVoted, setHasVoted] = useState(false);
+  const [page, setPage] = useState(1);
 
   const { review_id } = useParams();
   const servicesRef = useRef(null);
@@ -136,6 +137,29 @@ export default function Review() {
             <button onClick={gotoAddComment} className="add-comment-button">
               Add Comment
             </button>
+
+            <button
+              disabled={page === 1}
+              onClick={() => {
+                setPage((curr) => {
+                  return curr - 1;
+                });
+              }}
+            >
+              &lt;&lt; prev
+            </button>
+
+            <button
+              disabled={review.comment_count <= limitPerPage * page}
+              onClick={() => {
+                setPage((curr) => {
+                  return curr + 1;
+                });
+              }}
+            >
+              next &gt;&gt;
+            </button>
+
             <select
               className="comments-limit-option"
               onChange={(e) => {
@@ -195,6 +219,7 @@ export default function Review() {
             isPosting={isPosting}
             setIsPosting={setIsPosting}
             editCommentRef={editCommentRef}
+            page={page}
           />
         </div>
       </section>

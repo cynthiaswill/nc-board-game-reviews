@@ -19,6 +19,7 @@ export default function Comments({
   isPosting,
   setIsPosting,
   editCommentRef,
+  page,
 }) {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
@@ -29,7 +30,7 @@ export default function Comments({
     getComments({
       review_id: `${review_id}`,
       limit: `${limitPerPage}`,
-      p: 1,
+      p: `${page}`,
     })
       .then(({ data }) => {
         setComments(data.comments);
@@ -52,6 +53,7 @@ export default function Comments({
     setComments,
     setError,
     setIsPosting,
+    page,
   ]);
 
   return (
