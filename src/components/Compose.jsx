@@ -132,6 +132,7 @@ export default function Compose({ categories, setCategories }) {
                               slug: event.target.value,
                             };
                           });
+                          setShowV3(false);
                         }
                       }}
                       onBlur={(event) => {

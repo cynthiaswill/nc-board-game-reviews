@@ -1,6 +1,6 @@
 import "../styles/SignUp.css";
-import { useState, useContext } from "react";
-import { postUser } from "../utils/api";
+import { useState, useContext, useEffect } from "react";
+import { getUsers, postUser } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
@@ -18,6 +18,14 @@ export default function SignUp() {
   const [visibility, setVisibility] = useState("hidden");
   const [showNameValidation, setShowNameValidation] = useState(false);
   const [showUsernameValidation, setShowUsernameValidation] = useState(false);
+  const [userList, setUserList] = useState([]);
+  const [showUsernameError, setShowUsernameError] = useState(false);
+
+  useEffect(() => {
+    getUsers().then(({ data }) => {
+      setUserList(data.users.map((user) => user.username));
+    });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,12 +53,17 @@ export default function SignUp() {
               placeholder="Username"
               name="username"
               onChange={(event) => {
-                setNewUser((current) => {
-                  return {
-                    ...current,
-                    username: event.target.value,
-                  };
-                });
+                if (userList.includes(event.target.value)) {
+                  setShowUsernameError(true);
+                } else {
+                  setNewUser((current) => {
+                    return {
+                      ...current,
+                      username: event.target.value,
+                    };
+                  });
+                  setShowUsernameError(false);
+                }
               }}
               onBlur={(event) => {
                 if (/[^\w]/.test(event.target.value)) {
@@ -69,6 +82,9 @@ export default function SignUp() {
             ) : (
               <br />
             )}
+            {showUsernameError ? (
+              <p className="validation-warning">This username already exists.</p>
+            ) : null}
           </label>
           <label>
             <input
