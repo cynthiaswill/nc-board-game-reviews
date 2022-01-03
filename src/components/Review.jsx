@@ -167,8 +167,8 @@ export default function Review() {
                 setPage(1);
               }}
             >
-              <option value="10" default>
-                comments per page
+              <option value="5" default hidden>
+                5 per page
               </option>
               {numArr.map((num) => {
                 return (

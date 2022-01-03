@@ -215,8 +215,8 @@ export default function Nav({
                 });
               }}
             >
-              <option value="10" default>
-                items per page
+              <option value="10" default hidden>
+                10 per page
               </option>
               {numArr.map((num) => {
                 return (
