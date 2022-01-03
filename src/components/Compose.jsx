@@ -89,6 +89,7 @@ export default function Compose({ categories, setCategories }) {
             Do you need to create a new category?
             <section className="yes-no-buttons">
               <button
+                disabled={needNewCat}
                 onClick={() => {
                   setNeedNewCat(true);
                 }}
@@ -96,8 +97,12 @@ export default function Compose({ categories, setCategories }) {
                 Yes
               </button>
               <button
+                disabled={!needNewCat}
                 onClick={() => {
                   setNeedNewCat(false);
+                  setShowV1(false);
+                  setShowV2(false);
+                  setShowV3(false);
                 }}
               >
                 No
@@ -106,40 +111,41 @@ export default function Compose({ categories, setCategories }) {
           </div>
           <>
             {needNewCat ? (
-              <section className="yes-or-no">
-                {categories
-                  .map((category) => {
-                    return category.slug;
-                  })
-                  .includes(newCategory.slug) ? null : (
-                  <form onSubmit={submitCategory}>
+              <section>
+                <form
+                  onSubmit={submitCategory}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <div className="yes-or-no">
                     <input
                       type="text"
-                      size="22"
-                      placeholder="enter new category name"
+                      size="23"
+                      placeholder="enter new category name..."
                       name="slug"
+                      style={{ alignSelf: "center" }}
                       onChange={(event) => {
+                        setNewCategory((current) => {
+                          return {
+                            ...current,
+                            slug: event.target.value,
+                          };
+                        });
+                      }}
+                      onBlur={(event) => {
                         if (
                           categories
                             .map((category) => category.slug)
                             .includes(event.target.value)
                         ) {
                           setShowV3(true);
-                        } else {
-                          setNewCategory((current) => {
-                            return {
-                              ...current,
-                              slug: event.target.value,
-                            };
-                          });
-                          setShowV3(false);
-                        }
-                      }}
-                      onBlur={(event) => {
-                        if (/[^\w-.\s]/.test(event.target.value)) {
+                        } else if (/[^\w-.\s]/.test(event.target.value)) {
                           setShowV1(true);
                         } else {
                           setShowV1(false);
+                          setShowV3(false);
                         }
                       }}
                       required
@@ -147,9 +153,10 @@ export default function Compose({ categories, setCategories }) {
                     />
                     <input
                       type="text"
-                      size="22"
+                      size="23"
                       placeholder="please give a description..."
                       name="description"
+                      style={{ alignSelf: "center" }}
                       onChange={(event) => {
                         setNewCategory((current) => {
                           return {
@@ -167,28 +174,36 @@ export default function Compose({ categories, setCategories }) {
                       }}
                       required
                     />
+                  </div>
+                  <p
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
                     {showV1 ? (
                       <p className="validation">
                         Category can only contain any text characters or punctuations.
                       </p>
-                    ) : (
-                      <br />
-                    )}
+                    ) : null}
                     {showV2 ? (
                       <p className="validation">
                         Description can only contain any text characters or punctuations.
                       </p>
-                    ) : (
-                      <br />
-                    )}
+                    ) : null}
                     {showV3 ? (
-                      <p className="validation">This category already exist.</p>
-                    ) : (
-                      <br />
-                    )}
-                    <button type="submit">Submit Category</button>
-                  </form>
-                )}
+                      <p className="validation">This category name already exist...</p>
+                    ) : null}
+                  </p>
+                  <button
+                    type="submit"
+                    style={{
+                      alignSelf: "center",
+                    }}
+                  >
+                    Submit Category
+                  </button>
+                </form>
               </section>
             ) : (
               <form className="compose-form" onSubmit={handleSubmit}>
