@@ -13,6 +13,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  background-position: center center;
 }
 /* backup image */
 /* background-image: url("https://toybook.com/wp-content/uploads/2011/08/Conquest-beauty-shot-HI-RES.jpg"); */
