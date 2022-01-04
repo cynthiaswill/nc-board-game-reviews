@@ -40,13 +40,13 @@ NC Games has game reviews which are divided into categories. Each review has use
 ## Essential Routes
 
 ```http
-/                       Home
-/reviews/               Reviews
-/reviews/:review_id     Review with Comments
-/users                  Users list
-/users/:username        User profile
-/compose                Compose New Review
-/error                  Error Page
+§ /                       Home
+§ /reviews/               Reviews
+§ /reviews/:review_id     Review with Comments
+§ /users                  Users list
+§ /users/:username        User profile
+§ /compose                Compose New Review
+§ /error                  Error Page
 ```
 
 ## User Stories
@@ -108,7 +108,7 @@ NC Games has game reviews which are divided into categories. Each review has use
 
 #
 
-### future scope (not yet implemented)
+### Future scope (not yet implemented)
 
 1. As a user, I should be able to see which users have been most active adding reviews and comments
 2. As a user, I should be able to sort the users by how popular they are based on an aggregation of their review and comment vote counts
