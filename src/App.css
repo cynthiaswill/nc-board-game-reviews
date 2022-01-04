@@ -106,14 +106,22 @@ header {
   font-family: papyrus;
 }
 
-button:hover {
+button:hover:enabled {
+  border: 1px solid #999999;
   box-shadow: 0 2px gray;
   transform: translateY(-1px);
 }
 button:active {
+  border: 1px solid #999999;
   background-color: white;
   box-shadow: 0 2px gray;
   transform: translateY(1px);
+}
+
+button:disabled {
+  border: 1px solid #999999;
+  background-color: darkslateblue;
+  color: white;
 }
 
 .welcome {
@@ -122,12 +130,20 @@ button:active {
 }
 
 button {
+  border: 1px solid #999999;
   border-radius: 5px;
   border-style: outset;
 }
 
 .page-button {
+  border: 1px solid #999999;
   margin: 0 5px;
+}
+
+.page-button:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #888888;
 }
 
 .category-links {
