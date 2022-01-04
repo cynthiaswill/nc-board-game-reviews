@@ -10,7 +10,7 @@ export default function Header({ setReset }) {
           id="header"
           to="/"
           onClick={() => {
-            navigate("*");
+            navigate("/");
             setReset(true);
           }}
         >

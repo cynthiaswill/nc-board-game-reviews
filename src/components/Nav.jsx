@@ -44,6 +44,7 @@ export default function Nav({
       document.getElementById("sort-option").selectedIndex = "null";
       document.getElementById("order-option").selectedIndex = "null";
       document.getElementById("per-page-option").selectedIndex = "null";
+      document.getElementById("author-option").selectedIndex = "null";
       setCategory({ slug: "All categories", description: "" });
       setCatQueries({
         sort: "created_at",
@@ -52,6 +53,7 @@ export default function Nav({
         p: 1,
         category: "",
       });
+      setAuthor("");
       setReset(false);
     }
   }, [
@@ -79,7 +81,6 @@ export default function Nav({
               });
               setCategory({ slug: "All categories", description: "" });
               navigate("/reviews");
-              setAuthor("");
             }}
           >
             All categories
@@ -99,7 +100,6 @@ export default function Nav({
                     slug: `${category.slug}`,
                     description: `${getDescription(category.slug, categories)}`,
                   });
-                  setAuthor("");
                 }}
               >{`${category.slug}`}</Link>
             );
@@ -128,7 +128,6 @@ export default function Nav({
                   });
                 }
                 navigate("/reviews");
-                setAuthor("");
               }}
             >
               <option key="select category" value="all" default hidden>
@@ -157,7 +156,7 @@ export default function Nav({
               <option value="" default hidden>
                 by author ...
               </option>
-              <option value="">all authors</option>
+
               {authors.map((author) => {
                 return <option key={author} value={author}>{`${author}`}</option>;
               })}
