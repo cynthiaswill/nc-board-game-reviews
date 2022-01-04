@@ -26,10 +26,10 @@ NC Games has game reviews which are divided into categories. Each review has use
 - Type 'npm start' in terminal to start the app in browser.
 
 ```
-> git clone https://github.com/cynthiaswill/nc-board-game-reviews.git
-> cd nc-board-game-reviews
-> npm install
-> npm start
+$ git clone https://github.com/cynthiaswill/nc-board-game-reviews.git
+$ cd nc-board-game-reviews
+$ npm install
+$ npm start
 ```
 
 - Support all latest Chrome, Firefox and Safari browsers.
@@ -40,13 +40,13 @@ NC Games has game reviews which are divided into categories. Each review has use
 ## Essential Routes
 
 ```http
-# /                       Home
-# /reviews/               Reviews
-# /reviews/:review_id     Review with Comments
-# /users                  Users list
-# /users/:username        User profile
-# /compose                Compose New Review
-# /error                  Error Page
+'/'                       Home
+'/reviews/'               Reviews
+'/reviews/:review_id'     Review with Comments
+'/users'                  Users list
+'/users/:username'        User profile
+'/compose'                Compose New Review
+'/error'                  Error Page
 ```
 
 ## User Stories
