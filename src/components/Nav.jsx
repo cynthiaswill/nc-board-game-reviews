@@ -80,6 +80,8 @@ export default function Nav({
                 return { ...current, p: 1, category: "" };
               });
               setCategory({ slug: "All categories", description: "" });
+              document.getElementById("author-option").selectedIndex = "null";
+              setAuthor("");
               navigate("/reviews");
             }}
           >
@@ -95,11 +97,13 @@ export default function Nav({
                   setCatQueries((current) => {
                     return { ...current, p: 1, category: category.slug };
                   });
-                  navigate("/reviews");
                   setCategory({
                     slug: `${category.slug}`,
                     description: `${getDescription(category.slug, categories)}`,
                   });
+                  document.getElementById("author-option").selectedIndex = "null";
+                  setAuthor("");
+                  navigate("/reviews");
                 }}
               >{`${category.slug}`}</Link>
             );
@@ -127,6 +131,8 @@ export default function Nav({
                     description: `${getDescription(e.target.value, categories)}`,
                   });
                 }
+                document.getElementById("author-option").selectedIndex = "null";
+                setAuthor("");
                 navigate("/reviews");
               }}
             >
