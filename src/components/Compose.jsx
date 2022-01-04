@@ -1,6 +1,5 @@
 import "../styles/Compose.css";
 import { postCategory, getCategories, postReview } from "../utils/api";
-import { setVisibility } from "../utils/utils";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -89,8 +88,7 @@ export default function Compose({ categories, setCategories }) {
           <div
             style={{
               display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
+              flexDirection: "column",
             }}
           >
             <div style={{ alignSelf: "center" }}>
@@ -154,8 +152,10 @@ export default function Compose({ categories, setCategories }) {
                             .includes(event.target.value)
                         ) {
                           setShowV3(true);
+                          setShowV1(false);
                         } else if (/[^\w-.\s]/.test(event.target.value)) {
                           setShowV1(true);
+                          setShowV3(false);
                         } else {
                           setShowV1(false);
                           setShowV3(false);
