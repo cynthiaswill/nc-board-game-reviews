@@ -95,26 +95,25 @@ export default function Compose({ categories, setCategories }) {
               Do you need to create a new category?
             </div>
             <section className="yes-no-buttons">
-              {needNewCat ? (
-                <button
-                  onClick={() => {
-                    setNeedNewCat(false);
-                    setShowV1(false);
-                    setShowV2(false);
-                    setShowV3(false);
-                  }}
-                >
-                  No
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    setNeedNewCat(true);
-                  }}
-                >
-                  Yes
-                </button>
-              )}
+              <button
+                disabled={needNewCat}
+                onClick={() => {
+                  setNeedNewCat(true);
+                }}
+              >
+                Yes
+              </button>
+              <button
+                disabled={!needNewCat}
+                onClick={() => {
+                  setNeedNewCat(false);
+                  setShowV1(false);
+                  setShowV2(false);
+                  setShowV3(false);
+                }}
+              >
+                No
+              </button>
 
               <br />
             </section>
