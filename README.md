@@ -6,7 +6,7 @@ It is a social games content rating, and discussion website, mainly built with R
 
 A live version of this **front end** API is **hosted at**:
 
-- https://61a49a9862b336e911f98195--quizzical-bohr-776a6e.netlify.app/
+- https://quizzical-bohr-776a6e.netlify.app
 
 It works together along with the **back end API**, which available at:
 
