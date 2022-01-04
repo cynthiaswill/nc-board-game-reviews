@@ -112,3 +112,6 @@ NC Games has game reviews which are divided into categories. Each review has use
 
 1. As a user, I should be able to see which users have been most active adding reviews and comments
 2. As a user, I should be able to sort the users by how popular they are based on an aggregation of their review and comment vote counts
+3. As a user, I can change my profile information if I am "logged in as the right user"
+4. As a user, I can view for all the reviews a user (can be self or another specific user) has liked
+5. I can see the page to automatically update with a little notification if there have been any recent posts, e.g. last 10 minutes. (using websocket and socketIO)
