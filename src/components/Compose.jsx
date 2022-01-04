@@ -89,34 +89,35 @@ export default function Compose({ categories, setCategories }) {
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
+              flexDirection: "row",
+              justifyContent: "center",
             }}
           >
             <div style={{ alignSelf: "center" }}>
               Do you need to create a new category?
             </div>
             <section className="yes-no-buttons">
-              <button
-                disabled={needNewCat}
-                style={{ visibility: `${setVisibility(needNewCat)}` }}
-                onClick={() => {
-                  setNeedNewCat(true);
-                }}
-              >
-                Yes
-              </button>
-              <button
-                disabled={!needNewCat}
-                style={{ visibility: `${setVisibility(!needNewCat)}` }}
-                onClick={() => {
-                  setNeedNewCat(false);
-                  setShowV1(false);
-                  setShowV2(false);
-                  setShowV3(false);
-                }}
-              >
-                No
-              </button>
+              {needNewCat ? (
+                <button
+                  onClick={() => {
+                    setNeedNewCat(false);
+                    setShowV1(false);
+                    setShowV2(false);
+                    setShowV3(false);
+                  }}
+                >
+                  No
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    setNeedNewCat(true);
+                  }}
+                >
+                  Yes
+                </button>
+              )}
+
               <br />
             </section>
           </div>
@@ -220,6 +221,7 @@ export default function Compose({ categories, setCategories }) {
               </section>
             ) : (
               <form className="compose-form" onSubmit={handleSubmit}>
+                <br />
                 <p>Please give a review title:</p>
                 <input
                   type="text"
