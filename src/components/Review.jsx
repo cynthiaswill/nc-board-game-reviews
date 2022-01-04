@@ -36,11 +36,15 @@ export default function Review() {
   const gotoEditReview = () => {
     openWindowRef.current.scrollIntoView({ behavior: "smooth" });
     setIsEditingReview(true);
+    setIsPosting(false);
+    setIsEditingComment(false);
   };
 
   const gotoAddComment = () => {
     openWindowRef.current.scrollIntoView({ behavior: "smooth" });
     setIsPosting(true);
+    setIsEditingReview(false);
+    setIsEditingComment(false);
   };
 
   const deleteReview = () => {
@@ -216,6 +220,7 @@ export default function Review() {
             limitPerPage={limitPerPage}
             isPosting={isPosting}
             setIsPosting={setIsPosting}
+            setIsEditingReview={setIsEditingReview}
             openWindowRef={openWindowRef}
             page={page}
           />

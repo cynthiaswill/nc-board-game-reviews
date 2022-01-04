@@ -18,6 +18,7 @@ export default function Comments({
   limitPerPage,
   isPosting,
   setIsPosting,
+  setIsEditingReview,
   openWindowRef,
   page,
 }) {
@@ -82,6 +83,8 @@ export default function Comments({
                 onClick={() => {
                   setIsEditingComment(true);
                   setToBeEditedComment(comment);
+                  setIsPosting(false);
+                  setIsEditingReview(false);
                   openWindowRef.current.scrollIntoView({ behavior: "smooth" });
                 }}
               >
