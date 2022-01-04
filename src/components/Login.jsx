@@ -34,7 +34,7 @@ export default function Login() {
       <h3 className="login-title">Please choose an account to log in:</h3>
       <section className="users-container">
         {users.map((userInList) => {
-          return <UserCardInList userInList={userInList} />;
+          return <UserCardInList key={userInList.username} userInList={userInList} />;
         })}
       </section>
     </div>

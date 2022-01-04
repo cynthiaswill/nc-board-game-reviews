@@ -22,7 +22,7 @@ export default function UserCardInList({ userInList }) {
           navigate("/error");
         }
       });
-  }, [userInList.username]);
+  }, [userInList.username, navigate, setError]);
 
   return (
     <div key={userInList.username} className="user-card">
