@@ -40,13 +40,13 @@ NC Games has game reviews which are divided into categories. Each review has use
 ## Essential Routes
 
 ```http
-§ /                       Home
-§ /reviews/               Reviews
-§ /reviews/:review_id     Review with Comments
-§ /users                  Users list
-§ /users/:username        User profile
-§ /compose                Compose New Review
-§ /error                  Error Page
+# /                       Home
+# /reviews/               Reviews
+# /reviews/:review_id     Review with Comments
+# /users                  Users list
+# /users/:username        User profile
+# /compose                Compose New Review
+# /error                  Error Page
 ```
 
 ## User Stories
