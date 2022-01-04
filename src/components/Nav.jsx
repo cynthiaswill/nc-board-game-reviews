@@ -62,6 +62,7 @@ export default function Nav({
     navigate,
     reset,
     setReset,
+    setAuthor,
     setError,
     location.pathname,
     setCatQueries,

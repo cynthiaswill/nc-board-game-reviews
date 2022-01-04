@@ -1,10 +1,10 @@
 import "../styles/Reviews.css";
-import { getReviews, incKudos } from "../utils/api";
+import { getReviews } from "../utils/api";
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
-import { UserContext } from "../contexts/UserContext";
 import { filterReviewsByAuthor } from "../utils/utils";
+import Kudos from "./Kudos";
 
 export default function Reviews({
   catQueries,
@@ -14,11 +14,9 @@ export default function Reviews({
   setAuthors,
 }) {
   const { setError } = useContext(ErrorContext);
-  const { user } = useContext(UserContext);
   const [reviews, setReviews] = useState([]);
-  const [addedKudos, setAddedKudos] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [hasVoted, setHasVoted] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -111,19 +109,7 @@ export default function Reviews({
               >
                 Comments: {review.comment_count}
               </button>
-              <button
-                className="kudos-button"
-                disabled={!!(user.username === review.owner) || hasVoted}
-                onClick={() => {
-                  setAddedKudos((current) => {
-                    return current + 1;
-                  });
-                  incKudos(review.review_id, { inc_votes: 1 });
-                  setHasVoted(true);
-                }}
-              >
-                Kudos: {review.votes + addedKudos}
-              </button>
+              <Kudos review={review} />
             </section>
           </div>
         );
