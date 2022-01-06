@@ -106,6 +106,12 @@ header {
   font-family: papyrus;
 }
 
+#header-text {
+  color: white;
+  font-family: papyrus;
+  margin-left: 10px;
+}
+
 button:hover:enabled {
   border: 1px solid #999999;
   box-shadow: 0 2px gray;
