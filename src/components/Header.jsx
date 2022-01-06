@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 export default function Header({ setReset }) {
   const navigate = useNavigate();
@@ -14,7 +15,20 @@ export default function Header({ setReset }) {
             setReset(true);
           }}
         >
-          &#127968; Board Game Reviews
+          <div
+            style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <FaHome style={{ paddingBottom: "5px", alignSelf: "center" }} />
+            </div>
+            Board Game Reviews
+          </div>
         </Link>
       </h1>
     </header>
