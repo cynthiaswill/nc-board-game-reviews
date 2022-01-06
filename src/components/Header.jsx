@@ -27,7 +27,7 @@ export default function Header({ setReset }) {
             >
               <FaHome style={{ paddingBottom: "5px", alignSelf: "center" }} />
             </div>
-            Board Game Reviews
+            ~Board Game Reviews
           </div>
         </Link>
       </h1>
