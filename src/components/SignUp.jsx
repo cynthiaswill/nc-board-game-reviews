@@ -141,8 +141,6 @@ export default function SignUp() {
             />
             <p className={visibility}>Please add a valid URL!</p>
           </label>
-          <br />
-          <br />
           <button type="submit">Submit</button>
         </form>
       </section>
