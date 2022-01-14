@@ -141,7 +141,7 @@ export default function Review() {
         <div ref={servicesRef}>
           <div className="comments-sub-bar">
             <button onClick={gotoAddComment} className="add-comment-button">
-              <BiCommentAdd style={{ fontSize: 15 }} /> new comment
+              <BiCommentAdd style={{ fontSize: 15 }} /> comment
             </button>
             <div>
               <button
