@@ -140,8 +140,8 @@ export default function Compose({ categories, setCategories }) {
                       style={{
                         width: 175,
                         alignSelf: "center",
-                        marginLeft: 5,
-                        marginRight: 5,
+                        marginLeft: 7,
+                        marginRight: 7,
                       }}
                       onChange={(event) => {
                         setNewCategory((current) => {
@@ -178,8 +178,8 @@ export default function Compose({ categories, setCategories }) {
                       style={{
                         width: 175,
                         alignSelf: "center",
-                        marginLeft: 5,
-                        marginRight: 5,
+                        marginLeft: 7,
+                        marginRight: 7,
                       }}
                       onChange={(event) => {
                         setNewCategory((current) => {
@@ -233,11 +233,16 @@ export default function Compose({ categories, setCategories }) {
             ) : (
               <form className="compose-form" onSubmit={handleSubmit}>
                 <br />
-                <p>Please give a review title:</p>
-                <input
-                  type="text"
-                  placeholder="review title"
-                  name="title"
+                <TextField
+                  label="Please give a review title"
+                  size="small"
+                  inputProps={{ style: { fontSize: 12 } }}
+                  InputLabelProps={{ style: { fontSize: 12 } }}
+                  style={{
+                    marginTop: 0,
+                    width: 180,
+                    alignSelf: "center",
+                  }}
                   onChange={(event) => {
                     setNewReview((current) => {
                       return {
@@ -263,9 +268,11 @@ export default function Compose({ categories, setCategories }) {
                 ) : (
                   <br />
                 )}
-                <p>Please choose your category:</p>
+                <br />
+                <br />
                 <select
                   name="category"
+                  style={{ backgroundColor: "lightgray" }}
                   onChange={(event) => {
                     setNewReview((current) => {
                       return { ...current, category: event.target.value };
@@ -273,7 +280,7 @@ export default function Compose({ categories, setCategories }) {
                   }}
                 >
                   <option default hidden>
-                    ...
+                    Choose your category ...
                   </option>
                   {categories.map((category) => {
                     return (
@@ -285,11 +292,17 @@ export default function Compose({ categories, setCategories }) {
                   })}
                 </select>
                 <br />
-                <p>Please enter game designer's name:</p>
-                <input
-                  type="text"
-                  placeholder="designer"
-                  name="designer"
+                <br />
+                <TextField
+                  label="Please enter game designer's name:"
+                  size="small"
+                  inputProps={{ style: { fontSize: 12 } }}
+                  InputLabelProps={{ style: { fontSize: 12 } }}
+                  style={{
+                    marginTop: 0,
+                    width: 220,
+                    alignSelf: "center",
+                  }}
                   onChange={(event) => {
                     setNewReview((current) => {
                       return {
