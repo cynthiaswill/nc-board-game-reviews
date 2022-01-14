@@ -137,7 +137,12 @@ export default function Compose({ categories, setCategories }) {
                       InputLabelProps={{
                         style: { fontSize: 12, marginTop: 5 },
                       }}
-                      style={{ width: 175, alignSelf: "center", marginRight: 10 }}
+                      style={{
+                        width: 175,
+                        alignSelf: "center",
+                        marginLeft: 5,
+                        marginRight: 5,
+                      }}
                       onChange={(event) => {
                         setNewCategory((current) => {
                           return {
@@ -170,7 +175,12 @@ export default function Compose({ categories, setCategories }) {
                       label="Please give a description..."
                       inputProps={{ style: { fontSize: 12, marginTop: 5 } }}
                       InputLabelProps={{ style: { fontSize: 12, marginTop: 5 } }}
-                      style={{ width: 175, alignSelf: "center", marginLeft: 10 }}
+                      style={{
+                        width: 175,
+                        alignSelf: "center",
+                        marginLeft: 5,
+                        marginRight: 5,
+                      }}
                       onChange={(event) => {
                         setNewCategory((current) => {
                           return {
