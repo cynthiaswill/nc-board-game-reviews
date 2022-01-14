@@ -2,6 +2,7 @@ import "../styles/Review.css";
 import { incLikes } from "../utils/api";
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { FaHeart } from "react-icons/fa";
 
 export default function Likes({ comment }) {
   const { user } = useContext(UserContext);
@@ -21,7 +22,7 @@ export default function Likes({ comment }) {
           setHasVoted(true);
         }}
       >
-        Likes: {comment.votes + addedLikes}
+        <FaHeart /> {comment.votes + addedLikes}
       </button>
     </>
   );

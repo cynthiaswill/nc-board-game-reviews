@@ -9,6 +9,8 @@ import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { numArr, setVisibility } from "../utils/utils";
 import Comments from "./Comments";
+import { FaRegCommentAlt, FaRegStar, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
+import { BiCommentAdd } from "react-icons/bi";
 
 export default function Review() {
   const { user, isLogged } = useContext(UserContext);
@@ -102,7 +104,7 @@ export default function Review() {
         </section>
         <section>
           <button className="comments-button" onClick={gotoServices}>
-            Comments: {review.comment_count}
+            <FaRegCommentAlt /> {review.comment_count}
           </button>
           <button
             className="edit-review-button"
@@ -110,7 +112,7 @@ export default function Review() {
             style={{ visibility: `${setVisibility(!!(user.username !== review.owner))}` }}
             onClick={gotoEditReview}
           >
-            Edit
+            <FaRegEdit />
           </button>
           <button
             className="delete-review-button"
@@ -118,7 +120,7 @@ export default function Review() {
             style={{ visibility: `${setVisibility(!!(user.username !== review.owner))}` }}
             onClick={deleteReview}
           >
-            Delete
+            <FaRegTrashAlt />
           </button>
           <button
             className="kudos-button"
@@ -131,7 +133,7 @@ export default function Review() {
               setHasVoted(true);
             }}
           >
-            Kudos: {review.votes + addedKudos}
+            <FaRegStar /> {review.votes + addedKudos}
           </button>
         </section>
       </div>
@@ -139,7 +141,7 @@ export default function Review() {
         <div ref={servicesRef}>
           <div className="comments-sub-bar">
             <button onClick={gotoAddComment} className="add-comment-button">
-              New Comment
+              <BiCommentAdd style={{ fontSize: 15 }} /> new comment
             </button>
             <div>
               <button

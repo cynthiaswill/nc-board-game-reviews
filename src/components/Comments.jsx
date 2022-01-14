@@ -5,6 +5,7 @@ import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
+import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import Likes from "./Likes";
 
 export default function Comments({
@@ -66,7 +67,7 @@ export default function Comments({
               <Link to={`/users/${comment.author}`} className="author-link">
                 {comment.author}
               </Link>{" "}
-              replied:
+              said:
             </span>
             <p>{comment.body}</p>
             <span className="date-posted">
@@ -88,7 +89,7 @@ export default function Comments({
                   openWindowRef.current.scrollIntoView({ behavior: "smooth" });
                 }}
               >
-                Edit
+                <FaRegEdit />
               </button>
               <button
                 disabled={!!(user.username !== comment.author)}
@@ -109,7 +110,7 @@ export default function Comments({
                 }}
                 className="delete-comment-button"
               >
-                Delete
+                <FaRegTrashAlt />
               </button>
               <Likes comment={comment} />
             </div>
