@@ -2,6 +2,7 @@ import "../styles/Reviews.css";
 import { incKudos } from "../utils/api";
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { FaRegStar } from "react-icons/fa";
 
 export default function Kudos({ review }) {
   const { user } = useContext(UserContext);
@@ -21,7 +22,7 @@ export default function Kudos({ review }) {
           setHasVoted(true);
         }}
       >
-        Kudos: {review.votes + addedKudos}
+        <FaRegStar /> {review.votes + addedKudos}
       </button>
     </>
   );

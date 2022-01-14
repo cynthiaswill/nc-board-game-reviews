@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { filterReviewsByAuthor } from "../utils/utils";
 import Kudos from "./Kudos";
+import { FaRegCommentAlt } from "react-icons/fa";
 
 export default function Reviews({
   catQueries,
@@ -107,7 +108,7 @@ export default function Reviews({
                   navigate(`/reviews/${review.review_id}`);
                 }}
               >
-                Comments: {review.comment_count}
+                <FaRegCommentAlt /> {review.comment_count}
               </button>
               <Kudos review={review} />
             </section>
