@@ -113,19 +113,19 @@ header {
 }
 
 button:hover:enabled {
-  border: 1px solid #999999;
+  border: 0px solid #999999;
   box-shadow: 0 2px gray;
   transform: translateY(-1px);
 }
 button:active {
-  border: 1px solid #999999;
+  border: 0px solid #999999;
   background-color: white;
   box-shadow: 0 2px gray;
   transform: translateY(1px);
 }
 
 button:disabled {
-  border: 1px solid #999999;
+  border: 0px solid #999999;
   background-color: darkslateblue;
   color: white;
 }
