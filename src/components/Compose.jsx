@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
+import TextField from "@material-ui/core/TextField";
 
 export default function Compose({ categories, setCategories }) {
   const { user, isLogged } = useContext(UserContext);
@@ -121,7 +122,6 @@ export default function Compose({ categories, setCategories }) {
           <>
             {needNewCat ? (
               <section>
-                <br />
                 <form
                   onSubmit={submitCategory}
                   style={{
@@ -130,12 +130,14 @@ export default function Compose({ categories, setCategories }) {
                   }}
                 >
                   <div className="yes-or-no">
-                    <input
-                      type="text"
-                      size="23"
-                      placeholder="enter new category name..."
-                      name="slug"
-                      style={{ alignSelf: "center" }}
+                    <TextField
+                      size="small"
+                      label="Enter new category name..."
+                      inputProps={{ style: { fontSize: 12, marginTop: 5 } }}
+                      InputLabelProps={{
+                        style: { fontSize: 12, marginTop: 5 },
+                      }}
+                      style={{ width: 175, alignSelf: "center", marginRight: 10 }}
                       onChange={(event) => {
                         setNewCategory((current) => {
                           return {
@@ -163,12 +165,12 @@ export default function Compose({ categories, setCategories }) {
                       required
                       maxLength="25"
                     />
-                    <input
-                      type="text"
-                      size="23"
-                      placeholder="please give a description..."
-                      name="description"
-                      style={{ alignSelf: "center" }}
+                    <TextField
+                      size="small"
+                      label="Please give a description..."
+                      inputProps={{ style: { fontSize: 12, marginTop: 5 } }}
+                      InputLabelProps={{ style: { fontSize: 12, marginTop: 5 } }}
+                      style={{ width: 175, alignSelf: "center", marginLeft: 10 }}
                       onChange={(event) => {
                         setNewCategory((current) => {
                           return {
