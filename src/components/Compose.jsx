@@ -240,7 +240,7 @@ export default function Compose({ categories, setCategories }) {
                   InputLabelProps={{ style: { fontSize: 12 } }}
                   style={{
                     marginTop: 0,
-                    width: 180,
+                    width: 160,
                     alignSelf: "center",
                   }}
                   onChange={(event) => {
