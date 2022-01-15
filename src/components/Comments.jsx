@@ -7,6 +7,7 @@ import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import Likes from "./Likes";
+import CommentAuthorIcon from "./CommentAuthorIcon";
 
 export default function Comments({
   comments,
@@ -65,6 +66,7 @@ export default function Comments({
           <div className="comment-box" key={comment.comment_id}>
             <span className="author">
               <Link to={`/users/${comment.author}`} className="author-link">
+                <CommentAuthorIcon comment={comment} />
                 {comment.author}
               </Link>{" "}
               said:
