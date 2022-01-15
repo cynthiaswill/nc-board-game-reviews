@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
+import { FaPencilAlt } from "react-icons/fa";
 
 export default function Nav({
   catQueries,
@@ -112,7 +113,7 @@ export default function Nav({
         </div>
         <div id="flex-in-nav">
           <Link to="/compose" id="compose-link">
-            Compose!
+            <FaPencilAlt /> Compose!
           </Link>
           <div className="selectors-in-nav">
             <select
@@ -247,7 +248,7 @@ export default function Nav({
             </Link>
           )}
           <Link to="/compose" id="narrow-compose-link">
-            Compose!
+            <FaPencilAlt /> Compose!
           </Link>
           {isLogged ? (
             <Link
