@@ -6,6 +6,7 @@ import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { FaPencilAlt } from "react-icons/fa";
 import { GiEntryDoor, GiExitDoor } from "react-icons/gi";
+import { AiOutlineForm } from "react-icons/ai";
 
 export default function Nav({
   catQueries,
@@ -298,7 +299,9 @@ export default function Nav({
             ></img>
           </div>
         ) : (
-          <Link to="/sign-up">Sign Up</Link>
+          <Link to="/sign-up">
+            <AiOutlineForm /> Sign Up
+          </Link>
         )}
         {showPagination ? (
           <button
