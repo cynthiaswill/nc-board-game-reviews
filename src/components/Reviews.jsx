@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { filterReviewsByAuthor } from "../utils/utils";
 import Kudos from "./Kudos";
-import { FaRegCommentAlt } from "react-icons/fa";
+import { FaRegCommentAlt, FaRegCalendar, FaRegCalendarAlt } from "react-icons/fa";
 
 export default function Reviews({
   catQueries,
@@ -93,7 +93,8 @@ export default function Reviews({
                   </Link>
                 </span>
                 <span className="date-posted-in-reviews">
-                  Date posted: {review.created_at.slice(0, 19).replaceAll("T", " at ")}
+                  <FaRegCalendarAlt />{" "}
+                  {review.created_at.slice(0, 19).replaceAll("T", " at ")}
                 </span>
                 <br />
               </div>

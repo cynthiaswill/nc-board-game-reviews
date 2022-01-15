@@ -9,7 +9,13 @@ import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { numArr, setVisibility } from "../utils/utils";
 import Comments from "./Comments";
-import { FaRegCommentAlt, FaRegStar, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
+import {
+  FaRegCommentAlt,
+  FaRegStar,
+  FaRegEdit,
+  FaRegTrashAlt,
+  FaRegCalendarAlt,
+} from "react-icons/fa";
 import { BiCommentAdd } from "react-icons/bi";
 
 export default function Review() {
@@ -96,7 +102,8 @@ export default function Review() {
               </Link>
               <br />
               <span className="data-stamp">
-                Date posted: {review.created_at.slice(0, 19).replaceAll("T", " at ")}
+                <FaRegCalendarAlt />{" "}
+                {review.created_at.slice(0, 19).replaceAll("T", " at ")}
               </span>
             </div>
             <br />
