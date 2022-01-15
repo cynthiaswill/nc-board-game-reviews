@@ -22,7 +22,7 @@ export default function Likes({ comment }) {
           setHasVoted(true);
         }}
       >
-        <FaHeart /> {comment.votes + addedLikes}
+        <FaHeart className="starIcon" /> {comment.votes + addedLikes}
       </button>
     </>
   );

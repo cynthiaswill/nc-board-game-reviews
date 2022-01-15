@@ -22,7 +22,7 @@ export default function Kudos({ review }) {
           setHasVoted(true);
         }}
       >
-        <FaRegStar /> {review.votes + addedKudos}
+        <FaRegStar className="starIcon" /> {review.votes + addedKudos}
       </button>
     </>
   );

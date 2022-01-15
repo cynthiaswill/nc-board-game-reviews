@@ -91,7 +91,7 @@ export default function Comments({
                   openWindowRef.current.scrollIntoView({ behavior: "smooth" });
                 }}
               >
-                <FaRegEdit />
+                <FaRegEdit className="commentIcon" />
               </button>
               <button
                 disabled={!!(user.username !== comment.author)}
@@ -112,7 +112,7 @@ export default function Comments({
                 }}
                 className="delete-comment-button"
               >
-                <FaRegTrashAlt />
+                <FaRegTrashAlt className="commentIcon" />
               </button>
               <Likes comment={comment} />
             </div>

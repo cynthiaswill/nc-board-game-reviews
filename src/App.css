@@ -279,7 +279,7 @@ textarea {
   font-size: small;
 }
 
-@keyframes updown {
+@keyframes down20 {
   0% {
     transform: translateY(20%);
   }
@@ -293,6 +293,28 @@ textarea {
   }
 }
 
+@keyframes down10 {
+  0% {
+    transform: translateY(10%);
+  }
+
+  50% {
+    transform: translateY(10%);
+  }
+
+  100% {
+    transform: translateY(10%);
+  }
+}
+
 .navIcon {
-  animation: updown 2s ease infinite;
+  animation: down20 2s ease infinite;
+}
+
+.commentIcon {
+  animation: down10 2s ease infinite;
+}
+
+.starIcon {
+  animation: down10 2s ease infinite;
 }

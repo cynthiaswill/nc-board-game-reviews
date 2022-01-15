@@ -113,7 +113,7 @@ export default function Reviews({
                   navigate(`/reviews/${review.review_id}`);
                 }}
               >
-                <FaRegCommentAlt /> {review.comment_count}
+                <FaRegCommentAlt className="commentIcon" /> {review.comment_count}
               </button>
               <Kudos review={review} />
             </section>

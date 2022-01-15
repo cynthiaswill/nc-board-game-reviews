@@ -134,7 +134,7 @@ export default function Review() {
         </section>
         <section>
           <button className="comments-button" onClick={gotoServices}>
-            <FaRegCommentAlt /> {review.comment_count}
+            <FaRegCommentAlt className="commentIcon" /> {review.comment_count}
           </button>
           <button
             className="edit-review-button"
@@ -142,7 +142,7 @@ export default function Review() {
             style={{ visibility: `${setVisibility(!!(user.username !== review.owner))}` }}
             onClick={gotoEditReview}
           >
-            <FaRegEdit />
+            <FaRegEdit className="commentIcon" />
           </button>
           <button
             className="delete-review-button"
@@ -150,7 +150,7 @@ export default function Review() {
             style={{ visibility: `${setVisibility(!!(user.username !== review.owner))}` }}
             onClick={deleteReview}
           >
-            <FaRegTrashAlt />
+            <FaRegTrashAlt className="commentIcon" />
           </button>
           <button
             className="kudos-button"
@@ -163,7 +163,7 @@ export default function Review() {
               setHasVoted(true);
             }}
           >
-            <FaRegStar /> {review.votes + addedKudos}
+            <FaRegStar className="starIcon" /> {review.votes + addedKudos}
           </button>
         </section>
       </div>
@@ -171,7 +171,7 @@ export default function Review() {
         <div ref={servicesRef}>
           <div className="comments-sub-bar">
             <button onClick={gotoAddComment} className="add-comment-button">
-              <BiCommentAdd style={{ fontSize: 15 }} /> comment
+              <BiCommentAdd style={{ fontSize: 15 }} className="commentIcon" /> comment
             </button>
             <div>
               <button
