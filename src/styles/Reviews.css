@@ -25,6 +25,9 @@
   margin: 5px;
   overflow: hidden;
   position: relative;
+  background: linear-gradient(to bottom, black, black, black, lightgrey);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 
 .read-more {
