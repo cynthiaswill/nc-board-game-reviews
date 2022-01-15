@@ -25,9 +25,10 @@
   margin: 5px;
   overflow: hidden;
   position: relative;
-  /* background-image: linear-gradient(to bottom, black, black, black, lightgrey);
+  background-image: linear-gradient(to bottom, black, black, black, lightgrey);
   background-clip: text;
-  color: transparent; */
+  color: transparent;
+  text-shadow: 0px 0px #00000000;
 }
 
 .read-more {
