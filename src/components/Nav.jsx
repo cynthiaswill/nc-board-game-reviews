@@ -5,6 +5,7 @@ import { useEffect, useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { FaPencilAlt } from "react-icons/fa";
+import { GiEntryDoor, GiExitDoor } from "react-icons/gi";
 
 export default function Nav({
   catQueries,
@@ -113,7 +114,7 @@ export default function Nav({
         </div>
         <div id="flex-in-nav">
           <Link to="/compose" id="compose-link">
-            <FaPencilAlt /> Compose!
+            <FaPencilAlt className="navIcon" /> Compose!
           </Link>
           <div className="selectors-in-nav">
             <select
@@ -240,15 +241,15 @@ export default function Nav({
                 setUser({});
               }}
             >
-              Logout
+              Logout <GiEntryDoor className="navIcon" />
             </Link>
           ) : (
             <Link to="/users" id="login-link">
-              Login
+              Login <GiExitDoor className="navIcon" />
             </Link>
           )}
           <Link to="/compose" id="narrow-compose-link">
-            <FaPencilAlt /> Compose!
+            <FaPencilAlt className="navIcon" /> Compose!
           </Link>
           {isLogged ? (
             <Link
@@ -258,11 +259,11 @@ export default function Nav({
                 setUser({});
               }}
             >
-              Logout
+              Logout <GiEntryDoor className="navIcon" />
             </Link>
           ) : (
             <Link to="/users" id="narrow-login-link">
-              Login
+              Login <GiExitDoor className="navIcon" />
             </Link>
           )}
         </div>
