@@ -1,5 +1,5 @@
 import "../styles/Review.css";
-import { getReviewById, incKudos, deleteReviewById } from "../utils/api";
+import { getReviewById, incKudos, deleteReviewById, getUser } from "../utils/api";
 import { useEffect, useState, useContext, useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import PostComment from "./PostComment";
@@ -34,6 +34,7 @@ export default function Review() {
   const [isReloading, setIsReloading] = useState(false);
   const [hasVoted, setHasVoted] = useState(false);
   const [page, setPage] = useState(1);
+  const [viewedUser, setViewedUser] = useState({});
 
   const { review_id } = useParams();
   const servicesRef = useRef(null);
@@ -67,6 +68,19 @@ export default function Review() {
         setReview(data.review);
         setIsLoading(false);
         setIsReloading(false);
+        return data.review.owner;
+      })
+      .then((owner) => {
+        getUser(owner)
+          .then(({ data }) => {
+            setViewedUser(data.user);
+          })
+          .catch((err) => {
+            if (err) {
+              setError(err.response.status);
+              navigate("/error");
+            }
+          });
       })
       .catch((err) => {
         if (err) {
@@ -103,6 +117,11 @@ export default function Review() {
               Author:{" "}
               <Link to={`/users/${review.owner}`} className="author-link">
                 {review.owner}
+                <img
+                  className="user-icon"
+                  src={viewedUser.avatar_url}
+                  alt={viewedUser.username}
+                />
               </Link>
               <br />
               <span className="data-stamp">
