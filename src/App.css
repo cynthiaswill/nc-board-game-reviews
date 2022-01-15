@@ -190,12 +190,22 @@ button {
   color: black;
   font-style: italic;
   font-family: papyrus;
+  transition: transform 0.2s;
+}
+
+#compose-link:hover {
+  transform: scale(1.2);
 }
 
 #login-link {
   font-weight: bold;
   color: black;
   font-family: papyrus;
+  transition: transform 0.2s;
+}
+
+#login-link:hover {
+  transform: scale(1.2);
 }
 
 #narrow-compose-link {
@@ -205,6 +215,11 @@ button {
   font-family: papyrus;
   font-style: italic;
   margin-left: 5px;
+  transition: transform 0.2s;
+}
+
+#narrow-compose-link:hover {
+  transform: scale(1.2);
 }
 
 #narrow-login-link {
@@ -215,6 +230,20 @@ button {
   color: black;
   flex-grow: 1;
   margin-right: 5px;
+}
+
+#narrow-login-text {
+  text-align: right;
+  float: right;
+  font-weight: bold;
+  font-family: papyrus;
+  color: black;
+  margin-right: 5px;
+  transition: transform 0.2s;
+}
+
+#narrow-login-text:hover {
+  transform: scale(1.2);
 }
 
 .user-icon {

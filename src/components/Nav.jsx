@@ -253,19 +253,23 @@ export default function Nav({
             <FaPencilAlt className="navIcon" /> Compose!
           </Link>
           {isLogged ? (
-            <Link
-              to="/"
-              id="narrow-login-link"
-              onClick={() => {
-                setUser({});
-              }}
-            >
-              Logout <GiEntryDoor className="navIcon" />
-            </Link>
+            <div id="narrow-login-link">
+              <Link
+                to="/"
+                id="narrow-login-text"
+                onClick={() => {
+                  setUser({});
+                }}
+              >
+                Logout <GiEntryDoor className="navIcon" />
+              </Link>
+            </div>
           ) : (
-            <Link to="/users" id="narrow-login-link">
-              Login <GiExitDoor className="navIcon" />
-            </Link>
+            <div id="narrow-login-link">
+              <Link to="/users" id="narrow-login-text">
+                Login <GiExitDoor className="navIcon" />
+              </Link>
+            </div>
           )}
         </div>
       </nav>

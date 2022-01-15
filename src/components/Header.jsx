@@ -16,7 +16,7 @@ export default function Header({ setReset }) {
             setReset(true);
           }}
         >
-          <Tilt perspective={500} scale={1.05}>
+          <Tilt perspective={500} scale={1.1}>
             <div
               style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
             >
