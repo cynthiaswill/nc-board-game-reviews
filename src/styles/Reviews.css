@@ -25,9 +25,9 @@
   margin: 5px;
   overflow: hidden;
   position: relative;
-  background-image: linear-gradient(to bottom, black, black, black, lightgrey);
+  /* background-image: linear-gradient(to bottom, black, black, black, lightgrey);
   background-clip: text;
-  color: transparent;
+  color: transparent; */
 }
 
 .read-more {
