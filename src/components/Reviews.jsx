@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { filterReviewsByAuthor } from "../utils/utils";
 import Kudos from "./Kudos";
-import { FaRegCommentAlt, FaRegCalendar, FaRegCalendarAlt } from "react-icons/fa";
+import { FaRegCommentAlt, FaRegCalendarAlt } from "react-icons/fa";
 
 export default function Reviews({
   catQueries,
