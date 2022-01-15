@@ -55,7 +55,11 @@ export default function Reviews({
   ]);
 
   if (isLoading === true) {
-    return <h2>Loading...</h2>;
+    return (
+      <h2>
+        <i className="fa fa-cog fa-spin" style={{ fontSize: 20 }} /> Loading...
+      </h2>
+    );
   }
   return (
     <main className="main">

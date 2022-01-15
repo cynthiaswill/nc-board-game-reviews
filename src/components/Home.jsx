@@ -30,7 +30,8 @@ export default function Home() {
         <div className="welcome">
           <h2>Welcome to NC Board Game Reviews</h2>
           <p style={{ fontWeight: "bold" }}>
-            redirecting to reviews after {counter} seconds ...
+            <i className="fa fa-cog fa-spin" /> redirecting to reviews after {counter}{" "}
+            seconds ...
           </p>
         </div>
       )}
