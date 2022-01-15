@@ -6,7 +6,7 @@ import Particles from "react-tsparticles";
 export default function Header({ setReset }) {
   const navigate = useNavigate();
   const particleOptions = {
-    fpsLimit: 60,
+    fpsLimit: 30,
     particles: {
       links: {
         enable: true,
@@ -25,9 +25,6 @@ export default function Header({ setReset }) {
           area: 500,
         },
         value: 80,
-      },
-      opacity: {
-        value: 0.5,
       },
       size: {
         random: true,
