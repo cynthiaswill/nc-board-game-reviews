@@ -71,10 +71,12 @@ export default function Comments({
               </Link>{" "}
               said:
             </span>
-            <p>{comment.body}</p>
-            <span className="date-posted">
-              {comment.created_at.slice(0, 19).replaceAll("T", " at ")}
-            </span>
+            <div style={{ paddingLeft: "9px" }}>
+              <p>{comment.body}</p>
+              <span className="date-posted">
+                {comment.created_at.slice(0, 19).replaceAll("T", " at ")}
+              </span>
+            </div>
 
             <div className="button-container">
               <button
