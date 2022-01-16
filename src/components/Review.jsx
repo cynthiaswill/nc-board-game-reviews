@@ -135,6 +135,7 @@ export default function Review() {
         <section>
           <button className="comments-button" onClick={gotoServices}>
             <FaRegCommentAlt className="commentIcon" /> {review.comment_count}
+            <span className="commentsTooltipText">scroll to comments</span>
           </button>
           <button
             className="edit-review-button"
@@ -172,6 +173,7 @@ export default function Review() {
           <div className="comments-sub-bar">
             <button onClick={gotoAddComment} className="add-comment-button">
               <BiCommentAdd style={{ fontSize: 15 }} className="commentIcon" /> comment
+              <span className="commentsTooltipText">post new comment</span>
             </button>
             <div>
               <button

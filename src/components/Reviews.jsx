@@ -114,6 +114,7 @@ export default function Reviews({
                 }}
               >
                 <FaRegCommentAlt className="commentIcon" /> {review.comment_count}
+                <span className="commentsTooltipText">view comments</span>
               </button>
               <Kudos review={review} />
             </section>

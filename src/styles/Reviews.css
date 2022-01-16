@@ -83,6 +83,28 @@
 
 .comments-button {
   float: left;
+  position: relative;
+}
+
+.comments-button .commentsTooltipText {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  width: 120px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -20px;
+}
+
+.comments-button:hover .commentsTooltipText {
+  visibility: visible;
 }
 
 .kudos-button {
