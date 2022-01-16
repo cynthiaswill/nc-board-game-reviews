@@ -321,3 +321,11 @@ textarea {
 .starIcon {
   animation: down10 2s ease infinite;
 }
+
+#sign-up-link {
+  transition: transform 0.2s;
+}
+
+#sign-up-link:hover {
+  transform: scale(1.1);
+}

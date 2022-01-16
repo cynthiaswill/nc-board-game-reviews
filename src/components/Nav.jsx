@@ -303,7 +303,7 @@ export default function Nav({
             ></img>
           </div>
         ) : (
-          <Link to="/sign-up">
+          <Link to="/sign-up" id="sign-up-link">
             <AiOutlineForm /> Sign Up
           </Link>
         )}
