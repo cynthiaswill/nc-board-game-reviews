@@ -168,11 +168,13 @@
 .review-title-link {
   color: white;
   text-shadow: 0 0 3px black, 0 0 3px black;
+  text-decoration: none;
 }
 
 .review-title-link:hover {
   color: black;
   text-shadow: 0 0 4px grey;
+  text-decoration: none;
 }
 
 .read-more:hover {
