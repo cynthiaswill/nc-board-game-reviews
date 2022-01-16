@@ -144,6 +144,7 @@ export default function Review() {
             onClick={gotoEditReview}
           >
             <FaRegEdit className="commentIcon" />
+            <span className="editTooltipText">edit this review</span>
           </button>
           <button
             className="delete-review-button"
@@ -152,6 +153,7 @@ export default function Review() {
             onClick={deleteReview}
           >
             <FaRegTrashAlt className="commentIcon" />
+            <span className="deleteTooltipText">delete this review</span>
           </button>
           <button
             className="kudos-button"

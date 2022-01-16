@@ -94,6 +94,7 @@ export default function Comments({
                 }}
               >
                 <FaRegEdit className="commentIcon" />
+                <span className="editCommentTooltipText">edit this comment</span>
               </button>
               <button
                 disabled={!!(user.username !== comment.author)}
@@ -115,6 +116,7 @@ export default function Comments({
                 className="delete-comment-button"
               >
                 <FaRegTrashAlt className="commentIcon" />
+                <span className="deleteCommentTooltipText">delete this comment</span>
               </button>
               <Likes comment={comment} />
             </div>

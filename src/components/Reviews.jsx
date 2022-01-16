@@ -108,7 +108,7 @@ export default function Reviews({
             </Link>
             <section>
               <button
-                className="comments-button"
+                className="view-comments-button"
                 onClick={() => {
                   navigate(`/reviews/${review.review_id}`);
                 }}
