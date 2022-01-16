@@ -11,7 +11,7 @@ button {
 .main-container {
   grid-area: main;
   background: grey;
-  max-width: 1100px;
+  max-width: 825px;
   margin: 0 auto;
   border-radius: 5px;
 }
@@ -45,7 +45,7 @@ button {
 }
 
 #review-writing-box {
-  width: 60vw;
+  width: 55vw;
 }
 
 .validation {
