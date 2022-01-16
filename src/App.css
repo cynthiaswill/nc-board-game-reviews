@@ -127,13 +127,13 @@ header {
 button:hover:enabled {
   border: 0px solid #999999;
   box-shadow: 0 2px gray;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 button:active {
   border: 0px solid #999999;
   background-color: white;
   box-shadow: 0 2px gray;
-  transform: translateY(1px);
+  transform: translateY(2px);
 }
 
 button:disabled {
@@ -177,7 +177,8 @@ button {
   border-radius: 5px;
   color: white;
   background-color: rgb(70, 70, 70);
-  padding: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
   font-weight: normal;
   font-size: 1.1em;
 }
