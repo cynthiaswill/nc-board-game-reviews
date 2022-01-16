@@ -338,4 +338,5 @@ textarea {
 
 #sign-up-link:hover {
   transform: scale(1.1);
+  filter: drop-shadow(10px 14px 1px rgb(0 0 0 / 1));
 }
