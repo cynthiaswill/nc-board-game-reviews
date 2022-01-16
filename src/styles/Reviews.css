@@ -3,11 +3,13 @@
   margin: 5px;
   color: white;
   text-shadow: 0 0 4px black;
+  filter: drop-shadow(3px 5px 1px rgb(0 0 0 / 0.6));
 }
 
 .category-description {
   font-style: italic;
   margin: 5px;
+  filter: drop-shadow(2px 4px 1px rgb(0 0 0 / 0.5));
 }
 
 .review-item {
