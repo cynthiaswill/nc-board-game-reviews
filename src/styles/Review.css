@@ -16,10 +16,10 @@
   position: relative;
 }
 
-.review-title {
+.review-title-in-review {
   margin: 0px auto;
-  color: black;
-  text-shadow: 0 0 4px grey;
+  color: rgb(50, 50, 50);
+  font-size: 1.4rem;
 }
 
 .slug-name {

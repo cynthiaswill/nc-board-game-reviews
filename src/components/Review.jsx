@@ -102,7 +102,7 @@ export default function Review() {
     <main className="main">
       <div key={review.review_id} className="single-review-item">
         <section className="single-review-content">
-          <h3 className="review-title">{review.title}</h3>
+          <h3 className="review-title-in-review">{review.title}</h3>
           <span className="slug-name">Category: {review.category}</span>{" "}
           <span className="designer-name">Designer: {review.designer}</span>
           <br />
