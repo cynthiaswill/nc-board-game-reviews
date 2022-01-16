@@ -292,7 +292,7 @@ export default function Nav({
           <div>
             <span>
               Hello!{" "}
-              <Link to={`/users/${user.username}`} className="user-link">
+              <Link to={`/users/${user.username}`} className="author-link">
                 {user.username}
               </Link>
             </span>
