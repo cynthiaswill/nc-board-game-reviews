@@ -109,6 +109,49 @@
 
 .kudos-button {
   float: right;
+  position: relative;
+}
+
+.kudos-button .kudosTooltipText {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  width: 150px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -125px;
+}
+
+.kudos-button:hover:enabled .kudosTooltipText {
+  visibility: visible;
+}
+
+.kudos-button .kudosDisabledTooltipText {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  width: 200px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -175px;
+}
+
+.kudos-button:hover:disabled .kudosDisabledTooltipText {
+  visibility: visible;
 }
 
 .page-number-in-reviews {

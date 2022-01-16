@@ -23,6 +23,8 @@ export default function Kudos({ review }) {
         }}
       >
         <FaRegStar className="starIcon" /> {review.votes + addedKudos}
+        <span className="kudosTooltipText">click to like this review</span>
+        <span className="kudosDisabledTooltipText">you already liked this review</span>
       </button>
     </>
   );

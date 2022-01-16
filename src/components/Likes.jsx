@@ -23,6 +23,8 @@ export default function Likes({ comment }) {
         }}
       >
         <FaHeart className="starIcon" /> {comment.votes + addedLikes}
+        <span className="likesTooltipText">click to heart this comment</span>
+        <span className="likesDisabledTooltipText">you already hearted this comment</span>
       </button>
     </>
   );
