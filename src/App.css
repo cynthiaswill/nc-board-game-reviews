@@ -178,7 +178,8 @@ button {
   color: white;
   background-color: rgb(70, 70, 70);
   padding: 2px;
-  font-size: 1.05em;
+  font-weight: normal;
+  font-size: 1.1em;
 }
 
 .category-title {
