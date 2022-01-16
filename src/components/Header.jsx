@@ -56,7 +56,7 @@ export default function Header({ setReset }) {
                   justifyContent: "center",
                 }}
               >
-                <FaHome style={{ paddingBottom: "5px", alignSelf: "center" }} />
+                <FaHome className="title-house" />
               </div>
               <div id="header-text">Board Game Reviews</div>
             </div>

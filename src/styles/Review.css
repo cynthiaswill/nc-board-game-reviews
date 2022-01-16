@@ -18,6 +18,8 @@
 
 .review-title {
   margin: 0px auto;
+  color: black;
+  text-shadow: 0 0 4px grey;
 }
 
 .slug-name {

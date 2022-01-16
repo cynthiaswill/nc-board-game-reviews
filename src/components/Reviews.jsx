@@ -74,7 +74,10 @@ export default function Reviews({
           <div key={review.review_id} className="review-item">
             <section className="review-card">
               <h3 className="review-title">
-                <Link to={`/reviews/${review.review_id}`}> {review.title} </Link>
+                <Link to={`/reviews/${review.review_id}`} className="review-title-link">
+                  {" "}
+                  {review.title}{" "}
+                </Link>
               </h3>
               <span className="slug-name-in-reviews">Category: {review.category}</span>{" "}
               <span className="designer-name-in-reviews">

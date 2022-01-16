@@ -113,6 +113,14 @@ header {
   color: white;
   font-family: papyrus;
   margin-left: 10px;
+  text-shadow: 0 0 4px black, 0 0 5px black;
+}
+
+.title-house {
+  padding-bottom: 5px;
+  align-self: center;
+  color: white;
+  text-shadow: 0 0 4px black, 0 0 5px black;
 }
 
 button:hover:enabled {

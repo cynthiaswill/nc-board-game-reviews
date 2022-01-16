@@ -1,6 +1,8 @@
 .category-title {
   font-style: italic;
   margin: 5px;
+  color: white;
+  text-shadow: 0 0 4px black;
 }
 
 .category-description {
@@ -35,6 +37,7 @@
   margin-left: 10px;
   margin-bottom: 5px;
   font-size: small;
+  color: black;
 }
 
 .review-title {
@@ -158,4 +161,24 @@
   float: right;
   margin-right: 10px;
   font-size: smaller;
+}
+
+.review-title-link {
+  color: white;
+  text-shadow: 0 0 4px black, 0 0 5px black;
+}
+
+.review-title-link:hover {
+  color: black;
+  text-shadow: 0 0 4px grey, 0 0 5px grey;
+}
+
+.read-more:hover {
+  color: white;
+  text-shadow: 0 0 4px black, 0 0 5px black;
+}
+
+.author-link:hover {
+  color: white;
+  text-shadow: 0 0 4px black, 0 0 5px black;
 }
