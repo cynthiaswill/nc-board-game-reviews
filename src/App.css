@@ -168,7 +168,17 @@ button {
   margin: 5px;
   font-size: small;
   font-weight: bold;
-  text-shadow: 0 0 3px white, 0 0 5px white;
+  color: rgb(70, 70, 70);
+  transition: transform 0.2s;
+}
+
+.category-links:hover {
+  transform: scale(1.2);
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(70, 70, 70);
+  padding: 2px;
+  font-size: 1.05em;
 }
 
 .category-title {
