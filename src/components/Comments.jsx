@@ -5,7 +5,7 @@ import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
-import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
+import { FaRegEdit, FaRegTrashAlt, FaPenNib } from "react-icons/fa";
 import Likes from "./Likes";
 import CommentAuthorIcon from "./CommentAuthorIcon";
 
@@ -74,7 +74,7 @@ export default function Comments({
             <div style={{ paddingLeft: "9px" }}>
               <p>{comment.body}</p>
               <span className="date-posted">
-                {comment.created_at.slice(0, 19).replaceAll("T", " at ")}
+                <FaPenNib /> {comment.created_at.slice(0, 19).replaceAll("T", " at ")}
               </span>
             </div>
 

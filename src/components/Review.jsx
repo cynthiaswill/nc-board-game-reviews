@@ -15,6 +15,7 @@ import {
   FaRegEdit,
   FaRegTrashAlt,
   FaRegCalendarAlt,
+  FaPenNib,
 } from "react-icons/fa";
 import { BiCommentAdd } from "react-icons/bi";
 
@@ -125,6 +126,7 @@ export default function Review() {
               </Link>
               <br />
               <span className="data-stamp">
+                <FaPenNib />
                 <FaRegCalendarAlt />{" "}
                 {review.created_at.slice(0, 19).replaceAll("T", " at ")}
               </span>
