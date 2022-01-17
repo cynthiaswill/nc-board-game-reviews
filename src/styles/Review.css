@@ -17,9 +17,11 @@
 }
 
 .review-title-in-review {
-  margin: 0px auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: rgb(50, 50, 50);
   font-size: 1.4rem;
+  align-self: flex-start;
 }
 
 .slug-name {

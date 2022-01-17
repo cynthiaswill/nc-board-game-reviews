@@ -43,7 +43,9 @@
 }
 
 .review-title {
-  margin: 0px auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  align-self: flex-start;
 }
 
 .slug-name-in-reviews {
@@ -188,4 +190,60 @@
   color: white;
   text-shadow: 0 0 4px black, 0 0 5px black;
   font-size: 1.1em;
+}
+
+.review-title-row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.watch-toggle {
+  align-self: flex-end;
+}
+
+.watch-button {
+  position: relative;
+}
+
+.watch-button .openedEyeTooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  width: 175px;
+  bottom: 0%;
+  left: 50%;
+  margin-left: -190px;
+}
+
+.watch-button .closedEyeTooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  width: 160px;
+  bottom: 0%;
+  left: 50%;
+  margin-left: -175px;
+}
+
+.watch-button:hover .openedEyeTooltip {
+  visibility: visible;
+}
+
+.watch-button:hover .closedEyeTooltip {
+  visibility: visible;
 }

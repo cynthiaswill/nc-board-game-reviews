@@ -343,6 +343,10 @@ textarea {
   animation: down10 2s ease infinite;
 }
 
+.eyeIcon {
+  animation: down10 2s ease infinite;
+}
+
 #sign-up-link {
   transition: transform 0.2s;
   text-decoration: none;

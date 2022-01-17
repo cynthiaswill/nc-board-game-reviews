@@ -18,6 +18,7 @@ import {
   FaPenNib,
 } from "react-icons/fa";
 import { BiCommentAdd } from "react-icons/bi";
+import WatchToggle from "./WatchToggle";
 
 export default function Review() {
   const { user, isLogged } = useContext(UserContext);
@@ -103,7 +104,10 @@ export default function Review() {
     <main className="main">
       <div key={review.review_id} className="single-review-item">
         <section className="single-review-content">
-          <h3 className="review-title-in-review">{review.title}</h3>
+          <div className="review-title-row">
+            <h3 className="review-title-in-review">{review.title}</h3>
+            <WatchToggle className="watch-toggle" />
+          </div>
           <span className="slug-name">Category: {review.category}</span>{" "}
           <span className="designer-name">Designer: {review.designer}</span>
           <br />

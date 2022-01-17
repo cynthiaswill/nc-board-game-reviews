@@ -4,8 +4,9 @@ import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { filterReviewsByAuthor } from "../utils/utils";
-import Kudos from "./Kudos";
 import { FaRegCommentAlt, FaRegCalendarAlt } from "react-icons/fa";
+import Kudos from "./Kudos";
+import WatchToggle from "./WatchToggle";
 
 export default function Reviews({
   catQueries,
@@ -73,12 +74,15 @@ export default function Reviews({
         return (
           <div key={review.review_id} className="review-item">
             <section className="review-card">
-              <h3 className="review-title">
-                <Link to={`/reviews/${review.review_id}`} className="review-title-link">
-                  {" "}
-                  {review.title}{" "}
-                </Link>
-              </h3>
+              <div className="review-title-row">
+                <h3 className="review-title">
+                  <Link to={`/reviews/${review.review_id}`} className="review-title-link">
+                    {" "}
+                    {review.title}{" "}
+                  </Link>
+                </h3>
+                <WatchToggle className="watch-toggle" />
+              </div>
               <span className="slug-name-in-reviews">Category: {review.category}</span>{" "}
               <span className="designer-name-in-reviews">
                 Designer: {review.designer}
