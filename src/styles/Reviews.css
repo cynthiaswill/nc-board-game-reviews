@@ -220,11 +220,10 @@
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
-  /* Position the tooltip */
   position: absolute;
   z-index: 1;
   width: 175px;
-  bottom: 0%;
+  bottom: -10%;
   left: 50%;
   margin-left: -190px;
 }
@@ -237,11 +236,10 @@
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
-  /* Position the tooltip */
   position: absolute;
   z-index: 1;
   width: 160px;
-  bottom: 0%;
+  bottom: -10%;
   left: 50%;
   margin-left: -175px;
 }
