@@ -11,7 +11,7 @@ export default function WatchToggle() {
           onClick={() => {
             setIsWatched(false);
           }}
-          className="watch-button"
+          className="watched-button"
         >
           <FaEye className="eyeIcon" />
           <span className="openedEyeTooltip">click to unwatch this review</span>

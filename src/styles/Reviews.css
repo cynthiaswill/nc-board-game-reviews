@@ -206,7 +206,13 @@
   position: relative;
 }
 
-.watch-button .openedEyeTooltip {
+.watched-button {
+  position: relative;
+  color: white;
+  background: darkslateblue;
+}
+
+.watched-button .openedEyeTooltip {
   visibility: hidden;
   width: 120px;
   background-color: rgb(70, 70, 70);
@@ -240,7 +246,7 @@
   margin-left: -175px;
 }
 
-.watch-button:hover .openedEyeTooltip {
+.watched-button:hover .openedEyeTooltip {
   visibility: visible;
 }
 
