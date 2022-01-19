@@ -81,7 +81,9 @@ export default function Reviews({
                     {review.title}{" "}
                   </Link>
                 </h3>
-                <WatchToggle className="watch-toggle" />
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <WatchToggle className="watch-toggle" />
+                </div>
               </div>
               <span className="slug-name-in-reviews">Category: {review.category}</span>{" "}
               <span className="designer-name-in-reviews">

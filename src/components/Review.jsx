@@ -106,7 +106,9 @@ export default function Review() {
         <section className="single-review-content">
           <div className="review-title-row">
             <h3 className="review-title-in-review">{review.title}</h3>
-            <WatchToggle className="watch-toggle" />
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <WatchToggle className="watch-toggle" />
+            </div>
           </div>
           <span className="slug-name">Category: {review.category}</span>{" "}
           <span className="designer-name">Designer: {review.designer}</span>
