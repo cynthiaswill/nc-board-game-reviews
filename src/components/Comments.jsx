@@ -35,7 +35,10 @@ export default function Comments({
     setParticleOps((prev) => {
       return {
         ...prev,
-        particles: { ...prev.particles, move: { ...prev.particles.move, enable: false } },
+        particles: {
+          ...prev.particles,
+          links: { ...prev.particles.links, enable: false },
+        },
       };
     });
     getComments({
