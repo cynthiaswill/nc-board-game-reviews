@@ -5,6 +5,7 @@ import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
+import { ParticleContext } from "../contexts/ParticleContext";
 import { FaRegEdit, FaRegTrashAlt, FaPenNib } from "react-icons/fa";
 import Likes from "./Likes";
 import CommentAuthorIcon from "./CommentAuthorIcon";
@@ -27,9 +28,16 @@ export default function Comments({
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const { setParticleOps } = useContext(ParticleContext);
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
+    setParticleOps((prev) => {
+      return {
+        ...prev,
+        particles: { ...prev.particles, move: { ...prev.particles.move, enable: false } },
+      };
+    });
     getComments({
       review_id: `${review_id}`,
       limit: `${limitPerPage}`,
@@ -56,6 +64,7 @@ export default function Comments({
     setComments,
     setError,
     setIsPosting,
+    setParticleOps,
     page,
   ]);
 

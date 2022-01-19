@@ -5,10 +5,13 @@ import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 import TextField from "@material-ui/core/TextField";
+import { ParticleContext } from "../contexts/ParticleContext";
+import { particleOptions } from "../utils/utils";
 
 export default function Compose({ categories, setCategories }) {
   const { user, isLogged } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const { setParticleOps } = useContext(ParticleContext);
   const [newCategory, setNewCategory] = useState({});
   const [newReview, setNewReview] = useState({});
   const [needNewCat, setNeedNewCat] = useState(false);
@@ -20,6 +23,7 @@ export default function Compose({ categories, setCategories }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setParticleOps(particleOptions);
     setNewReview((current) => {
       return { ...current, owner: `${user.username}` };
     });
@@ -33,7 +37,7 @@ export default function Compose({ categories, setCategories }) {
           navigate("/error");
         }
       });
-  }, [newCategory, setCategories, user, navigate, setError]);
+  }, [newCategory, setCategories, user, navigate, setError, setParticleOps]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

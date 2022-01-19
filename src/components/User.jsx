@@ -4,15 +4,19 @@ import { useEffect, useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
+import { ParticleContext } from "../contexts/ParticleContext";
+import { particleOptions } from "../utils/utils";
 
 export default function User() {
   const { setUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const { setParticleOps } = useContext(ParticleContext);
   const navigate = useNavigate();
   const { username } = useParams();
   const [viewedUser, setViewedUser] = useState({});
 
   useEffect(() => {
+    setParticleOps(particleOptions);
     getUser(username)
       .then(({ data }) => {
         setViewedUser(data.user);
@@ -23,7 +27,7 @@ export default function User() {
           navigate("/error");
         }
       });
-  }, [username, setError, navigate]);
+  }, [username, setError, setParticleOps, navigate]);
 
   return (
     <div className="user-container">

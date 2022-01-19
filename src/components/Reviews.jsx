@@ -3,7 +3,8 @@ import { getReviews } from "../utils/api";
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
-import { filterReviewsByAuthor } from "../utils/utils";
+import { ParticleContext } from "../contexts/ParticleContext";
+import { filterReviewsByAuthor, particleOptions } from "../utils/utils";
 import { FaRegCommentAlt, FaRegCalendarAlt } from "react-icons/fa";
 import Kudos from "./Kudos";
 import WatchToggle from "./WatchToggle";
@@ -16,6 +17,7 @@ export default function Reviews({
   setAuthors,
 }) {
   const { setError } = useContext(ErrorContext);
+  const { setParticleOps } = useContext(ParticleContext);
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,6 +25,7 @@ export default function Reviews({
 
   useEffect(() => {
     setIsLoading(true);
+    setParticleOps(particleOptions);
     getReviews(catQueries)
       .then(({ data }) => {
         const authorsArr = data.reviews.map((review) => {
@@ -53,6 +56,7 @@ export default function Reviews({
     reviews.length,
     author,
     setAuthors,
+    setParticleOps,
   ]);
 
   if (isLoading === true) {

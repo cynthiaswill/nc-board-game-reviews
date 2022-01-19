@@ -7,7 +7,8 @@ import EditComment from "./EditComment";
 import EditReview from "./EditReview";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
-import { numArr, setVisibility } from "../utils/utils";
+import { ParticleContext } from "../contexts/ParticleContext";
+import { numArr, particleOptions, setVisibility } from "../utils/utils";
 import Comments from "./Comments";
 import {
   FaRegCommentAlt,
@@ -23,6 +24,7 @@ import WatchToggle from "./WatchToggle";
 export default function Review() {
   const { user, isLogged } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const { setParticleOps } = useContext(ParticleContext);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [addedKudos, setAddedKudos] = useState(0);
@@ -65,6 +67,7 @@ export default function Review() {
 
   useEffect(() => {
     setIsLoading(true);
+    setParticleOps(particleOptions);
     getReviewById(review_id)
       .then(({ data }) => {
         setReview(data.review);
@@ -90,7 +93,7 @@ export default function Review() {
           navigate("/error");
         }
       });
-  }, [review_id, setError, isReloading, navigate]);
+  }, [review_id, setError, isReloading, setParticleOps, navigate]);
 
   if (isLoading === true) {
     return (

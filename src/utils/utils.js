@@ -23,3 +23,31 @@ export const filterReviewsByAuthor = (reviews, author) => {
 export const setVisibility = (isButtonDisabled) => {
   return isButtonDisabled ? "hidden" : "visible";
 };
+
+export const particleOptions = {
+  fpsLimit: 30,
+  particles: {
+    links: {
+      enable: true,
+      distance: 120,
+    },
+    move: {
+      enable: true,
+      speed: 0.5,
+      outModes: {
+        default: "bounce",
+      },
+    },
+    number: {
+      density: {
+        enable: true,
+        area: 500,
+      },
+      value: 80,
+    },
+    size: {
+      random: true,
+      value: 2,
+    },
+  },
+};

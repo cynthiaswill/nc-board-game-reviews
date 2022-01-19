@@ -1,41 +1,17 @@
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import Tilt from "react-parallax-tilt";
 import Particles from "react-tsparticles";
+import { ParticleContext } from "../contexts/ParticleContext";
 
 export default function Header({ setReset }) {
   const navigate = useNavigate();
-  const particleOptions = {
-    fpsLimit: 30,
-    particles: {
-      links: {
-        enable: true,
-        distance: 120,
-      },
-      move: {
-        enable: true,
-        speed: 0.5,
-        outModes: {
-          default: "bounce",
-        },
-      },
-      number: {
-        density: {
-          enable: true,
-          area: 500,
-        },
-        value: 80,
-      },
-      size: {
-        random: true,
-        value: 2,
-      },
-    },
-  };
+  const { particleOps } = useContext(ParticleContext);
 
   return (
     <header>
-      <Particles id="tsparticles" options={particleOptions} />
+      <Particles id="tsparticles" options={particleOps} />
       <h1 className="header">
         <Link
           id="header"

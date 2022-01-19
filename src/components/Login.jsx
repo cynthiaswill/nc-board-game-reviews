@@ -3,16 +3,20 @@ import { useEffect, useState, useContext } from "react";
 import { getUsers } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
+import { ParticleContext } from "../contexts/ParticleContext";
 import UserCardInList from "./UserCardInList";
+import { particleOptions } from "../utils/utils";
 
 export default function Login() {
   const { setError } = useContext(ErrorContext);
+  const { setParticleOps } = useContext(ParticleContext);
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
+    setParticleOps(particleOptions);
     getUsers()
       .then(({ data }) => {
         setUsers(data.users);
@@ -24,7 +28,7 @@ export default function Login() {
           navigate("/error");
         }
       });
-  }, [setError, navigate]);
+  }, [setError, setParticleOps, navigate]);
 
   if (isLoading === true) {
     return (

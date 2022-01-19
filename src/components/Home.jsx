@@ -1,11 +1,15 @@
 import { Navigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ParticleContext } from "../contexts/ParticleContext";
+import { particleOptions } from "../utils/utils";
 
 export default function Home() {
+  const { setParticleOps } = useContext(ParticleContext);
   const [redirect, setRedirect] = useState(false);
   const [counter, setCounter] = useState(3);
 
   useEffect(() => {
+    setParticleOps(particleOptions);
     const counter = setInterval(() => {
       setCounter((current) => {
         return current - 1;
@@ -20,7 +24,7 @@ export default function Home() {
       clearInterval(counter);
       clearTimeout(timer);
     };
-  }, []);
+  }, [setParticleOps]);
 
   return (
     <>

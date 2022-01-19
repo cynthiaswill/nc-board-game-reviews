@@ -5,14 +5,17 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./contexts/UserContext";
 import { ErrorProvider } from "./contexts/ErrorContext";
+import { ParticleProvider } from "./contexts/ParticleContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <ErrorProvider>
       <UserProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <ParticleProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ParticleProvider>
       </UserProvider>
     </ErrorProvider>
   </React.StrictMode>,

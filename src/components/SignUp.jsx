@@ -4,12 +4,14 @@ import { getUsers, postUser } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
-import { urlRegex } from "../utils/utils";
+import { ParticleContext } from "../contexts/ParticleContext";
+import { urlRegex, particleOptions } from "../utils/utils";
 import TextField from "@material-ui/core/TextField";
 
 export default function SignUp() {
   const { setUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const { setParticleOps } = useContext(ParticleContext);
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState({
     username: "",
@@ -23,10 +25,11 @@ export default function SignUp() {
   const [showUsernameError, setShowUsernameError] = useState(false);
 
   useEffect(() => {
+    setParticleOps(particleOptions);
     getUsers().then(({ data }) => {
       setUserList(data.users.map((user) => user.username));
     });
-  }, []);
+  }, [setParticleOps]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
