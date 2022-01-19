@@ -19,7 +19,7 @@ export default function CommentAuthorIcon({ comment }) {
           navigate("/error");
         }
       });
-  }, [comment.author, setError, viewedUser, navigate]);
+  }, [comment, setError, navigate]);
 
   return (
     <>
