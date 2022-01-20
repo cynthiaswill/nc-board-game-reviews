@@ -254,6 +254,17 @@ button {
   font-size: 1.1em;
 }
 
+.category-links-selected {
+  margin: 5px;
+  font-size: small;
+  font-weight: bold;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(70, 70, 70);
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
 .category-title {
   color: white;
   font-family: papyrus;

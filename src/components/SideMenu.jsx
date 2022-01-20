@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getDescription } from "../utils/utils";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthorContext } from "../contexts/AuthorContext";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import { CategoryContext } from "../contexts/CategoryContext";
@@ -10,8 +10,14 @@ export default function SideMenu() {
   const navigate = useNavigate();
   const { setAuthor } = useContext(AuthorContext);
   const { categories } = useContext(CategoriesContext);
-  const { setCategory } = useContext(CategoryContext);
+  const { category, setCategory } = useContext(CategoryContext);
   const { setCatQueries } = useContext(CatQueriesContext);
+  let buttonStyle = "category-links";
+  if (category.slug === "All categories") {
+    buttonStyle = "category-links-selected";
+  } else {
+    buttonStyle = "category-links";
+  }
 
   return (
     <>
@@ -32,16 +38,23 @@ export default function SideMenu() {
             </div>
           </form>
         </div>
-
         <br />
-
         <div
           className="categories-in-side-menu"
           style={{ display: "flex", flexDirection: "column" }}
         >
-          <Link
-            className="category-links"
-            to="/reviews"
+          <p
+            style={{
+              fontWeight: "bold",
+              fontSize: 15,
+              color: "rgb(70,70,70)",
+              marginLeft: "5px",
+            }}
+          >
+            By category:
+          </p>
+          <button
+            className={buttonStyle}
             onClick={() => {
               setCatQueries((current) => {
                 return { ...current, p: 1, category: "" };
@@ -53,26 +66,30 @@ export default function SideMenu() {
             }}
           >
             All categories
-          </Link>
-          {categories.map((category) => {
+          </button>
+          {categories.map((cat) => {
+            if (cat.slug === category.slug) {
+              buttonStyle = "category-links-selected";
+            } else {
+              buttonStyle = "category-links";
+            }
             return (
-              <Link
-                className="category-links"
-                key={category.slug}
-                to="/reviews"
+              <button
+                className={buttonStyle}
+                key={cat.slug}
                 onClick={(e) => {
                   setCatQueries((current) => {
-                    return { ...current, p: 1, category: category.slug };
+                    return { ...current, p: 1, category: cat.slug };
                   });
                   setCategory({
-                    slug: `${category.slug}`,
-                    description: `${getDescription(category.slug, categories)}`,
+                    slug: `${cat.slug}`,
+                    description: `${getDescription(cat.slug, categories)}`,
                   });
                   document.getElementById("author-option").selectedIndex = "null";
                   setAuthor("");
                   navigate("/reviews");
                 }}
-              >{`${category.slug}`}</Link>
+              >{`${cat.slug}`}</button>
             );
           })}
         </div>
