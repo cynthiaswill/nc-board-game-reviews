@@ -50,13 +50,36 @@ header {
 
 .main {
   grid-area: main;
-  align-items: center;
   align-content: center;
   border-radius: 5px;
   background: grey;
-  max-width: 825px;
+  max-width: 960px;
   min-width: 50vw;
   margin: 0 auto;
+  display: flex;
+}
+
+.mainView {
+  align-items: center;
+  align-content: center;
+  border-radius: 5px;
+  max-width: 700px;
+  min-width: 50vw;
+  margin: 0 auto;
+  border: solid 1px;
+}
+
+.sideMenu {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 5px;
+  border: solid 1px;
+}
+
+.search-container {
+  margin: 5px auto;
 }
 
 /* media query of device width */
