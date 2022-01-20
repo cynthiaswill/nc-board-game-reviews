@@ -25,7 +25,7 @@ export default function SideMenu() {
       </div>
 
       <br />
-      <div>highest rated</div>
+
       <div>
         <div
           className="categories-in-side-menu"
@@ -69,6 +69,7 @@ export default function SideMenu() {
           })}
         </div>
       </div>
+      <br />
       <div>live chat</div>
     </>
   );
