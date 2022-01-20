@@ -15,18 +15,26 @@ export default function SideMenu() {
 
   return (
     <>
-      <div className="search-container">
-        <form action="/action_page.php">
-          <input type="text" placeholder="Search..." name="search" size="25" />
-          <button type="submit">
-            <i className="fa fa-search"></i>
-          </button>
-        </form>
-      </div>
+      <div className="top-part-in-side-menu">
+        <div className="search-container">
+          <form action="/action_page.php">
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <input
+                type="text"
+                placeholder="Search..."
+                name="search"
+                size="22"
+                style={{ flexGrow: 4 }}
+              />
+              <button type="submit" style={{ flexGrow: 1 }}>
+                <i className="fa fa-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
 
-      <br />
+        <br />
 
-      <div>
         <div
           className="categories-in-side-menu"
           style={{ display: "flex", flexDirection: "column" }}

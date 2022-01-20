@@ -191,7 +191,7 @@ export default function Review() {
             </button>
           </section>
         </div>
-        <section>
+        <section style={{ marginLeft: "5px", marginRight: "5px" }}>
           <div ref={servicesRef}>
             <div className="comments-sub-bar">
               <button onClick={gotoAddComment} className="add-comment-button">
