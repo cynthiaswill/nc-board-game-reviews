@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { getDescription } from "../utils/utils";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthorContext } from "../contexts/AuthorContext";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import { CategoryContext } from "../contexts/CategoryContext";
