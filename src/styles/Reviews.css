@@ -25,6 +25,12 @@
   position: relative;
 }
 
+@media (max-height: 510px) {
+  .review-item {
+    max-height: 60vh;
+  }
+}
+
 .review-card {
   max-height: 35vh;
   margin: 5px;

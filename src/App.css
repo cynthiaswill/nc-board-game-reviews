@@ -105,7 +105,7 @@ header {
 
 /* media query of device width */
 
-@media (min-width: 813px) {
+@media (min-width: 812px) {
   .categories-in-nav {
     display: none;
   }
@@ -123,7 +123,7 @@ header {
   }
 }
 
-@media (max-width: 812px) {
+@media (max-width: 811px) {
   .sideMenu {
     display: none;
   }
