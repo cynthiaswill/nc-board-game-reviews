@@ -4,21 +4,21 @@ import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { ParticleContext } from "../contexts/ParticleContext";
+import { AuthorContext } from "../contexts/AuthorContext";
+import { CategoryContext } from "../contexts/CategoryContext";
 import { filterReviewsByAuthor, particleOptions } from "../utils/utils";
 import { FaRegCommentAlt, FaRegCalendarAlt } from "react-icons/fa";
+import { CatQueriesContext } from "../contexts/CatQueriesContext";
 import Kudos from "./Kudos";
 import WatchToggle from "./WatchToggle";
 import SideMenu from "./SideMenu";
 
-export default function Reviews({
-  catQueries,
-  category,
-  setReviewsCount,
-  author,
-  setAuthors,
-}) {
+export default function Reviews({ setReviewsCount, setAuthors }) {
   const { setError } = useContext(ErrorContext);
   const { setParticleOps } = useContext(ParticleContext);
+  const { author } = useContext(AuthorContext);
+  const { category } = useContext(CategoryContext);
+  const { catQueries } = useContext(CatQueriesContext);
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 

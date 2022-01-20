@@ -7,23 +7,20 @@ import { ErrorContext } from "../contexts/ErrorContext";
 import { FaPencilAlt } from "react-icons/fa";
 import { GiEntryDoor, GiExitDoor } from "react-icons/gi";
 import { AiOutlineForm } from "react-icons/ai";
+import { AuthorContext } from "../contexts/AuthorContext";
+import { CategoriesContext } from "../contexts/CategoriesContext";
+import { CategoryContext } from "../contexts/CategoryContext";
+import { CatQueriesContext } from "../contexts/CatQueriesContext";
 
-export default function Nav({
-  catQueries,
-  setCatQueries,
-  setCategory,
-  categories,
-  setCategories,
-  reviewsCount,
-  reset,
-  setReset,
-  setAuthor,
-  authors,
-}) {
+export default function Nav({ reviewsCount, reset, setReset, authors }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, setUser, isLogged } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const { setAuthor } = useContext(AuthorContext);
+  const { setCategory } = useContext(CategoryContext);
+  const { categories, setCategories } = useContext(CategoriesContext);
+  const { catQueries, setCatQueries } = useContext(CatQueriesContext);
   const [showPagination, setShowPagination] = useState(true);
 
   useEffect(() => {

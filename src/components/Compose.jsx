@@ -7,11 +7,13 @@ import { ErrorContext } from "../contexts/ErrorContext";
 import TextField from "@material-ui/core/TextField";
 import { ParticleContext } from "../contexts/ParticleContext";
 import { particleOptions } from "../utils/utils";
+import { CategoriesContext } from "../contexts/CategoriesContext";
 
-export default function Compose({ categories, setCategories }) {
+export default function Compose() {
   const { user, isLogged } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const { setParticleOps } = useContext(ParticleContext);
+  const { categories, setCategories } = useContext(CategoriesContext);
   const [newCategory, setNewCategory] = useState({});
   const [newReview, setNewReview] = useState({});
   const [needNewCat, setNeedNewCat] = useState(false);

@@ -66,7 +66,6 @@ header {
   max-width: 700px;
   min-width: 50vw;
   margin: 0 auto;
-  border: solid 1px;
 }
 
 .sideMenu {
@@ -75,7 +74,6 @@ header {
   flex-direction: column;
   justify-content: flex-start;
   border-radius: 5px;
-  border: solid 1px;
 }
 
 .search-container {
