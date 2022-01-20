@@ -265,6 +265,17 @@ button {
   padding-right: 2px;
 }
 
+.category-links-selected:hover {
+  transform: scale(1.2);
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(70, 70, 70);
+  padding-left: 2px;
+  padding-right: 2px;
+  font-weight: normal;
+  font-size: 1.1em;
+}
+
 .category-title {
   color: white;
   font-family: papyrus;
