@@ -68,81 +68,84 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
     );
   }
   return (
-    <main className="main">
-      <div className="mainView">
-        <h3 className="category-title">
-          {category.slug}:
-          <span className="page-number-in-reviews">Page {catQueries.p}</span>
-        </h3>
-
-        <p className="category-description">{category.description}</p>
-        {reviews.map((review) => {
-          return (
-            <div key={review.review_id} className="review-item">
-              <section className="review-card">
-                <div className="review-title-row">
-                  <h3 className="review-title">
-                    <Link
-                      to={`/reviews/${review.review_id}`}
-                      className="review-title-link"
-                    >
-                      {" "}
-                      {review.title}{" "}
-                    </Link>
-                  </h3>
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <WatchToggle className="watch-toggle" />
+    <div className="above-main">
+      <h3 className="category-title">
+        {category.slug}:
+        <span className="page-number-in-reviews">Page {catQueries.p}</span>
+      </h3>
+      <p className="category-description">{category.description}</p>
+      <main className="main">
+        <div className="mainView">
+          {reviews.map((review) => {
+            return (
+              <div key={review.review_id} className="review-item">
+                <section className="review-card">
+                  <div className="review-title-row">
+                    <h3 className="review-title">
+                      <Link
+                        to={`/reviews/${review.review_id}`}
+                        className="review-title-link"
+                      >
+                        {" "}
+                        {review.title}{" "}
+                      </Link>
+                    </h3>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <WatchToggle className="watch-toggle" />
+                    </div>
                   </div>
-                </div>
-                <span className="slug-name-in-reviews">Category: {review.category}</span>{" "}
-                <span className="designer-name-in-reviews">
-                  Designer: {review.designer}
-                </span>
-                <br />
-                <div className="image-container-in-reviews">
-                  <img
-                    className="review-img"
-                    src={review.review_img_url}
-                    alt={review.title}
-                  />
-                </div>
-                <div>
-                  <p className="body-text-in-reviews">{review.review_body}</p>
-                  <span className="author-in-reviews">
-                    Author:{" "}
-                    <Link to={`/users/${review.owner}`} className="author-link">
-                      {review.owner}
-                    </Link>
-                  </span>
-                  <span className="date-posted-in-reviews">
-                    <FaRegCalendarAlt />{" "}
-                    {review.created_at.slice(0, 19).replaceAll("T", " at ")}
+                  <span className="slug-name-in-reviews">
+                    Category: {review.category}
+                  </span>{" "}
+                  <span className="designer-name-in-reviews">
+                    Designer: {review.designer}
                   </span>
                   <br />
-                </div>
-              </section>
-              <Link to={`/reviews/${review.review_id}`} className="read-more">
-                Read More
-              </Link>
-              <section>
-                <button
-                  className="view-comments-button"
-                  onClick={() => {
-                    navigate(`/reviews/${review.review_id}`);
-                  }}
-                >
-                  <FaRegCommentAlt className="commentIcon" /> {review.comment_count}
-                  <span className="commentsTooltipText">view comments</span>
-                </button>
-                <Kudos review={review} />
-              </section>
-            </div>
-          );
-        })}
-      </div>
-      <div className="sideMenu">
-        <SideMenu className="sideMenuContainer" />
-      </div>
-    </main>
+                  <div className="image-container-in-reviews">
+                    <img
+                      className="review-img"
+                      src={review.review_img_url}
+                      alt={review.title}
+                    />
+                  </div>
+                  <div>
+                    <p className="body-text-in-reviews">{review.review_body}</p>
+                    <span className="author-in-reviews">
+                      Author:{" "}
+                      <Link to={`/users/${review.owner}`} className="author-link">
+                        {review.owner}
+                      </Link>
+                    </span>
+                    <span className="date-posted-in-reviews">
+                      <FaRegCalendarAlt />{" "}
+                      {review.created_at.slice(0, 19).replaceAll("T", " at ")}
+                    </span>
+                    <br />
+                  </div>
+                </section>
+                <Link to={`/reviews/${review.review_id}`} className="read-more">
+                  Read More
+                </Link>
+                <section>
+                  <button
+                    className="view-comments-button"
+                    onClick={() => {
+                      navigate(`/reviews/${review.review_id}`);
+                    }}
+                  >
+                    <FaRegCommentAlt className="commentIcon" /> {review.comment_count}
+                    <span className="commentsTooltipText">view comments</span>
+                  </button>
+                  <Kudos review={review} />
+                </section>
+              </div>
+            );
+          })}
+        </div>
+        <div className="sideMenu">
+          <SideMenu className="sideMenuContainer" />
+        </div>
+      </main>
+    </div>
   );
 }
