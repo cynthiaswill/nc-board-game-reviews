@@ -82,6 +82,33 @@ header {
 
 /* media query of device width */
 
+@media (min-width: 813px) {
+  .categories-in-nav {
+    display: none;
+  }
+  #narrow-cat-options {
+    display: none;
+  }
+  #narrow-compose-link {
+    display: none;
+  }
+  #narrow-login-link {
+    display: none;
+  }
+  .header {
+    margin: 15px;
+  }
+}
+
+@media (max-width: 812px) {
+  .sideMenu {
+    display: none;
+  }
+  .header {
+    margin: 15px;
+  }
+}
+
 @media (min-width: 601px) {
   #narrow-cat-options {
     display: none;
