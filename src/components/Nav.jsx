@@ -11,6 +11,7 @@ import { AuthorContext } from "../contexts/AuthorContext";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
+import Chat from "./Chat";
 
 export default function Nav({ reviewsCount, reset, setReset, authors }) {
   const navigate = useNavigate();
@@ -318,6 +319,9 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
             next &gt;&gt;
           </button>
         ) : null}
+      </div>
+      <div className="chat-container">
+        <Chat />
       </div>
     </div>
   );

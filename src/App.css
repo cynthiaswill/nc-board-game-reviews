@@ -121,6 +121,12 @@ header {
   .header {
     margin: 15px;
   }
+  .chat-opener-narrow {
+    display: none;
+  }
+  .chat-container {
+    display: none;
+  }
 }
 
 @media (max-width: 811px) {
@@ -129,6 +135,9 @@ header {
   }
   .header {
     margin: 15px;
+  }
+  .chat-opener {
+    display: none;
   }
 }
 
@@ -453,5 +462,45 @@ textarea {
 
 #sign-up-link:hover {
   transform: scale(1.1);
+  filter: drop-shadow(1px 2px 1px rgb(0 0 0 / 1));
+}
+
+.chat-opener {
+  margin: 5px;
+  font-size: small;
+  font-weight: bold;
+  height: 30px;
+  width: 220px;
+  color: rgb(70, 70, 70);
+  transition: transform 0.2s;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 5px;
+  border: solid 1px;
+  z-index: 5000;
+}
+
+.chat-opener-narrow {
+  margin: 5px;
+  font-size: small;
+  font-weight: bold;
+  color: rgb(70, 70, 70);
+  transition: transform 0.2s;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 5px;
+  border: solid 1px;
+  z-index: 5000;
+  width: 95px;
+  height: 25px;
+  right: 10px;
+}
+
+.chat-opener:hover {
+  transform: scale(1.2);
+  padding-left: 2px;
+  padding-right: 2px;
+  font-weight: normal;
+  font-size: 1.1em;
   filter: drop-shadow(1px 2px 1px rgb(0 0 0 / 1));
 }

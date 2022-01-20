@@ -5,6 +5,7 @@ import { AuthorContext } from "../contexts/AuthorContext";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
+import Chat from "./Chat";
 
 export default function SideMenu() {
   const navigate = useNavigate();
@@ -95,7 +96,17 @@ export default function SideMenu() {
         </div>
       </div>
       <br />
-      <div>live chat</div>
+      <div
+        className="chat-container-in-side-menu"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          marginRight: "15px",
+          height: "40px",
+        }}
+      >
+        <Chat />
+      </div>
     </>
   );
 }
