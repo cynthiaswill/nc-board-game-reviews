@@ -145,7 +145,14 @@ export default function ChatWindow() {
             }}
             className="sendButton"
           >
-            <span style={{ fontSize: 20, alignSelf: "center", color: "white" }}>
+            <span
+              style={{
+                fontSize: 15,
+                alignSelf: "center",
+                color: "white",
+                textShadow: "0 0 4px black, 0 0 5px black",
+              }}
+            >
               Send
             </span>
           </button>

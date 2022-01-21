@@ -4,8 +4,12 @@
   height: 400px;
   overflow: hidden;
   border-radius: 10px;
-  background: lightgrey;
+  border: solid 1px;
+  background-color: rgba(180, 180, 180, 0.75);
+  position: fixed;
   z-index: 5000;
+  bottom: 5px;
+  right: 10px;
 }
 
 .chat {
@@ -92,7 +96,7 @@
 
 .sendButton {
   width: 55px;
-  background-color: #99a799;
+  background-color: rgb(70, 70, 70);
   border-radius: 5px;
   display: flex;
   flex-grow: 1;
