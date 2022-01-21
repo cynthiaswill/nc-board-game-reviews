@@ -130,11 +130,21 @@ export default function ChatWindow() {
         <div className="sender">
           <input
             className="send"
-            placeholder="enter your message"
+            placeholder="enter your message..."
             value={messageBody}
-            onChangeText={setMessageBody}
+            onChange={(e) => setMessageBody(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                sendData();
+              }
+            }}
           />
-          <button onPress={sendData} className="sendButton">
+          <button
+            onClick={() => {
+              sendData();
+            }}
+            className="sendButton"
+          >
             <span style={{ fontSize: 20, alignSelf: "center", color: "white" }}>
               Send
             </span>
