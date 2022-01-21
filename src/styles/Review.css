@@ -25,7 +25,7 @@
   color: rgb(50, 50, 50);
   font-size: 1.4rem;
   align-self: flex-start;
-  max-width: 79vw;
+  max-width: 77vw;
 }
 
 .slug-name {
@@ -337,6 +337,12 @@
 .comment-input-box {
   width: 60vw;
   height: 15vh;
+}
+
+@media (min-width: 812px) {
+  .comment-input-box {
+    width: 45vw;
+  }
 }
 
 .comment-typing-box-wrapper {
