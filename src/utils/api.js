@@ -75,3 +75,5 @@ export const postCategory = ({ slug, description }) => {
 export const postReview = (body) => {
   return gamesApi.post("/reviews", body);
 };
+
+export const getHistory = (title) => {};

@@ -8,7 +8,11 @@ export default function Chat() {
     <>
       <div>
         {isChatOpen ? (
-          <ChatWindow />
+          <ChatWindow
+            isChatOpen={isChatOpen}
+            setIsChatOpen={setIsChatOpen}
+            className="chat-window-container"
+          />
         ) : (
           <>
             <button
