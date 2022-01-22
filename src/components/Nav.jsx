@@ -11,6 +11,7 @@ import { AuthorContext } from "../contexts/AuthorContext";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
+import useWindowDimensions from "../hooks/WindowDimentions";
 import Chat from "./Chat";
 
 export default function Nav({ reviewsCount, reset, setReset, authors }) {
@@ -23,6 +24,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
   const { categories, setCategories } = useContext(CategoriesContext);
   const { catQueries, setCatQueries } = useContext(CatQueriesContext);
   const [showPagination, setShowPagination] = useState(true);
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     if (location.pathname === "/reviews") {
@@ -326,7 +328,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
         ) : null}
       </div>
       <div className="chat-container">
-        <Chat />
+        {width < 812 || location.pathname.slice(0, 8) !== "/reviews" ? <Chat /> : null}
       </div>
     </div>
   );

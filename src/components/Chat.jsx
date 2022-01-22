@@ -1,9 +1,14 @@
 import { useContext } from "react";
+import { useLocation } from "react-router-dom";
 import { ChatContext } from "../contexts/ChatContext";
 import ChatWindow from "./ChatWindow";
+import useWindowDimensions from "../hooks/WindowDimentions";
 
 export default function Chat() {
   const { isChatOpen, setIsChatOpen } = useContext(ChatContext);
+  const location = useLocation();
+  const { width } = useWindowDimensions();
+  console.log(location.pathname);
 
   return (
     <>
@@ -15,15 +20,11 @@ export default function Chat() {
         ) : (
           <>
             <button
-              className="chat-opener"
-              onClick={() => {
-                setIsChatOpen(true);
-              }}
-            >
-              <i className="far fa-comments" /> Live Chat
-            </button>
-            <button
-              className="chat-opener-narrow"
+              className={
+                width < 812 || location.pathname.slice(0, 8) !== "/reviews"
+                  ? "chat-opener-narrow"
+                  : "chat-opener"
+              }
               onClick={() => {
                 setIsChatOpen(true);
               }}

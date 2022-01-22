@@ -121,12 +121,6 @@ header {
   .header {
     margin: 15px;
   }
-  .chat-opener-narrow {
-    display: none;
-  }
-  .chat-container {
-    display: none;
-  }
 }
 
 @media (max-width: 811px) {
@@ -135,9 +129,6 @@ header {
   }
   .header {
     margin: 15px;
-  }
-  .chat-opener {
-    display: none;
   }
 }
 

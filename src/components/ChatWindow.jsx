@@ -2,6 +2,7 @@ import "../styles/Chat.css";
 import { useState, useContext, useEffect, useRef } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { ChatContext } from "../contexts/ChatContext";
+import { useLocation } from "react-router-dom";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import io from "socket.io-client";
 import useWindowDimensions from "../hooks/WindowDimentions";
@@ -14,6 +15,8 @@ export default function ChatWindow() {
   const { isChatOpen, setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
   const [messageBody, setMessageBody] = useState("");
+  const location = useLocation();
+  const { width } = useWindowDimensions();
 
   const scrollRef = useRef();
   let username = user.username;
@@ -81,10 +84,14 @@ export default function ChatWindow() {
     right: "10px",
   };
 
-  const { width } = useWindowDimensions();
-
   return (
-    <div style={width > 811 ? roomContainerStyle : roomContainerStyleNarrow}>
+    <div
+      style={
+        width > 811 && location.pathname.slice(0, 8) === "/reviews"
+          ? roomContainerStyle
+          : roomContainerStyleNarrow
+      }
+    >
       <div className="chat">
         <div style={{ display: "flex", flexDirection: "row", alignItems: "stretch" }}>
           <div className="usernameContainer">
