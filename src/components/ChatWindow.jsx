@@ -19,6 +19,11 @@ export default function ChatWindow() {
   const { width } = useWindowDimensions();
   let username = user.username;
 
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
     // getHistory(roomName)
     //   .then(({ data }) => {
@@ -52,11 +57,6 @@ export default function ChatWindow() {
       socket.emit("chat", messageBody);
       setMessageBody("");
     }
-  };
-
-  const messagesEndRef = useRef(null);
-  const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const roomContainerStyle = {
