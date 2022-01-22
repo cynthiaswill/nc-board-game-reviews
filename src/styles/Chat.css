@@ -12,7 +12,7 @@
   width: 220px;
   align-self: flex-start;
   font-weight: bold;
-  background: rgb(220, 220, 220);
+  background: rgba(128, 128, 128, 0.6);
   border-radius: 10px;
   padding: 3px;
   margin-bottom: 5px;
@@ -25,7 +25,7 @@
 
 .roomTitle {
   font-size: 12;
-  color: #4a403a;
+  color: white;
 }
 
 .chatMessage {

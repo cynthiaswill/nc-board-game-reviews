@@ -60,7 +60,7 @@ export default function ChatWindow() {
     overflow: "hidden",
     borderRadius: "10px",
     border: "solid 1px",
-    backgroundColor: "rgba(180, 180, 180, 0.75)",
+    backgroundColor: "rgba(180, 180, 180, 0.65)",
     zIndex: 5000,
     position: "fixed",
     bottom: "5px",
@@ -74,7 +74,7 @@ export default function ChatWindow() {
     overflow: "hidden",
     borderRadius: "10px",
     border: "solid 1px",
-    backgroundColor: "rgba(180, 180, 180, 0.75)",
+    backgroundColor: "rgba(180, 180, 180, 0.65)",
     position: "fixed",
     zIndex: 5000,
     bottom: "5px",
@@ -104,7 +104,7 @@ export default function ChatWindow() {
               onChange={(e) => {
                 setRoomName(e.target.value);
               }}
-              style={{ backgroundColor: "lightgray", borderRadius: 5 }}
+              style={{ backgroundColor: "rgba(180,180,180,0.5)", borderRadius: 5 }}
             >
               <option key="Lobby" value="Lobby" default>
                 Lobby
@@ -123,7 +123,7 @@ export default function ChatWindow() {
             onClick={() => {
               setIsChatOpen(false);
             }}
-            style={{ backgroundColor: "rgb(220,220,220)", marginTop: 2 }}
+            style={{ backgroundColor: "rgba(128, 128, 128, 0.75)", marginTop: 2 }}
           >
             <i
               class="fas fa-angle-down"
