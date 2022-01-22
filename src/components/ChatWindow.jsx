@@ -105,6 +105,7 @@ export default function ChatWindow() {
                 setRoomName(e.target.value);
               }}
               style={{ backgroundColor: "rgba(180,180,180,0.5)", borderRadius: 5 }}
+              value={roomName}
             >
               <option key="Lobby" value="Lobby" default>
                 Lobby
