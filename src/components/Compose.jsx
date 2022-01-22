@@ -278,7 +278,7 @@ export default function Compose() {
                 <br />
                 <select
                   name="category"
-                  style={{ backgroundColor: "lightgray" }}
+                  style={{ backgroundColor: "lightgray", borderRadius: 5 }}
                   onChange={(event) => {
                     setNewReview((current) => {
                       return { ...current, category: event.target.value };
