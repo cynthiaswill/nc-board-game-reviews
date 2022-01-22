@@ -225,6 +225,7 @@ export default function Review() {
               </div>
               <select
                 className="comments-limit-option"
+                style={{ borderRadius: 5 }}
                 onChange={(e) => {
                   setLimitPerPage(e.target.value);
                   setPage(1);

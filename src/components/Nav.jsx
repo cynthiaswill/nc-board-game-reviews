@@ -118,6 +118,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
           <div className="selectors-in-nav">
             <select
               id="narrow-cat-options"
+              style={{ borderRadius: 5 }}
               onChange={(e) => {
                 if (e.target.value === "All categories" || e.target.value === "all") {
                   setCatQueries((current) => {
@@ -156,6 +157,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
             <select
               id="author-option"
               className="nav-options"
+              style={{ borderRadius: 5 }}
               onChange={(e) => {
                 setAuthor(e.target.value);
                 navigate("/reviews");
@@ -172,6 +174,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
             <select
               id="sort-option"
               className="nav-options"
+              style={{ borderRadius: 5 }}
               onChange={(e) => {
                 setCatQueries((current) => {
                   let newCurrent = { ...current };
@@ -193,6 +196,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
             <select
               id="order-option"
               className="nav-options"
+              style={{ borderRadius: 5 }}
               onChange={(e) => {
                 setCatQueries((current) => {
                   let newCurrent = { ...current };
@@ -211,6 +215,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
             <select
               id="per-page-option"
               className="nav-options"
+              style={{ borderRadius: 5 }}
               onChange={(e) => {
                 setCatQueries((current) => {
                   let newCurrent = { ...current };
