@@ -1,24 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ChatContext } from "../contexts/ChatContext";
 import ChatWindow from "./ChatWindow";
 
 export default function Chat() {
-  const [isChatOpen, setIsChatOpen] = useState(false);
+  const { isChatOpen, setIsChatOpen } = useContext(ChatContext);
 
   return (
     <>
       <div>
         {isChatOpen ? (
           <>
-            <ChatWindow
-              isChatOpen={isChatOpen}
-              setIsChatOpen={setIsChatOpen}
-              className="chat-window-container"
-            />
-            {/* <ChatWindow
-              isChatOpen={isChatOpen}
-              setIsChatOpen={setIsChatOpen}
-              className="chat-window-container-narrow"
-            /> */}
+            <ChatWindow />
           </>
         ) : (
           <>

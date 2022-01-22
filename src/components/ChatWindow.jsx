@@ -1,7 +1,8 @@
 import "../styles/Chat.css";
 import { useState, useContext, useEffect, useRef } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { CategoryContext } from "../contexts/CategoryContext";
+import { ChatContext } from "../contexts/ChatContext";
+import { CategoriesContext } from "../contexts/CategoriesContext";
 import io from "socket.io-client";
 import useWindowDimensions from "../hooks/WindowDimentions";
 
@@ -9,32 +10,27 @@ const socket = io("localhost:8000");
 
 export default function ChatWindow() {
   const { user, isLogged } = useContext(UserContext);
-  const { category } = useContext(CategoryContext);
+  const { categories } = useContext(CategoriesContext);
+  const { isChatOpen, setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
   const [messageBody, setMessageBody] = useState("");
 
   const scrollRef = useRef();
   let username = user.username;
-  let title = category.slug;
-  if (category.slug === "All category") {
-    title = "Lobby";
-  } else {
-    title = category.slug;
-  }
 
   useEffect(() => {
-    // getHistory(title)
+    // getHistory(roomName)
     //   .then(({ data }) => {
     //     setMessages([...data.messages]);
     //   })
     //   .catch((err) => {
     //     console.dir(err);
     //   });
-    if (isLogged) {
-      socket.emit("joinRoom", { username, title });
+    if (isLogged && isChatOpen) {
+      socket.emit("joinRoom", { username, roomName });
     } else {
       let username = "anonymous";
-      socket.emit("joinRoom", { username, title });
+      socket.emit("joinRoom", { username, roomName });
     }
 
     socket.on("message", (data) => {
@@ -47,7 +43,7 @@ export default function ChatWindow() {
       });
       setMessages([...temp]);
     });
-  }, [title, setMessages, isLogged, messages, username]);
+  }, [roomName, setMessages, isLogged, isChatOpen, messages, username]);
 
   const sendData = () => {
     if (messageBody !== "") {
@@ -90,11 +86,53 @@ export default function ChatWindow() {
   return (
     <div style={width > 811 ? roomContainerStyle : roomContainerStyleNarrow}>
       <div className="chat">
-        <div className="usernameContainer">
-          <span className="roomTitle">
-            {user.username}{" "}
-            <span style={{ fontSize: 16, color: "#4A403A" }}>in {title}</span>
-          </span>
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "stretch" }}>
+          <div className="usernameContainer">
+            <div style={{ height: 25, overflow: "hidden" }}>
+              <img
+                src={user.avatar_url}
+                alt={user.username}
+                style={{ height: "20px", borderRadius: "5px" }}
+              />
+              <span className="roomTitle" style={{ fontSize: 14 }}>
+                {user.username}{" "}
+                <span style={{ fontSize: 13, color: "darkblue" }}>in {roomName}</span>
+              </span>
+            </div>
+
+            <select
+              onChange={(e) => {
+                setRoomName(e.target.value);
+              }}
+              style={{ backgroundColor: "lightgray", borderRadius: 5 }}
+            >
+              <option key="Lobby" value="Lobby" default>
+                Lobby
+              </option>
+              {categories.map((category) => {
+                return (
+                  <option
+                    key={category.slug}
+                    value={category.slug}
+                  >{`${category.slug}`}</option>
+                );
+              })}
+            </select>
+          </div>
+          <button
+            onClick={() => {
+              setIsChatOpen(false);
+            }}
+            style={{ backgroundColor: "rgb(220,220,220)", marginTop: 2 }}
+          >
+            <i
+              class="fas fa-angle-down"
+              style={{
+                fontSize: 18,
+                fontWeight: "bold",
+              }}
+            />
+          </button>
         </div>
         <div
           ref={scrollRef}
