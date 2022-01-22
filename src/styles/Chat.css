@@ -1,20 +1,7 @@
-.chatRoomContainer {
-  display: flex;
-  flex-direction: column;
-  height: 400px;
-  overflow: hidden;
-  border-radius: 10px;
-  border: solid 1px;
-  background-color: rgba(180, 180, 180, 0.75);
-  position: fixed;
-  z-index: 5000;
-  bottom: 5px;
-  right: 10px;
-}
-
 .chat {
   width: 230px;
   height: 400px;
+  max-height: 95vh;
   padding: 1px;
   display: flex;
   flex-direction: column;
@@ -39,6 +26,7 @@
 
 .chatMessage {
   height: 320px;
+  max-height: 90vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
