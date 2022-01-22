@@ -6,7 +6,6 @@ import { useState, useContext, useEffect, useRef } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { CategoryContext } from "../contexts/CategoryContext";
 import io from "socket.io-client";
-import { getHistory } from "../utils/api";
 import useWindowDimensions from "../hooks/WindowDimentions";
 
 const socket = io("localhost:8000");
