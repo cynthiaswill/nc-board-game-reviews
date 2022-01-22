@@ -50,7 +50,7 @@ export default function ChatWindow() {
       });
       setMessages([...temp]);
     });
-  }, [title, setMessages]);
+  }, [title, setMessages, isLogged, messages, username]);
 
   const sendData = () => {
     if (messageBody !== "") {
