@@ -7,6 +7,8 @@ import { UserContext } from "../contexts/UserContext";
 import { CategoryContext } from "../contexts/CategoryContext";
 import io from "socket.io-client";
 import { getHistory } from "../utils/api";
+import useWindowDimensions from "../hooks/WindowDimentions";
+
 const socket = io("localhost:8000");
 
 export default function ChatWindow() {
@@ -58,8 +60,37 @@ export default function ChatWindow() {
     }
   };
 
+  const roomContainerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    height: "400px",
+    overflow: "hidden",
+    borderRadius: "10px",
+    border: "solid 1px",
+    backgroundColor: "rgba(180, 180, 180, 0.75)",
+    zIndex: 5000,
+    position: "fixed",
+    bottom: "5px",
+  };
+
+  const roomContainerStyleNarrow = {
+    display: "flex",
+    flexDirection: "column",
+    height: "400px",
+    overflow: "hidden",
+    borderRadius: "10px",
+    border: "solid 1px",
+    backgroundColor: "rgba(180, 180, 180, 0.75)",
+    position: "fixed",
+    zIndex: 5000,
+    bottom: "5px",
+    right: "10px",
+  };
+
+  const { width } = useWindowDimensions();
+
   return (
-    <div className="chatRoomContainer">
+    <div style={width > 811 ? roomContainerStyle : roomContainerStyleNarrow}>
       <div className="chat">
         <div className="usernameContainer">
           <span className="roomTitle">

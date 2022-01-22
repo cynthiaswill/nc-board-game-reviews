@@ -13,7 +13,7 @@
 }
 
 .chat {
-  width: 280px;
+  width: 230px;
   height: 400px;
   padding: 1px;
   display: flex;
@@ -22,7 +22,7 @@
 }
 
 .usernameContainer {
-  width: 270px;
+  width: 220px;
   align-self: flex-start;
   font-weight: bold;
   border: solid 2px;
@@ -38,11 +38,14 @@
 }
 
 .chatMessage {
-  height: 300px;
-  overflow: scroll;
+  height: 320px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  width: 280px;
+  width: 225px;
+  margin: 0 auto;
+  border: 1px solid white;
+  border-radius: 5px;
 }
 
 .message {
@@ -85,9 +88,8 @@
 }
 
 .send {
-  width: 280px;
   display: flex;
-  flex-grow: 4;
+  flex-grow: 5;
   border-color: #99a799;
   background-color: white;
   padding-left: 5px;
@@ -95,7 +97,6 @@
 }
 
 .sendButton {
-  width: 55px;
   background-color: rgb(70, 70, 70);
   border-radius: 5px;
   display: flex;
