@@ -17,8 +17,6 @@ export default function ChatWindow() {
   const [messageBody, setMessageBody] = useState("");
   const location = useLocation();
   const { width } = useWindowDimensions();
-
-  const scrollRef = useRef();
   let username = user.username;
 
   useEffect(() => {
@@ -46,6 +44,7 @@ export default function ChatWindow() {
       });
       setMessages([...temp]);
     });
+    scrollToBottom();
   }, [roomName, setMessages, isLogged, isChatOpen, messages, username]);
 
   const sendData = () => {
@@ -53,6 +52,11 @@ export default function ChatWindow() {
       socket.emit("chat", messageBody);
       setMessageBody("");
     }
+  };
+
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const roomContainerStyle = {
@@ -97,12 +101,14 @@ export default function ChatWindow() {
           <div className="usernameContainer">
             <div style={{ height: 25, overflow: "hidden" }}>
               <img
-                src={user.avatar_url}
+                src={
+                  user.avatar_url || "http://cdn.onlinewebfonts.com/svg/img_181369.png"
+                }
                 alt={user.username}
                 style={{ height: "20px", borderRadius: "5px" }}
               />
               <span className="roomTitle" style={{ fontSize: 14 }}>
-                {user.username}{" "}
+                {username}{" "}
                 <span style={{ fontSize: 13, color: "darkblue" }}>in {roomName}</span>
               </span>
             </div>
@@ -142,14 +148,7 @@ export default function ChatWindow() {
             />
           </button>
         </div>
-        <div
-          ref={scrollRef}
-          onContentSizeChange={(contentWidth, contentHeight) => {
-            scrollRef.current.scrollToEnd({ animated: true });
-          }}
-          className="chatMessage"
-          showsVerticalScrollIndicator={false}
-        >
+        <div className="chatMessage">
           {messages.map((msg) => {
             if (msg.username === username) {
               return (
@@ -201,6 +200,7 @@ export default function ChatWindow() {
               );
             }
           })}
+          <div ref={messagesEndRef} />
         </div>
         <div className="sender">
           <input
