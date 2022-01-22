@@ -1,6 +1,3 @@
-// export default function ChatWindow({ isChatOpen, setIsChatOpen }) {
-//   return <>chat window</>;
-// }
 import "../styles/Chat.css";
 import { useState, useContext, useEffect, useRef } from "react";
 import { UserContext } from "../contexts/UserContext";

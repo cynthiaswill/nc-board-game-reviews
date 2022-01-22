@@ -10,6 +10,7 @@ import { AuthorProvider } from "./contexts/AuthorContext";
 import { CategoriesProvider } from "./contexts/CategoriesContext";
 import { CategoryProvider } from "./contexts/CategoryContext";
 import { CatQueriesProvider } from "./contexts/CatQueriesContext";
+import { ChatProvider } from "./contexts/ChatContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,9 +21,11 @@ ReactDOM.render(
             <CategoriesProvider>
               <CategoryProvider>
                 <CatQueriesProvider>
-                  <BrowserRouter>
-                    <App />
-                  </BrowserRouter>
+                  <ChatProvider>
+                    <BrowserRouter>
+                      <App />
+                    </BrowserRouter>
+                  </ChatProvider>
                 </CatQueriesProvider>
               </CategoryProvider>
             </CategoriesProvider>
