@@ -10,7 +10,7 @@ import { getHistory } from "../utils/api";
 export default function ChatWindow({ socket, username, joinChat }) {
   const { user } = useContext(UserContext);
   const { categories } = useContext(CategoriesContext);
-  const { setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
+  const { isChatOpen, setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
   const [messageBody, setMessageBody] = useState("");
   const location = useLocation();
@@ -42,7 +42,7 @@ export default function ChatWindow({ socket, username, joinChat }) {
     });
 
     scrollToBottom();
-  }, [setMessages, messages, roomName, joinChat, socket]);
+  }, [setMessages, messages, roomName, joinChat, socket, isChatOpen]);
 
   const sendData = () => {
     if (messageBody !== "") {
