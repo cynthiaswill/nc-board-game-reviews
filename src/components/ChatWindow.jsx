@@ -208,7 +208,11 @@ export default function ChatWindow({ socket }) {
             className="send"
             placeholder="enter your message..."
             value={messageBody}
-            onChange={(e) => setMessageBody(e.target.value)}
+            onChange={(e) => {
+              isLogged
+                ? setMessageBody(e.target.value)
+                : setMessageBody("You have to log in first!");
+            }}
             onKeyPress={(e) => {
               if (e.key === "Enter") {
                 sendData();
