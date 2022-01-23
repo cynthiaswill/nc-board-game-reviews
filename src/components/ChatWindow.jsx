@@ -7,8 +7,8 @@ import { CategoriesContext } from "../contexts/CategoriesContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
 import { getHistory } from "../utils/api";
 
-export default function ChatWindow({ socket, username, joinChat }) {
-  const { user } = useContext(UserContext);
+export default function ChatWindow({ socket, joinChat }) {
+  const { user, isLogged } = useContext(UserContext);
   const { categories } = useContext(CategoriesContext);
   const { isChatOpen, setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
@@ -19,9 +19,9 @@ export default function ChatWindow({ socket, username, joinChat }) {
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
+  let username = isLogged ? user.username : "anonymous";
 
   useEffect(() => {
-    joinChat();
     getHistory(roomName)
       .then(({ data }) => {
         setMessages([...data.history]);
@@ -29,6 +29,10 @@ export default function ChatWindow({ socket, username, joinChat }) {
       .catch((err) => {
         console.dir(err);
       });
+  }, [roomName, isChatOpen, user]);
+
+  useEffect(() => {
+    joinChat();
 
     socket.on("message", (data) => {
       let temp = messages;
@@ -42,7 +46,7 @@ export default function ChatWindow({ socket, username, joinChat }) {
     });
 
     scrollToBottom();
-  }, [setMessages, messages, roomName, joinChat, socket, isChatOpen]);
+  }, [setMessages, messages, username, roomName, joinChat, socket]);
 
   const sendData = () => {
     if (messageBody !== "") {
@@ -148,10 +152,10 @@ export default function ChatWindow({ socket, username, joinChat }) {
                   <div className="messageInnerLeft">
                     <span
                       style={{
-                        backgroundColor: "#99A799",
-                        fontSize: 20,
+                        backgroundColor: "slategrey",
+                        fontSize: 12,
                         borderRadius: 10,
-                        padding: 10,
+                        padding: 5,
                         color: "white",
                         overflow: "hidden",
                       }}
@@ -160,7 +164,7 @@ export default function ChatWindow({ socket, username, joinChat }) {
                     </span>
                   </div>
                   <div className="messageInnerLeft">
-                    <span style={{ fontStyle: "italic", color: "#4A403A" }}>
+                    <span style={{ fontStyle: "italic", color: "#4A403A", fontSize: 10 }}>
                       by {msg.username}
                     </span>
                   </div>
@@ -173,9 +177,9 @@ export default function ChatWindow({ socket, username, joinChat }) {
                     <span
                       style={{
                         backgroundColor: "#C37B89",
-                        fontSize: 20,
+                        fontSize: 12,
                         borderRadius: 10,
-                        padding: 10,
+                        padding: 5,
                         color: "white",
                         overflow: "hidden",
                       }}
@@ -184,7 +188,7 @@ export default function ChatWindow({ socket, username, joinChat }) {
                     </span>
                   </div>
                   <div className="messageInnerRight">
-                    <span style={{ fontStyle: "italic", color: "#4A403A" }}>
+                    <span style={{ fontStyle: "italic", color: "#4A403A", fontSize: 10 }}>
                       by {msg.username}
                     </span>
                   </div>
