@@ -8,7 +8,6 @@ export default function Chat() {
   const { isChatOpen, setIsChatOpen } = useContext(ChatContext);
   const location = useLocation();
   const { width } = useWindowDimensions();
-  console.log(location.pathname);
 
   return (
     <>
