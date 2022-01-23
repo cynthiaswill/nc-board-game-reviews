@@ -41,8 +41,8 @@ io.on("connection", (socket) => {
     async function insertIntoDB() {
       try {
         await client.connect();
-        const database = client.db("frosty");
-        const history = database.collection("chats");
+        const database = client.db("My_test_project");
+        const history = database.collection("chatHistory");
         // create a document to insert
         const doc = {
           username: `${p_user.username}`,

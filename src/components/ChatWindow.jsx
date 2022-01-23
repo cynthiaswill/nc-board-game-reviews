@@ -4,32 +4,23 @@ import { UserContext } from "../contexts/UserContext";
 import { ChatContext } from "../contexts/ChatContext";
 import { useLocation } from "react-router-dom";
 import { CategoriesContext } from "../contexts/CategoriesContext";
-import io from "socket.io-client";
 import useWindowDimensions from "../hooks/WindowDimentions";
 
-const socket = io("localhost:8000");
-
-export default function ChatWindow() {
-  const { user, isLogged } = useContext(UserContext);
+export default function ChatWindow({ socket, username, joinChat }) {
+  const { user } = useContext(UserContext);
   const { categories } = useContext(CategoriesContext);
-  const { isChatOpen, setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
+  const { setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
   const [messageBody, setMessageBody] = useState("");
   const location = useLocation();
   const { width } = useWindowDimensions();
-  let username = isLogged ? user.username : "anonymous";
-
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
-  useEffect(() => {
-    if (isChatOpen) {
-      socket.emit("joinRoom", { username, roomName });
-    }
-  }, [username, roomName, isChatOpen]);
 
   useEffect(() => {
+    joinChat();
     // getHistory(roomName)
     //   .then(({ data }) => {
     //     setMessages([...data.messages]);
@@ -50,7 +41,7 @@ export default function ChatWindow() {
     });
 
     scrollToBottom();
-  }, [setMessages, messages]);
+  }, [setMessages, messages, roomName]);
 
   const sendData = () => {
     if (messageBody !== "") {
