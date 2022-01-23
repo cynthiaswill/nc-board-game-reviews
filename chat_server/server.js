@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const socket = require("socket.io");
 const { get_Current_User, user_Disconnect, join_User } = require("./socketUser");
+const { fetchHistory } = require("./fetchHistory");
+
 const app = express();
 app.use(cors());
 const { MongoClient } = require("mongodb");
@@ -29,6 +31,11 @@ io.on("connection", (socket) => {
     const p_user = join_User(socket.id, username, roomName);
     console.log(socket.id, "=id");
     socket.join(p_user.roomName);
+
+    // fetching chat history of this room
+    fetchHistory(p_user.roomName)
+      .then((data) => console.log(data, "!!"))
+      .catch(console.dir);
   });
 
   //listener#2: user sending message
