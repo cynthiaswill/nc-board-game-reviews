@@ -39,7 +39,7 @@ export default function ChatWindow() {
     isLogged && setUsername(user.username);
 
     socket.emit("joinRoom", { username, roomName });
-  }, []);
+  }, [isLogged, roomName, user, username]);
 
   useEffect(() => {
     socket.on("message", (data) => {
