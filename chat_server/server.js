@@ -24,18 +24,18 @@ const io = socket(server);
 //listener#1: initialise socket io connection
 io.on("connection", (socket) => {
   //for a new user joining the room
-  socket.on("joinRoom", ({ username, title }) => {
+  socket.on("joinRoom", ({ username, roomName }) => {
     //* create user
-    const p_user = join_User(socket.id, username, title);
+    const p_user = join_User(socket.id, username, roomName);
     console.log(socket.id, "=id");
-    socket.join(p_user.title);
+    socket.join(p_user.roomName);
   });
 
   //listener#2: user sending message
   socket.on("chat", (messageBody) => {
     //gets the room user and the message sent
     const p_user = get_Current_User(socket.id);
-    console.log(p_user.username, p_user.title, "<<<<<<<<");
+    console.log(p_user.username, p_user.roomName, "<<<<<<<<");
 
     // insert sent message into database
     async function insertIntoDB() {
@@ -46,7 +46,7 @@ io.on("connection", (socket) => {
         // create a document to insert
         const doc = {
           username: `${p_user.username}`,
-          title: `${p_user.title}`,
+          roomName: `${p_user.roomName}`,
           messageBody: `${messageBody}`,
           dateCreated: new Date(),
         };
@@ -59,7 +59,7 @@ io.on("connection", (socket) => {
     insertIntoDB().catch(console.dir);
 
     //emit sent messages using sockitIO
-    io.to(p_user.title).emit("message", {
+    io.to(p_user.roomName).emit("message", {
       userId: p_user.id,
       username: p_user.username,
       messageBody: messageBody,
@@ -72,7 +72,7 @@ io.on("connection", (socket) => {
     const p_user = user_Disconnect(socket.id);
 
     if (p_user) {
-      io.to(p_user.title).emit("message", {
+      io.to(p_user.roomName).emit("message", {
         userId: p_user.id,
         username: p_user.username,
         messageBody: `${p_user.username} has left the chat`,

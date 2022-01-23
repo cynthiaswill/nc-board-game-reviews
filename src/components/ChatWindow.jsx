@@ -17,7 +17,7 @@ export default function ChatWindow() {
   const [messageBody, setMessageBody] = useState("");
   const location = useLocation();
   const { width } = useWindowDimensions();
-  let username = user.username;
+  let username = isLogged ? user.username : "anonymous";
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
@@ -32,10 +32,7 @@ export default function ChatWindow() {
     //   .catch((err) => {
     //     console.dir(err);
     //   });
-    if (isLogged && isChatOpen) {
-      socket.emit("joinRoom", { username, roomName });
-    } else {
-      let username = "anonymous";
+    if (isChatOpen) {
       socket.emit("joinRoom", { username, roomName });
     }
 
@@ -49,6 +46,7 @@ export default function ChatWindow() {
       });
       setMessages([...temp]);
     });
+
     scrollToBottom();
   }, [roomName, setMessages, isLogged, isChatOpen, messages, username]);
 
