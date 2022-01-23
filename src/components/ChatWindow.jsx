@@ -7,7 +7,7 @@ import { CategoriesContext } from "../contexts/CategoriesContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
 import { getHistory } from "../utils/api";
 
-export default function ChatWindow({ socket, joinChat }) {
+export default function ChatWindow({ socket }) {
   const { user, isLogged } = useContext(UserContext);
   const { categories } = useContext(CategoriesContext);
   const { isChatOpen, setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
@@ -19,7 +19,6 @@ export default function ChatWindow({ socket, joinChat }) {
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
-  let username = isLogged ? user.username : "anonymous";
 
   useEffect(() => {
     getHistory(roomName)
@@ -32,7 +31,13 @@ export default function ChatWindow({ socket, joinChat }) {
   }, [roomName, isChatOpen, user]);
 
   useEffect(() => {
-    joinChat();
+    if (isLogged) {
+      let username = user.username;
+      socket.emit("joinRoom", { username, roomName });
+    } else {
+      let username = "anonymous";
+      socket.emit("joinRoom", { username, roomName });
+    }
 
     socket.on("message", (data) => {
       let temp = messages;
@@ -46,7 +51,7 @@ export default function ChatWindow({ socket, joinChat }) {
     });
 
     scrollToBottom();
-  }, [setMessages, messages, username, roomName, joinChat, socket]);
+  }, [setMessages, roomName, isLogged, messages, socket, user]);
 
   const sendData = () => {
     if (messageBody !== "") {
@@ -104,7 +109,7 @@ export default function ChatWindow({ socket, joinChat }) {
                 style={{ height: "20px", borderRadius: "5px" }}
               />
               <span className="roomTitle" style={{ fontSize: 14 }}>
-                {username}{" "}
+                {user.username}{" "}
                 <span style={{ fontSize: 13, color: "darkblue" }}>in {roomName}</span>
               </span>
             </div>
@@ -146,7 +151,7 @@ export default function ChatWindow({ socket, joinChat }) {
         </div>
         <div className="chatMessage">
           {messages.map((msg) => {
-            if (msg.username === username) {
+            if (msg.username === user.username) {
               return (
                 <div key={msg._id} className="message">
                   <div className="messageInnerLeft">

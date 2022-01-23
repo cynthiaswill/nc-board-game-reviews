@@ -24,7 +24,7 @@ export default function Chat() {
       <div>
         {isChatOpen ? (
           <>
-            <ChatWindow socket={socket} joinChat={joinChat} />
+            <ChatWindow socket={socket} />
           </>
         ) : (
           <>
