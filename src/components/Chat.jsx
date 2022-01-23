@@ -6,7 +6,7 @@ import useWindowDimensions from "../hooks/WindowDimentions";
 import { UserContext } from "../contexts/UserContext";
 import io from "socket.io-client";
 
-const socket = io("localhost:8000");
+const socket = io("https://nc-games-board.herokuapp.com/");
 
 export default function Chat() {
   const { user, isLogged } = useContext(UserContext);
