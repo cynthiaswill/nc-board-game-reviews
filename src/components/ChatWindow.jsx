@@ -6,13 +6,18 @@ import { useLocation } from "react-router-dom";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
 import { getHistory } from "../utils/api";
+import io from "socket.io-client";
 
-export default function ChatWindow({ socket }) {
+// const socket = io("https://nc-games-board.herokuapp.com/");
+const socket = io("localhost:9000");
+
+export default function ChatWindow() {
   const { user, isLogged } = useContext(UserContext);
   const { categories } = useContext(CategoriesContext);
   const { isChatOpen, setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
   const [messageBody, setMessageBody] = useState("");
+  const [username, setUsername] = useState("anonymous");
   const location = useLocation();
   const { width } = useWindowDimensions();
   const messagesEndRef = useRef(null);
@@ -31,14 +36,12 @@ export default function ChatWindow({ socket }) {
   }, [roomName, isChatOpen, user]);
 
   useEffect(() => {
-    if (isLogged) {
-      let username = user.username;
-      socket.emit("joinRoom", { username, roomName });
-    } else {
-      let username = "anonymous";
-      socket.emit("joinRoom", { username, roomName });
-    }
+    isLogged && setUsername(user.username);
 
+    socket.emit("joinRoom", { username, roomName });
+  }, []);
+
+  useEffect(() => {
     socket.on("message", (data) => {
       let temp = messages;
 
@@ -51,7 +54,7 @@ export default function ChatWindow({ socket }) {
     });
 
     scrollToBottom();
-  }, [setMessages, roomName, isLogged, messages, socket, user]);
+  }, [setMessages, messages]);
 
   const sendData = () => {
     if (messageBody !== "") {
