@@ -140,7 +140,7 @@ export default function ChatWindow() {
             style={{ backgroundColor: "rgba(128, 128, 128, 0.75)", marginTop: 2 }}
           >
             <i
-              class="fas fa-angle-down"
+              className="fas fa-angle-down"
               style={{
                 fontSize: 18,
                 fontWeight: "bold",
