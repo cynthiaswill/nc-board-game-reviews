@@ -23,6 +23,11 @@ export default function ChatWindow() {
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
+  useEffect(() => {
+    if (isChatOpen) {
+      socket.emit("joinRoom", { username, roomName });
+    }
+  }, [username, roomName, isChatOpen]);
 
   useEffect(() => {
     // getHistory(roomName)
@@ -32,9 +37,6 @@ export default function ChatWindow() {
     //   .catch((err) => {
     //     console.dir(err);
     //   });
-    if (isChatOpen) {
-      socket.emit("joinRoom", { username, roomName });
-    }
 
     socket.on("message", (data) => {
       let temp = messages;
@@ -48,7 +50,7 @@ export default function ChatWindow() {
     });
 
     scrollToBottom();
-  }, [roomName, setMessages, isLogged, isChatOpen, messages, username]);
+  }, [setMessages, messages]);
 
   const sendData = () => {
     if (messageBody !== "") {
