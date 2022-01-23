@@ -76,4 +76,6 @@ export const postReview = (body) => {
   return gamesApi.post("/reviews", body);
 };
 
-export const getHistory = (title) => {};
+export const getHistory = (room) => {
+  return gamesApi.get(`/messages/${room}`);
+};

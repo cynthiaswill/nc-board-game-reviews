@@ -5,6 +5,7 @@ import { ChatContext } from "../contexts/ChatContext";
 import { useLocation } from "react-router-dom";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
+import { getHistory } from "../utils/api";
 
 export default function ChatWindow({ socket, username, joinChat }) {
   const { user } = useContext(UserContext);
@@ -21,13 +22,13 @@ export default function ChatWindow({ socket, username, joinChat }) {
 
   useEffect(() => {
     joinChat();
-    // getHistory(roomName)
-    //   .then(({ data }) => {
-    //     setMessages([...data.messages]);
-    //   })
-    //   .catch((err) => {
-    //     console.dir(err);
-    //   });
+    getHistory(roomName)
+      .then(({ data }) => {
+        setMessages([...data.history]);
+      })
+      .catch((err) => {
+        console.dir(err);
+      });
 
     socket.on("message", (data) => {
       let temp = messages;
