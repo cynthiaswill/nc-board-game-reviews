@@ -41,7 +41,7 @@ export default function ChatWindow({ socket, username, joinChat }) {
     });
 
     scrollToBottom();
-  }, [setMessages, messages, roomName]);
+  }, [setMessages, messages, roomName, joinChat, socket]);
 
   const sendData = () => {
     if (messageBody !== "") {
