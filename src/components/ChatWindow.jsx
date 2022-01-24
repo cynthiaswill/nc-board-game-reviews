@@ -33,7 +33,7 @@ export default function ChatWindow() {
           {
             username,
             roomName,
-            messageBody: `Hello ${username}, Welcome to chat room "${roomName}"!`,
+            messageBody: `👋 Hello ${username}, Welcome to chat room "${roomName}"!`,
           },
         ]);
       })
