@@ -28,12 +28,19 @@ export default function ChatWindow() {
   useEffect(() => {
     getHistory(roomName)
       .then(({ data }) => {
-        setMessages([...data.history]);
+        setMessages([
+          ...data.history,
+          {
+            username,
+            roomName,
+            messageBody: `Hello ${username}, Welcome to chat room "${roomName}"!`,
+          },
+        ]);
       })
       .catch((err) => {
         console.dir(err);
       });
-  }, [roomName, isChatOpen, user]);
+  }, [roomName, isChatOpen, user, username]);
 
   useEffect(() => {
     socket.emit("joinRoom", { username, roomName });
