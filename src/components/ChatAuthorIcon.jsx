@@ -9,22 +9,24 @@ export default function ChatAuthorIcon({ msg }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getUser(msg.username)
-      .then(({ data }) => {
-        setViewedUser(data.user);
-      })
-      .catch((err) => {
-        if (err) {
-          setError(err.response.status);
-          navigate("/error");
-        }
-      });
+    if (msg.username !== "anonymous") {
+      getUser(msg.username)
+        .then(({ data }) => {
+          setViewedUser(data.user);
+        })
+        .catch((err) => {
+          if (err) {
+            setError(err.response.status);
+            navigate("/error");
+          }
+        });
+    }
   }, [msg, setError, navigate]);
 
   return (
     <>
       <img
-        src={viewedUser.avatar_url}
+        src={viewedUser.avatar_url || "http://cdn.onlinewebfonts.com/svg/img_181369.png"}
         alt=""
         style={{ height: 15, borderRadius: "50%" }}
       />
