@@ -99,3 +99,7 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.sendButton:disabled {
+  background-color: lightgrey;
+}

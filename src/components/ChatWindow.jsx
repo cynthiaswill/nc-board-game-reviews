@@ -17,13 +17,13 @@ export default function ChatWindow() {
   const { isChatOpen, setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
   const [messageBody, setMessageBody] = useState("");
-  const [username, setUsername] = useState("anonymous");
   const location = useLocation();
   const { width } = useWindowDimensions();
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
+  const username = user.username || "anonymous";
 
   useEffect(() => {
     getHistory(roomName)
@@ -36,10 +36,8 @@ export default function ChatWindow() {
   }, [roomName, isChatOpen, user]);
 
   useEffect(() => {
-    isLogged && setUsername(user.username);
-
     socket.emit("joinRoom", { username, roomName });
-  }, [isLogged, roomName, user, username]);
+  }, [roomName, username]);
 
   useEffect(() => {
     socket.on("message", (data) => {
@@ -217,7 +215,7 @@ export default function ChatWindow() {
                 : setMessageBody("You have to log in first!");
             }}
             onKeyPress={(e) => {
-              if (e.key === "Enter") {
+              if (e.key === "Enter" && isLogged) {
                 sendData();
               }
             }}
@@ -227,6 +225,7 @@ export default function ChatWindow() {
               sendData();
             }}
             className="sendButton"
+            disabled={!isLogged}
           >
             <span
               style={{
