@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
 import { getHistory } from "../utils/api";
+import ChatAuthorIcon from "./ChatAuthorIcon";
 import io from "socket.io-client";
 
 const socket = io("https://nc-games-board.herokuapp.com/");
@@ -169,6 +170,11 @@ export default function ChatWindow() {
                     </span>
                   </div>
                   <div className="messageInnerLeft">
+                    <img
+                      src={user.avatar_url}
+                      alt=""
+                      style={{ height: 15, borderRadius: "50%" }}
+                    />
                     <span style={{ fontStyle: "italic", color: "#4A403A", fontSize: 10 }}>
                       by {msg.username}
                     </span>
@@ -196,6 +202,7 @@ export default function ChatWindow() {
                     <span style={{ fontStyle: "italic", color: "#4A403A", fontSize: 10 }}>
                       by {msg.username}
                     </span>
+                    <ChatAuthorIcon msg={msg} />
                   </div>
                 </div>
               );
