@@ -9,7 +9,6 @@ import { getHistory } from "../utils/api";
 import io from "socket.io-client";
 
 const socket = io("https://nc-games-board.herokuapp.com/");
-// const socket = io("localhost:9000");
 
 export default function ChatWindow() {
   const { user, isLogged } = useContext(UserContext);
