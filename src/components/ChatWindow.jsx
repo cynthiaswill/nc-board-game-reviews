@@ -171,7 +171,10 @@ export default function ChatWindow() {
                   </div>
                   <div className="messageInnerLeft">
                     <img
-                      src={user.avatar_url}
+                      src={
+                        user.avatar_url ||
+                        "http://cdn.onlinewebfonts.com/svg/img_181369.png"
+                      }
                       alt=""
                       style={{ height: 15, borderRadius: "50%" }}
                     />
