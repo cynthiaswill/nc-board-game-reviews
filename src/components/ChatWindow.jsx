@@ -31,6 +31,7 @@ export default function ChatWindow() {
         setMessages([
           ...data.history,
           {
+            welcome: true,
             username,
             roomName,
             messageBody: `👋 Hello ${username}, Welcome to chat room "${roomName}"!`,
@@ -183,9 +184,20 @@ export default function ChatWindow() {
                         "http://cdn.onlinewebfonts.com/svg/img_181369.png"
                       }
                       alt=""
-                      style={{ height: 15, borderRadius: "50%" }}
+                      style={{
+                        height: 15,
+                        borderRadius: "50%",
+                        visibility: msg.welcome ? "hidden" : "visible",
+                      }}
                     />
-                    <span style={{ fontStyle: "italic", color: "#4A403A", fontSize: 10 }}>
+                    <span
+                      style={{
+                        fontStyle: "italic",
+                        color: "#4A403A",
+                        fontSize: 10,
+                        visibility: msg.welcome ? "hidden" : "visible",
+                      }}
+                    >
                       by {msg.username}
                     </span>
                   </div>
@@ -209,10 +221,17 @@ export default function ChatWindow() {
                     </span>
                   </div>
                   <div className="messageInnerRight">
-                    <span style={{ fontStyle: "italic", color: "#4A403A", fontSize: 10 }}>
+                    <span
+                      style={{
+                        fontStyle: "italic",
+                        color: "#4A403A",
+                        fontSize: 10,
+                        visibility: msg.welcome ? "hidden" : "visible",
+                      }}
+                    >
                       by {msg.username}
                     </span>
-                    <ChatAuthorIcon msg={msg} />
+                    {msg.welcome ? null : <ChatAuthorIcon msg={msg} />}
                   </div>
                 </div>
               );
