@@ -189,7 +189,7 @@ export default function ChatWindow() {
                 " " +
                 months[new Date(msg.dateCreated).getMonth()];
 
-            if (msg.username === user.username) {
+            if (msg.username === user.username || msg.welcome) {
               return (
                 <div key={msg._id} className="message">
                   <div className="messageInnerLeft">
