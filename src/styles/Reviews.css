@@ -23,6 +23,12 @@
   max-height: 36vh;
   padding: 5px;
   position: relative;
+  transition: transform 0.2s;
+}
+
+.review-item:hover {
+  transform: scale(1.03);
+  background: white;
 }
 
 @media (max-height: 510px) {
