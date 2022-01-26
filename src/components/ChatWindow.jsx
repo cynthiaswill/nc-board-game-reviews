@@ -44,21 +44,22 @@ export default function ChatWindow() {
   ];
 
   useEffect(() => {
-    getHistory(roomName)
-      .then(({ data }) => {
-        setMessages([
-          ...data.history,
-          {
-            welcome: true,
-            username,
-            roomName,
-            messageBody: `👋 Hello ${username}, Welcome to chat room "${roomName}"!`,
-          },
-        ]);
-      })
-      .catch((err) => {
-        console.dir(err);
-      });
+    isChatOpen &&
+      getHistory(roomName)
+        .then(({ data }) => {
+          setMessages([
+            ...data.history,
+            {
+              welcome: true,
+              username,
+              roomName,
+              messageBody: `👋 Hello ${username}, Welcome to chat room "${roomName}"!`,
+            },
+          ]);
+        })
+        .catch((err) => {
+          console.dir(err);
+        });
   }, [roomName, isChatOpen, user, username]);
 
   useEffect(() => {
