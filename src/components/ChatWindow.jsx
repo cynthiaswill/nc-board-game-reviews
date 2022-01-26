@@ -24,6 +24,24 @@ export default function ChatWindow() {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
   const username = user.username || "anonymous";
+  const oneDay = 60 * 60 * 24 * 1000;
+  const oneWeek = 7 * oneDay;
+  const now = new Date();
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
   useEffect(() => {
     getHistory(roomName)
@@ -160,11 +178,22 @@ export default function ChatWindow() {
         </div>
         <div className="chatMessage">
           {messages.map((msg) => {
+            const timePassed = now.getTime() - new Date(msg.dateCreated).getTime();
+            const timeStamp = msg.welcome
+              ? null
+              : timePassed < oneDay
+              ? msg.dateCreated.toString().slice(11, 16)
+              : timePassed < oneWeek
+              ? weekdays[new Date(msg.dateCreated).getDay()]
+              : new Date(msg.dateCreated).getDate() +
+                " " +
+                months[new Date(msg.dateCreated).getMonth()];
+
             if (msg.username === user.username) {
               return (
                 <div key={msg._id} className="message">
                   <div className="messageInnerLeft">
-                    <span
+                    <div
                       style={{
                         backgroundColor: "slategrey",
                         fontSize: 12,
@@ -175,7 +204,11 @@ export default function ChatWindow() {
                       }}
                     >
                       {msg.messageBody}
-                    </span>
+                      &nbsp;&nbsp;&nbsp;
+                      <span className="timestamp">
+                        <div>{timeStamp}</div>
+                      </span>
+                    </div>
                   </div>
                   <div className="messageInnerLeft">
                     <img
@@ -207,7 +240,7 @@ export default function ChatWindow() {
               return (
                 <div key={msg._id} className="messageRight">
                   <div className="messageInnerRight">
-                    <span
+                    <div
                       style={{
                         backgroundColor: "#C37B89",
                         fontSize: 12,
@@ -217,8 +250,12 @@ export default function ChatWindow() {
                         overflow: "hidden",
                       }}
                     >
-                      {msg.messageBody}{" "}
-                    </span>
+                      {msg.messageBody}
+                      &nbsp;&nbsp;&nbsp;
+                      <span className="timestamp">
+                        <div>{timeStamp}</div>
+                      </span>
+                    </div>
                   </div>
                   <div className="messageInnerRight">
                     <span
