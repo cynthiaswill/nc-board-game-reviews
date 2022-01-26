@@ -72,7 +72,7 @@ export default function ChatWindow() {
       temp.push({
         username: data.username,
         messageBody: data.messageBody,
-        dateCreated: new Date(),
+        dateCreated: new Date().toISOString(),
       });
       setMessages([...temp]);
     });
