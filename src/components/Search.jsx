@@ -4,14 +4,17 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { ParticleContext } from "../contexts/ParticleContext";
+import { SearchContext } from "../contexts/SearchContext";
 import { particleOptions } from "../utils/utils";
 import SearchCard from "./SearchCard";
+import Fuse from "fuse.js";
 
 import SideMenu from "./SideMenu";
 
 export default function Search() {
   const { setError } = useContext(ErrorContext);
   const { setParticleOps } = useContext(ParticleContext);
+  const { pattern } = useContext(SearchContext);
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
@@ -38,6 +41,30 @@ export default function Search() {
       });
   }, [setError, navigate, setParticleOps]);
 
+  const [data, setData] = useState(reviews);
+
+  useEffect(() => {
+    if (!pattern) {
+      setData(reviews);
+      return;
+    }
+
+    const fuse = new Fuse(data, {
+      keys: ["title", "owner", "designer", "review_body"],
+    });
+
+    const result = fuse.search(pattern);
+    const matches = [];
+    if (!result.length) {
+      setData([]);
+    } else {
+      result.forEach(({ item }) => {
+        matches.push(item);
+      });
+      setData(matches);
+    }
+  }, [data, pattern, reviews]);
+
   if (isLoading === true) {
     return (
       <h2>
@@ -47,23 +74,27 @@ export default function Search() {
   }
   return (
     <div className="above-main">
-      {reviews.length ? (
+      {!data.length ? (
         <h3 style={{ color: "white", textAlign: "center" }}>
-          <i class="fas fa-search" aria-hidden="true"></i> Your search results are:
+          <i class="fas fa-search" aria-hidden="true"></i> No match found!
+        </h3>
+      ) : pattern ? (
+        <h3 style={{ color: "white", textAlign: "center" }}>
+          <i class="fas fa-search" aria-hidden="true"></i> Your search results of "
+          {pattern}" are:
         </h3>
       ) : (
         <h3 style={{ color: "white", textAlign: "center" }}>
-          <i class="fas fa-search" aria-hidden="true"></i> No review found!
+          <i class="fas fa-search" aria-hidden="true"></i> Your search results are:
         </h3>
       )}
       <main className="main">
         <div className="mainView">
           <div className="Container">
-            {reviews.map((item) => (
+            {data.map((item) => (
               <SearchCard {...item} key={item.title} />
             ))}
           </div>
-          search view container
         </div>
         <div className="sideMenu">
           <SideMenu className="sideMenuContainer" />

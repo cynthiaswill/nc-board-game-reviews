@@ -5,6 +5,7 @@ import { AuthorContext } from "../contexts/AuthorContext";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
+import { SearchContext } from "../contexts/SearchContext";
 import Chat from "./Chat";
 
 export default function SideMenu() {
@@ -13,6 +14,7 @@ export default function SideMenu() {
   const { categories } = useContext(CategoriesContext);
   const { category, setCategory } = useContext(CategoryContext);
   const { setCatQueries } = useContext(CatQueriesContext);
+  const { setPattern } = useContext(SearchContext);
   let buttonStyle = "category-links";
   if (category.slug === "All categories") {
     buttonStyle = "category-links-selected";
@@ -24,14 +26,15 @@ export default function SideMenu() {
     <>
       <div className="top-part-in-side-menu">
         <div className="search-container">
-          <form action="/action_page.php">
+          <form action="/search">
             <div style={{ display: "flex", flexDirection: "row" }}>
               <input
                 type="text"
                 placeholder="Search..."
-                name="search"
+                name="match"
                 size="22"
                 style={{ flexGrow: 4 }}
+                onChange={(e) => setPattern(e.target.value)}
               />
               <button type="submit" style={{ flexGrow: 1 }}>
                 <i className="fa fa-search"></i>
