@@ -120,7 +120,9 @@ export default function ChatWindow() {
   return (
     <div
       style={
-        width > 811 && location.pathname.slice(0, 8) === "/reviews"
+        width > 811 &&
+        (location.pathname.slice(0, 8) === "/reviews" ||
+          location.pathname.slice(0, 7) === "/search")
           ? roomContainerStyle
           : roomContainerStyleNarrow
       }

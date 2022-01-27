@@ -11,6 +11,7 @@ import User from "./components/User";
 import SignUp from "./components/SignUp";
 import Compose from "./components/Compose";
 import ErrorPage from "./components/ErrorPage";
+import Search from "./components/Search";
 import InvalidRoute from "./components/InvalidRoute";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/compose" element={<Compose />} />
         <Route path="/error" element={<ErrorPage />} />
+        <Route path="/search" element={<Search />} />
         <Route path="*" element={<InvalidRoute />} />
       </Routes>
     </div>
