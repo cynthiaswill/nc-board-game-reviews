@@ -8,8 +8,6 @@ A live version of this **front end** API is **hosted at**:
 
 - https://quizzical-bohr-776a6e.netlify.app
 
-(I am still doing the search bar to make it returning search results of my content, will update once done)
-
 It works together along with the **back end API**, which available at:
 
 - backend API:
