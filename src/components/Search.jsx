@@ -1,53 +1,70 @@
-import "../styles/Reviews.css";
+import "../styles/Search.css";
 import { getReviews } from "../utils/api";
 import { useEffect, useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { ParticleContext } from "../contexts/ParticleContext";
-import { AuthorContext } from "../contexts/AuthorContext";
-import { CategoryContext } from "../contexts/CategoryContext";
-import { filterReviewsByAuthor, particleOptions } from "../utils/utils";
-import { CatQueriesContext } from "../contexts/CatQueriesContext";
+import { particleOptions } from "../utils/utils";
+import SearchCard from "./SearchCard";
 
 import SideMenu from "./SideMenu";
 
-export default function Search({ setReviewsCount, setAuthors }) {
+export default function Search() {
   const { setError } = useContext(ErrorContext);
   const { setParticleOps } = useContext(ParticleContext);
-  const { author } = useContext(AuthorContext);
-  const { category } = useContext(CategoryContext);
-  const { catQueries } = useContext(CatQueriesContext);
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    // setIsLoading(true);
+    setIsLoading(true);
     setParticleOps(particleOptions);
-  }, [
-    catQueries,
-    category,
-    setError,
-    navigate,
-    setReviewsCount,
-    reviews.length,
-    author,
-    setAuthors,
-    setParticleOps,
-  ]);
+    getReviews({
+      sort: "created_at",
+      order: "desc",
+      limit: 10,
+      p: 1,
+      category: "",
+    })
+      .then(({ data }) => {
+        setReviews(data.reviews);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        if (err) {
+          setError(err.response.status);
+          navigate("/error");
+        }
+      });
+  }, [setError, navigate, setParticleOps]);
 
-  //   if (isLoading === true) {
-  //     return (
-  //       <h2>
-  //         <i className="fa fa-cog fa-spin" style={{ fontSize: 20 }} /> Loading...
-  //       </h2>
-  //     );
-  //   }
+  if (isLoading === true) {
+    return (
+      <h2>
+        <i className="fa fa-cog fa-spin" style={{ fontSize: 20 }} /> Loading...
+      </h2>
+    );
+  }
   return (
     <div className="above-main">
+      {reviews.length ? (
+        <h3 style={{ color: "white", textAlign: "center" }}>
+          <i class="fas fa-search" aria-hidden="true"></i> Your search results are:
+        </h3>
+      ) : (
+        <h3 style={{ color: "white", textAlign: "center" }}>
+          <i class="fas fa-search" aria-hidden="true"></i> No review found!
+        </h3>
+      )}
       <main className="main">
-        <div className="mainView">search view container</div>
+        <div className="mainView">
+          <div className="Container">
+            {reviews.map((item) => (
+              <SearchCard {...item} key={item.title} />
+            ))}
+          </div>
+          search view container
+        </div>
         <div className="sideMenu">
           <SideMenu className="sideMenuContainer" />
         </div>
