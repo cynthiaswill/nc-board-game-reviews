@@ -42,16 +42,15 @@ export default function Search() {
   }, [setError, navigate, setParticleOps]);
 
   const [data, setData] = useState(reviews);
+  const fuse = new Fuse(data, {
+    keys: ["title", "owner", "designer", "review_body"],
+  });
 
   useEffect(() => {
     if (!pattern) {
       setData(reviews);
       return;
     }
-
-    const fuse = new Fuse(data, {
-      keys: ["title", "owner", "designer", "review_body"],
-    });
 
     const result = fuse.search(pattern);
     const matches = [];
@@ -63,7 +62,7 @@ export default function Search() {
       });
       setData(matches);
     }
-  }, [data, pattern, reviews]);
+  }, [pattern, reviews]);
 
   if (isLoading === true) {
     return (
@@ -76,16 +75,16 @@ export default function Search() {
     <div className="above-main">
       {!data.length ? (
         <h3 style={{ color: "white", textAlign: "center" }}>
-          <i class="fas fa-search" aria-hidden="true"></i> No match found!
+          <i className="fas fa-search" aria-hidden="true"></i> No match found!
         </h3>
       ) : pattern ? (
         <h3 style={{ color: "white", textAlign: "center" }}>
-          <i class="fas fa-search" aria-hidden="true"></i> Your search results of "
+          <i className="fas fa-search" aria-hidden="true"></i> Your search results of "
           {pattern}" are:
         </h3>
       ) : (
         <h3 style={{ color: "white", textAlign: "center" }}>
-          <i class="fas fa-search" aria-hidden="true"></i> Your search results are:
+          <i className="fas fa-search" aria-hidden="true"></i> Your search results are:
         </h3>
       )}
       <main className="main">
