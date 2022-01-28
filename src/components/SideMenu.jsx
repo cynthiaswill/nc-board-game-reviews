@@ -34,6 +34,7 @@ export default function SideMenu() {
                 name="match"
                 size="22"
                 style={{ flexGrow: 4 }}
+                onFocus={(e) => setPattern(null)}
                 onChange={(e) => {
                   setPattern(e.target.value);
                 }}
@@ -41,7 +42,9 @@ export default function SideMenu() {
               <button
                 type="submit"
                 style={{ flexGrow: 1 }}
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/reviews");
                   setCatQueries({
                     sort: "created_at",
                     order: "desc",

@@ -24,10 +24,8 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
   const { pattern, isSearching, setIsSearching } = useContext(SearchContext);
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const navigate = useNavigate();
-
-  const [data, setData] = useState(reviews);
+  const [data, setData] = useState([]);
   const fuse = new Fuse(data, {
     keys: ["title", "owner", "designer", "review_body"],
   });
@@ -49,6 +47,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
           setReviews(data.reviews);
         }
         setReviewsCount(reviews.length);
+        setData([...reviews]);
         setIsLoading(false);
         setIsSearching(true);
       })
@@ -64,7 +63,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
     setError,
     navigate,
     setReviewsCount,
-    reviews.length,
+    reviews,
     author,
     setAuthors,
     setParticleOps,
@@ -76,7 +75,6 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
       setData(reviews);
       return;
     }
-
     const result = fuse.search(pattern);
     const matches = [];
     if (!result.length) {
@@ -86,8 +84,8 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
         matches.push(item);
       });
       setData(matches);
-      setIsSearching(false);
     }
+    setIsSearching(false);
   }, [pattern, reviews, isSearching, setIsSearching]);
 
   if (isLoading === true) {
