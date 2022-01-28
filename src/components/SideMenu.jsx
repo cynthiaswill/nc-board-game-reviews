@@ -34,9 +34,23 @@ export default function SideMenu() {
                 name="match"
                 size="22"
                 style={{ flexGrow: 4 }}
-                onChange={(e) => setPattern(e.target.value)}
+                onChange={(e) => {
+                  setPattern(e.target.value);
+                }}
               />
-              <button type="submit" style={{ flexGrow: 1 }}>
+              <button
+                type="submit"
+                style={{ flexGrow: 1 }}
+                onClick={() => {
+                  setCatQueries({
+                    sort: "created_at",
+                    order: "desc",
+                    limit: 999,
+                    p: 1,
+                    category: "",
+                  });
+                }}
+              >
                 <i className="fa fa-search"></i>
               </button>
             </div>

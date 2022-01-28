@@ -9,9 +9,11 @@ import { CategoryContext } from "../contexts/CategoryContext";
 import { filterReviewsByAuthor, particleOptions } from "../utils/utils";
 import { FaRegCommentAlt, FaRegCalendarAlt } from "react-icons/fa";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
+import { SearchContext } from "../contexts/SearchContext";
 import Kudos from "./Kudos";
 import WatchToggle from "./WatchToggle";
 import SideMenu from "./SideMenu";
+import Fuse from "fuse.js";
 
 export default function Reviews({ setReviewsCount, setAuthors }) {
   const { setError } = useContext(ErrorContext);
@@ -19,10 +21,16 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
   const { author } = useContext(AuthorContext);
   const { category } = useContext(CategoryContext);
   const { catQueries } = useContext(CatQueriesContext);
+  const { pattern } = useContext(SearchContext);
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
+
+  const [data, setData] = useState(reviews);
+  const fuse = new Fuse(data, {
+    keys: ["title", "owner", "designer", "review_body"],
+  });
 
   useEffect(() => {
     setIsLoading(true);
@@ -60,6 +68,24 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
     setParticleOps,
   ]);
 
+  useEffect(() => {
+    if (!pattern) {
+      setData(reviews);
+      return;
+    }
+
+    const result = fuse.search(pattern);
+    const matches = [];
+    if (!result.length) {
+      setData([]);
+    } else {
+      result.forEach(({ item }) => {
+        matches.push(item);
+      });
+      setData(matches);
+    }
+  }, [pattern, reviews]);
+
   if (isLoading === true) {
     return (
       <h2>
@@ -74,9 +100,23 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
         <span className="page-number-in-reviews">Page {catQueries.p}</span>
       </h3>
       <p className="category-description">{category.description}</p>
+      {!data.length ? (
+        <h3 style={{ color: "white", textAlign: "center" }}>
+          <i className="fas fa-search" aria-hidden="true"></i> No match found!
+        </h3>
+      ) : pattern ? (
+        <h3 style={{ color: "white", textAlign: "center" }}>
+          <i className="fas fa-search" aria-hidden="true"></i> Your search results of "
+          {pattern}" are:
+        </h3>
+      ) : (
+        <h3 style={{ color: "white", textAlign: "center" }}>
+          <i className="fas fa-search" aria-hidden="true"></i> Your search results are:
+        </h3>
+      )}
       <main className="main">
         <div className="mainView">
-          {reviews.map((review) => {
+          {data.map((review) => {
             return (
               <div key={review.review_id} className="review-item">
                 <section className="review-card">
