@@ -45,6 +45,7 @@ export default function SideMenu() {
                 onClick={(e) => {
                   e.preventDefault();
                   navigate("/reviews");
+                  setCategory({ slug: "All categories", description: "" });
                   setCatQueries({
                     sort: "created_at",
                     order: "desc",
