@@ -25,10 +25,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
-  const fuse = new Fuse(data, {
-    keys: ["title", "owner", "designer", "review_body"],
-  });
+  const [data, setData] = useState([...reviews]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -43,10 +40,8 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
 
         if (author !== "") {
           setReviews(filterReviewsByAuthor(data.reviews, author));
-          setData([...filterReviewsByAuthor(data.reviews, author)]);
         } else {
           setReviews(data.reviews);
-          setData([...data.reviews]);
         }
         setReviewsCount(reviews.length);
         setIsLoading(false);
@@ -70,6 +65,10 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
     setParticleOps,
     setIsSearching,
   ]);
+
+  const fuse = new Fuse(reviews, {
+    keys: ["title", "owner", "designer", "review_body"],
+  });
 
   useEffect(() => {
     if (!pattern) {
