@@ -66,15 +66,14 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
     setIsSearching,
   ]);
 
-  const fuse = new Fuse(reviews, {
-    keys: ["title", "owner", "designer", "review_body"],
-  });
-
   useEffect(() => {
     if (!pattern) {
       setData([...reviews]);
       return;
     }
+    const fuse = new Fuse(reviews, {
+      keys: ["title", "owner", "designer", "review_body"],
+    });
     const result = fuse.search(pattern);
     const matches = [];
     if (!result.length) {
