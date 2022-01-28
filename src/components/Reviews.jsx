@@ -34,6 +34,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
 
   useEffect(() => {
     setIsLoading(true);
+    setIsSearching(false);
     setParticleOps(particleOptions);
     getReviews(catQueries)
       .then(({ data }) => {
@@ -49,6 +50,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
         }
         setReviewsCount(reviews.length);
         setIsLoading(false);
+        setIsSearching(true);
       })
       .catch((err) => {
         if (err) {
@@ -66,10 +68,10 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
     author,
     setAuthors,
     setParticleOps,
+    setIsSearching,
   ]);
 
   useEffect(() => {
-    setIsSearching(true);
     if (!pattern) {
       setData(reviews);
       return;
@@ -84,9 +86,9 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
         matches.push(item);
       });
       setData(matches);
+      setIsSearching(false);
     }
-    setIsSearching(false);
-  }, [pattern, isSearching, reviews, setIsSearching]);
+  }, [pattern, reviews, isSearching, setIsSearching]);
 
   if (isLoading === true) {
     return (

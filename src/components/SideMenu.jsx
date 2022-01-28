@@ -14,7 +14,7 @@ export default function SideMenu() {
   const { categories } = useContext(CategoriesContext);
   const { category, setCategory } = useContext(CategoryContext);
   const { setCatQueries } = useContext(CatQueriesContext);
-  const { pattern, setPattern, setIsSearching } = useContext(SearchContext);
+  const { pattern, setPattern } = useContext(SearchContext);
   let buttonStyle = "category-links";
   if (category.slug === "All categories") {
     buttonStyle = "category-links-selected";
@@ -26,7 +26,7 @@ export default function SideMenu() {
     <>
       <div className="top-part-in-side-menu">
         <div className="search-container">
-          <form action="/search">
+          <form action="/reviews">
             <div style={{ display: "flex", flexDirection: "row" }}>
               <input
                 type="text"
@@ -49,7 +49,6 @@ export default function SideMenu() {
                     p: 1,
                     category: "",
                   });
-                  setIsSearching(true);
                 }}
               >
                 <i className="fa fa-search"></i>
