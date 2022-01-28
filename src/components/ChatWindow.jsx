@@ -50,6 +50,7 @@ export default function ChatWindow() {
           setMessages([
             ...data.history,
             {
+              dateCreated: new Date().toISOString(),
               welcome: true,
               username,
               roomName,
@@ -192,7 +193,7 @@ export default function ChatWindow() {
 
             if (msg.username === user.username || msg.welcome) {
               return (
-                <div key={msg._id} className="message">
+                <div key={msg._id || msg.dateCreated} className="message">
                   <div className="messageInnerLeft">
                     <div
                       style={{
@@ -239,7 +240,7 @@ export default function ChatWindow() {
               );
             } else {
               return (
-                <div key={msg._id} className="messageRight">
+                <div key={msg._id || msg.dateCreated} className="messageRight">
                   <div className="messageInnerRight">
                     <div
                       style={{
