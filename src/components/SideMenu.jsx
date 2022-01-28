@@ -33,7 +33,7 @@ export default function SideMenu() {
                 placeholder={pattern || "Search..."}
                 name="match"
                 size="22"
-                style={{ flexGrow: 4 }}
+                style={{ flexGrow: 4, borderRadius: 5 }}
                 onFocus={(e) => setPattern(null)}
                 onChange={(e) => {
                   setPattern(e.target.value);
