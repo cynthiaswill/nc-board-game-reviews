@@ -328,11 +328,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
         ) : null}
       </div>
       <div className="chat-container">
-        {width < 812 ||
-        (location.pathname.slice(0, 8) !== "/reviews" &&
-          location.pathname.slice(0, 7) !== "/search") ? (
-          <Chat />
-        ) : null}
+        {width < 812 || location.pathname.slice(0, 8) !== "/reviews" ? <Chat /> : null}
       </div>
     </div>
   );

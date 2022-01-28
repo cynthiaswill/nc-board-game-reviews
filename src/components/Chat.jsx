@@ -20,9 +20,7 @@ export default function Chat() {
           <>
             <button
               className={
-                width > 811 &&
-                (location.pathname.slice(0, 8) === "/reviews" ||
-                  location.pathname.slice(0, 7) === "/search")
+                width > 811 && location.pathname.slice(0, 8) === "/reviews"
                   ? "chat-opener"
                   : "chat-opener-narrow"
               }
