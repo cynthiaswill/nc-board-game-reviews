@@ -11,6 +11,7 @@ import { AuthorContext } from "../contexts/AuthorContext";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
+import { SearchContext } from "../contexts/SearchContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
 import Chat from "./Chat";
 
@@ -21,6 +22,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
   const { setError } = useContext(ErrorContext);
   const { setAuthor } = useContext(AuthorContext);
   const { setCategory } = useContext(CategoryContext);
+  const { setPattern } = useContext(SearchContext);
   const { categories, setCategories } = useContext(CategoriesContext);
   const { catQueries, setCatQueries } = useContext(CatQueriesContext);
   const [showPagination, setShowPagination] = useState(true);
@@ -57,12 +59,14 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
         category: "",
       });
       setAuthor("");
+      setPattern(null);
       setReset(false);
     }
   }, [
     user,
     setCategories,
     navigate,
+    setPattern,
     reset,
     setReset,
     setAuthor,

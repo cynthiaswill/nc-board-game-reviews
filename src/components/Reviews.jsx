@@ -21,7 +21,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
   const { author } = useContext(AuthorContext);
   const { category } = useContext(CategoryContext);
   const { catQueries } = useContext(CatQueriesContext);
-  const { pattern } = useContext(SearchContext);
+  const { pattern, isSearching, setIsSearching } = useContext(SearchContext);
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -69,6 +69,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
   ]);
 
   useEffect(() => {
+    setIsSearching(true);
     if (!pattern) {
       setData(reviews);
       return;
@@ -84,7 +85,8 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
       });
       setData(matches);
     }
-  }, [pattern, reviews]);
+    setIsSearching(false);
+  }, [pattern, isSearching, reviews, setIsSearching]);
 
   if (isLoading === true) {
     return (
@@ -100,20 +102,22 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
         <span className="page-number-in-reviews">Page {catQueries.p}</span>
       </h3>
       <p className="category-description">{category.description}</p>
-      {!data.length ? (
-        <h3 style={{ color: "white", textAlign: "center" }}>
-          <i className="fas fa-search" aria-hidden="true"></i> No match found!
-        </h3>
-      ) : pattern ? (
-        <h3 style={{ color: "white", textAlign: "center" }}>
-          <i className="fas fa-search" aria-hidden="true"></i> Your search results of "
-          {pattern}" are:
-        </h3>
-      ) : (
-        <h3 style={{ color: "white", textAlign: "center" }}>
-          <i className="fas fa-search" aria-hidden="true"></i> Your search results are:
-        </h3>
-      )}
+      <>
+        {!data.length ? (
+          <h3
+            style={{ color: "white", textAlign: "center", marginTop: 5, marginBottom: 0 }}
+          >
+            <i className="fas fa-search" aria-hidden="true"></i> No matched review found!
+          </h3>
+        ) : pattern ? (
+          <h3
+            style={{ color: "white", textAlign: "center", marginTop: 5, marginBottom: 0 }}
+          >
+            <i className="fas fa-search" aria-hidden="true"></i> Your search results of "
+            {pattern}" are:
+          </h3>
+        ) : null}
+      </>
       <main className="main">
         <div className="mainView">
           {data.map((review) => {
