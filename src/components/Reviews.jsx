@@ -43,11 +43,12 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
 
         if (author !== "") {
           setReviews(filterReviewsByAuthor(data.reviews, author));
+          setData([...filterReviewsByAuthor(data.reviews, author)]);
         } else {
           setReviews(data.reviews);
+          setData([...data.reviews]);
         }
         setReviewsCount(reviews.length);
-        setData([...data.reviews]);
         setIsLoading(false);
         setIsSearching(true);
       })

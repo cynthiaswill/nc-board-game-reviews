@@ -90,6 +90,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
               setCategory({ slug: "All categories", description: "" });
               document.getElementById("author-option").selectedIndex = "null";
               setAuthor("");
+              setPattern(null);
               navigate("/reviews");
             }}
           >
@@ -111,6 +112,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
                   });
                   document.getElementById("author-option").selectedIndex = "null";
                   setAuthor("");
+                  setPattern(null);
                   navigate("/reviews");
                 }}
               >{`${category.slug}`}</Link>
@@ -142,6 +144,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
                 }
                 document.getElementById("author-option").selectedIndex = "null";
                 setAuthor("");
+                setPattern(null);
                 navigate("/reviews");
               }}
             >
@@ -165,7 +168,12 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
               className="nav-options"
               style={{ borderRadius: 5 }}
               onChange={(e) => {
+                setPattern(null);
                 setAuthor(e.target.value);
+                document.getElementById("per-page-option").selectedIndex = "null";
+                setCatQueries((current) => {
+                  return { ...current, limit: 99 };
+                });
                 navigate("/reviews");
               }}
             >
@@ -224,11 +232,9 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
               style={{ borderRadius: 5 }}
               onChange={(e) => {
                 setCatQueries((current) => {
-                  let newCurrent = { ...current };
-                  newCurrent.limit = e.target.value;
-                  navigate("/reviews");
-                  return newCurrent;
+                  return { ...current, limit: e.target.value };
                 });
+                navigate("/reviews");
               }}
             >
               <option value="10" default hidden>

@@ -83,6 +83,7 @@ export default function SideMenu() {
               setCategory({ slug: "All categories", description: "" });
               document.getElementById("author-option").selectedIndex = "null";
               setAuthor("");
+              setPattern(null);
               navigate("/reviews");
             }}
           >
