@@ -47,7 +47,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
           setReviews(data.reviews);
         }
         setReviewsCount(reviews.length);
-        setData([...reviews]);
+        setData([...data.reviews]);
         setIsLoading(false);
         setIsSearching(true);
       })
@@ -63,7 +63,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
     setError,
     navigate,
     setReviewsCount,
-    reviews,
+    reviews.length,
     author,
     setAuthors,
     setParticleOps,
@@ -72,7 +72,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
 
   useEffect(() => {
     if (!pattern) {
-      setData(reviews);
+      setData([...reviews]);
       return;
     }
     const result = fuse.search(pattern);
