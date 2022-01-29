@@ -509,7 +509,7 @@ textarea {
   z-index: 1;
   bottom: 100%;
   left: 50%;
-  margin-left: -165px;
+  margin-left: -170px;
 }
 
 .searchButton:hover .searchTooltip {
