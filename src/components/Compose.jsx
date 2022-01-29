@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 import TextField from "@material-ui/core/TextField";
 import { ParticleContext } from "../contexts/ParticleContext";
-import { particleOptions } from "../utils/utils";
+import { urlRegex, particleOptions } from "../utils/utils";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 
 export default function Compose() {
@@ -19,6 +19,7 @@ export default function Compose() {
   const [needNewCat, setNeedNewCat] = useState(false);
   const [showValidation, setShowValidation] = useState(false);
   const [showDesignerValidation, setShowDesignerValidation] = useState(false);
+  const [showUrlValidation, setShowUrlValidation] = useState(false);
   const [showV1, setShowV1] = useState(false);
   const [showV2, setShowV2] = useState(false);
   const [showV3, setShowV3] = useState(false);
@@ -331,6 +332,39 @@ export default function Compose() {
                   <p className="validation">
                     Designer can only contain any word characters.
                   </p>
+                ) : (
+                  <br />
+                )}
+                <br />
+                <TextField
+                  label="Please give an URL for a display image:"
+                  size="small"
+                  inputProps={{ style: { fontSize: 12 } }}
+                  InputLabelProps={{ style: { fontSize: 12 } }}
+                  style={{
+                    marginTop: 0,
+                    width: 220,
+                    alignSelf: "center",
+                  }}
+                  onChange={(event) => {
+                    setNewReview((current) => {
+                      return {
+                        ...current,
+                        review_img_url: event.target.value,
+                      };
+                    });
+                  }}
+                  onBlur={(event) => {
+                    if (urlRegex.test(event.target.value) || !event.target.value) {
+                      setShowUrlValidation(false);
+                    } else {
+                      setShowUrlValidation(true);
+                    }
+                  }}
+                  maxLength="25"
+                />
+                {showUrlValidation ? (
+                  <p className="validation">Please enter a valid URL!</p>
                 ) : (
                   <br />
                 )}
