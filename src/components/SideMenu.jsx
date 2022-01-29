@@ -7,6 +7,7 @@ import { CategoryContext } from "../contexts/CategoryContext";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
 import { SearchContext } from "../contexts/SearchContext";
 import Chat from "./Chat";
+import SearchBar from "./SearchBar";
 
 export default function SideMenu() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export default function SideMenu() {
   const { categories } = useContext(CategoriesContext);
   const { category, setCategory } = useContext(CategoryContext);
   const { setCatQueries } = useContext(CatQueriesContext);
-  const { pattern, setPattern } = useContext(SearchContext);
+  const { setPattern } = useContext(SearchContext);
   let buttonStyle = "category-links";
   if (category.slug === "All categories") {
     buttonStyle = "category-links-selected";
@@ -27,37 +28,7 @@ export default function SideMenu() {
       <div className="top-part-in-side-menu">
         <div className="search-container">
           <form action="/reviews">
-            <div style={{ display: "flex", flexDirection: "row" }}>
-              <input
-                type="text"
-                placeholder={pattern || "Search..."}
-                name="match"
-                size="22"
-                style={{ flexGrow: 4, borderRadius: 5 }}
-                onFocus={(e) => setPattern(null)}
-                onChange={(e) => {
-                  setPattern(e.target.value);
-                }}
-              />
-              <button
-                type="submit"
-                style={{ flexGrow: 1 }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/reviews");
-                  setCategory({ slug: "All categories", description: "" });
-                  setCatQueries({
-                    sort: "created_at",
-                    order: "desc",
-                    limit: 999,
-                    p: 1,
-                    category: "",
-                  });
-                }}
-              >
-                <i className="fa fa-search"></i>
-              </button>
-            </div>
+            <SearchBar />
           </form>
         </div>
         <br />
