@@ -345,21 +345,11 @@ button {
   font-weight: bold;
   font-family: papyrus;
   color: black;
-  flex-grow: 1;
-  margin-right: 5px;
-}
-
-#narrow-login-text {
-  text-align: right;
-  float: right;
-  font-weight: bold;
-  font-family: papyrus;
-  color: black;
   margin-right: 5px;
   transition: transform 0.2s;
 }
 
-#narrow-login-text:hover {
+#narrow-login-link:hover {
   transform: scale(1.2);
 }
 

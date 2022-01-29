@@ -13,6 +13,7 @@ import { CategoryContext } from "../contexts/CategoryContext";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
 import { SearchContext } from "../contexts/SearchContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
+import SearchBar from "./SearchBar";
 import Chat from "./Chat";
 
 export default function Nav({ reviewsCount, reset, setReset, authors }) {
@@ -267,24 +268,21 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
           <Link to="/compose" id="narrow-compose-link">
             <FaPencilAlt className="navIcon" /> Compose!
           </Link>
+          {width > 600 ? null : <SearchBar />}
           {isLogged ? (
-            <div id="narrow-login-link">
-              <Link
-                to="/"
-                id="narrow-login-text"
-                onClick={() => {
-                  setUser({});
-                }}
-              >
-                Logout <GiEntryDoor className="navIcon" />
-              </Link>
-            </div>
+            <Link
+              to="/"
+              id="narrow-login-link"
+              onClick={() => {
+                setUser({});
+              }}
+            >
+              Logout <GiEntryDoor className="navIcon" />
+            </Link>
           ) : (
-            <div id="narrow-login-link">
-              <Link to="/users" id="narrow-login-text">
-                Login <GiExitDoor className="navIcon" />
-              </Link>
-            </div>
+            <Link to="/users" id="narrow-login-link">
+              Login <GiExitDoor className="navIcon" />
+            </Link>
           )}
         </div>
       </nav>

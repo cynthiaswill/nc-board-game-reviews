@@ -3,11 +3,13 @@ import { useContext } from "react";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
 import { SearchContext } from "../contexts/SearchContext";
+import useWindowDimensions from "../hooks/WindowDimentions";
 
 export default function SearchBar() {
   const { setCategory } = useContext(CategoryContext);
   const { setCatQueries } = useContext(CatQueriesContext);
   const { pattern, setPattern } = useContext(SearchContext);
+  const { width } = useWindowDimensions();
   const navigate = useNavigate();
 
   return (
@@ -16,8 +18,8 @@ export default function SearchBar() {
         type="text"
         placeholder={pattern || "Search..."}
         name="match"
-        size="22"
-        style={{ flexGrow: 4, borderRadius: 5 }}
+        size={width > 600 ? 22 : 19}
+        style={{ borderRadius: 5 }}
         onFocus={(e) => setPattern(null)}
         onChange={(e) => {
           setPattern(e.target.value);
