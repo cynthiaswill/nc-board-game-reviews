@@ -10,6 +10,8 @@ import { filterReviewsByAuthor, particleOptions } from "../utils/utils";
 import { FaRegCommentAlt, FaRegCalendarAlt } from "react-icons/fa";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
 import { SearchContext } from "../contexts/SearchContext";
+import useWindowDimensions from "../hooks/WindowDimentions";
+import SearchBar from "./SearchBar";
 import Kudos from "./Kudos";
 import WatchToggle from "./WatchToggle";
 import SideMenu from "./SideMenu";
@@ -24,8 +26,9 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
   const { pattern, isSearching, setIsSearching } = useContext(SearchContext);
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
   const [data, setData] = useState([...reviews]);
+  const { width } = useWindowDimensions();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -97,7 +100,8 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
   return (
     <div className="above-main">
       <h3 className="category-title">
-        {category.slug}:
+        <span>{category.slug}:</span>
+        {width > 600 && width < 812 && <SearchBar />}
         <span className="page-number-in-reviews">Page {catQueries.p}</span>
       </h3>
       <p className="category-description">{category.description}</p>

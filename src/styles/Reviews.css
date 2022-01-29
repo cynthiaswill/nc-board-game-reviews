@@ -4,12 +4,23 @@
   color: white;
   text-shadow: 0 0 4px black;
   filter: drop-shadow(3px 5px 1px rgb(0 0 0 / 0.6));
+  font-family: papyrus;
+  font-weight: bold;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .category-description {
   font-style: italic;
   margin: 5px;
   filter: drop-shadow(2px 4px 1px rgb(0 0 0 / 0.5));
+  color: white;
+  font-family: papyrus;
+  font-weight: bold;
+  font-size: 0.9em;
+  padding-left: 10px;
 }
 
 .review-item {
@@ -178,6 +189,8 @@
   float: right;
   margin-right: 15px;
   font-size: smaller;
+  display: flex;
+  justify-content: space-between;
 }
 
 .review-title-link {
