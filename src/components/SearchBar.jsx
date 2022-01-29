@@ -25,7 +25,7 @@ export default function SearchBar() {
       />
       <button
         type="submit"
-        style={{ flexGrow: 1 }}
+        className="searchButton"
         onClick={(e) => {
           e.preventDefault();
           navigate("/reviews");
@@ -39,7 +39,8 @@ export default function SearchBar() {
           });
         }}
       >
-        <i className="fa fa-search"></i>
+        <i className="fa fa-search" />
+        <span className="searchTooltip">search entire reviews library</span>
       </button>
     </div>
   );
