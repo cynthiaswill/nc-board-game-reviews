@@ -26,7 +26,7 @@ export default function ChatAuthorIcon({ msg }) {
   return (
     <>
       <img
-        src={viewedUser.avatar_url || "http://cdn.onlinewebfonts.com/svg/img_181369.png"}
+        src={viewedUser.avatar_url || "https://cdn.onlinewebfonts.com/svg/img_181369.png"}
         alt=""
         style={{ height: 15, borderRadius: "50%" }}
       />

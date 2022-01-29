@@ -132,7 +132,7 @@ export default function ChatWindow() {
             <div style={{ height: 25, overflow: "hidden" }}>
               <img
                 src={
-                  user.avatar_url || "http://cdn.onlinewebfonts.com/svg/img_181369.png"
+                  user.avatar_url || "https://cdn.onlinewebfonts.com/svg/img_181369.png"
                 }
                 alt={user.username}
                 style={{ height: "20px", borderRadius: "5px" }}
@@ -216,7 +216,7 @@ export default function ChatWindow() {
                     <img
                       src={
                         user.avatar_url ||
-                        "http://cdn.onlinewebfonts.com/svg/img_181369.png"
+                        "https://cdn.onlinewebfonts.com/svg/img_181369.png"
                       }
                       alt=""
                       style={{
