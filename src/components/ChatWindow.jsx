@@ -204,8 +204,8 @@ export default function ChatWindow() {
                   className="far fa-comments"
                   style={
                     viewMode === "chat"
-                      ? { color: "blue", fontWeight: "bold", fontSize: 16 }
-                      : { fontSize: 12 }
+                      ? { color: "blue", fontWeight: "bold", fontSize: 14 }
+                      : { fontSize: 10 }
                   }
                 />{" "}
                 /{" "}
@@ -213,8 +213,8 @@ export default function ChatWindow() {
                   className="fas fa-user-friends"
                   style={
                     viewMode === "users"
-                      ? { color: "blue", fontWeight: "bold", fontSize: 16 }
-                      : { fontSize: 12 }
+                      ? { color: "blue", fontWeight: "bold", fontSize: 14 }
+                      : { fontSize: 10 }
                   }
                 />
                 {viewMode === "chat" && (
