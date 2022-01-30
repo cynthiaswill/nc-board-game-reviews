@@ -7,6 +7,7 @@ import { CategoriesContext } from "../contexts/CategoriesContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
 import { getHistory, getUsers } from "../utils/api";
 import ChatAuthorIcon from "./ChatAuthorIcon";
+import UserIcon from "./UserIcon";
 import io from "socket.io-client";
 
 const socket = io("https://nc-games-board.herokuapp.com/");
@@ -378,17 +379,7 @@ export default function ChatWindow() {
                 users.map((user) => {
                   return (
                     <div className="messageInnerLeft" style={{ marginBottom: 5 }}>
-                      <img
-                        src={
-                          user.avatar_url ||
-                          "https://cdn.onlinewebfonts.com/svg/img_181369.png"
-                        }
-                        alt=""
-                        style={{
-                          height: 15,
-                          borderRadius: "50%",
-                        }}
-                      />
+                      <UserIcon user={user} />
                       <span
                         style={{
                           fontSize: 12,
@@ -449,17 +440,7 @@ export default function ChatWindow() {
                 users.map((user) => {
                   return (
                     <div className="messageInnerLeft" style={{ marginBottom: 5 }}>
-                      <img
-                        src={
-                          user.avatar_url ||
-                          "https://cdn.onlinewebfonts.com/svg/img_181369.png"
-                        }
-                        alt=""
-                        style={{
-                          height: 15,
-                          borderRadius: "50%",
-                        }}
-                      />
+                      <UserIcon user={user} offlineToggle={offlineToggle} />
                       <span
                         style={{
                           fontSize: 12,
