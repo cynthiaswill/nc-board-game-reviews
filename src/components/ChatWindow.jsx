@@ -84,9 +84,11 @@ export default function ChatWindow() {
       });
       setMessages([...temp]);
     });
-
-    scrollToBottom();
   }, [setMessages, messages]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, viewMode]);
 
   const sendData = () => {
     if (messageBody !== "") {
