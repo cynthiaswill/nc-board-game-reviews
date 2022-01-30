@@ -5,7 +5,7 @@ import { ChatContext } from "../contexts/ChatContext";
 import { useLocation } from "react-router-dom";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
-import { getHistory } from "../utils/api";
+import { getHistory, getUsers } from "../utils/api";
 import ChatAuthorIcon from "./ChatAuthorIcon";
 import io from "socket.io-client";
 
@@ -15,8 +15,13 @@ export default function ChatWindow() {
   const { user, isLogged } = useContext(UserContext);
   const { categories } = useContext(CategoriesContext);
   const { isChatOpen, setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
+  const [viewMode, setViewMode] = useState("chat");
   const [messages, setMessages] = useState([]);
   const [messageBody, setMessageBody] = useState("");
+  const [users, setUsers] = useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [onlineToggle, setOnlineToggle] = useState(true);
+  const [offlineToggle, setOfflineToggle] = useState(true);
   const location = useLocation();
   const { width } = useWindowDimensions();
   const messagesEndRef = useRef(null);
@@ -89,6 +94,14 @@ export default function ChatWindow() {
     }
   };
 
+  useEffect(() => {
+    getUsers()
+      .then(({ data }) => {
+        setUsers(data.users);
+      })
+      .catch((err) => console.dir(err));
+  }, []);
+
   const roomContainerStyle = {
     display: "flex",
     flexDirection: "column",
@@ -127,9 +140,14 @@ export default function ChatWindow() {
       }
     >
       <div className="chat">
-        <div style={{ display: "flex", flexDirection: "row", alignItems: "stretch" }}>
+        <div style={{ display: "flex", flexDirection: "row" }}>
           <div className="usernameContainer">
-            <div style={{ height: 25, overflow: "hidden" }}>
+            <div
+              style={{
+                height: 25,
+                overflow: "hidden",
+              }}
+            >
               <img
                 src={
                   user.avatar_url || "https://cdn.onlinewebfonts.com/svg/img_181369.png"
@@ -137,31 +155,58 @@ export default function ChatWindow() {
                 alt={user.username}
                 style={{ height: "20px", borderRadius: "5px" }}
               />
-              <span className="roomTitle" style={{ fontSize: 14 }}>
+              <span className="roomTitle" style={{ fontSize: 14, flexGrow: 1 }}>
                 {user.username}{" "}
                 <span style={{ fontSize: 13, color: "darkblue" }}>in {roomName}</span>
               </span>
             </div>
-
-            <select
-              onChange={(e) => {
-                setRoomName(e.target.value);
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
               }}
-              style={{ backgroundColor: "rgba(180,180,180,0.5)", borderRadius: 5 }}
-              value={roomName}
             >
-              <option key="Lobby" value="Lobby" default>
-                Lobby
-              </option>
-              {categories.map((category) => {
-                return (
-                  <option
-                    key={category.slug}
-                    value={category.slug}
-                  >{`${category.slug}`}</option>
-                );
-              })}
-            </select>
+              <select
+                onChange={(e) => {
+                  setRoomName(e.target.value);
+                }}
+                style={{
+                  backgroundColor: "rgba(180,180,180,0.5)",
+                  borderRadius: 5,
+                  flexGrow: 1,
+                }}
+                value={roomName}
+              >
+                <option key="Lobby" value="Lobby" default>
+                  Lobby
+                </option>
+                {categories.map((category) => {
+                  return (
+                    <option
+                      key={category.slug}
+                      value={category.slug}
+                    >{`${category.slug}`}</option>
+                  );
+                })}
+              </select>
+              <button
+                style={{ margin: 0, marginLeft: 5 }}
+                onClick={() => {
+                  viewMode === "chat" ? setViewMode("users") : setViewMode("chat");
+                }}
+              >
+                <i
+                  className="far fa-comments"
+                  style={viewMode === "chat" ? { color: "blue" } : null}
+                />{" "}
+                /{" "}
+                <i
+                  className="fas fa-user-friends"
+                  style={viewMode === "users" ? { color: "blue" } : null}
+                />
+              </button>
+            </div>
           </div>
           <button
             onClick={() => {
@@ -178,106 +223,258 @@ export default function ChatWindow() {
             />
           </button>
         </div>
-        <div className="chatMessage">
-          {messages.map((msg) => {
-            const timePassed = now.getTime() - new Date(msg.dateCreated).getTime();
-            const timeStamp = msg.welcome
-              ? null
-              : timePassed < oneDay
-              ? msg.dateCreated.toString().slice(11, 16)
-              : timePassed < oneWeek
-              ? weekdays[new Date(msg.dateCreated).getDay()]
-              : new Date(msg.dateCreated).getDate() +
-                " " +
-                months[new Date(msg.dateCreated).getMonth()];
+        {viewMode === "chat" ? (
+          <div className="chatMessage">
+            {messages.map((msg) => {
+              const timePassed = now.getTime() - new Date(msg.dateCreated).getTime();
+              const timeStamp = msg.welcome
+                ? null
+                : timePassed < oneDay
+                ? msg.dateCreated.toString().slice(11, 16)
+                : timePassed < oneWeek
+                ? weekdays[new Date(msg.dateCreated).getDay()]
+                : new Date(msg.dateCreated).getDate() +
+                  " " +
+                  months[new Date(msg.dateCreated).getMonth()];
 
-            if (msg.username === user.username || msg.welcome) {
-              return (
-                <div key={msg._id || msg.dateCreated} className="message">
-                  <div className="messageInnerLeft">
-                    <div
-                      style={{
-                        backgroundColor: "slategrey",
-                        fontSize: 12,
-                        borderRadius: 10,
-                        padding: 5,
-                        color: "white",
-                        overflow: "hidden",
-                      }}
-                    >
-                      {msg.messageBody}
-                      &nbsp;&nbsp;&nbsp;
-                      <span className="timestamp">
-                        <div>{timeStamp}</div>
+              if (msg.username === user.username || msg.welcome) {
+                return (
+                  <div key={msg._id || msg.dateCreated} className="message">
+                    <div className="messageInnerLeft">
+                      <div
+                        style={{
+                          backgroundColor: "slategrey",
+                          fontSize: 12,
+                          borderRadius: 10,
+                          padding: 5,
+                          color: "white",
+                          overflow: "hidden",
+                        }}
+                      >
+                        {msg.messageBody}
+                        &nbsp;&nbsp;&nbsp;
+                        <span className="timestamp">
+                          <div>{timeStamp}</div>
+                        </span>
+                      </div>
+                    </div>
+                    <div className="messageInnerLeft">
+                      <img
+                        src={
+                          user.avatar_url ||
+                          "https://cdn.onlinewebfonts.com/svg/img_181369.png"
+                        }
+                        alt=""
+                        style={{
+                          height: 15,
+                          borderRadius: "50%",
+                          visibility: msg.welcome ? "hidden" : "visible",
+                        }}
+                      />
+                      <span
+                        style={{
+                          fontStyle: "italic",
+                          color: "#4A403A",
+                          fontSize: 10,
+                          visibility: msg.welcome ? "hidden" : "visible",
+                        }}
+                      >
+                        by {msg.username}
                       </span>
                     </div>
                   </div>
-                  <div className="messageInnerLeft">
-                    <img
-                      src={
-                        user.avatar_url ||
-                        "https://cdn.onlinewebfonts.com/svg/img_181369.png"
-                      }
-                      alt=""
-                      style={{
-                        height: 15,
-                        borderRadius: "50%",
-                        visibility: msg.welcome ? "hidden" : "visible",
-                      }}
-                    />
-                    <span
-                      style={{
-                        fontStyle: "italic",
-                        color: "#4A403A",
-                        fontSize: 10,
-                        visibility: msg.welcome ? "hidden" : "visible",
-                      }}
-                    >
-                      by {msg.username}
-                    </span>
-                  </div>
-                </div>
-              );
-            } else {
-              return (
-                <div key={msg._id || msg.dateCreated} className="messageRight">
-                  <div className="messageInnerRight">
-                    <div
-                      style={{
-                        backgroundColor: "#C37B89",
-                        fontSize: 12,
-                        borderRadius: 10,
-                        padding: 5,
-                        color: "white",
-                        overflow: "hidden",
-                      }}
-                    >
-                      {msg.messageBody}
-                      &nbsp;&nbsp;&nbsp;
-                      <span className="timestamp">
-                        <div>{timeStamp}</div>
+                );
+              } else {
+                return (
+                  <div key={msg._id || msg.dateCreated} className="messageRight">
+                    <div className="messageInnerRight">
+                      <div
+                        style={{
+                          backgroundColor: "#C37B89",
+                          fontSize: 12,
+                          borderRadius: 10,
+                          padding: 5,
+                          color: "white",
+                          overflow: "hidden",
+                        }}
+                      >
+                        {msg.messageBody}
+                        &nbsp;&nbsp;&nbsp;
+                        <span className="timestamp">
+                          <div>{timeStamp}</div>
+                        </span>
+                      </div>
+                    </div>
+                    <div className="messageInnerRight">
+                      <span
+                        style={{
+                          fontStyle: "italic",
+                          color: "#4A403A",
+                          fontSize: 10,
+                          visibility: msg.welcome ? "hidden" : "visible",
+                        }}
+                      >
+                        by {msg.username}
                       </span>
+                      {msg.welcome ? null : <ChatAuthorIcon msg={msg} />}
                     </div>
                   </div>
-                  <div className="messageInnerRight">
-                    <span
-                      style={{
-                        fontStyle: "italic",
-                        color: "#4A403A",
-                        fontSize: 10,
-                        visibility: msg.welcome ? "hidden" : "visible",
-                      }}
-                    >
-                      by {msg.username}
-                    </span>
-                    {msg.welcome ? null : <ChatAuthorIcon msg={msg} />}
+                );
+              }
+            })}
+            <div ref={messagesEndRef} />
+          </div>
+        ) : (
+          <div className="onlineStatus">
+            <div ref={messagesEndRef} />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                margin: 5,
+                background: "lightgrey",
+                borderRadius: 5,
+                paddingLeft: 5,
+                paddingRight: 5,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div
+                  style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+                >
+                  <i
+                    className="fa fa-circle"
+                    style={{ color: "limegreen", fontSize: 10 }}
+                  />
+                  &nbsp;
+                  <div style={{ fontSize: 14, color: "blue" }}>
+                    {" "}
+                    {onlineUsers.length} online users:
                   </div>
                 </div>
-              );
-            }
-          })}
-          <div ref={messagesEndRef} />
-        </div>
+                <button
+                  onClick={() => {
+                    onlineToggle ? setOnlineToggle(false) : setOnlineToggle(true);
+                  }}
+                >
+                  <i
+                    className={onlineToggle ? "fas fa-angle-up" : "fas fa-angle-down"}
+                    style={{
+                      fontSize: 15,
+                      fontWeight: "bold",
+                      alignSelf: "flex-end",
+                    }}
+                  />
+                </button>
+              </div>
+              {onlineToggle &&
+                users.map((user) => {
+                  return (
+                    <div className="messageInnerLeft" style={{ marginBottom: 5 }}>
+                      <img
+                        src={
+                          user.avatar_url ||
+                          "https://cdn.onlinewebfonts.com/svg/img_181369.png"
+                        }
+                        alt=""
+                        style={{
+                          height: 15,
+                          borderRadius: "50%",
+                        }}
+                      />
+                      <span
+                        style={{
+                          fontSize: 12,
+                        }}
+                      >
+                        &nbsp;&nbsp;
+                        {user.username}
+                      </span>
+                    </div>
+                  );
+                })}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                margin: 5,
+                background: "lightgrey",
+                borderRadius: 5,
+                paddingLeft: 5,
+                paddingRight: 5,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div
+                  style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+                >
+                  <i className="fa fa-circle" style={{ color: "red", fontSize: 10 }} />
+                  &nbsp;
+                  <div style={{ fontSize: 14 }}>
+                    {" "}
+                    {users.length - onlineUsers.length} offline users:
+                  </div>
+                </div>
+                <button
+                  onClick={() => {
+                    offlineToggle ? setOfflineToggle(false) : setOfflineToggle(true);
+                  }}
+                >
+                  <i
+                    className={offlineToggle ? "fas fa-angle-up" : "fas fa-angle-down"}
+                    style={{
+                      fontSize: 15,
+                      fontWeight: "bold",
+                      alignSelf: "flex-end",
+                    }}
+                  />
+                </button>
+              </div>
+              {offlineToggle &&
+                users.map((user) => {
+                  return (
+                    <div className="messageInnerLeft" style={{ marginBottom: 5 }}>
+                      <img
+                        src={
+                          user.avatar_url ||
+                          "https://cdn.onlinewebfonts.com/svg/img_181369.png"
+                        }
+                        alt=""
+                        style={{
+                          height: 15,
+                          borderRadius: "50%",
+                        }}
+                      />
+                      <span
+                        style={{
+                          fontSize: 12,
+                        }}
+                      >
+                        &nbsp;&nbsp;
+                        {user.username}
+                      </span>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        )}
+
         <div className="sender">
           <input
             className="send"
