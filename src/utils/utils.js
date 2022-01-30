@@ -41,7 +41,7 @@ export const particleOptions = {
     number: {
       density: {
         enable: true,
-        area: 500,
+        area: 5000,
       },
       value: 80,
     },
