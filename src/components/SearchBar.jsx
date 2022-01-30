@@ -4,10 +4,12 @@ import { CategoryContext } from "../contexts/CategoryContext";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
 import { SearchContext } from "../contexts/SearchContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
+import { AuthorContext } from "../contexts/AuthorContext";
 
 export default function SearchBar() {
   const { setCategory } = useContext(CategoryContext);
   const { setCatQueries } = useContext(CatQueriesContext);
+  const { setAuthor } = useContext(AuthorContext);
   const { pattern, setPattern } = useContext(SearchContext);
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
@@ -30,8 +32,10 @@ export default function SearchBar() {
         className="searchButton"
         onClick={(e) => {
           e.preventDefault();
+          document.getElementById("author-option").selectedIndex = "null";
           navigate("/reviews");
           setCategory({ slug: "All categories", description: "" });
+          setAuthor("");
           setCatQueries({
             sort: "created_at",
             order: "desc",
