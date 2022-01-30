@@ -3,13 +3,13 @@ import { useState, useContext, useEffect, useRef } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { ChatContext } from "../contexts/ChatContext";
 import { useLocation } from "react-router-dom";
+import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
 import { getHistory, getUsers } from "../utils/api";
 import ChatAuthorIcon from "./ChatAuthorIcon";
 import UserIcon from "./UserIcon";
 import io from "socket.io-client";
-import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
 
 const socket = io("https://nc-games-board.herokuapp.com/");
 

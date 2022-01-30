@@ -4,12 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { getUser } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
+import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
 
 export default function UserCardInList({ userInList }) {
   const navigate = useNavigate();
   const [viewedUser, setViewedUser] = useState({});
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const { setOnlineUsers } = useContext(OnlineUsersContext);
 
   useEffect(() => {
     getUser(userInList.username)
@@ -24,6 +26,19 @@ export default function UserCardInList({ userInList }) {
       });
   }, [userInList.username, navigate, setError]);
 
+  const handleSignIn = () => {
+    setOnlineUsers((prev) => {
+      return prev.filter(
+        (person) => person.username !== (user.username || viewedUser.username)
+      );
+    });
+    setUser(viewedUser);
+    setOnlineUsers((previous) => {
+      return [...previous, viewedUser];
+    });
+    navigate("/reviews");
+  };
+
   return (
     <div key={userInList.username} className="user-card">
       <div>
@@ -36,13 +51,7 @@ export default function UserCardInList({ userInList }) {
         <Link to={`/users/${userInList.username}`}>{userInList.username}</Link>
       </div>
       <br />
-      <button
-        className="user-login-button"
-        onClick={() => {
-          setUser(viewedUser);
-          navigate("/reviews");
-        }}
-      >
+      <button className="user-login-button" onClick={handleSignIn}>
         Login as {viewedUser.username}
       </button>
     </div>

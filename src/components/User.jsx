@@ -5,12 +5,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { ParticleContext } from "../contexts/ParticleContext";
+import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
 import { particleOptions } from "../utils/utils";
 
 export default function User() {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const { setParticleOps } = useContext(ParticleContext);
+  const { setOnlineUsers } = useContext(OnlineUsersContext);
   const navigate = useNavigate();
   const { username } = useParams();
   const [viewedUser, setViewedUser] = useState({});
@@ -29,6 +31,19 @@ export default function User() {
       });
   }, [username, setError, setParticleOps, navigate]);
 
+  const handleSignIn = () => {
+    setOnlineUsers((prev) => {
+      return prev.filter(
+        (person) => person.username !== (user.username || viewedUser.username)
+      );
+    });
+    setUser(viewedUser);
+    setOnlineUsers((previous) => {
+      return [...previous, viewedUser];
+    });
+    navigate("/reviews");
+  };
+
   return (
     <div className="user-container">
       <div key={viewedUser.username} className="user-profile">
@@ -41,13 +56,7 @@ export default function User() {
         <h3>
           <span>username:</span> {viewedUser.username}
         </h3>
-        <button
-          className="single-user-login-button"
-          onClick={() => {
-            setUser(viewedUser);
-            navigate("/reviews");
-          }}
-        >
+        <button className="single-user-login-button" onClick={handleSignIn}>
           Login as {viewedUser.username}
         </button>
       </div>

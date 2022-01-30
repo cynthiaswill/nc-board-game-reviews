@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { ParticleContext } from "../contexts/ParticleContext";
+import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
 import { urlRegex, particleOptions } from "../utils/utils";
 import TextField from "@material-ui/core/TextField";
 
@@ -12,6 +13,7 @@ export default function SignUp() {
   const { setUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const { setParticleOps } = useContext(ParticleContext);
+  const { setOnlineUsers } = useContext(OnlineUsersContext);
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState({
     username: "",
@@ -36,6 +38,9 @@ export default function SignUp() {
     postUser(newUser)
       .then(() => {
         setUser(newUser);
+        setOnlineUsers((previous) => {
+          return [...previous, newUser];
+        });
       })
       .catch((err) => {
         if (err) {
