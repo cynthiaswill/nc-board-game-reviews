@@ -201,12 +201,20 @@ export default function ChatWindow() {
               >
                 <i
                   className="far fa-comments"
-                  style={viewMode === "chat" ? { color: "blue" } : null}
+                  style={
+                    viewMode === "chat"
+                      ? { color: "blue", fontWeight: "bold", fontSize: 16 }
+                      : { fontSize: 12 }
+                  }
                 />{" "}
                 /{" "}
                 <i
                   className="fas fa-user-friends"
-                  style={viewMode === "users" ? { color: "blue" } : null}
+                  style={
+                    viewMode === "users"
+                      ? { color: "blue", fontWeight: "bold", fontSize: 16 }
+                      : { fontSize: 12 }
+                  }
                 />
                 {viewMode === "chat" && (
                   <span className="viewModeChatTooltip">switch to online users list</span>
@@ -386,7 +394,11 @@ export default function ChatWindow() {
               {onlineToggle &&
                 users.map((user) => {
                   return (
-                    <div className="messageInnerLeft" style={{ marginBottom: 5 }}>
+                    <div
+                      key={user.username}
+                      className="messageInnerLeft"
+                      style={{ marginBottom: 5 }}
+                    >
                       <UserIcon user={user} />
                       <span
                         style={{
@@ -447,7 +459,11 @@ export default function ChatWindow() {
               {offlineToggle &&
                 users.map((user) => {
                   return (
-                    <div className="messageInnerLeft" style={{ marginBottom: 5 }}>
+                    <div
+                      key={user.username}
+                      className="messageInnerLeft"
+                      style={{ marginBottom: 5 }}
+                    >
                       <UserIcon user={user} offlineToggle={offlineToggle} />
                       <span
                         style={{
