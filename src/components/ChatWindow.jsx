@@ -194,7 +194,7 @@ export default function ChatWindow() {
                 })}
               </select>
               <button
-                style={{ margin: 0, marginLeft: 5 }}
+                className="viewModeInChat"
                 onClick={() => {
                   viewMode === "chat" ? setViewMode("users") : setViewMode("chat");
                 }}
@@ -208,6 +208,12 @@ export default function ChatWindow() {
                   className="fas fa-user-friends"
                   style={viewMode === "users" ? { color: "blue" } : null}
                 />
+                {viewMode === "chat" && (
+                  <span className="viewModeChatTooltip">switch to online users list</span>
+                )}
+                {viewMode === "users" && (
+                  <span className="viewModeUsersTooltip">switch to chat room</span>
+                )}
               </button>
             </div>
           </div>

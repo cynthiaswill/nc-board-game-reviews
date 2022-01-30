@@ -123,3 +123,47 @@
   border-radius: 5px;
   background: rgba(128, 128, 128, 0.5);
 }
+
+.viewModeInChat {
+  position: relative;
+  margin: 0px;
+  margin-left: 5px;
+}
+
+.viewModeInChat .viewModeChatTooltip {
+  visibility: hidden;
+  width: 165px;
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -135px;
+}
+
+.viewModeInChat:hover .viewModeChatTooltip {
+  visibility: visible;
+}
+
+.viewModeInChat .viewModeUsersTooltip {
+  visibility: hidden;
+  width: 135px;
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -105px;
+}
+
+.viewModeInChat:hover .viewModeUsersTooltip {
+  visibility: visible;
+}
