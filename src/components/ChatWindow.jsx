@@ -9,6 +9,7 @@ import { getHistory, getUsers } from "../utils/api";
 import ChatAuthorIcon from "./ChatAuthorIcon";
 import UserIcon from "./UserIcon";
 import io from "socket.io-client";
+import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
 
 const socket = io("https://nc-games-board.herokuapp.com/");
 
@@ -16,11 +17,11 @@ export default function ChatWindow() {
   const { user, isLogged } = useContext(UserContext);
   const { categories } = useContext(CategoriesContext);
   const { isChatOpen, setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
+  const { onlineUsers } = useContext(OnlineUsersContext);
   const [viewMode, setViewMode] = useState("chat");
   const [messages, setMessages] = useState([]);
   const [messageBody, setMessageBody] = useState("");
   const [users, setUsers] = useState([]);
-  const [onlineUsers, setOnlineUsers] = useState([]);
   const [onlineToggle, setOnlineToggle] = useState(true);
   const [offlineToggle, setOfflineToggle] = useState(true);
   const location = useLocation();
@@ -392,7 +393,7 @@ export default function ChatWindow() {
                 </button>
               </div>
               {onlineToggle &&
-                users.map((user) => {
+                onlineUsers.map((user) => {
                   return (
                     <div
                       key={user.username}
