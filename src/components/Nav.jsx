@@ -12,6 +12,7 @@ import { CategoriesContext } from "../contexts/CategoriesContext";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
 import { SearchContext } from "../contexts/SearchContext";
+import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
 import SearchBar from "./SearchBar";
 import Chat from "./Chat";
@@ -24,6 +25,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
   const { setAuthor } = useContext(AuthorContext);
   const { setCategory } = useContext(CategoryContext);
   const { setPattern } = useContext(SearchContext);
+  const { setOnlineUsers } = useContext(OnlineUsersContext);
   const { categories, setCategories } = useContext(CategoriesContext);
   const { catQueries, setCatQueries } = useContext(CatQueriesContext);
   const [showPagination, setShowPagination] = useState(true);
@@ -76,6 +78,13 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
     setCatQueries,
     setCategory,
   ]);
+
+  const handleSignOut = () => {
+    setOnlineUsers((prev) => {
+      return prev.filter((person) => person.username !== user.username);
+    });
+    setUser({});
+  };
 
   return (
     <div>
@@ -251,13 +260,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
             </select>
           </div>
           {isLogged ? (
-            <Link
-              to="/"
-              id="login-link"
-              onClick={() => {
-                setUser({});
-              }}
-            >
+            <Link to="/" id="login-link" onClick={handleSignOut}>
               Logout <GiEntryDoor className="navIcon" />
             </Link>
           ) : (
@@ -270,13 +273,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
           </Link>
           {width > 600 ? null : <SearchBar />}
           {isLogged ? (
-            <Link
-              to="/"
-              id="narrow-login-link"
-              onClick={() => {
-                setUser({});
-              }}
-            >
+            <Link to="/" id="narrow-login-link" onClick={handleSignOut}>
               Logout <GiEntryDoor className="navIcon" />
             </Link>
           ) : (
