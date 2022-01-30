@@ -29,7 +29,7 @@ export const particleOptions = {
   particles: {
     links: {
       enable: true,
-      distance: 120,
+      distance: 60,
     },
     move: {
       enable: true,
@@ -41,13 +41,13 @@ export const particleOptions = {
     number: {
       density: {
         enable: true,
-        area: 5000,
+        area: 1000,
       },
-      value: 80,
+      value: 40,
     },
     size: {
       random: true,
-      value: 2,
+      value: 4,
     },
   },
 };
