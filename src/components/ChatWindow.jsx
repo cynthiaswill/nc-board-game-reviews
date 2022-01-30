@@ -345,25 +345,8 @@ export default function ChatWindow() {
         ) : (
           <div className="onlineStatus">
             <div ref={messagesEndRef} />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                margin: 5,
-                background: "lightgrey",
-                borderRadius: 5,
-                paddingLeft: 5,
-                paddingRight: 5,
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
+            <div className="friendList">
+              <div className="friendListTitle">
                 <div
                   style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
                 >
@@ -413,25 +396,8 @@ export default function ChatWindow() {
                   );
                 })}
             </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                margin: 5,
-                background: "lightgrey",
-                borderRadius: 5,
-                paddingLeft: 5,
-                paddingRight: 5,
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
+            <div className="friendList">
+              <div className="friendListTitle">
                 <div
                   style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
                 >
