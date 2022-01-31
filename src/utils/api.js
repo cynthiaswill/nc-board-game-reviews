@@ -79,3 +79,11 @@ export const postReview = (body) => {
 export const getHistory = (room) => {
   return gamesApi.get(`/messages/${room}`);
 };
+
+export const getOnlineUsers = () => {
+  return gamesApi.get("/messages");
+};
+
+export const updateOnlineUsers = ({ onlineUsers }) => {
+  return gamesApi.patch("/messages", { onlineUsers });
+};
