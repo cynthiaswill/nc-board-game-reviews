@@ -28,13 +28,11 @@ export default function UserCardInList({ userInList }) {
 
   const handleSignIn = () => {
     setOnlineUsers((prev) => {
-      return prev.filter(
-        (person) => person.username !== (user.username || viewedUser.username)
-      );
+      return prev.filter((name) => name !== (user.username || viewedUser.username));
     });
     setUser(viewedUser);
     setOnlineUsers((previous) => {
-      return [...previous, viewedUser];
+      return [...previous, viewedUser.username];
     });
     navigate("/reviews");
   };

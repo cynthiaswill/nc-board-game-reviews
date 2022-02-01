@@ -8,7 +8,7 @@ import { CategoriesContext } from "../contexts/CategoriesContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
 import { getHistory, getUsers } from "../utils/api";
 import ChatAuthorIcon from "./ChatAuthorIcon";
-import UserIcon from "./UserIcon";
+import OnlineUsersStatus from "./OnlineUsersStatus";
 import io from "socket.io-client";
 
 const socket = io("https://nc-games-board.herokuapp.com/");
@@ -376,24 +376,8 @@ export default function ChatWindow() {
                 </button>
               </div>
               {onlineToggle &&
-                onlineUsers.map((user) => {
-                  return (
-                    <div
-                      key={user.username}
-                      className="messageInnerLeft"
-                      style={{ marginBottom: 5 }}
-                    >
-                      <UserIcon user={user} />
-                      <span
-                        style={{
-                          fontSize: 12,
-                        }}
-                      >
-                        &nbsp;&nbsp;
-                        {user.username}
-                      </span>
-                    </div>
-                  );
+                onlineUsers.map((name) => {
+                  return <OnlineUsersStatus key={name} name={name} />;
                 })}
             </div>
             <div className="friendList">
@@ -425,23 +409,14 @@ export default function ChatWindow() {
               </div>
               {offlineToggle &&
                 users.map((user) => {
-                  return (
-                    <div
-                      key={user.username}
-                      className="messageInnerLeft"
-                      style={{ marginBottom: 5 }}
-                    >
-                      <UserIcon user={user} offlineToggle={offlineToggle} />
-                      <span
-                        style={{
-                          fontSize: 12,
-                        }}
-                      >
-                        &nbsp;&nbsp;
-                        {user.username}
-                      </span>
-                    </div>
-                  );
+                  const name = user.username;
+                  return !onlineUsers.includes(name) ? (
+                    <OnlineUsersStatus
+                      key={name}
+                      name={name}
+                      offlineToggle={offlineToggle}
+                    />
+                  ) : null;
                 })}
             </div>
           </div>

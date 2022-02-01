@@ -3,14 +3,14 @@ import { getUser } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
 
-export default function ChatAuthorIcon({ user, offlineToggle }) {
+export default function UserIcon({ name, offlineToggle }) {
   const [viewedUser, setViewedUser] = useState({});
   const { setError } = useContext(ErrorContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.username !== "anonymous") {
-      getUser(user.username)
+    if (name !== "anonymous") {
+      getUser(name)
         .then(({ data }) => {
           setViewedUser(data.user);
         })
@@ -21,7 +21,7 @@ export default function ChatAuthorIcon({ user, offlineToggle }) {
           }
         });
     }
-  }, [user, setError, navigate]);
+  }, [name, setError, navigate]);
 
   return (
     <>

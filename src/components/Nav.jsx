@@ -81,7 +81,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
 
   const handleSignOut = () => {
     setOnlineUsers((prev) => {
-      return prev.filter((person) => person.username !== user.username);
+      return prev.filter((name) => name !== user.username);
     });
     setUser({});
   };

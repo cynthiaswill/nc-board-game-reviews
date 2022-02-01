@@ -39,7 +39,7 @@ export default function SignUp() {
       .then(() => {
         setUser(newUser);
         setOnlineUsers((previous) => {
-          return [...previous, newUser];
+          return [...previous, newUser.username];
         });
       })
       .catch((err) => {
