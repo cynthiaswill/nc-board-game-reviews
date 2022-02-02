@@ -1,5 +1,5 @@
 import { getDescription, numArr } from "../utils/utils";
-import { getCategories } from "../utils/api";
+import { getCategories, updateOnlineUsers } from "../utils/api";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
@@ -25,7 +25,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
   const { setAuthor } = useContext(AuthorContext);
   const { setCategory } = useContext(CategoryContext);
   const { setPattern } = useContext(SearchContext);
-  const { setOnlineUsers } = useContext(OnlineUsersContext);
+  const { onlineUsers, setOnlineUsers } = useContext(OnlineUsersContext);
   const { categories, setCategories } = useContext(CategoriesContext);
   const { catQueries, setCatQueries } = useContext(CatQueriesContext);
   const [showPagination, setShowPagination] = useState(true);
@@ -84,6 +84,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
       return prev.filter((name) => name !== user.username);
     });
     setUser({});
+    updateOnlineUsers({ onlineUsers });
   };
 
   return (
