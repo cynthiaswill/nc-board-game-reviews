@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import Tilt from "react-parallax-tilt";
