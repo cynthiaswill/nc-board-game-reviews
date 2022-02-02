@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
-import { getHistory, getUsers } from "../utils/api";
+import { getHistory, getUsers, getOnlineUsers } from "../utils/api";
 import ChatAuthorIcon from "./ChatAuthorIcon";
 import OnlineUsersStatus from "./OnlineUsersStatus";
 import io from "socket.io-client";
@@ -17,7 +17,7 @@ export default function ChatWindow() {
   const { user, isLogged } = useContext(UserContext);
   const { categories } = useContext(CategoriesContext);
   const { isChatOpen, setIsChatOpen, roomName, setRoomName } = useContext(ChatContext);
-  const { onlineUsers } = useContext(OnlineUsersContext);
+  const { onlineUsers, setOnlineUsers } = useContext(OnlineUsersContext);
   const [viewMode, setViewMode] = useState("chat");
   const [messages, setMessages] = useState([]);
   const [messageBody, setMessageBody] = useState("");
@@ -73,6 +73,12 @@ export default function ChatWindow() {
   useEffect(() => {
     socket.emit("joinRoom", { username, roomName });
   }, [roomName, username]);
+
+  useEffect(() => {
+    getOnlineUsers().then(({ data }) => {
+      data.list.onlineUsers && setOnlineUsers([...data.list.onlineUsers]);
+    });
+  }, [viewMode, setOnlineUsers]);
 
   useEffect(() => {
     socket.on("message", (data) => {
