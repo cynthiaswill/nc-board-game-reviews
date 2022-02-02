@@ -4,19 +4,10 @@ import { FaHome } from "react-icons/fa";
 import Tilt from "react-parallax-tilt";
 import Particles from "react-tsparticles";
 import { ParticleContext } from "../contexts/ParticleContext";
-import { getOnlineUsers } from "../utils/api";
-import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
 
 export default function Header({ setReset }) {
   const navigate = useNavigate();
   const { particleOps } = useContext(ParticleContext);
-  const { setOnlineUsers } = useContext(OnlineUsersContext);
-
-  useEffect(() => {
-    getOnlineUsers().then(({ data }) => {
-      data.list.onlineUsers && setOnlineUsers([...data.list.onlineUsers]);
-    });
-  }, [setOnlineUsers]);
 
   return (
     <header>
