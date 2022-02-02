@@ -395,7 +395,10 @@ export default function ChatWindow() {
                   &nbsp;
                   <div style={{ fontSize: 14 }}>
                     {" "}
-                    {users.length - onlineUsers.length} offline users:
+                    {onlineUsers.includes("anonymous")
+                      ? users.length - onlineUsers.length + 1
+                      : users.length - onlineUsers.length}{" "}
+                    offline users:
                   </div>
                 </div>
                 <button
