@@ -2,7 +2,7 @@ import "../styles/Chat.css";
 import { useState, useContext, useEffect, useRef } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { ChatContext } from "../contexts/ChatContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
@@ -295,16 +295,18 @@ export default function ChatWindow() {
                           visibility: msg.welcome ? "hidden" : "visible",
                         }}
                       />
-                      <span
-                        style={{
-                          fontStyle: "italic",
-                          color: "#4A403A",
-                          fontSize: 10,
-                          visibility: msg.welcome ? "hidden" : "visible",
-                        }}
-                      >
-                        by {msg.username}
-                      </span>
+                      <Link to={`/users/${msg.username}`} className="name-link-in-chat">
+                        <span
+                          style={{
+                            fontStyle: "italic",
+                            color: "#4A403A",
+                            fontSize: 10,
+                            visibility: msg.welcome ? "hidden" : "visible",
+                          }}
+                        >
+                          {msg.username}
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 );
@@ -330,16 +332,18 @@ export default function ChatWindow() {
                       </div>
                     </div>
                     <div className="messageInnerRight">
-                      <span
-                        style={{
-                          fontStyle: "italic",
-                          color: "#4A403A",
-                          fontSize: 10,
-                          visibility: msg.welcome ? "hidden" : "visible",
-                        }}
-                      >
-                        by {msg.username}
-                      </span>
+                      <Link to={`/users/${msg.username}`} className="name-link-in-chat">
+                        <span
+                          style={{
+                            fontStyle: "italic",
+                            color: "#4A403A",
+                            fontSize: 10,
+                            visibility: msg.welcome ? "hidden" : "visible",
+                          }}
+                        >
+                          {msg.username}
+                        </span>
+                      </Link>
                       {msg.welcome ? null : <ChatAuthorIcon msg={msg} />}
                     </div>
                   </div>
@@ -383,7 +387,13 @@ export default function ChatWindow() {
               </div>
               {onlineToggle &&
                 onlineUsers.map((name) => {
-                  return <OnlineUsersStatus key={name} name={name} />;
+                  return (
+                    <OnlineUsersStatus
+                      key={name}
+                      name={name}
+                      onlineToggle={onlineToggle}
+                    />
+                  );
                 })}
             </div>
             <div className="friendList">

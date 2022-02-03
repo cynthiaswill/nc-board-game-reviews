@@ -247,3 +247,15 @@
 .offline-radio:hover .offline-tooltip {
   visibility: visible;
 }
+
+.name-link-in-chat {
+  transition: transform 0.5s;
+  text-decoration: none;
+  color: rgb(70, 70, 70);
+}
+
+.name-link-in-chat:hover {
+  text-decoration: underline;
+  color: violet;
+  transform: translateY(-5px);
+}
