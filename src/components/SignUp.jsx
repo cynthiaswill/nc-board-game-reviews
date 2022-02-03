@@ -1,6 +1,6 @@
 import "../styles/SignUp.css";
 import { useState, useContext, useEffect } from "react";
-import { getUsers, postUser } from "../utils/api";
+import { getUsers, postUser, updateOnlineUsers } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
@@ -13,7 +13,7 @@ export default function SignUp() {
   const { setUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const { setParticleOps } = useContext(ParticleContext);
-  const { setOnlineUsers } = useContext(OnlineUsersContext);
+  const { onlineUsers, setOnlineUsers } = useContext(OnlineUsersContext);
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState({
     username: "",
@@ -37,10 +37,11 @@ export default function SignUp() {
     e.preventDefault();
     postUser(newUser)
       .then(() => {
+        const filteredUsers = [...onlineUsers].filter((name) => name !== "anonymous");
+        const updatedUsers = [...filteredUsers, newUser.username];
         setUser(newUser);
-        setOnlineUsers((previous) => {
-          return [...previous, newUser.username];
-        });
+        setOnlineUsers([...updatedUsers]);
+        updateOnlineUsers({ onlineUsers: [...updatedUsers] });
       })
       .catch((err) => {
         if (err) {

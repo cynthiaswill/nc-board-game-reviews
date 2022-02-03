@@ -1,5 +1,5 @@
 import "../styles/User.css";
-import { getUser } from "../utils/api";
+import { getUser, updateOnlineUsers } from "../utils/api";
 import { useEffect, useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
@@ -12,7 +12,7 @@ export default function User() {
   const { user, setUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const { setParticleOps } = useContext(ParticleContext);
-  const { setOnlineUsers } = useContext(OnlineUsersContext);
+  const { onlineUsers, setOnlineUsers } = useContext(OnlineUsersContext);
   const navigate = useNavigate();
   const { username } = useParams();
   const [viewedUser, setViewedUser] = useState({});
@@ -32,13 +32,13 @@ export default function User() {
   }, [username, setError, setParticleOps, navigate]);
 
   const handleSignIn = () => {
-    setOnlineUsers((prev) => {
-      return prev.filter((name) => name !== (user.username || viewedUser.username));
-    });
+    const filteredUsers = [...onlineUsers].filter(
+      (name) => name !== (user.username || "anonymous" || viewedUser.username)
+    );
+    const updatedUsers = [...filteredUsers, viewedUser.username];
     setUser(viewedUser);
-    setOnlineUsers((previous) => {
-      return [...previous, viewedUser.username];
-    });
+    setOnlineUsers([...updatedUsers]);
+    updateOnlineUsers({ onlineUsers: [...updatedUsers] });
     navigate("/reviews");
   };
 

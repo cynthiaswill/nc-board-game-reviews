@@ -32,6 +32,7 @@ export default function ChatAuthorIcon({ msg }) {
         alt=""
         style={{ maxHeight: 15, maxWidth: 15, borderRadius: "50%" }}
       />
+      &nbsp;
       {onlineUsers.includes(viewedUser.username) ? (
         <div
           className="online-radio"

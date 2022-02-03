@@ -1,7 +1,7 @@
 import "../styles/Login.css";
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getUser } from "../utils/api";
+import { getUser, updateOnlineUsers } from "../utils/api";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
@@ -11,7 +11,7 @@ export default function UserCardInList({ userInList }) {
   const [viewedUser, setViewedUser] = useState({});
   const { user, setUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
-  const { setOnlineUsers } = useContext(OnlineUsersContext);
+  const { onlineUsers, setOnlineUsers } = useContext(OnlineUsersContext);
 
   useEffect(() => {
     getUser(userInList.username)
@@ -27,13 +27,13 @@ export default function UserCardInList({ userInList }) {
   }, [userInList.username, navigate, setError]);
 
   const handleSignIn = () => {
-    setOnlineUsers((prev) => {
-      return prev.filter((name) => name !== (user.username || viewedUser.username));
-    });
+    const filteredUsers = [...onlineUsers].filter(
+      (name) => name !== (user.username || "anonymous" || viewedUser.username)
+    );
+    const updatedUsers = [...filteredUsers, viewedUser.username];
     setUser(viewedUser);
-    setOnlineUsers((previous) => {
-      return [...previous, viewedUser.username];
-    });
+    setOnlineUsers([...updatedUsers]);
+    updateOnlineUsers({ onlineUsers: [...updatedUsers] });
     navigate("/reviews");
   };
 
