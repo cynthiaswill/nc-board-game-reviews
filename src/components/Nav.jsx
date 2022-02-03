@@ -13,6 +13,7 @@ import { CategoryContext } from "../contexts/CategoryContext";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
 import { SearchContext } from "../contexts/SearchContext";
 import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
+import { ChatContext } from "../contexts/ChatContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
 import SearchBar from "./SearchBar";
 import Chat from "./Chat";
@@ -25,6 +26,7 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
   const { setAuthor } = useContext(AuthorContext);
   const { setCategory } = useContext(CategoryContext);
   const { setPattern } = useContext(SearchContext);
+  const { setIsChatOpen } = useContext(ChatContext);
   const { onlineUsers, setOnlineUsers } = useContext(OnlineUsersContext);
   const { categories, setCategories } = useContext(CategoriesContext);
   const { catQueries, setCatQueries } = useContext(CatQueriesContext);
@@ -80,10 +82,11 @@ export default function Nav({ reviewsCount, reset, setReset, authors }) {
   ]);
 
   const handleSignOut = () => {
+    setIsChatOpen(false);
     const newOnlineUsers = [...onlineUsers].filter((name) => name !== user.username);
-    updateOnlineUsers({ onlineUsers: [...newOnlineUsers] });
-    setOnlineUsers([...newOnlineUsers]);
     setUser({});
+    setOnlineUsers([...newOnlineUsers]);
+    updateOnlineUsers({ onlineUsers: [...newOnlineUsers] });
   };
 
   return (
