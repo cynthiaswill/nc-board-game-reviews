@@ -137,9 +137,8 @@ export default function Review() {
                 </Link>
                 <br />
                 <span className="data-stamp">
-                  <FaPenNib />
                   <FaRegCalendarAlt />{" "}
-                  {review.created_at.slice(0, 19).replaceAll("T", " at ")}
+                  {review.created_at.slice(0, 19).replaceAll("T", " at ")} <FaPenNib />
                 </span>
               </div>
               <br />
