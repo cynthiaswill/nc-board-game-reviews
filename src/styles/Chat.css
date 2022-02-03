@@ -185,3 +185,65 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.online-radio {
+  color: limegreen;
+  font-size: 8px;
+  align-self: "center";
+  position: relative;
+}
+
+.online-radio:hover {
+  font-size: 12px;
+  color: lime;
+}
+
+.offline-radio {
+  color: grey;
+  font-size: 8px;
+  align-self: "center";
+  position: relative;
+}
+
+.offline-radio:hover {
+  font-size: 12px;
+  color: red;
+}
+
+.online-radio .online-tooltip {
+  visibility: hidden;
+  width: 45px;
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 2px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -10px;
+}
+
+.online-radio:hover .online-tooltip {
+  visibility: visible;
+}
+
+.offline-radio .offline-tooltip {
+  visibility: hidden;
+  width: 45px;
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 2px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -40px;
+}
+
+.offline-radio:hover .offline-tooltip {
+  visibility: visible;
+}

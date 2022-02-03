@@ -283,6 +283,17 @@ export default function ChatWindow() {
                       </div>
                     </div>
                     <div className="messageInnerLeft">
+                      <div
+                        className="online-radio"
+                        style={{
+                          visibility: msg.welcome ? "hidden" : "visible",
+                          alignSelf: "center",
+                        }}
+                      >
+                        <i className="fa fa-circle" />
+                        <span className="online-tooltip">online</span>
+                      </div>
+                      &nbsp;
                       <img
                         src={
                           user.avatar_url ||
@@ -340,7 +351,17 @@ export default function ChatWindow() {
                       >
                         by {msg.username}
                       </span>
-                      {msg.welcome ? null : <ChatAuthorIcon msg={msg} />}
+                      {msg.welcome ? null : <ChatAuthorIcon msg={msg} />}&nbsp;
+                      <div
+                        className="offline-radio"
+                        style={{
+                          visibility: msg.welcome ? "hidden" : "visible",
+                          alignSelf: "center",
+                        }}
+                      >
+                        <i className="fa fa-circle" />
+                        <span className="offline-tooltip">offline</span>
+                      </div>
                     </div>
                   </div>
                 );
