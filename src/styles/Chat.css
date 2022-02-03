@@ -222,7 +222,7 @@
   z-index: 1;
   bottom: 100%;
   left: 50%;
-  margin-left: -10px;
+  margin-left: -35px;
 }
 
 .online-radio:hover .online-tooltip {
@@ -241,7 +241,7 @@
   z-index: 1;
   bottom: 100%;
   left: 50%;
-  margin-left: -40px;
+  margin-left: -35px;
 }
 
 .offline-radio:hover .offline-tooltip {
