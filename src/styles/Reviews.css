@@ -277,3 +277,11 @@
 .watch-button:hover .closedEyeTooltip {
   visibility: visible;
 }
+
+#search_para {
+}
+.highlight {
+  color: blue;
+  text-decoration: underline;
+  font-size: larger;
+}

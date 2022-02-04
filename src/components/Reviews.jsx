@@ -97,6 +97,17 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
       </h2>
     );
   }
+
+  const highlightBody = (review) => {
+    if (pattern) {
+      return review.review_body.replace(new RegExp(pattern, "gi"), (match) => {
+        return <mark>`${match}`</mark>;
+      });
+    } else {
+      return review.review_body;
+    }
+  };
+
   return (
     <div className="above-main">
       <h3 className="category-title">
@@ -156,7 +167,9 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
                     />
                   </div>
                   <div>
-                    <p className="body-text-in-reviews">{review.review_body}</p>
+                    <p className="body-text-in-reviews" id="search_para">
+                      {highlightBody(review)}
+                    </p>
                     <span className="author-in-reviews">
                       Author:{" "}
                       <Link to={`/users/${review.owner}`} className="author-link">
