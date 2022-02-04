@@ -76,6 +76,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
     }
     const fuse = new Fuse(reviews, {
       keys: ["title", "owner", "designer", "review_body"],
+      threshold: 0.4,
     });
     const result = fuse.search(pattern);
     const matches = [];
@@ -97,16 +98,6 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
       </h2>
     );
   }
-
-  const highlightBody = (review) => {
-    if (pattern) {
-      return review.review_body.replace(new RegExp(pattern, "gi"), (match) => {
-        return <mark>`${match}`</mark>;
-      });
-    } else {
-      return review.review_body;
-    }
-  };
 
   return (
     <div className="above-main">
@@ -168,7 +159,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
                   </div>
                   <div>
                     <p className="body-text-in-reviews" id="search_para">
-                      {highlightBody(review)}
+                      {review.review_body}
                     </p>
                     <span className="author-in-reviews">
                       Author:{" "}
