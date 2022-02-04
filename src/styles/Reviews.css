@@ -278,10 +278,9 @@
   visibility: visible;
 }
 
-#search_para {
-}
 .highlight {
-  color: blue;
+  background-color: rgb(70, 70, 70);
+  color: white;
   text-decoration: underline;
-  font-size: larger;
+  font-size: large;
 }

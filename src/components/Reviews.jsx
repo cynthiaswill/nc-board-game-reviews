@@ -11,6 +11,7 @@ import { FaRegCommentAlt, FaRegCalendarAlt } from "react-icons/fa";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
 import { SearchContext } from "../contexts/SearchContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
+import Highlighter from "react-highlight-words";
 import SearchBar from "./SearchBar";
 import Kudos from "./Kudos";
 import WatchToggle from "./WatchToggle";
@@ -136,7 +137,12 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
                         className="review-title-link"
                       >
                         {" "}
-                        {review.title}{" "}
+                        <Highlighter
+                          highlightClassName="highlight"
+                          searchWords={[pattern]}
+                          autoEscape={true}
+                          textToHighlight={review.title}
+                        />{" "}
                       </Link>
                     </h3>
                     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -147,7 +153,13 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
                     Category: {review.category}
                   </span>{" "}
                   <span className="designer-name-in-reviews">
-                    Designer: {review.designer}
+                    Designer:{" "}
+                    <Highlighter
+                      highlightClassName="highlight"
+                      searchWords={[pattern]}
+                      autoEscape={true}
+                      textToHighlight={review.designer}
+                    />
                   </span>
                   <br />
                   <div className="image-container-in-reviews">
@@ -158,13 +170,23 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
                     />
                   </div>
                   <div>
-                    <p className="body-text-in-reviews" id="search_para">
-                      {review.review_body}
+                    <p className="body-text-in-reviews">
+                      <Highlighter
+                        highlightClassName="highlight"
+                        searchWords={[pattern]}
+                        autoEscape={true}
+                        textToHighlight={review.review_body}
+                      />
                     </p>
                     <span className="author-in-reviews">
                       Author:{" "}
                       <Link to={`/users/${review.owner}`} className="author-link">
-                        {review.owner}
+                        <Highlighter
+                          highlightClassName="highlight"
+                          searchWords={[pattern]}
+                          autoEscape={true}
+                          textToHighlight={review.owner}
+                        />
                       </Link>
                     </span>
                     <span className="date-posted-in-reviews">
