@@ -25,9 +25,6 @@
 
 .review-item-container {
   animation: flyin 1.2s ease forwards;
-  opacity: 0;
-  transform: scale(1.5);
-  filter: blur(4px);
 }
 
 .review-item {
@@ -53,6 +50,11 @@
     filter: blur(0);
     transform: scale(1);
     opacity: 1;
+  }
+  from {
+    opacity: 0;
+    transform: scale(1.5);
+    filter: blur(4px);
   }
 }
 
