@@ -105,7 +105,7 @@ export default function Review() {
         <h2>
           <i className="fa fa-cog fa-spin" style={{ fontSize: 20 }} /> Loading...
         </h2>
-        <div style={{ display: "flex", justifyContent: "center", flexDirection: "row" }}>
+        <div style={{ alignSelf: "center" }}>
           <ProgressBar />
         </div>
       </div>
