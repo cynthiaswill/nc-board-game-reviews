@@ -23,7 +23,8 @@ export default function ProgressBar() {
 
   return (
     <>
-      <progress id="progress" value={progress} max={100} /> <span>{progress}%</span>
+      <span style={{ textShadow: "0 0 3px white, 0 0 5px white" }}>{progress}%</span>{" "}
+      <progress id="progress" value={progress} max={100} />
     </>
   );
 }
