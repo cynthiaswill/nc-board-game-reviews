@@ -17,7 +17,7 @@ export default function ProgressBar() {
           return updatedProgress;
         });
       },
-      path === "/" ? 200 : 50
+      path === "/" ? 200 : 25
     );
   }, [path]);
 

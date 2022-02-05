@@ -21,6 +21,7 @@ import {
 import { BiCommentAdd } from "react-icons/bi";
 import WatchToggle from "./WatchToggle";
 import SideMenu from "./SideMenu";
+import ProgressBar from "./ProgressBar";
 
 export default function Review() {
   const { user, isLogged } = useContext(UserContext);
@@ -98,9 +99,16 @@ export default function Review() {
 
   if (isLoading === true) {
     return (
-      <h2>
-        <i className="fa fa-cog fa-spin" style={{ fontSize: 20 }} /> Loading...
-      </h2>
+      <div
+        style={{ display: "flex", justifyContent: "flex-start", flexDirection: "column" }}
+      >
+        <h2>
+          <i className="fa fa-cog fa-spin" style={{ fontSize: 20 }} /> Loading...
+        </h2>
+        <div style={{ display: "flex", justifyContent: "center", flexDirection: "row" }}>
+          <ProgressBar />
+        </div>
+      </div>
     );
   }
 

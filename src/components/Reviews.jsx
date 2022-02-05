@@ -16,6 +16,7 @@ import SearchBar from "./SearchBar";
 import Kudos from "./Kudos";
 import WatchToggle from "./WatchToggle";
 import SideMenu from "./SideMenu";
+import ProgressBar from "./ProgressBar";
 import Fuse from "fuse.js";
 
 export default function Reviews({ setReviewsCount, setAuthors }) {
@@ -94,9 +95,16 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
 
   if (isLoading === true) {
     return (
-      <h2>
-        <i className="fa fa-cog fa-spin" style={{ fontSize: 20 }} /> Loading...
-      </h2>
+      <div
+        style={{ display: "flex", justifyContent: "flex-start", flexDirection: "column" }}
+      >
+        <h2>
+          <i className="fa fa-cog fa-spin" style={{ fontSize: 20 }} /> Loading...
+        </h2>
+        <div style={{ display: "flex", justifyContent: "center", flexDirection: "row" }}>
+          <ProgressBar />
+        </div>
+      </div>
     );
   }
 
