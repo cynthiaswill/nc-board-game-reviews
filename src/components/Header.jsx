@@ -4,6 +4,7 @@ import { FaHome } from "react-icons/fa";
 import Tilt from "react-parallax-tilt";
 import Particles from "react-tsparticles";
 import { ParticleContext } from "../contexts/ParticleContext";
+import DateTime from "./DateTime";
 
 export default function Header({ setReset }) {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ export default function Header({ setReset }) {
           </Tilt>
         </Link>
       </h1>
+      <DateTime />
     </header>
   );
 }

@@ -179,6 +179,10 @@ header {
   font-family: papyrus;
 }
 
+.header {
+  margin-bottom: 0;
+}
+
 #header-text {
   color: white;
   font-family: papyrus;
