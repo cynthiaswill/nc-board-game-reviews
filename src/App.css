@@ -508,7 +508,7 @@ textarea {
 }
 
 #progress[value]::-webkit-progress-bar {
-  background-color: grey;
+  background-color: rgba(128, 128, 128, 0.65);
   border-radius: 5px;
 }
 
