@@ -23,6 +23,23 @@
   padding-left: 10px;
 }
 
+.side-container {
+  animation: flyin-from-side 1.2s ease forwards;
+}
+
+@keyframes flyin-from-side {
+  to {
+    filter: blur(0);
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+  from {
+    opacity: 0;
+    transform: translate(200px, 0px);
+    filter: blur(8px);
+  }
+}
+
 .review-item-container {
   animation: flyin 1.2s ease forwards;
 }

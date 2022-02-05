@@ -124,7 +124,7 @@ export default function ChatWindow() {
     zIndex: 5000,
     position: "fixed",
     bottom: "5px",
-    animation: "fade-in 1.2s ease forwards",
+    animation: "slide-in 1.2s ease forwards",
   };
 
   const roomContainerStyleNarrow = {
@@ -140,7 +140,7 @@ export default function ChatWindow() {
     zIndex: 5000,
     bottom: "5px",
     right: "10px",
-    animation: "fade-in 1.2s ease forwards",
+    animation: "slide-in 1.2s ease forwards",
   };
 
   return (

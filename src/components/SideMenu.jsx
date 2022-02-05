@@ -25,79 +25,73 @@ export default function SideMenu() {
 
   return (
     <>
-      <div className="top-part-in-side-menu">
-        <div className="search-container">
-          <form action="/reviews">
-            <SearchBar />
-          </form>
+      <div className="side-container">
+        <div className="top-part-in-side-menu">
+          <div className="search-container">
+            <form action="/reviews">
+              <SearchBar />
+            </form>
+          </div>
+          <br />
+          <div
+            className="categories-in-side-menu"
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            <p
+              style={{
+                fontWeight: "bold",
+                fontSize: 15,
+                color: "rgb(70,70,70)",
+                marginLeft: "5px",
+              }}
+            >
+              By category:
+            </p>
+            <button
+              className={buttonStyle}
+              onClick={() => {
+                setCatQueries((current) => {
+                  return { ...current, p: 1, category: "" };
+                });
+                setCategory({ slug: "All categories", description: "" });
+                document.getElementById("author-option").selectedIndex = "null";
+                setAuthor("");
+                setPattern(null);
+                navigate("/reviews");
+              }}
+            >
+              All categories
+            </button>
+            {categories.map((cat) => {
+              if (cat.slug === category.slug) {
+                buttonStyle = "category-links-selected";
+              } else {
+                buttonStyle = "category-links";
+              }
+              return (
+                <button
+                  className={buttonStyle}
+                  key={cat.slug}
+                  onClick={(e) => {
+                    setCatQueries((current) => {
+                      return { ...current, p: 1, category: cat.slug };
+                    });
+                    setCategory({
+                      slug: `${cat.slug}`,
+                      description: `${getDescription(cat.slug, categories)}`,
+                    });
+                    document.getElementById("author-option").selectedIndex = "null";
+                    setAuthor("");
+                    navigate("/reviews");
+                  }}
+                >{`${cat.slug}`}</button>
+              );
+            })}
+          </div>
         </div>
         <br />
-        <div
-          className="categories-in-side-menu"
-          style={{ display: "flex", flexDirection: "column" }}
-        >
-          <p
-            style={{
-              fontWeight: "bold",
-              fontSize: 15,
-              color: "rgb(70,70,70)",
-              marginLeft: "5px",
-            }}
-          >
-            By category:
-          </p>
-          <button
-            className={buttonStyle}
-            onClick={() => {
-              setCatQueries((current) => {
-                return { ...current, p: 1, category: "" };
-              });
-              setCategory({ slug: "All categories", description: "" });
-              document.getElementById("author-option").selectedIndex = "null";
-              setAuthor("");
-              setPattern(null);
-              navigate("/reviews");
-            }}
-          >
-            All categories
-          </button>
-          {categories.map((cat) => {
-            if (cat.slug === category.slug) {
-              buttonStyle = "category-links-selected";
-            } else {
-              buttonStyle = "category-links";
-            }
-            return (
-              <button
-                className={buttonStyle}
-                key={cat.slug}
-                onClick={(e) => {
-                  setCatQueries((current) => {
-                    return { ...current, p: 1, category: cat.slug };
-                  });
-                  setCategory({
-                    slug: `${cat.slug}`,
-                    description: `${getDescription(cat.slug, categories)}`,
-                  });
-                  document.getElementById("author-option").selectedIndex = "null";
-                  setAuthor("");
-                  navigate("/reviews");
-                }}
-              >{`${cat.slug}`}</button>
-            );
-          })}
-        </div>
       </div>
-      <br />
-      <div
-        className="chat-container-in-side-menu"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          marginRight: "15px",
-          height: "40px",
-        }}
-      >
+      <div className="chat-container-in-side-menu">
         <Chat />
       </div>
     </>

@@ -1,14 +1,36 @@
-@keyframes fade-in {
+@keyframes slide-in {
   to {
+    filter: blur(0);
     opacity: 1;
     transform: scaleY(1);
     transform: translate(0px, 0px);
   }
   from {
+    filter: blur(4);
     opacity: 0;
     transform: scaleY(0);
     transform: translate(0px, 200px);
   }
+}
+
+@keyframes flyin-button {
+  to {
+    filter: blur(0);
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+  from {
+    filter: blur(4);
+    opacity: 0;
+    transform: translate(0px, 100px);
+  }
+}
+
+.chat-container-in-side-menu {
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px;
+  height: 40px;
 }
 
 .chat {
