@@ -8,7 +8,6 @@ export default function Home() {
   const { setParticleOps } = useContext(ParticleContext);
   const [redirect, setRedirect] = useState(false);
   const [counter, setCounter] = useState(3);
-  const [progress, updateProgress] = useState(0);
 
   useEffect(() => {
     setParticleOps(particleOptions);
@@ -28,19 +27,6 @@ export default function Home() {
     };
   }, [setParticleOps]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      updateProgress((prev) => {
-        const updatedProgress = prev + 10;
-
-        if (updatedProgress === 100) {
-          clearInterval(interval);
-        }
-        return updatedProgress;
-      });
-    }, 200);
-  }, []);
-
   return (
     <>
       {redirect ? (
@@ -52,7 +38,7 @@ export default function Home() {
             <i className="fa fa-cog fa-spin" /> redirecting to reviews after {counter}{" "}
             seconds ...
           </p>
-          <ProgressBar value={progress} max={100} />
+          <ProgressBar />
         </div>
       )}
     </>
