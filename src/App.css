@@ -500,3 +500,19 @@ textarea {
 .searchButton:hover .searchTooltip {
   visibility: visible;
 }
+
+#progress[value] {
+  width: 150px;
+  height: 20px;
+  appearance: none;
+}
+
+#progress[value]::-webkit-progress-bar {
+  background-color: grey;
+  border-radius: 5px;
+}
+
+#progress[value]::-webkit-progress-value {
+  border-radius: 5px;
+  background-color: whitesmoke;
+}
