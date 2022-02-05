@@ -46,6 +46,7 @@ button {
 
 #review-writing-box {
   width: 55vw;
+  max-width: 700px;
 }
 
 .validation {
