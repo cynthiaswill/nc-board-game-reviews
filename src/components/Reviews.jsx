@@ -136,89 +136,91 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
         <div className="mainView">
           {data.map((review) => {
             return (
-              <div key={review.review_id} className="review-item">
-                <section className="review-card">
-                  <div className="review-title-row">
-                    <h3 className="review-title">
-                      <Link
-                        to={`/reviews/${review.review_id}`}
-                        className="review-title-link"
-                      >
-                        {" "}
-                        <Highlighter
-                          highlightClassName="highlight"
-                          searchWords={[pattern]}
-                          autoEscape={true}
-                          textToHighlight={review.title}
-                        />{" "}
-                      </Link>
-                    </h3>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <WatchToggle className="watch-toggle" />
+              <div key={review.review_id} className="review-item-container">
+                <div className="review-item">
+                  <section className="review-card">
+                    <div className="review-title-row">
+                      <h3 className="review-title">
+                        <Link
+                          to={`/reviews/${review.review_id}`}
+                          className="review-title-link"
+                        >
+                          {" "}
+                          <Highlighter
+                            highlightClassName="highlight"
+                            searchWords={[pattern]}
+                            autoEscape={true}
+                            textToHighlight={review.title}
+                          />{" "}
+                        </Link>
+                      </h3>
+                      <div style={{ display: "flex", flexDirection: "column" }}>
+                        <WatchToggle className="watch-toggle" />
+                      </div>
                     </div>
-                  </div>
-                  <span className="slug-name-in-reviews">
-                    Category: {review.category}
-                  </span>{" "}
-                  <span className="designer-name-in-reviews">
-                    Designer:{" "}
-                    <Highlighter
-                      highlightClassName="highlight"
-                      searchWords={[pattern]}
-                      autoEscape={true}
-                      textToHighlight={review.designer}
-                    />
-                  </span>
-                  <br />
-                  <div className="image-container-in-reviews">
-                    <img
-                      className="review-img"
-                      src={review.review_img_url}
-                      alt={review.title}
-                    />
-                  </div>
-                  <div>
-                    <p className="body-text-in-reviews">
+                    <span className="slug-name-in-reviews">
+                      Category: {review.category}
+                    </span>{" "}
+                    <span className="designer-name-in-reviews">
+                      Designer:{" "}
                       <Highlighter
                         highlightClassName="highlight"
                         searchWords={[pattern]}
                         autoEscape={true}
-                        textToHighlight={review.review_body}
+                        textToHighlight={review.designer}
                       />
-                    </p>
-                    <span className="author-in-reviews">
-                      Author:{" "}
-                      <Link to={`/users/${review.owner}`} className="author-link">
+                    </span>
+                    <br />
+                    <div className="image-container-in-reviews">
+                      <img
+                        className="review-img"
+                        src={review.review_img_url}
+                        alt={review.title}
+                      />
+                    </div>
+                    <div>
+                      <p className="body-text-in-reviews">
                         <Highlighter
                           highlightClassName="highlight"
                           searchWords={[pattern]}
                           autoEscape={true}
-                          textToHighlight={review.owner}
+                          textToHighlight={review.review_body}
                         />
-                      </Link>
-                    </span>
-                    <span className="date-posted-in-reviews">
-                      <FaRegCalendarAlt />{" "}
-                      {review.created_at.slice(0, 19).replaceAll("T", " at ")}
-                    </span>
-                    <br />
-                  </div>
-                </section>
-                <Link to={`/reviews/${review.review_id}`} className="read-more">
-                  Read More
-                </Link>
-                <section>
-                  <button
-                    className="view-comments-button"
-                    onClick={() => {
-                      navigate(`/reviews/${review.review_id}`);
-                    }}
-                  >
-                    <FaRegCommentAlt className="commentIcon" /> {review.comment_count}
-                    <span className="commentsTooltipText">view comments</span>
-                  </button>
-                  <Kudos review={review} />
-                </section>
+                      </p>
+                      <span className="author-in-reviews">
+                        Author:{" "}
+                        <Link to={`/users/${review.owner}`} className="author-link">
+                          <Highlighter
+                            highlightClassName="highlight"
+                            searchWords={[pattern]}
+                            autoEscape={true}
+                            textToHighlight={review.owner}
+                          />
+                        </Link>
+                      </span>
+                      <span className="date-posted-in-reviews">
+                        <FaRegCalendarAlt />{" "}
+                        {review.created_at.slice(0, 19).replaceAll("T", " at ")}
+                      </span>
+                      <br />
+                    </div>
+                  </section>
+                  <Link to={`/reviews/${review.review_id}`} className="read-more">
+                    Read More
+                  </Link>
+                  <section>
+                    <button
+                      className="view-comments-button"
+                      onClick={() => {
+                        navigate(`/reviews/${review.review_id}`);
+                      }}
+                    >
+                      <FaRegCommentAlt className="commentIcon" /> {review.comment_count}
+                      <span className="commentsTooltipText">view comments</span>
+                    </button>
+                    <Kudos review={review} />
+                  </section>
+                </div>
               </div>
             );
           })}

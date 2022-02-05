@@ -23,6 +23,13 @@
   padding-left: 10px;
 }
 
+.review-item-container {
+  animation: flyin 1.2s ease forwards;
+  opacity: 0;
+  transform: scale(1.5);
+  filter: blur(4px);
+}
+
 .review-item {
   background: lightgrey;
   display: flex;
@@ -39,6 +46,14 @@
 
 .review-item:hover {
   transform: scale(1.03);
+}
+
+@keyframes flyin {
+  to {
+    filter: blur(0);
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @media (max-height: 510px) {
