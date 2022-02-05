@@ -1,3 +1,18 @@
+@keyframes phaseIn {
+  from {
+    filter: blur(4);
+    opacity: 0;
+    transform: scaleY(0);
+    filter: blur(10);
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+    transform: scaleY(1);
+    filter: blur(0);
+  }
+}
+
 .single-review-item {
   display: flex;
   flex-direction: column;
@@ -11,6 +26,7 @@
   position: relative;
   max-width: 900px;
   background: lightgrey;
+  animation: phaseIn 1.2s ease-in-out;
 }
 
 .single-review-content {

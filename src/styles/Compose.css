@@ -21,6 +21,7 @@ button {
   background-color: lightgrey;
   margin: 15px;
   padding: 5px;
+  animation: phaseIn 1.2s ease-out;
 }
 
 .compose-title {
@@ -42,6 +43,7 @@ button {
 
 .compose-form {
   text-align: center;
+  animation: phaseIn 1.2s ease-out;
 }
 
 #review-writing-box {
