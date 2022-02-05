@@ -24,7 +24,8 @@ export default function DateTime() {
     <div style={{ color: "lightgrey", fontSize: "small" }}>
       <FaRegCalendarAlt /> {date.toLocaleDateString()}&nbsp;&nbsp;
       <FaRegClock /> {date.toLocaleTimeString()}&nbsp;&nbsp;
-      <FaUsers /> Currently {onlineUsers.length} users online
+      <FaUsers /> Currently&nbsp;
+      <span style={{ color: "lime" }}>{onlineUsers.length || 1}</span>&nbsp;user(s) online
     </div>
   );
 }
