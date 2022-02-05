@@ -1,3 +1,22 @@
+@keyframes fly {
+  to {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+    transform: translate(0px, 0px);
+  }
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+    transform: translate(0px, 200px);
+  }
+}
+
 .chat {
   width: 230px;
   height: 400px;
@@ -6,6 +25,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  animation: fly 1.2s ease forwards;
+  transform: translate(0px, 400px);
 }
 
 .usernameContainer {
