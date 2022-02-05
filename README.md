@@ -2,7 +2,7 @@
 
 This is a **front end** API repo.
 
-It is a social games content rating, and discussion website, mainly built with React.js.
+It is a social games rating, and discussion website, with built-in live chat messenger and search feature, mainly built with React.js.
 
 A live version of this **front end** API is **hosted at**:
 
@@ -92,18 +92,29 @@ $ npm start
 28. go to home page by clicking header, which also resets all filters and settings
 29. view a list of all reviews written by any specific user.
 30. see an error page when necessary
+31. send instant message and chat with other online members
+32. live chat with multiple end users in different chat rooms
+33. choose a chat room depends on which game category is interested in
+34. check online status of all friends / users in a list in real time
+35. check how many online users in real time
+36. search reviews by a given pattern of text
+37. search key words to match in any review title, designer, author and review article text content
+38. highlight any matched words in search results
+39. search locally within current category
+40. search globally to find match in the entire website / library
+41. see the current date and time and number of online users in real time
 
 **Error-handling: As a user, I am ...**
 
-31. able to see an appropriate error if I go on a non-existent path / a path for a non-existent review / topic.
-32. not allowed to post a comment if I have not filled in all of the form boxes.
+42. able to see an appropriate error if I go on a non-existent path / a path for a non-existent review / topic.
+43. not allowed to post a comment if I have not filled in all of the form boxes.
 
 **As a hiring partner, I am able to...**
 
-33. use the site on my mobile without sacrificing style or functionality (as I may not have my laptop nearby).
-34. follow the readme instructions to easily run the project locally.
-35. find a link to the hosted version of the project in the readme. (use a placeholder if not yet hosted!)
-36. find a link to the back-end repository of the project in the readme.
-37. find a link to the hosted version of the back-end project in the readme.
+44. use the site on my mobile without sacrificing style or functionality (as I may not have my laptop nearby).
+45. follow the readme instructions to easily run the project locally.
+46. find a link to the hosted version of the project in the readme. (use a placeholder if not yet hosted!)
+47. find a link to the back-end repository of the project in the readme.
+48. find a link to the hosted version of the back-end project in the readme.
 
 #
