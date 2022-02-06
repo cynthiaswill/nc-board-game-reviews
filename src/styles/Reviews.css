@@ -24,7 +24,7 @@
 }
 
 .side-container {
-  animation: flyin-from-side 1.2s ease forwards;
+  animation: flyin-from-side 1s ease forwards;
 }
 
 @keyframes flyin-from-side {
@@ -41,7 +41,7 @@
 }
 
 .review-item-container {
-  animation: flyin 1.2s ease forwards;
+  animation: flyin 1s ease forwards;
 }
 
 .review-item {
@@ -70,7 +70,7 @@
   }
   from {
     opacity: 0;
-    transform: scale(1.5);
+    transform: scale(1.25);
     filter: blur(4px);
   }
 }

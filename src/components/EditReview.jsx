@@ -26,7 +26,7 @@ export default function EditComment({ review, setIsEditingReview, setIsReloading
   };
 
   return (
-    <div style={{ animation: "phaseIn 1.2s ease" }}>
+    <div style={{ animation: "phaseIn 0.5s ease" }}>
       <h3>Edit your review below:</h3>
       <form onSubmit={handleSubmit}>
         <div>

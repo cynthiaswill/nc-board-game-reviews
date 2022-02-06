@@ -26,7 +26,7 @@
   position: relative;
   max-width: 900px;
   background: lightgrey;
-  animation: phaseIn 1.2s ease-in-out;
+  animation: phaseIn 0.8s ease-in-out;
 }
 
 .single-review-content {
@@ -326,7 +326,7 @@
   position: relative;
   max-width: 900px;
   background: lightgrey;
-  animation: flyin 1.2s ease forwards;
+  animation: flyin 0.5s ease forwards;
 }
 
 .comment-typing-box {
@@ -365,7 +365,7 @@
 .comment-typing-box-wrapper {
   margin: 20px;
   max-width: 900px;
-  animation: phaseIn 1.2s ease;
+  animation: phaseIn 0.5s ease;
 }
 
 .date-posted {

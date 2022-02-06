@@ -128,7 +128,7 @@ export default function Compose() {
           </div>
           <>
             {needNewCat ? (
-              <section style={{ animation: "phaseIn 1.2s ease-out" }}>
+              <section style={{ animation: "phaseIn 0.5s ease-out" }}>
                 <form
                   onSubmit={submitCategory}
                   style={{
