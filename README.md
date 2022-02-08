@@ -4,7 +4,7 @@ This is a **front end** API repo.
 
 It is a social games rating, and discussion website, with built-in live chat messenger and search feature, mainly built with React.js.
 
-A live version of this **front end** API is **hosted at**:
+A live version of this **front end** / website is **hosted at**:
 
 - https://quizzical-bohr-776a6e.netlify.app
 
