@@ -6,7 +6,7 @@ import { useLocation, Link } from "react-router-dom";
 import { OnlineUsersContext } from "../contexts/OnlineUsersContext";
 import { CategoriesContext } from "../contexts/CategoriesContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
-import { getHistory, getUsers, getOnlineUsers } from "../utils/api";
+import { getHistory, getUsers, getOnlineUsers, updateOnlineUsers } from "../utils/api";
 import ChatAuthorIcon from "./ChatAuthorIcon";
 import OnlineUsersStatus from "./OnlineUsersStatus";
 import io from "socket.io-client";
@@ -72,6 +72,9 @@ export default function ChatWindow() {
 
   useEffect(() => {
     socket.emit("joinRoom", { username, roomName });
+    !onlineUsers.includes(username) &&
+      setOnlineUsers((current) => [...current, username]);
+    updateOnlineUsers(onlineUsers);
   }, [roomName, username]);
 
   useEffect(() => {
