@@ -75,7 +75,7 @@ export default function ChatWindow() {
     !onlineUsers.includes(username) &&
       setOnlineUsers((current) => [...current, username]);
     updateOnlineUsers(onlineUsers);
-  }, [roomName, username]);
+  }, [roomName, username, setOnlineUsers, onlineUsers]);
 
   useEffect(() => {
     getOnlineUsers().then(({ data }) => {
