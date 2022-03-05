@@ -53,7 +53,7 @@ header {
   align-content: center;
   border-radius: 5px;
   background: grey;
-  max-width: 960px;
+  max-width: 1060px;
   min-width: 50vw;
   margin: 0 auto;
   display: flex;
@@ -62,7 +62,7 @@ header {
 .above-main {
   align-content: center;
   border-radius: 5px;
-  max-width: 960px;
+  max-width: 1060px;
   min-width: 50vw;
   margin: 0 auto;
   display: flex;

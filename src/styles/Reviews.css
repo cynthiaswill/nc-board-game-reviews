@@ -28,15 +28,15 @@
 }
 
 @keyframes flyin-from-side {
-  to {
-    filter: blur(0);
-    transform: translate(0px, 0px);
-    opacity: 1;
-  }
   from {
     opacity: 0;
     transform: translate(200px, 0px);
     filter: blur(8px);
+  }
+  to {
+    filter: blur(0);
+    transform: translate(0px, 0px);
+    opacity: 1;
   }
 }
 
@@ -63,15 +63,15 @@
 }
 
 @keyframes flyin {
-  to {
-    filter: blur(0);
-    transform: scale(1);
-    opacity: 1;
-  }
   from {
     opacity: 0;
     transform: scale(1.25);
     filter: blur(4px);
+  }
+  to {
+    filter: blur(0);
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
