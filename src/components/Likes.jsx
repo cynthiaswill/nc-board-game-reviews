@@ -1,13 +1,21 @@
 import "../styles/Review.css";
-import { incLikes } from "../utils/api";
-import { useContext, useState } from "react";
+import { incLikes, getLikesList, voteComment } from "../utils/api";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { FaHeart } from "react-icons/fa";
 
 export default function Likes({ comment }) {
-  const { user } = useContext(UserContext);
+  const { user, isLogged } = useContext(UserContext);
   const [addedLikes, setAddedLikes] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
+
+  useEffect(() => {
+    getLikesList(comment.comment_id).then(({ data }) => {
+      if (isLogged && data.list.includes(user.username)) {
+        setHasVoted(true);
+      }
+    });
+  }, [isLogged, comment, user]);
 
   return (
     <>
@@ -19,6 +27,7 @@ export default function Likes({ comment }) {
             return current + 1;
           });
           incLikes(comment.comment_id, { inc_votes: 1 });
+          isLogged && voteComment(comment.comment_id, { username: `${user.username}` });
           setHasVoted(true);
         }}
       >

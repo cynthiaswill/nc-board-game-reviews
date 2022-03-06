@@ -99,3 +99,15 @@ export const voteReview = (review_id, { username }) => {
 export const unvoteReview = (review_id, { username }) => {
   return gamesApi.patch(`/reviews/${review_id}/voted`, { username });
 };
+
+export const getLikesList = (comment_id) => {
+  return gamesApi.get(`/comments/${comment_id}/voted`);
+};
+
+export const voteComment = (comment_id, { username }) => {
+  return gamesApi.post(`/comments/${comment_id}/voted`, { username });
+};
+
+export const unvoteComment = (comment_id, { username }) => {
+  return gamesApi.patch(`/comments/${comment_id}/voted`, { username });
+};
