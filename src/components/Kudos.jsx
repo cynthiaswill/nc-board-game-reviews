@@ -1,13 +1,21 @@
 import "../styles/Reviews.css";
-import { incKudos } from "../utils/api";
-import { useContext, useState } from "react";
+import { getKudosList, incKudos, voteReview } from "../utils/api";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { FaRegStar } from "react-icons/fa";
 
 export default function Kudos({ review }) {
-  const { user } = useContext(UserContext);
+  const { user, isLogged } = useContext(UserContext);
   const [addedKudos, setAddedKudos] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
+
+  useEffect(() => {
+    getKudosList(review.review_id).then(({ data }) => {
+      if (isLogged && data.list.includes(user.username)) {
+        setHasVoted(true);
+      }
+    });
+  }, [isLogged, review, user]);
 
   return (
     <>
@@ -19,6 +27,7 @@ export default function Kudos({ review }) {
             return current + 1;
           });
           incKudos(review.review_id, { inc_votes: 1 });
+          isLogged && voteReview(review.review_id, { username: `${user.username}` });
           setHasVoted(true);
         }}
       >

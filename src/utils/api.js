@@ -87,3 +87,15 @@ export const getOnlineUsers = () => {
 export const updateOnlineUsers = ({ onlineUsers }) => {
   return gamesApi.patch("/messages", { onlineUsers });
 };
+
+export const getKudosList = (review_id) => {
+  return gamesApi.get(`/reviews/${review_id}/voted`);
+};
+
+export const voteReview = (review_id, { username }) => {
+  return gamesApi.post(`/reviews/${review_id}/voted`, { username });
+};
+
+export const unvoteReview = (review_id, { username }) => {
+  return gamesApi.patch(`/reviews/${review_id}/voted`, { username });
+};
