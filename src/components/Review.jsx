@@ -1,10 +1,11 @@
 import "../styles/Review.css";
-import { getReviewById, incKudos, deleteReviewById, getUser } from "../utils/api";
+import { getReviewById, deleteReviewById, getUser } from "../utils/api";
 import { useEffect, useState, useContext, useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import PostComment from "./PostComment";
 import EditComment from "./EditComment";
 import EditReview from "./EditReview";
+import Kudos from "./Kudos";
 import { UserContext } from "../contexts/UserContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { ParticleContext } from "../contexts/ParticleContext";
@@ -12,7 +13,6 @@ import { numArr, particleOptions, setVisibility } from "../utils/utils";
 import Comments from "./Comments";
 import {
   FaRegCommentAlt,
-  FaRegStar,
   FaRegEdit,
   FaRegTrashAlt,
   FaRegCalendarAlt,
@@ -29,7 +29,6 @@ export default function Review() {
   const { setParticleOps } = useContext(ParticleContext);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  const [addedKudos, setAddedKudos] = useState(0);
   const [review, setReview] = useState({});
   const [limitPerPage, setLimitPerPage] = useState(10);
   const [comments, setComments] = useState([]);
@@ -38,7 +37,6 @@ export default function Review() {
   const [isEditingComment, setIsEditingComment] = useState(false);
   const [toBeEditedComment, setToBeEditedComment] = useState({});
   const [isReloading, setIsReloading] = useState(false);
-  const [hasVoted, setHasVoted] = useState(false);
   const [page, setPage] = useState(1);
   const [viewedUser, setViewedUser] = useState({});
 
@@ -179,23 +177,7 @@ export default function Review() {
               <FaRegTrashAlt className="commentIcon" />
               <span className="deleteTooltipText">delete this review</span>
             </button>
-            <button
-              className="kudos-button"
-              disabled={!!(user.username === review.owner) || hasVoted}
-              onClick={() => {
-                setAddedKudos((current) => {
-                  return current + 1;
-                });
-                incKudos(review.review_id, { inc_votes: 1 });
-                setHasVoted(true);
-              }}
-            >
-              <FaRegStar className="starIcon" /> {review.votes + addedKudos}
-              <span className="kudosTooltipText">click to vote this review</span>
-              <span className="kudosDisabledTooltipText">
-                you already voted this review
-              </span>
-            </button>
+            <Kudos review={review} />
           </section>
         </div>
         <section style={{ marginLeft: "5px", marginRight: "5px" }}>
