@@ -120,7 +120,7 @@ export default function Review() {
             <div className="review-title-row">
               <h3 className="review-title-in-review">{review.title}</h3>
               <div style={{ display: "flex", flexDirection: "column" }}>
-                <WatchToggle className="watch-toggle" />
+                <WatchToggle review={review} className="watch-toggle" />
               </div>
             </div>
             <span className="slug-name">Category: {review.category}</span>{" "}

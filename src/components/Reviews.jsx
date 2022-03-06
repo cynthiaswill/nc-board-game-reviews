@@ -155,7 +155,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
                         </Link>
                       </h3>
                       <div style={{ display: "flex", flexDirection: "column" }}>
-                        <WatchToggle className="watch-toggle" />
+                        <WatchToggle review={review} className="watch-toggle" />
                       </div>
                     </div>
                     <span className="slug-name-in-reviews">

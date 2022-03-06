@@ -111,3 +111,15 @@ export const voteComment = (comment_id, { username }) => {
 export const unvoteComment = (comment_id, { username }) => {
   return gamesApi.patch(`/comments/${comment_id}/voted`, { username });
 };
+
+export const getWatcherList = (review_id) => {
+  return gamesApi.get(`/reviews/${review_id}/watched`);
+};
+
+export const watchReview = (review_id, { username }) => {
+  return gamesApi.post(`/reviews/${review_id}/watched`, { username });
+};
+
+export const unwatchReview = (review_id, { username }) => {
+  return gamesApi.patch(`/reviews/${review_id}/watched`, { username });
+};
