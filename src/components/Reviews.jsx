@@ -29,6 +29,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([...reviews]);
+  const [isWatchedOnly, setIsWatchedOnly] = useState(false);
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
 
@@ -226,7 +227,11 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
           })}
         </div>
         <div className="sideMenu">
-          <SideMenu className="sideMenuContainer" />
+          <SideMenu
+            className="sideMenuContainer"
+            isWatchedOnly={isWatchedOnly}
+            setIsWatchedOnly={setIsWatchedOnly}
+          />
         </div>
       </main>
     </div>

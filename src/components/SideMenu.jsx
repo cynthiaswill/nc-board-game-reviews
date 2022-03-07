@@ -8,8 +8,9 @@ import { CatQueriesContext } from "../contexts/CatQueriesContext";
 import { SearchContext } from "../contexts/SearchContext";
 import Chat from "./Chat";
 import SearchBar from "./SearchBar";
+import WatchSwitch from "./WatchSwitch";
 
-export default function SideMenu() {
+export default function SideMenu({ isWatchedOnly, setIsWatchedOnly }) {
   const navigate = useNavigate();
   const { setAuthor } = useContext(AuthorContext);
   const { categories } = useContext(CategoriesContext);
@@ -31,6 +32,10 @@ export default function SideMenu() {
             <form action="/reviews">
               <SearchBar />
             </form>
+            <WatchSwitch
+              isWatchedOnly={isWatchedOnly}
+              setIsWatchedOnly={setIsWatchedOnly}
+            />
           </div>
           <br />
           <div
