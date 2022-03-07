@@ -115,21 +115,24 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
       <h3 className="category-title">
         <span>{category.slug}:</span>
         {width > 600 && width < 812 && <SearchBar />}
-        {width < 812 && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-          >
-            <WatchSwitch
-              isWatchedOnly={isWatchedOnly}
-              setIsWatchedOnly={setIsWatchedOnly}
-            />
-          </div>
-        )}
-        <span className="page-number-in-reviews">Page {catQueries.p}</span>
+        <div className="page-number-in-reviews">
+          {width < 812 && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                marginRight: 10,
+              }}
+            >
+              <WatchSwitch
+                isWatchedOnly={isWatchedOnly}
+                setIsWatchedOnly={setIsWatchedOnly}
+              />
+            </div>
+          )}
+          <span>Page {catQueries.p}</span>
+        </div>
       </h3>
       <p className="category-description">{category.description}</p>
       <>
