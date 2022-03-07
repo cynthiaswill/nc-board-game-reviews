@@ -119,9 +119,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
           {width < 812 && (
             <div
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
+                marginTop: 5,
                 marginRight: 10,
               }}
             >
