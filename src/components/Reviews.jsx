@@ -13,6 +13,7 @@ import { SearchContext } from "../contexts/SearchContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
 import Highlighter from "react-highlight-words";
 import SearchBar from "./SearchBar";
+import WatchSwitch from "./WatchSwitch";
 import Kudos from "./Kudos";
 import WatchToggle from "./WatchToggle";
 import SideMenu from "./SideMenu";
@@ -113,7 +114,17 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
     <div className="above-main">
       <h3 className="category-title">
         <span>{category.slug}:</span>
-        {width > 600 && width < 812 && <SearchBar />}
+        {width > 600 && width < 812 && (
+          <>
+            <SearchBar />{" "}
+          </>
+        )}
+        {width < 812 && (
+          <WatchSwitch
+            isWatchedOnly={isWatchedOnly}
+            setIsWatchedOnly={setIsWatchedOnly}
+          />
+        )}
         <span className="page-number-in-reviews">Page {catQueries.p}</span>
       </h3>
       <p className="category-description">{category.description}</p>
