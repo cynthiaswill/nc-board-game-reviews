@@ -318,3 +318,48 @@
   text-decoration: underline;
   font-size: large;
 }
+
+.watchSwitch {
+  position: relative;
+  margin: 0px;
+  margin-left: 5px;
+  max-height: 20px;
+}
+
+.watchSwitch .viewModeChatTooltip {
+  visibility: hidden;
+  width: 165px;
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -135px;
+}
+
+.watchSwitch:hover .viewModeChatTooltip {
+  visibility: visible;
+}
+
+.watchSwitch .viewModeUsersTooltip {
+  visibility: hidden;
+  width: 135px;
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -105px;
+}
+
+.watchSwitch:hover .viewModeUsersTooltip {
+  visibility: visible;
+}
