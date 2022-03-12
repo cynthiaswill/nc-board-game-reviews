@@ -326,9 +326,9 @@
   max-height: 20px;
 }
 
-.watchSwitch .viewModeChatTooltip {
+.watchSwitch .watchedTooltip {
   visibility: hidden;
-  width: 165px;
+  width: 115px;
   background-color: rgb(70, 70, 70);
   color: #fff;
   text-align: center;
@@ -336,18 +336,17 @@
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -135px;
+  bottom: -150%;
+  margin-left: -45px;
 }
 
-.watchSwitch:hover .viewModeChatTooltip {
+.watchSwitch:hover .watchedTooltip {
   visibility: visible;
 }
 
-.watchSwitch .viewModeUsersTooltip {
+.watchSwitch .fullListTooltip {
   visibility: hidden;
-  width: 135px;
+  width: 150px;
   background-color: rgb(70, 70, 70);
   color: #fff;
   text-align: center;
@@ -355,11 +354,10 @@
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -105px;
+  bottom: -150%;
+  margin-left: -45px;
 }
 
-.watchSwitch:hover .viewModeUsersTooltip {
+.watchSwitch:hover .fullListTooltip {
   visibility: visible;
 }

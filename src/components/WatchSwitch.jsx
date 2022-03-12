@@ -24,9 +24,9 @@ export default function WatchSwitch({ isWatchedOnly, setIsWatchedOnly }) {
         }
       />
       {isWatchedOnly ? (
-        <span className="viewModeChatTooltip">switch to full list</span>
+        <span className="watchedTooltip">switch to full list</span>
       ) : (
-        <span className="viewModeUsersTooltip">switch to watched list</span>
+        <span className="fullListTooltip">switch to watched only</span>
       )}
     </button>
   );
