@@ -33,24 +33,20 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([...reviews]);
   const [isWatchedOnly, setIsWatchedOnly] = useState(false);
-  const [watchedReviews, setWatchedReviews] = useState([]);
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const filterWatched = async () => {
-      const { data } = await getWatchedReviews(user.username);
-      setWatchedReviews([...data.list]);
-    };
     setIsLoading(true);
     setIsSearching(false);
     setParticleOps(particleOptions);
     getReviews(catQueries)
-      .then((data) => {
-        filterWatched();
-        return data;
+      .then(async (data) => {
+        const result = await getWatchedReviews(user.username);
+        let watchedReviews = [...result.data.list];
+        return { ...data, watchedReviews };
       })
-      .then(({ data }) => {
+      .then(({ data, watchedReviews }) => {
         let temp = data.reviews;
         if (isWatchedOnly && isLogged) {
           temp = temp.filter((review) => {
