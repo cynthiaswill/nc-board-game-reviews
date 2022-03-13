@@ -1,5 +1,5 @@
 import "../styles/Reviews.css";
-import { getReviews } from "../utils/api";
+import { getReviews, getWatchedReviews } from "../utils/api";
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ErrorContext } from "../contexts/ErrorContext";
@@ -10,6 +10,7 @@ import { filterReviewsByAuthor, particleOptions } from "../utils/utils";
 import { FaRegCommentAlt, FaRegCalendarAlt } from "react-icons/fa";
 import { CatQueriesContext } from "../contexts/CatQueriesContext";
 import { SearchContext } from "../contexts/SearchContext";
+import { UserContext } from "../contexts/UserContext";
 import useWindowDimensions from "../hooks/WindowDimentions";
 import Highlighter from "react-highlight-words";
 import SearchBar from "./SearchBar";
@@ -27,28 +28,45 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
   const { category } = useContext(CategoryContext);
   const { catQueries } = useContext(CatQueriesContext);
   const { pattern, isSearching, setIsSearching } = useContext(SearchContext);
+  const { user, isLogged } = useContext(UserContext);
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([...reviews]);
   const [isWatchedOnly, setIsWatchedOnly] = useState(false);
+  const [watchedReviews, setWatchedReviews] = useState([]);
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
 
   useEffect(() => {
+    const filterWatched = async () => {
+      const { data } = await getWatchedReviews(user.username);
+      setWatchedReviews([...data.list]);
+    };
     setIsLoading(true);
     setIsSearching(false);
     setParticleOps(particleOptions);
     getReviews(catQueries)
+      .then((data) => {
+        filterWatched();
+        return data;
+      })
       .then(({ data }) => {
-        const authorsArr = data.reviews.map((review) => {
+        let temp = data.reviews;
+        if (isWatchedOnly && isLogged) {
+          temp = temp.filter((review) => {
+            return watchedReviews.includes(review.review_id.toString());
+          });
+        }
+
+        const authorsArr = temp.map((review) => {
           return review.owner;
         });
         setAuthors([...new Set(authorsArr)]);
 
         if (author !== "") {
-          setReviews(filterReviewsByAuthor(data.reviews, author));
+          setReviews(filterReviewsByAuthor(temp, author));
         } else {
-          setReviews(data.reviews);
+          setReviews(temp);
         }
         setReviewsCount(reviews.length);
         setIsLoading(false);
@@ -71,6 +89,9 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
     setAuthors,
     setParticleOps,
     setIsSearching,
+    isWatchedOnly,
+    user,
+    isLogged,
   ]);
 
   useEffect(() => {

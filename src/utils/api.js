@@ -123,3 +123,7 @@ export const watchReview = (review_id, { username }) => {
 export const unwatchReview = (review_id, { username }) => {
   return gamesApi.patch(`/reviews/${review_id}/watched`, { username });
 };
+
+export const getWatchedReviews = (username) => {
+  return gamesApi(`/users/${username}/watched`);
+};
