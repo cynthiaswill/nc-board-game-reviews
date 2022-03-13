@@ -361,3 +361,10 @@
 .watchSwitch:hover .fullListTooltip {
   visibility: visible;
 }
+
+.watchSwitch:disabled {
+  border: 0px solid #999999;
+  background-color: lightgrey;
+  color: white;
+  visibility: hidden;
+}
