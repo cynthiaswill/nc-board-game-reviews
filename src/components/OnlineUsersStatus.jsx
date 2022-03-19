@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function OnlineUsersStatus({ name, onlineToggle, offlineToggle }) {
   return (
-    <div key={name} className="messageInnerLeft" style={{ marginBottom: 5 }}>
+    <div className="messageInnerLeft" style={{ marginBottom: 5 }}>
       <UserIcon name={name} offlineToggle={offlineToggle} />
       &nbsp;&nbsp;
       <Link to={`/users/${name}`} className="name-link-in-chat">

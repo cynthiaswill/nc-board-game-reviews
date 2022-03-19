@@ -391,10 +391,10 @@ export default function ChatWindow() {
                 </button>
               </div>
               {onlineToggle &&
-                onlineUsers.map((name) => {
+                onlineUsers.map((name, index) => {
                   return (
                     <OnlineUsersStatus
-                      key={name}
+                      key={`${name}+${index}`}
                       name={name}
                       onlineToggle={onlineToggle}
                     />
@@ -432,11 +432,11 @@ export default function ChatWindow() {
                 </button>
               </div>
               {offlineToggle &&
-                users.map((user) => {
+                users.map((user, index) => {
                   const name = user.username;
                   return !onlineUsers.includes(name) ? (
                     <OnlineUsersStatus
-                      key={name}
+                      key={`${name}+${index}`}
                       name={name}
                       offlineToggle={offlineToggle}
                     />
