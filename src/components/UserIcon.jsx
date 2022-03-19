@@ -9,10 +9,11 @@ export default function UserIcon({ name, offlineToggle }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let isSubscribed = true;
     if (name !== "anonymous") {
       getUser(name)
         .then(({ data }) => {
-          setViewedUser(data.user);
+          isSubscribed && setViewedUser(data.user);
         })
         .catch((err) => {
           if (err) {
@@ -21,6 +22,7 @@ export default function UserIcon({ name, offlineToggle }) {
           }
         });
     }
+    return () => (isSubscribed = false);
   }, [name, setError, navigate]);
 
   return (

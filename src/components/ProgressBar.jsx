@@ -6,19 +6,22 @@ export default function ProgressBar() {
   const [progress, updateProgress] = useState(0);
 
   useEffect(() => {
+    let isSubscribed = true;
     const interval = setInterval(
       () => {
-        updateProgress((prev) => {
-          const updatedProgress = prev + 10;
+        isSubscribed &&
+          updateProgress((prev) => {
+            const updatedProgress = prev + 10;
 
-          if (updatedProgress === 100) {
-            clearInterval(interval);
-          }
-          return updatedProgress;
-        });
+            if (updatedProgress === 100) {
+              clearInterval(interval);
+            }
+            return updatedProgress;
+          });
       },
       path === "/" ? 200 : 25
     );
+    return () => (isSubscribed = false);
   }, [path]);
 
   return (

@@ -51,23 +51,26 @@ export default function ChatWindow() {
   ];
 
   useEffect(() => {
+    let isSubscribed = true;
     isChatOpen &&
       getHistory(roomName)
         .then(({ data }) => {
-          setMessages([
-            ...data.history,
-            {
-              dateCreated: new Date().toISOString(),
-              welcome: true,
-              username,
-              roomName,
-              messageBody: `👋 Hello ${username}, Welcome to chat room "${roomName}"!`,
-            },
-          ]);
+          isSubscribed &&
+            setMessages([
+              ...data.history,
+              {
+                dateCreated: new Date().toISOString(),
+                welcome: true,
+                username,
+                roomName,
+                messageBody: `👋 Hello ${username}, Welcome to chat room "${roomName}"!`,
+              },
+            ]);
         })
         .catch((err) => {
           console.dir(err);
         });
+    return () => (isSubscribed = false);
   }, [roomName, isChatOpen, user, username]);
 
   useEffect(() => {
@@ -78,9 +81,11 @@ export default function ChatWindow() {
   }, [roomName, username, setOnlineUsers, onlineUsers]);
 
   useEffect(() => {
+    let isSubscribed = true;
     getOnlineUsers().then(({ data }) => {
-      data.list.onlineUsers && setOnlineUsers([...data.list.onlineUsers]);
+      isSubscribed && data.list.onlineUsers && setOnlineUsers([...data.list.onlineUsers]);
     });
+    return () => (isSubscribed = false);
   }, [viewMode, setOnlineUsers]);
 
   useEffect(() => {
@@ -108,11 +113,13 @@ export default function ChatWindow() {
   };
 
   useEffect(() => {
+    let isSubscribed = true;
     getUsers()
       .then(({ data }) => {
-        setUsers(data.users);
+        isSubscribed && setUsers(data.users);
       })
       .catch((err) => console.dir(err));
+    return () => (isSubscribed = false);
   }, []);
 
   const roomContainerStyle = {

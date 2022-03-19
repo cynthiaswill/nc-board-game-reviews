@@ -9,9 +9,10 @@ export default function CommentAuthorIcon({ comment }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let isSubscribed = true;
     getUser(comment.author)
       .then(({ data }) => {
-        setViewedUser(data.user);
+        isSubscribed && setViewedUser(data.user);
       })
       .catch((err) => {
         if (err) {
@@ -19,6 +20,9 @@ export default function CommentAuthorIcon({ comment }) {
           navigate("/error");
         }
       });
+    return () => {
+      isSubscribed = false;
+    };
   }, [comment, setError, navigate]);
 
   return (
