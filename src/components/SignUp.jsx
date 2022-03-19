@@ -27,10 +27,12 @@ export default function SignUp() {
   const [showUsernameError, setShowUsernameError] = useState(false);
 
   useEffect(() => {
+    let isSubscribed = true;
     setParticleOps(particleOptions);
     getUsers().then(({ data }) => {
-      setUserList(data.users.map((user) => user.username));
+      isSubscribed && setUserList(data.users.map((user) => user.username));
     });
+    return () => (isSubscribed = false);
   }, [setParticleOps]);
 
   const handleSubmit = (e) => {

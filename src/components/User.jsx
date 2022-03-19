@@ -18,10 +18,11 @@ export default function User() {
   const [viewedUser, setViewedUser] = useState({});
 
   useEffect(() => {
+    let isSubscribed = true;
     setParticleOps(particleOptions);
     getUser(username)
       .then(({ data }) => {
-        setViewedUser(data.user);
+        isSubscribed && setViewedUser(data.user);
       })
       .catch((err) => {
         if (err) {
@@ -29,6 +30,7 @@ export default function User() {
           navigate("/error");
         }
       });
+    return () => (isSubscribed = false);
   }, [username, setError, setParticleOps, navigate]);
 
   const handleSignIn = () => {

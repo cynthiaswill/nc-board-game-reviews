@@ -14,9 +14,10 @@ export default function UserCardInList({ userInList }) {
   const { onlineUsers, setOnlineUsers } = useContext(OnlineUsersContext);
 
   useEffect(() => {
+    let isSubscribed = true;
     getUser(userInList.username)
       .then(({ data }) => {
-        setViewedUser(data.user);
+        isSubscribed && setViewedUser(data.user);
       })
       .catch((err) => {
         if (err) {
@@ -24,6 +25,7 @@ export default function UserCardInList({ userInList }) {
           navigate("/error");
         }
       });
+    return () => (isSubscribed = false);
   }, [userInList.username, navigate, setError]);
 
   const handleSignIn = () => {

@@ -37,14 +37,17 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let isSubscribed = true;
     setIsLoading(true);
     setIsSearching(false);
     setParticleOps(particleOptions);
     getReviews(catQueries)
       .then(async (data) => {
-        const result = await getWatchedReviews(user.username);
-        let watchedReviews = [...result.data.list];
-        return { ...data, watchedReviews };
+        if (isSubscribed) {
+          const result = await getWatchedReviews(user.username);
+          let watchedReviews = [...result.data.list];
+          return { ...data, watchedReviews };
+        }
       })
       .then(({ data, watchedReviews }) => {
         let temp = data.reviews;
@@ -59,11 +62,14 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
         });
         setAuthors([...new Set(authorsArr)]);
 
-        if (author !== "") {
-          setReviews(filterReviewsByAuthor(temp, author));
-        } else {
-          setReviews(temp);
+        if (isSubscribed) {
+          if (author !== "") {
+            setReviews(filterReviewsByAuthor(temp, author));
+          } else {
+            setReviews(temp);
+          }
         }
+
         setReviewsCount(reviews.length);
         setIsLoading(false);
         setIsSearching(true);
@@ -74,6 +80,7 @@ export default function Reviews({ setReviewsCount, setAuthors }) {
           navigate("/error");
         }
       });
+    return () => (isSubscribed = false);
   }, [
     catQueries,
     category,

@@ -12,11 +12,13 @@ export default function WatchToggle({ review }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let isSubscribed = true;
     getWatcherList(review.review_id).then(({ data }) => {
-      if (isLogged && data.list.includes(user.username)) {
+      if (isSubscribed && isLogged && data.list.includes(user.username)) {
         setIsWatched(true);
       }
     });
+    return () => (isSubscribed = false);
   }, [isLogged, review, user]);
 
   return (
