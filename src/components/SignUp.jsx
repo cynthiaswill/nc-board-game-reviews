@@ -25,7 +25,6 @@ export default function SignUp() {
   const [showUsernameValidation, setShowUsernameValidation] = useState(false);
   const [userList, setUserList] = useState([]);
   const [showUsernameError, setShowUsernameError] = useState(false);
-  let defaultAvatar = "";
 
   useEffect(() => {
     let isSubscribed = true;
@@ -135,11 +134,17 @@ export default function SignUp() {
             size="small"
             style={{ width: 150 }}
             label="Avatar URL:"
-            onFocus={(e) =>
-              (e.target.value = newUser.username
+            onFocus={(e) => {
+              e.target.value = newUser.username
                 ? `https://robohash.org/${newUser.username}`
-                : "https://source.unsplash.com/random/300x200")
-            }
+                : "https://source.unsplash.com/random/300x200";
+              setNewUser((current) => {
+                return {
+                  ...current,
+                  avatar_url: e.target.value,
+                };
+              });
+            }}
             inputProps={{ style: { fontSize: 12, marginTop: 5 } }}
             InputLabelProps={{ style: { fontSize: 12, marginTop: 5 } }}
             onChange={(event) => {
