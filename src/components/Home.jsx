@@ -10,20 +10,23 @@ export default function Home() {
   const [counter, setCounter] = useState(3);
 
   useEffect(() => {
+    let isSubscribed = true;
     setParticleOps(particleOptions);
     const counter = setInterval(() => {
-      setCounter((current) => {
-        return current - 1;
-      });
+      isSubscribed &&
+        setCounter((current) => {
+          return current - 1;
+        });
     }, 1000);
 
     const timer = setTimeout(() => {
-      setRedirect(true);
+      isSubscribed && setRedirect(true);
     }, 3000);
 
     return () => {
       clearInterval(counter);
       clearTimeout(timer);
+      isSubscribed = false;
     };
   }, [setParticleOps]);
 

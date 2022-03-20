@@ -66,19 +66,22 @@ export default function Review() {
   };
 
   useEffect(() => {
+    let isSubscribed = true;
     setIsLoading(true);
     setParticleOps(particleOptions);
     getReviewById(review_id)
       .then(({ data }) => {
-        setReview(data.review);
-        setIsLoading(false);
-        setIsReloading(false);
-        return data.review.owner;
+        if (isSubscribed) {
+          setReview(data.review);
+          setIsLoading(false);
+          setIsReloading(false);
+          return data.review.owner;
+        }
       })
       .then((owner) => {
         getUser(owner)
           .then(({ data }) => {
-            setViewedUser(data.user);
+            isSubscribed && setViewedUser(data.user);
           })
           .catch((err) => {
             if (err) {
@@ -93,6 +96,7 @@ export default function Review() {
           navigate("/error");
         }
       });
+    return () => (isSubscribed = false);
   }, [review_id, setError, isReloading, setParticleOps, navigate]);
 
   if (isLoading === true) {

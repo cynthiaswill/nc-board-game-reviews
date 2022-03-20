@@ -32,6 +32,7 @@ export default function Comments({
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
+    let isSubscribed = true;
     setParticleOps((prev) => {
       return {
         ...prev,
@@ -47,8 +48,10 @@ export default function Comments({
       p: `${page}`,
     })
       .then(({ data }) => {
-        setComments(data.comments);
-        setIsDeleting(false);
+        if (isSubscribed) {
+          setComments(data.comments);
+          setIsDeleting(false);
+        }
       })
       .catch((err) => {
         if (err) {
@@ -56,6 +59,7 @@ export default function Comments({
           navigate("/error");
         }
       });
+    return () => (isSubscribed = false);
   }, [
     limitPerPage,
     navigate,

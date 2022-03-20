@@ -81,14 +81,13 @@ export default function ChatWindow() {
   }, [roomName, username, setOnlineUsers, onlineUsers]);
 
   useEffect(() => {
-    let isSubscribed = true;
     getOnlineUsers().then(({ data }) => {
-      isSubscribed && data.list.onlineUsers && setOnlineUsers([...data.list.onlineUsers]);
+      data.list.onlineUsers && setOnlineUsers([...data.list.onlineUsers]);
     });
-    return () => (isSubscribed = false);
   }, [viewMode, setOnlineUsers]);
 
   useEffect(() => {
+    let isSubscribed = true;
     socket.on("message", (data) => {
       let temp = messages;
 
@@ -97,8 +96,9 @@ export default function ChatWindow() {
         messageBody: data.messageBody,
         dateCreated: new Date().toISOString(),
       });
-      setMessages([...temp]);
+      isSubscribed && setMessages([...temp]);
     });
+    return () => (isSubscribed = false);
   }, [setMessages, messages]);
 
   useEffect(() => {

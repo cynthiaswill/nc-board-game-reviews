@@ -26,13 +26,14 @@ export default function Compose() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let isSubscribed = true;
     setParticleOps(particleOptions);
     setNewReview((current) => {
       return { ...current, owner: `${user.username}` };
     });
     getCategories()
       .then(({ data }) => {
-        setCategories(data.categories);
+        isSubscribed && setCategories(data.categories);
       })
       .catch((err) => {
         if (err) {
@@ -40,6 +41,7 @@ export default function Compose() {
           navigate("/error");
         }
       });
+    return () => (isSubscribed = false);
   }, [newCategory, setCategories, user, navigate, setError, setParticleOps]);
 
   const handleSubmit = (e) => {

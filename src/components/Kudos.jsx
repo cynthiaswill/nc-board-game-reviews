@@ -10,11 +10,13 @@ export default function Kudos({ review }) {
   const [hasVoted, setHasVoted] = useState(false);
 
   useEffect(() => {
+    let isSubscribed = true;
     getKudosList(review.review_id).then(({ data }) => {
-      if (isLogged && data.list.includes(user.username)) {
+      if (isSubscribed && isLogged && data.list.includes(user.username)) {
         setHasVoted(true);
       }
     });
+    return () => (isSubscribed = false);
   }, [isLogged, review, user]);
 
   return (

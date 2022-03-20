@@ -10,11 +10,13 @@ export default function Likes({ comment }) {
   const [hasVoted, setHasVoted] = useState(false);
 
   useEffect(() => {
+    let isSubscribed = true;
     getLikesList(comment.comment_id).then(({ data }) => {
-      if (isLogged && data.list.includes(user.username)) {
+      if (isSubscribed && isLogged && data.list.includes(user.username)) {
         setHasVoted(true);
       }
     });
+    return () => (isSubscribed = false);
   }, [isLogged, comment, user]);
 
   return (

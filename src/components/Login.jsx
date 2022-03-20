@@ -15,12 +15,15 @@ export default function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let isSubscribed = true;
     setIsLoading(true);
     setParticleOps(particleOptions);
     getUsers()
       .then(({ data }) => {
-        setUsers(data.users);
-        setIsLoading(false);
+        if (isSubscribed) {
+          setUsers(data.users);
+          setIsLoading(false);
+        }
       })
       .catch((err) => {
         if (err) {
@@ -28,6 +31,7 @@ export default function Login() {
           navigate("/error");
         }
       });
+    return () => (isSubscribed = false);
   }, [setError, setParticleOps, navigate]);
 
   if (isLoading === true) {

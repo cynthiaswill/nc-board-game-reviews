@@ -11,10 +11,11 @@ export default function ChatAuthorIcon({ msg }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let isSubscribed = true;
     if (msg.username !== "anonymous") {
       getUser(msg.username)
         .then(({ data }) => {
-          setViewedUser(data.user);
+          isSubscribed && setViewedUser(data.user);
         })
         .catch((err) => {
           if (err) {
@@ -23,6 +24,7 @@ export default function ChatAuthorIcon({ msg }) {
           }
         });
     }
+    return () => (isSubscribed = false);
   }, [msg, setError, navigate]);
 
   return (
