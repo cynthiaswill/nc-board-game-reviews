@@ -25,6 +25,7 @@ export default function SignUp() {
   const [showUsernameValidation, setShowUsernameValidation] = useState(false);
   const [userList, setUserList] = useState([]);
   const [showUsernameError, setShowUsernameError] = useState(false);
+  let defaultAvatar = "";
 
   useEffect(() => {
     let isSubscribed = true;
@@ -134,6 +135,9 @@ export default function SignUp() {
             size="small"
             style={{ width: 150 }}
             label="Avatar URL:"
+            onFocus={(e) =>
+              (e.target.value = "https://source.unsplash.com/random/300x200")
+            }
             inputProps={{ style: { fontSize: 12, marginTop: 5 } }}
             InputLabelProps={{ style: { fontSize: 12, marginTop: 5 } }}
             onChange={(event) => {
