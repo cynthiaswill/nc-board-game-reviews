@@ -134,6 +134,11 @@ export default function SignUp() {
             size="small"
             style={{ width: 150 }}
             label="Avatar URL:"
+            defaultValue={
+              newUser.username
+                ? `https://robohash.org/${newUser.username}`
+                : "https://source.unsplash.com/random/300x200"
+            }
             onFocus={(e) => {
               e.target.value = newUser.username
                 ? `https://robohash.org/${newUser.username}`
