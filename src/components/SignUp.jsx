@@ -136,7 +136,9 @@ export default function SignUp() {
             style={{ width: 150 }}
             label="Avatar URL:"
             onFocus={(e) =>
-              (e.target.value = "https://source.unsplash.com/random/300x200")
+              (e.target.value = newUser.username
+                ? `https://robohash.org/${newUser.username}`
+                : "https://source.unsplash.com/random/300x200")
             }
             inputProps={{ style: { fontSize: 12, marginTop: 5 } }}
             InputLabelProps={{ style: { fontSize: 12, marginTop: 5 } }}
@@ -159,6 +161,15 @@ export default function SignUp() {
           />
           <p className={visibility}>Please add a valid URL!</p>
 
+          {newUser.avatar_url ? (
+            <img
+              src={newUser.avatar_url}
+              alt={newUser.username}
+              style={{ borderRadius: 10 }}
+            />
+          ) : null}
+          <br />
+          <br />
           <button type="submit">Submit</button>
         </form>
       </section>
